@@ -1,4 +1,4 @@
-package br.com.test_db.main.translate;
+package br.com.test_db.main;
 
 
 /*
