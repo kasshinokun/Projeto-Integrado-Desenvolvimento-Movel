@@ -1,4 +1,4 @@
-package br.com.test_db.main;
+package com.test_db.main;
 
 
 /*
