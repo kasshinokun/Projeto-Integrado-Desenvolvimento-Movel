@@ -54,6 +54,27 @@ public class generate_process {
     
     //Process CRUD UPDATE
     
-    //Process CRUD DELETE
+    //Process CRUD DELETE(Test CODE only)
+    public void deleteUser(String name, db_connection connection_db) {
+        try {
+            connection_db.connect();
+        
+            String sql1 = "SET @name = '" + name + "'";
+            String sql2 = "SET @userID = (SELECT id_USR FROM USER WHERE nm_USR = @name)";
+            String sql3 = "DELETE FROM tbl_USERS WHERE id = @userID";
+        
+            ResultSet query1=connection_db.query(sql1);
+        
+            ResultSet query2=connection_db.query(sql2);
+        
+            ResultSet query3=connection_db.query(sql3);
+        
+            connection_db.disconnect();
+            System.out.println("The user " + name + " was deleted from the Table USERS.");
+        } catch(Exception e){ 
+            System.out.println(e);
+        
+        }
+    }
     
 }
