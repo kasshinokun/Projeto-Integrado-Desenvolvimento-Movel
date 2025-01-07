@@ -107,7 +107,8 @@ public class generate_process {
         }
     }
     
-    //Process CRUD CREATE
+    //-------------------------------------------MySQL only    
+    //Process CRUD CREATE  
     public void registerUser(String name,
          String password,
          String level,
@@ -131,10 +132,45 @@ public class generate_process {
             System.out.println(functions_op.invalid_argument(lang));
         }
 
-    }
-    //Process CRUD READ
+    }  
     
-    //Process CRUD UPDATE
+    //Process CRUD READ  
+
+    
+    
+    
+    
+    //Process CRUD UPDATE stage 1
+    
+    
+    
+    
+    
+    //Process CRUD UPDATE stage 2
+    private void updateUser(int id,String name,
+         String password,
+         String level,
+         int lang){
+         try{
+            
+             
+            user USR= new user(name, password, level,lang);
+
+            if (getConnection().getConnectionState()==true){
+
+                String query = "CALL db_test.UPSET_USR(?,?,?,?);"; 
+                
+                
+                
+                
+                functions_op.state_connection(4,lang);
+            }
+         }catch(Exception e){
+            e.printStackTrace();
+            System.out.println(functions_op.invalid_argument(lang));
+        }
+
+    }
     
     //Process CRUD DELETE
     
