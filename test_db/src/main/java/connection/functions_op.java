@@ -7,7 +7,7 @@ import java.util.*;
  * @author Gabriel da Silva Cassino
  */
 public class functions_op {
-    public static void state_connection(int lang,int state){
+    public static void state_connection(int state,int lang){
         if (state==0){//JDBC Driver wasn't installed
             if(lang==1){//message in English-US
                 System.out.println("JDBC Driver wasn't installed");

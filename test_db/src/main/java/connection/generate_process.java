@@ -4,14 +4,65 @@ package connection;
  * @version 1_2025_01_06
  * @author Gabriel da Silva Cassino
  */
- 
+import java.sql.*;
+
 public class generate_process {
+    
+    private db_connection connection;
+    
+    public generate_process(String bd,String local,String door,
+        String str_connection,String user,String password,int lang)
+                throws IllegalArgumentException {//Manual Setting
+    
+        if(setConnection(bd,local,door,str_connection,user,password,lang)==false){
+            throw new IllegalArgumentException(functions_op.invalid_argument(lang));
+        }else{
+            functions_op.state_connection(3, getConnection().getLanguage());   
+        }
+    } 
+    public generate_process(db_connection connection){// Based on created connection
+    
+        if(setConnection(connection)==false){
+            throw new IllegalArgumentException(functions_op.invalid_argument(connection.getLanguage()));
+        }else{
+            functions_op.state_connection(3, getConnection().getLanguage());   
+        }
+    
+    }
+    
+    public boolean setConnection(String bd,String local,String door,
+        String str_connection,String user,String password,int lang){//Manual Setting
+        
+        this.connection = new db_connection(bd,local,door,str_connection,user,password,lang);
+             
+        getConnection().connect();   
+        
+        return getConnection().getConnectionState();
+            
+        
+    }
+    
+    public boolean setConnection(db_connection connection){// Based on created connection
+    
+        this.connection = connection;
+             
+        getConnection().connect();   
+        
+        return getConnection().getConnectionState();
+    
+    }
+        
+    public db_connection getConnection(){
+        return this.connection;
+    }
+    
     public class user{
         
         private String name;
         private String password;
         private String level;
-    
+        private int lang; //Modification to set language
+        
         public user(String name, String password, String level,int lang)
                 throws IllegalArgumentException {
             if(level!="admin"|level!="technical"|level!="user"){
@@ -20,6 +71,7 @@ public class generate_process {
                 setName(name);
                 setPassword(password);
                 setLevel(level);
+                setLanguage(lang);
             }
         }
         
@@ -46,35 +98,44 @@ public class generate_process {
         public void setLevel(String level) {
             this.level = level;
         }
+        public void setLanguage(int lang){
+            this.lang = lang;
+        }
+
+        public int getLanguage(){
+            return lang;
+        }
     }
     
     //Process CRUD CREATE
-    
+    public void registerUser(String name,
+         String password,
+         String level,
+         int lang){
+         try{
+            
+            user USR= new user(name, password, level,lang);
+
+            if (getConnection().getConnectionState()==true){
+
+                String query = "CALL db_test.SET_USR(?,?,?);"; 
+                PreparedStatement pstmt = getConnection().getC().prepareStatement(query);
+                pstmt.setString(1,USR.getName()); 
+                pstmt.setString(2,USR.getPassword());
+                pstmt.setString(3,USR.getLevel());
+                pstmt.execute();
+                functions_op.state_connection(4,lang);
+            }
+         }catch(Exception e){
+            e.printStackTrace();
+            System.out.println(functions_op.invalid_argument(lang));
+        }
+
+    }
     //Process CRUD READ
     
     //Process CRUD UPDATE
     
-    //Process CRUD DELETE(Test CODE only)
-    public void deleteUser(String name, db_connection connection_db) {
-        try {
-            connection_db.connect();
-        
-            String sql1 = "SET @name = '" + name + "'";
-            String sql2 = "SET @userID = (SELECT id_USR FROM USER WHERE nm_USR = @name)";
-            String sql3 = "DELETE FROM tbl_USERS WHERE id = @userID";
-        
-            ResultSet query1=connection_db.query(sql1);
-        
-            ResultSet query2=connection_db.query(sql2);
-        
-            ResultSet query3=connection_db.query(sql3);
-        
-            connection_db.disconnect();
-            System.out.println("The user " + name + " was deleted from the Table USERS.");
-        } catch(Exception e){ 
-            System.out.println(e);
-        
-        }
-    }
+    //Process CRUD DELETE
     
 }

@@ -20,7 +20,7 @@ public class db_connection {
     private String user;
     private String password;
     private Connection c;
-    private Statement statment;
+    private Statement statement;
     private String str_conection;
     private String driverjdbc;
     private boolean state;
@@ -62,7 +62,7 @@ public class db_connection {
         try {
             Class.forName(getDriverjdbc());
             setC(DriverManager.getConnection(getStr_conection(), getUser(), getPassword()));
-            setStatment(getC().createStatement());
+            setStatement(getC().createStatement());
             //Feedback if opened connection with sucess
             functions_op.state_connection(3, getLanguage());
             setConnectionState(true);
@@ -95,9 +95,10 @@ public class db_connection {
             e.printStackTrace();
         }
     }
-    public ResultSet query(String query){
+    //To get ResultSet return from database
+    public ResultSet getResultSet(String query){
         try {
-            return getStatment().executeQuery(query);
+            return getStatement().executeQuery(query);
         }catch (SQLException e) {
             // Fail if it have problems to conect with database
             functions_op.state_connection(1, getLanguage());
@@ -105,7 +106,6 @@ public class db_connection {
             return null;
         }
     }
-
     // GETs AND SETs
     public void setConnectionState(boolean state){
         this.state=state;
@@ -120,11 +120,11 @@ public class db_connection {
     }
     
     public int getLanguage(){
-        return lang;
+        return this.lang;
     }
     
     public String getLocal() {
-        return local;
+        return this.local;
     }
 
     public void setLocal(String local) {
@@ -132,7 +132,7 @@ public class db_connection {
     }
 
     public String getUser() {
-        return user;
+        return this.user;
     }
 
     public void setUser(String user) {
@@ -140,7 +140,7 @@ public class db_connection {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
@@ -148,23 +148,23 @@ public class db_connection {
     }
 
     public Connection getC() {
-        return c;
+        return this.c;
     }
 
     public void setC(Connection c) {
         this.c = c;
     }
 
-    public Statement getStatment() {
-        return statment;
+    public Statement getStatement() {
+        return this.statement;
     }
 
-    public void setStatment(Statement statment) {
-        this.statment = statment;
+    public void setStatement(Statement statement) {
+        this.statement = statement;
     }
 
     public String getStr_conection() {
-        return str_conection;
+        return this.str_conection;
     }
 
     public void setStr_conection(String str_conection) {
@@ -172,7 +172,7 @@ public class db_connection {
     }
 
     public String getDriverjdbc() {
-        return driverjdbc;
+        return this.driverjdbc;
     }
 
     public void setDriverjdbc(String driverjdbc) {
