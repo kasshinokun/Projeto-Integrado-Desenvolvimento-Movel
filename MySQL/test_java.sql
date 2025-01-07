@@ -1,4 +1,7 @@
 #------------Teste Java MySQL
+# Created 07-01-2024
+# Version 3_2024_01_07
+
 /*Java:
 
 import java.util.Arrays;
@@ -22,14 +25,18 @@ public void set_user(String name, String password, String level){
 }
 */
 
-#MySQL:
+# MySQL Table Access Level:
+# (PT-BR: MYSQL Tabela Nível de Acesso)
 CREATE DATABASE IF NOT EXISTS db_test;
 CREATE TABLE IF NOT EXISTS db_test.tbl_LVL(
 	ID_LVL INT AUTO_INCREMENT,
-    NM_LVL VARCHAR(200), # Helton de Oliveira
+    NM_LVL VARCHAR(200), 
     PRIMARY KEY (ID_LVL),
     UNIQUE KEY (NM_LVL)
 );
+
+# MySQL Table Users:
+# (PT-BR: MYSQL Tabela Usuarios)
 CREATE TABLE IF NOT EXISTS db_test.tbl_USER(
 	ID_USER INT AUTO_INCREMENT,
     NM_USER VARCHAR(200),
@@ -40,9 +47,7 @@ CREATE TABLE IF NOT EXISTS db_test.tbl_USER(
     FOREIGN KEY (LVL_USER) REFERENCES db_test.tbl_LVL(ID_LVL)
 );
 
-INSERT INTO db_test.tbl_LVL(NM_LVL)
-VALUES('admin'),('technical'),('user');
-
+# MySQL CREATE
 DELIMITER $$
 CREATE PROCEDURE db_test.SET_USR(
 user_name VARCHAR(200), 
@@ -52,6 +57,8 @@ BEGIN
    DECLARE name_usr  VARCHAR(200);
    DECLARE passwd_usr  VARCHAR(14);
    DECLARE id_lvl_usr  INT;
+   SET name_usr=user_name;
+   SET passwd_usr=pass_word;
    SET id_lvl_usr=(SELECT ID_LVL FROM db_test.tbl_LVL
    WHERE NM_LVL=lvl_usr);
    INSERT INTO db_test.tbl_USER(NM_USER,PWD_USER,LVL_USER)
@@ -59,4 +66,66 @@ BEGIN
 END$$
 DELIMITER ;
 
-CALL db_test.SET_USR('Maria Wood','Sky12345','admin');
+/*
+{}
+*/
+
+# MySQL UPDATE
+/*EN-US
+To make it easier, the best option is to use UPDATE
+as well as SELECT, as it will make programming within Java
+and MySQL easier.
+*/
+/*PT-BR
+Para tornar mais facil, a melhor opção é usar o UPDATE
+igual ao SELECT, pois facilitará a programação dentro do Java
+e do MySQL
+*/
+DELIMITER $$
+CREATE PROCEDURE db_test.UPSET_USR(
+user_id INT,
+user_name VARCHAR(200), 
+pass_word VARCHAR(14),
+lvl_usr VARCHAR(200)) 
+BEGIN
+   
+   DECLARE name_usr  VARCHAR(200);
+   DECLARE passwd_usr  VARCHAR(14);
+   DECLARE id_lvl_usr  INT;
+   
+   SET name_usr=user_name;
+   SET passwd_usr=pass_word;
+   SET id_lvl_usr=(SELECT ID_LVL FROM db_test.tbl_LVL
+   WHERE NM_LVL=lvl_usr);
+   
+   UPDATE db_test.tbl_USER
+   SET NM_USER=name_usr,
+   PWD_USER=passwd_usr,
+   LVL_USER=id_lvl_usr
+   WHERE ID_USER=user_id;
+END$$
+DELIMITER ;
+
+INSERT INTO db_test.tbl_LVL(NM_LVL)
+VALUES('admin'),('technical'),('user');
+
+SELECT * FROM db_test.tbl_LVL;
+
+CALL db_test.SET_USR('Mary Wood','Sky12345','admin');
+
+SELECT * FROM db_test.tbl_USER;
+
+CALL db_test.UPSET_USR(1,'Mary Strong','Sky12345','admin');
+
+SELECT * FROM db_test.tbl_USER;
+
+/*
+PT-BR: Etapas para apagar a base de dados em estágios
+EN-US: Steps to delete the database in stages
+*/
+
+DROP PROCEDURE IF EXISTS db_test.UPSET_USR;
+DROP PROCEDURE IF EXISTS db_test.SET_USR;
+DROP TABLE IF EXISTS db_test.tbl_USER;
+DROP TABLE IF EXISTS db_test.tbl_LVL;
+DROP DATABASE IF EXISTS db_test;
