@@ -1,17 +1,19 @@
 #------------Teste Java MySQL
 # Created 07-01-2024
-# Version 3_2024_01_07
+# Version 1_2024_01_08
 
-/*Java:
+/*JAVA-CREATE:
 
 import java.util.Arrays;
 public class user
 {
-	String name;
+	int id;
+    String name;
     String password;
     int level;
-	public user(String name, String password, int level){
-		this.name=name; 
+	public user(int id,String name, String password, int level){
+		this.id=id;
+        this.name=name; 
         this.password=password; 
         this.level=level;
     }
@@ -20,8 +22,8 @@ public int getlevel(String name_level){
 	String[] level = {"admin","technical","user"};
 	return Arrays.asList(level).indexOf(name_level);
 }
-public void set_user(String name, String password, String level){
-	user=new user(name,password,getlevel(level));
+public void set_user(int id, String name, String password, String level){
+	user=new user(id,name,password,getlevel(level));
 }
 */
 
@@ -65,9 +67,50 @@ BEGIN
    VALUES(name_usr,passwd_usr,id_lvl_usr);
 END$$
 DELIMITER ;
-
-/*
-{}
+#---------------------------------------------------------------------------------------------------------
+/*JAVA-UPDATE:
+import java.util.Arrays;
+public class user
+{
+    String name;
+    String password;
+    int level;
+	public user(String name, String password, int level){
+        this.name=name; 
+        this.password=password; 
+        this.level=level;
+    }
+	public void setName(String name){
+        this.name=name;
+	}
+}
+public int getlevel(String name_level){
+	String[] level = {"admin","technical","user"};
+	return Arrays.asList(level).indexOf(name_level);
+}
+public class list_user{
+	ArrayList<user> list_users;
+    int n; //Number of stored values inside arraylist(numero de valores contidos no arraylist)
+    public list_user(){
+		this.list_users=new ArrayList<user>();
+        this.n=0;
+    }
+    public void set_list(user USER){
+		this.list_users.add(USER);
+        this.n=n+1;
+    }
+    public void upset_list(int id, user USER){
+		id=id-1;//Index start in 0 not in 1(o indice começa em 0 e não em 1)
+        this.list_users.add(id,USER);
+    }
+}
+public void upset_user(int id,String name, String password, String level){
+	user USER=new user(name,password,getlevel(level));
+	list_user LIST_USR=new list_user();
+	LIST_USR.set_list(user USER);
+	USER.setName('Mary Strong');
+	LIST_USR.upset_list(0,user USER);
+}
 */
 
 # MySQL UPDATE
