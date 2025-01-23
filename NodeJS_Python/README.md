@@ -9,7 +9,7 @@ Gabriel Cassino
 
 # NODE WITH PYTHON - PT-BR:
 
-Eu tive uma ideia de criar um novo projeto que unisse algumas linguagens para gerar um app pyhton que faz uma requisão no nodejs tanto em função como por se instanciar no NodeJS, e usando EJS no lugar de HTML.
+Eu tive uma ideia de criar um novo projeto que unisse algumas linguagens para gerar um app Pyhton que faz uma requisão no NodeJS tanto em função como por se instanciar no NodeJS, e usando EJS no lugar de HTML.
 
 Espero que o ajude em seus projetos.
 
