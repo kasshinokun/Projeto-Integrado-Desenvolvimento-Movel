@@ -1,4 +1,5 @@
 ---->POSTERIORES REVISÕES ADICIONAREI SE PRECISO
+
 ---->05-02-2025   Rev.1
 
 # Orientações para o uso de Dart, Android Studio e Flutter no Windows 11
