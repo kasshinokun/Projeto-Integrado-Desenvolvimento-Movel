@@ -9,8 +9,40 @@ Digite ```flutter create --project-name <nome_projeto> --platform <android,ios>(
 
 Exemplo ```flutter create --project-name flutter-app --platform android  ./```
 
-### --> Abra no VS Code:
+### --> Para abrir no VS Code:
 
 Digite ```code .\```
 
 ![Tela ao abrir](https://github.com/kasshinokun/Q1_Q2_2025_Public/blob/main/Flutther_Dart_Android/Tela%20VS%20Code.jpg)
+
+### --> Dentro do VS Code (um pouco mais profissional):
+
+IMPORTANTE: Instale as extensões do Dart e do Flutter no VS Code Antes.
+
+---> Abra o ```VS Code```
+
+---> Clique Sobre ```Ver``` ou ```View(se estiver em inglês)```
+
+---> Clique Sobre ```Paleta de Comandos``` ou ```Command Pallete(se estiver em inglês)```
+
+---> Digite ```Flutter``` e depois clique sobre ```Flutter: New Project```
+
+---> No menu que aparece clique sobre ```Application```
+
+---> Com ```Windows Explorer``` escolha a pasta desejada e clique sobre ```Select a folder to create project in```
+
+---> Clique sobre a ```engrenagem ao lado da barra de texto```, role para baixo e selecione ```Platforms all```
+
+---> Deixe selecionado apenas ```android``` e clique sobre ```OK```
+
+---> Clique sobre ```Organization``` dê um nome ficticio que o identificará como desenvolvedor para a loja de aplicativos por exemplo ```com.projectdev```
+
+---> Clique sobre ```Android Language``` e selecione ```Java``` ou ```Kotlin```
+
+---> Dê um nome para o projeto por exemplo, ```"flutter_vscode" ou algum nome sugestivo para o projeto```
+
+---> E por fim aperte ```Enter``` no teclado.
+
+### ---> Maiores detalhes
+
+[Rodrigo Rahman - A forma certa de criar um projeto Flutter pelo VSCode](https://www.youtube.com/watch?v=AI_QZ-LEh1I)
