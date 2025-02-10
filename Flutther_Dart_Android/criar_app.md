@@ -12,3 +12,5 @@ Exemplo ```flutter create --project-name flutter-app --platform android  ./```
 ### --> Abra no VS Code:
 
 Digite ```code .\```
+
+![Tela ao abrir](https://github.com/kasshinokun/Q1_Q2_2025_Public/blob/main/Flutther_Dart_Android/Tela%20VS%20Code.jpg)
