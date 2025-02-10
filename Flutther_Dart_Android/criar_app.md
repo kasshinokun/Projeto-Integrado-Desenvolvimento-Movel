@@ -1,6 +1,6 @@
 ## Criando App Android no Flutter com VS Code (PT-BR)
 
-### --> Use o Powershell como Administrador:
+### --> Usando o Powershell como Administrador:
 Para facilitar use o comando cd "<Path_da_pasta_do_app>"
 
 exemplo: ```cd "C:\Users\User\Documents\flutter-app"```
@@ -15,7 +15,7 @@ Digite ```code .\```
 
 ![Tela ao abrir](https://github.com/kasshinokun/Q1_Q2_2025_Public/blob/main/Flutther_Dart_Android/Tela%20VS%20Code.jpg)
 
-### --> Dentro do VS Code (um pouco mais profissional):
+### --> Dentro do VS Code (um pouco mais profissional - Sem o PowerShell):
 
 IMPORTANTE: Instale as extensões do Dart e do Flutter no VS Code Antes.
 
@@ -43,6 +43,23 @@ IMPORTANTE: Instale as extensões do Dart e do Flutter no VS Code Antes.
 
 ---> E por fim aperte ```Enter``` no teclado.
 
+### --> Use o Powershell como Administrador(um pouco mais profissional - Similar ao VS Code acima):
+
+Para facilitar use o comando cd "<Path_da_pasta_do_app>"
+
+exemplo: ```cd "C:\Users\User\Documents\flutter-app"```
+
+Digite ```flutter create --org <com.<grupo_dev_nome>.<nome_package_do_projeto>> <--platform <android,ios>(ou apenas <android>)>(ou <-a kotlin> ou <-a java>) --project-name <nome_projeto> ./```
+
+Exemplo 1: ```flutter create --org com.kasshinokun.fluttervscode -a kotlin --project-name flutter_vscode ./```
+
+Exemplo 2: ```flutter create --org com.kasshinokun.fluttervscode --platform android --project-name flutter_vscode ./```
+
+E Para abrir no VS Code, digite ```code .\```
+
 ### ---> Maiores detalhes
 
 [Rodrigo Rahman - A forma certa de criar um projeto Flutter pelo VSCode](https://www.youtube.com/watch?v=AI_QZ-LEh1I)
+
+[Presets via terminal - StackOverlow](https://stackoverflow.com/questions/49047411/flutter-how-to-create-a-new-project)
+(Está direcionado ao iOS, mas as sintaxes são aplicáveis a demais projetos)
