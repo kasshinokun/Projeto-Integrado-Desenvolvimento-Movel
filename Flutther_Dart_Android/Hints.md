@@ -66,6 +66,7 @@ André Baltieri:
 
 - Volte a página do Dart e rode o comando ```choco install dart-sdk``` por favor;
 - Adicione o Dart-SDK ao PATH;
+- Feche o CMD ou PowerShell e abra novamente, e rode por favor ```dart --version``` para checar se o ```Dart SDK``` está ativo;
 - [Baixe o Android Studio](https://developer.android.com/studio) e siga as [instruções do vídeo por favor](https://www.youtube.com/watch?v=Zp7yChRkbK0&list=PLizN3WA8HR1wURqopT5gwZHwG-5qC-Iyz);
 - [Prepare o smartphone para fazer debug no mesmo](https://www.youtube.com/watch?v=aRFmmByY7k8) por favor;
 
