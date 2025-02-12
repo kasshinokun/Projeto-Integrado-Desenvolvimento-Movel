@@ -1,6 +1,6 @@
 ---->POSTERIORES REVISÕES ADICIONAREI SE PRECISO
 
----->05-02-2025   Rev.1
+---->12-02-2025   Rev.1
 
 # Orientações para o uso de Dart, Android Studio e Flutter no Windows 11
 Visando facilitar o processo almejado.
@@ -34,7 +34,7 @@ André Baltieri:
 
 [Flutter - Instalação e Configuração do Android no Windows](https://balta.io/blog/flutter-instalacao-configuracao-android-windows)
 ### Links Importantes:
----->[Chocolatey Install Dart-SDK](https://chocolatey.org/install)
+---->[Chocolatey Install](https://chocolatey.org/install)
 
 ---->[Dart](https://dart.dev)
 
