@@ -40,12 +40,12 @@ IMPORTANTE: Instale as extensões do Dart e do Flutter no VS Code Antes.
 
 ---> Clique sobre ```Android Language``` e selecione ```Java``` ou ```Kotlin```
 
-```IMPORTANTE: ALGUNS SMARTPHONES RODAM APENAS JAVA, SE USAR KOTLIN NÃO FUNCIONARÁ CORRETAMENTE. EM GERAL, O ANDROID STUDIO INFORMA DURANTE A CONFIGURAÇÃO DE EMULAÇÃO SE O DISPOSITIVO É SOMENTE JAVA(JAVA ONLY) OU NÃO.```
-![Tela](https://github.com/kasshinokun/Q1_Q2_2025_Public/blob/main/Flutther_Dart_Android/emul_and.jpg)
-
 ---> Dê um nome para o projeto por exemplo, ```"flutter_vscode" ou algum nome sugestivo para o projeto```
 
 ---> E por fim aperte ```Enter``` no teclado.
+
+```IMPORTANTE: ALGUNS SMARTPHONES RODAM APENAS JAVA, SE USAR KOTLIN NÃO FUNCIONARÁ CORRETAMENTE. EM GERAL, O ANDROID STUDIO INFORMA DURANTE A CONFIGURAÇÃO DE EMULAÇÃO SE O DISPOSITIVO É SOMENTE JAVA(JAVA ONLY) OU NÃO.```
+![Tela](https://github.com/kasshinokun/Q1_Q2_2025_Public/blob/main/Flutther_Dart_Android/emul_and.jpg)
 
 ### --> Use o Powershell como Administrador(um pouco mais profissional - Similar ao VS Code acima):
 
