@@ -47,6 +47,10 @@ IMPORTANTE: Instale as extensões do Dart e do Flutter no VS Code Antes.
 ```IMPORTANTE: ALGUNS SMARTPHONES RODAM APENAS JAVA, SE USAR KOTLIN NÃO FUNCIONARÁ CORRETAMENTE. EM GERAL, O ANDROID STUDIO INFORMA DURANTE A CONFIGURAÇÃO DE EMULAÇÃO SE O DISPOSITIVO É SOMENTE JAVA(JAVA ONLY) OU NÃO.```
 ![Tela](https://github.com/kasshinokun/Q1_Q2_2025_Public/blob/main/Flutther_Dart_Android/emul_and.jpg)
 
+```IMPORTANTE PARA NOVATOS:```
+
+```Para maior praticidade, e ausência de erros(sou novato no Flutter) use o Android Studio para criar a aplicação flutter, pois tornar mais fácil, caso haja erros com bibliotecas e pacotes.```
+
 ### --> Use o Powershell como Administrador(um pouco mais profissional - Similar ao VS Code acima):
 
 Para facilitar use o comando cd "<Path_da_pasta_do_app>"
