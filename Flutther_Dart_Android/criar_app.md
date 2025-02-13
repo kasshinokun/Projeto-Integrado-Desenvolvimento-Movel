@@ -1,4 +1,5 @@
 ## Criando App Android no Flutter com VS Code (PT-BR)
+Revisão 1 13-02-2025 
 
 ### --> Usando o Powershell como Administrador:
 Para facilitar use o comando cd "<Path_da_pasta_do_app>"
@@ -38,6 +39,9 @@ IMPORTANTE: Instale as extensões do Dart e do Flutter no VS Code Antes.
 ---> Clique sobre ```Organization``` dê um nome ficticio que o identificará como desenvolvedor para a loja de aplicativos por exemplo ```com.projectdev```
 
 ---> Clique sobre ```Android Language``` e selecione ```Java``` ou ```Kotlin```
+
+```IMPORTANTE: ALGUNS SMARTPHONES RODAM APENAS JAVA, SE USAR KOTLIN NÃO FUNCIONARÁ CORRETAMENTE. EM GERAL, O ANDROID STUDIO INFORMA DURANTE A CONFIGURAÇÃO DE EMULAÇÃO SE O DISPOSITIVO É SOMENTE JAVA(JAVA ONLY) OU NÃO.```
+![Tela](https://github.com/kasshinokun/Q1_Q2_2025_Public/blob/main/Flutther_Dart_Android/emul_and.jpg)
 
 ---> Dê um nome para o projeto por exemplo, ```"flutter_vscode" ou algum nome sugestivo para o projeto```
 
