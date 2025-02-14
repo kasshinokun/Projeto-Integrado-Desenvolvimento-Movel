@@ -1,7 +1,80 @@
 import java.util.*;
-import java.util.stream.Collectors;
+import java.nio.charset.*;
+import java.util.stream.*;
+    
+public class StringToHexadecimal {
+  public static void main(String[] args)
+  {
+	  //Geeks for Geeks Example
+      String s = "geeks";
+	  strToBinary(s);  
 
-public class StringToBinaryExample1 {
+      // mky Example
+      StringToBinaryExample1("Hello");
+      StringToBinaryExample2("a");
+      
+      //Tutorial Point Example 
+      String str = "Tutorialspoint";
+      HexadecimalToString(StringToHexadecimal(str)); 
+    
+  }
+//=======================Geeks for Geeks Example 
+/*
+Source-base developed by 29AjayKumar
+Source-url: https://www.geeksforgeeks.org/convert-string-binary-sequence/
+*/
+// Java program to convert
+// string into binary string
+	// utility function
+	static void strToBinary(String s)
+	{
+		int n = s.length();
+
+		for (int i = 0; i < n; i++) 
+		{
+			// convert each char to
+			// ASCII value
+			int val = Integer.valueOf(s.charAt(i));
+
+			// Convert ASCII value to binary
+			String bin = "";
+			while (val > 0) 
+			{
+				if (val % 2 == 1)
+				{
+					bin += '1';
+				}
+				else
+					bin += '0';
+				val /= 2;
+			}
+			bin = reverse(bin);
+
+			System.out.print(bin + " ");
+		}
+	}
+
+	static String reverse(String input) 
+	{
+		char[] a = input.toCharArray();
+		int l, r = 0;
+		r = a.length - 1;
+
+		for (l = 0; l < r; l++, r--)
+		{
+			// Swap values of l and r 
+			char temp = a[l];
+			a[l] = a[r];
+			a[r] = temp;
+		}
+		return String.valueOf(a);
+	}
+
+//================Mkyong Example 1
+/*
+Source-base developed by Mkyong
+Source-url: https://mkyong.com/java/java-convert-string-to-binary/
+*/
 
     public static void StringToBinaryExample1(String input) {
       
@@ -27,6 +100,29 @@ public class StringToBinaryExample1 {
         return result.toString();
 
     }
+    //Mkyong Example 2
+    public static void StringToBinaryExample2(String input) {
+
+        String result = convertByteArraysToBinary(input.getBytes(StandardCharsets.UTF_8));
+        System.out.println(prettyBinary(result, 8, " "));
+
+    }
+
+    public static String convertByteArraysToBinary(byte[] input) {
+
+        StringBuilder result = new StringBuilder();
+        for (byte b : input) {
+            int val = b;
+            for (int i = 0; i < 8; i++) {
+                result.append((val & 128) == 0 ? 0 : 1);      // 128 = 1000 0000
+                val <<= 1;
+            }
+        }
+        return result.toString();
+
+    }
+
+    //It's same to example 1 and 2
 
     public static String prettyBinary(String binary, int blockSize, String separator) {
 
@@ -39,20 +135,13 @@ public class StringToBinaryExample1 {
 
         return result.stream().collect(Collectors.joining(separator));
     }
-}
-
+    
+//================Tutorialspoint Example
 /*
 Source-base developed by Tutorialspoint
 https://www.tutorialspoint.com/how-to-convert-a-string-to-hexadecimal-and-vice-versa-format-in-java
 */
-
-public class StringToHexadecimal {
-  public static void main(String args[]) {
-        
-    String str = "Tutorialspoint";
-    HexadecimalToString(StringToHexadecimal(str)); 
-    
-  }
+ 
   public static String StringToHexadecimal(String str) {
       
     System.out.println("The choiced String value is \n"+str);
