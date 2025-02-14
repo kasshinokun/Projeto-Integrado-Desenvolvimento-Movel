@@ -5,17 +5,16 @@ import java.util.stream.*;
 public class StringToHexadecimal {
   public static void main(String[] args)
   {
-	  //Geeks for Geeks Example
-      String s = "geeks";
-	  strToBinary(s);  
+      //Geeks for Geeks Example
+      strToBinary("geeks");  
 
-      // mky Example
+      // Mkyong Example
       StringToBinaryExample1("Hello");
       StringToBinaryExample2("a");
-      
+      StringToBinaryExample3("01001000 01100101 01101100 01101100 01101111");
+	  
       //Tutorial Point Example 
-      String str = "Tutorialspoint";
-      HexadecimalToString(StringToHexadecimal(str)); 
+      HexadecimalToString(StringToHexadecimal("Tutorialspoint")); 
     
   }
 //=======================Geeks for Geeks Example 
@@ -121,6 +120,22 @@ Source-url: https://mkyong.com/java/java-convert-string-to-binary/
         return result.toString();
 
     }
+
+    //Mkyong Example 3
+    public static void StringToBinaryExample3(String input) {
+
+        
+        // Java 8 makes life easier
+        String raw = Arrays.stream(input.split(" "))
+                .map(binary -> Integer.parseInt(binary, 2))
+                .map(Character::toString)
+                .collect(Collectors.joining()); // cut the space
+
+        System.out.println(raw);
+
+    }
+
+
 
     //It's same to example 1 and 2
 
