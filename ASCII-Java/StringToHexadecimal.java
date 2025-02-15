@@ -1,7 +1,11 @@
-import java.util.*;
+import java.nio.*;
 import java.nio.charset.*;
+import java.util.*;
 import java.util.stream.*;
-    
+
+//It's created to train myself after an idea came from a challenge to me.
+//It's will be changed to my own code to meet my goals.
+
 public class StringToHexadecimal {
   public static void main(String[] args)
   {
@@ -12,15 +16,22 @@ public class StringToHexadecimal {
       StringToBinaryExample1("Hello");
       StringToBinaryExample2("a");
       StringToBinaryExample3("01001000 01100101 01101100 01101100 01101111");
-      /*Add on future to train myself
-      UnicodeToBinary1("");
-      UnicodeToBinary2("");   
-      */  
-	  
+      UnicodeToBinary1("你".getBytes(StandardCharsets.UTF_8));
+      UnicodeToBinary2("111001001011110110100000");   
+      
       //Tutorial Point Example 
       HexadecimalToString(StringToHexadecimal("Tutorialspoint")); 
     
-  }
+    }
+    public static void Mkyong4_5(){
+      String binary = "111001001011110110100000"; // 你, Chinese character
+      byte[] input = "你".getBytes(StandardCharsets.UTF_8);
+      
+      UnicodeToBinary1(input);
+      UnicodeToBinary2(binary);
+      
+    }
+	
 //=======================Geeks for Geeks Example 
 /*
 Source-base developed by 29AjayKumar
@@ -139,10 +150,48 @@ Source-url: https://mkyong.com/java/java-convert-string-to-binary/
 
     }
 
+    //Mkyong Example 4
+    public static void UnicodeToBinary1(byte[] input) {
+        
+        System.out.println(input.length);                       // 3, 1 Chinese character = 3 bytes
+        String binary = convertByteArraysToBinary(input);
+        System.out.println(binary);
+        System.out.println(prettyBinary(binary, 8, " "));
 
+    }
 
-    //It's same to example 1 and 2
+    public static String convertByteArraysToBinary(byte[] input) {
 
+        StringBuilder result = new StringBuilder();
+        for (byte b : input) {
+            int val = b;
+            for (int i = 0; i < 8; i++) {
+                result.append((val & 128) == 0 ? 0 : 1);      // 128 = 1000 0000
+                val <<= 1;
+            }
+        }
+        return result.toString();
+
+    }
+    //Mkyong Example 5
+    public static void UnicodeToBinary2(String binary) {
+
+        String result = binaryUnicodeToString(binary);
+        System.out.println(result.trim());
+
+    }
+
+    // <= 32bits = 4 bytes, int needs 4 bytes
+    public static String binaryUnicodeToString(String binary) {
+
+        byte[] array = ByteBuffer.allocate(4).putInt(   // 4 bytes byte[]
+                Integer.parseInt(binary, 2)
+        ).array();
+
+        return new String(array, StandardCharsets.UTF_8);
+    }
+	
+    //It's same to example 1,2 and 4
     public static String prettyBinary(String binary, int blockSize, String separator) {
 
         List<String> result = new ArrayList<>();
