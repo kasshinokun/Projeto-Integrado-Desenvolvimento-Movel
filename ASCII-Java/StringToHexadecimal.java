@@ -12,6 +12,10 @@ public class StringToHexadecimal {
       StringToBinaryExample1("Hello");
       StringToBinaryExample2("a");
       StringToBinaryExample3("01001000 01100101 01101100 01101100 01101111");
+      /*Add on future to train myself
+      UnicodeToBinary1("");
+      UnicodeToBinary2("");   
+      */  
 	  
       //Tutorial Point Example 
       HexadecimalToString(StringToHexadecimal("Tutorialspoint")); 
