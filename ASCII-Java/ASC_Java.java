@@ -6,7 +6,7 @@ import java.util.stream.*;
 //It's created to train myself after an idea came from a challenge to me.
 //It's will be changed to my own code to meet my goals.
 
-public class StringToHexadecimal {
+public class ASC_Java{
   public static void main(String[] args)
   {
       //Geeks for Geeks Example
@@ -154,13 +154,13 @@ Source-url: https://mkyong.com/java/java-convert-string-to-binary/
     public static void UnicodeToBinary1(byte[] input) {
         
         System.out.println(input.length);                       // 3, 1 Chinese character = 3 bytes
-        String binary = convertByteArraysToBinary(input);
+        String binary = convertByteArraysToBinary4(input);
         System.out.println(binary);
         System.out.println(prettyBinary(binary, 8, " "));
 
     }
 
-    public static String convertByteArraysToBinary(byte[] input) {
+    public static String convertByteArraysToBinary4(byte[] input) {
 
         StringBuilder result = new StringBuilder();
         for (byte b : input) {
