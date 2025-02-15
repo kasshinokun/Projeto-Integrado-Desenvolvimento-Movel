@@ -1,10 +1,10 @@
 /*
  Criado em 15-02-2025 (Created on 15-02-2025)
  
-PT-BR: Ele foi criado para me treinar depois que uma ideia surgiu de um desafio para mim. 
+PT-BR: Ele foi criado para me treinar depois que uma ideia surgiu apos um desafio para mim. 
 	   Bons estudos, espero que o ajude em sua jornada
 	   
-EN-US: It's created to train myself after an idea came from a challenge to me.
+EN-US: It's created to train myself after an idea came after a challenge to me.
 	   Happy studying, I hope it helps you on your journey.
  */
 
