@@ -6,7 +6,7 @@ no primeiro semestre de 2025 pela PUC Minas Coração Eucarístico.
 
 [Dicas dos Processos Iniciais PT-BR](https://github.com/kasshinokun/Q1_Q2_2025_Public/blob/main/Flutther_Dart_Android/Hints.md)
 
-[Criando Pasta do App via PowerShell PT-BR](https://github.com/kasshinokun/Q1_Q2_2025_Public/blob/main/Flutther_Dart_Android/criar_app.md)
+[Criando Pasta do App via PowerShell e Metódos Similares PT-BR](https://github.com/kasshinokun/Q1_Q2_2025_Public/blob/main/Flutther_Dart_Android/criar_app.md)
 
 [Rodando Debug do App no Dispositivo Android PT-BR](https://github.com/kasshinokun/Q1_Q2_2025_Public/blob/main/Flutther_Dart_Android/run_on_device.md)
 
