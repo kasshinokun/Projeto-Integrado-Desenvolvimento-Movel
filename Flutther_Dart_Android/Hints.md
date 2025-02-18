@@ -1,6 +1,6 @@
 ---->POSTERIORES REVISÕES ADICIONAREI SE PRECISO
 
----->12-02-2025   Rev.1
+---->18-02-2025   Rev.1
 
 # Orientações para o uso de Dart, Android Studio e Flutter no Windows 11
 Visando facilitar o processo almejado.
@@ -74,11 +74,38 @@ André Baltieri:
 ---->IMPORTANTE: - teste um aplicativo qualquer com o Android Studio para verificar a conexão ADB
 
 - [Baixe o Git](https://git-scm.com/downloads/win) e instale por favor;
+### Instalação do Flutter-SDK
+#### Via Git
 - Acesse o [site para iniciar o processo de instalação do Flutter](https://balta.io/blog/flutter-instalacao-configuracao-android-windows);
 - Rode o comando na pasta deseja no terminal ```git clone https://github.com/flutter/flutter.git -b stable``` por favor;
 - Adicione e verifique se o Flutter já está no PATH por favor;
+
+#### Via arquivo .zip
+- baixe o arquivo no [site da instalação](https://docs.flutter.dev/get-started/install), selecione o seu sistema operacional:
+- Se [Windows](https://docs.flutter.dev/get-started/install/windows) ;
+- Se [MacOS](https://docs.flutter.dev/get-started/install/macos);
+- Se [Linux](https://docs.flutter.dev/get-started/install/linux);
+- Ou se [ChromeOS](https://docs.flutter.dev/get-started/install/chromeos).
+
+- Selecione o tipo:
+- Android, Web ou Desktop;
+
+- Adotarei o Windows e desenvolvimento Mobile para os processos a seguir
+- Baixe o zip, e crie a pasta ```Dev``` ou ```dev``` em ```C:\>``` ou ```C:\Users\<nome_usuario>\>``` por favor;
+- Descompacte o arquivo baixado na pasta ```<caminho_ate_a_pasta>\Dev```;
+
+#### Indexando no PATH
+- Digite ```Variaveis``` na ```Barra de tarefas do Windows``` e clique em ```Editar as variaveis de ambiente do sistema```;
+- Clique em ```Variaveis de Ambiente``` e depois clique em ```Path``` no quadro inferior ```Variaveis do sistema``` por favor;
+- Adicione um ```Novo``` caminho que será ```C:\<caminho_da_pasta_DEV>\flutter\bin``` e por fim clique em ```OK``` por favor;
+
+#### Checagem da Instalação do SDK e adição de Dependências
+- Rode o comando ```flutter --version``` no ```PowerShell``` ou ```Prompt de Comando``` como ```Adminstrador```, este comando permite checar a instalação se usou o comando git, ou realizar a adição de dependências caso seja via zip.
+![Tela após rodar o código](https://github.com/kasshinokun/Q1_Q2_2025_Public/blob/main/Flutther_Dart_Android/powershell.png)
+
+ ### Após instalação e indexação no PATH 
 - Rode o comando no terminal ```flutter doctor``` por favor;
-- Se houver os erros descritos acima, [veja as dicas no post do StackOverflow](https://stackoverflow.com/questions/60475481/flutter-doctor-error-android-sdkmanager-tool-not-found-windows) por favor;
+- Se houver os erros descritos acima no inicio deste tutorial, [veja as dicas no post do StackOverflow](https://stackoverflow.com/questions/60475481/flutter-doctor-error-android-sdkmanager-tool-not-found-windows) por favor;
 - Rode o comando no terminal ```flutter doctor --android-licenses``` e aceite todas por favor;
 - Se tudo estiver certo, rode mais uma vez o comando no terminal ```flutter doctor``` por favor;
 
