@@ -1,6 +1,6 @@
 ---->POSTERIORES REVISÕES ADICIONAREI SE PRECISO
 
----->18-02-2025   Rev.1
+---->18-02-2025   Rev.2
 
 # Orientações para o uso de Dart, Android Studio e Flutter no Windows 11
 Visando facilitar o processo almejado.
@@ -108,7 +108,6 @@ André Baltieri:
 - Se houver os erros descritos acima no inicio deste tutorial, [veja as dicas no post do StackOverflow](https://stackoverflow.com/questions/60475481/flutter-doctor-error-android-sdkmanager-tool-not-found-windows) por favor;
 - Rode o comando no terminal ```flutter doctor --android-licenses``` e aceite todas por favor;
 - Se tudo estiver certo, rode mais uma vez o comando no terminal ```flutter doctor``` por favor;
-
-
+![Resultado esperado](https://github.com/kasshinokun/Q1_Q2_2025_Public/blob/main/Flutther_Dart_Android/flutter_doctor.png)
 
 
