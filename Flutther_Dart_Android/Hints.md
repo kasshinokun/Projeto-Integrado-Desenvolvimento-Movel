@@ -1,6 +1,6 @@
 ---->POSTERIORES REVISÕES ADICIONAREI SE PRECISO
 
----->18-02-2025   Rev.2
+---->18-02-2025   Rev.3
 
 # Orientações para o uso de Dart, Android Studio e Flutter no Windows 11
 Visando facilitar o processo almejado.
@@ -56,6 +56,10 @@ André Baltieri:
 
 ------------>[Docs Flutter - Android App Windows](https://docs.flutter.dev/get-started/install/windows/mobile)
 
+### OBSERVAÇÂO IMPORTANTE
+
+Se um usuário do Sistema Operacional já possuir o Flutter-SDK não execute os processos a seguir citados, pois pode haver erros que exigiram a exclusão de todas as pastas contendo o Flutter-SDK e a reinstalação do Flutter-SDK do zero, além de uma grande perca de tempo no decorrer dos problemas gerados e na busca por solução, quanto ao Dart-SDK, até agora não houve algo similar.
+
 ## Passos Iniciais:
 
 - [Acesse a documentação do dart](https://dart.dev/get-dart)  para saber como instalar pelo chocolatey (poder ser também via arquivo .zip) por favor;
@@ -109,5 +113,7 @@ André Baltieri:
 - Rode o comando no terminal ```flutter doctor --android-licenses``` e aceite todas por favor;
 - Se tudo estiver certo, rode mais uma vez o comando no terminal ```flutter doctor``` por favor;
 ![Resultado esperado](https://github.com/kasshinokun/Q1_Q2_2025_Public/blob/main/Flutther_Dart_Android/flutter_doctor.png)
+
+
 
 
