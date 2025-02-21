@@ -1,9 +1,8 @@
-//Update 2_21_02_2025
-  
 import 'package:flutter/material.dart';
+import 'package:rent_house/Pages/Start/welcome.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreen();
@@ -11,16 +10,48 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreen extends State<HomeScreen> {
   TextEditingController textEditingController = TextEditingController();
-
-  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        //------------------------------------> AppBar
         backgroundColor: Colors.green,
-        title: const Text('Préludio HomePage '),
-      ),
-      body: Center(child: Text('Tela após Login')),
-    );
-  }
-}
+        title: Text('Préludio HomePage'),
+        leading: IconButton(
+          // ------> Icone Home
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/');
+            Navigator.popAndPushNamed(context, '/');
+          },
+          icon: Icon(Icons.home),
+        ), // Fim do Icone Home
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))],
+      ), // Fim do AppBar
+
+      body: Container(
+        //----------------------------------------------> Container
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+
+        decoration: BoxDecoration(
+          //--------------------------> BoxDecoration
+          image: DecorationImage(
+            //-------------------------> DecorationImage
+            fit: BoxFit.fill,
+            //Usarei futuramente uma função para definir a imagem
+            image: AssetImage(
+              //-------------------------> AssetImage
+              getPathImageHome(
+                MediaQuery.of(context).size.height,
+                MediaQuery.of(context).size.width,
+              ),
+            ), // Fim do AssetImage
+          ), // Fim do DecorationImage
+        ), // Fim do BoxDecoration
+        //=============================================> Fim do Itens na Tela
+        //Adicione mais Widgets aqui neste espaço
+        //=============================================>
+      ), // Fim do Container
+    ); // Fim do Scaffold
+  } // Fim do retorno
+} // Fim do Metodo

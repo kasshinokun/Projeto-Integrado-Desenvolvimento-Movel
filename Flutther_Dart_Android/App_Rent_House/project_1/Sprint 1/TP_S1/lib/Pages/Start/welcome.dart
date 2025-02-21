@@ -1,12 +1,16 @@
-//Update 2_21_02_2025
-  
 import 'package:flutter/material.dart';
 import 'package:rent_house/Pages/Home/home.dart';
+
+String getPathImageHome(double height, double width) {
+  return height < width
+      ? "assets/welcome/fullHD_landscape.jpg"
+      : "assets/welcome/fullHD_portrait.jpg";
+}
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
   @override
-  _WelcomePage createState() => _WelcomePage();
+  State<WelcomePage> createState() => _WelcomePage();
 }
 
 class _WelcomePage extends State<WelcomePage> {
@@ -25,9 +29,7 @@ class _WelcomePage extends State<WelcomePage> {
           title: Text("Rent a House"), //Texto da Barra do App
           backgroundColor: Color(0xffB0E0E6), //Cor da Barra do App
         ), // Fim do AppBar
-        body:
-        //Preventivo para ajustar widgets a telas de smartphones ou menores
-        Container(
+        body: Container(
           //----------------------------------------------> Container
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -37,8 +39,14 @@ class _WelcomePage extends State<WelcomePage> {
             image: DecorationImage(
               //-------------------------> DecorationImage
               fit: BoxFit.fill,
-              //Usarei futuramente uma função para definir a imagem
-              image: AssetImage("assets/welcome/fullHD_landscape.jpg"),
+              //Usando uma função para definir a imagem
+              image: AssetImage(
+                //-------------------------> AssetImage
+                getPathImageHome(
+                  MediaQuery.of(context).size.height,
+                  MediaQuery.of(context).size.width,
+                ),
+              ), // Fim do AssetImage
             ), // Fim do DecorationImage
           ), // Fim do BoxDecoration
 
@@ -133,7 +141,6 @@ class _WelcomePage extends State<WelcomePage> {
                   //----------------------------------------------> Padding
                   padding: const EdgeInsets.all(12.0),
                   child: ElevatedButton(
-                    child: Text('Entrar na Aplicação'),
                     style: ElevatedButton.styleFrom(
                       side: BorderSide(color: Colors.yellow, width: 5),
                       textStyle: const TextStyle(
@@ -148,9 +155,13 @@ class _WelcomePage extends State<WelcomePage> {
                             builder: (context) => const HomeScreen(),
                           ),
                         ),
-                  ),
-                ),
-              ),
+                    child: Text('Entrar na Aplicação'),
+                  ), // Fim do ElevationButton --> Botão da Tela
+                ), // Fim do Padding -------------> Botão da Tela
+              ), // Fim do Padding ---------------> Botão da Tela
+              //=============================================> Fim do Itens na Tela
+              //Adicione mais Widgets aqui neste espaço
+              //=============================================>
             ], // Fim do children<Widget>[]
           ), // Fim da Column
         ), // Fim do Container
