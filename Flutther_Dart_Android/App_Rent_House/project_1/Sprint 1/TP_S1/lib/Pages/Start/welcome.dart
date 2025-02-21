@@ -1,105 +1,101 @@
-//preparação para update 1_21_02_2025
+//Update 1_21_02_2025
 
-import 'package:flutter/material.dart'; 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class WelcomePage extends StatefulWidget { 
-@override 
-_WelcomePage createState() => _WelcomePage(); 
-} 
+String _setImage_path = ""; //Armazenará o caminho da imagem de fundo
 
-class _WelcomePage extends State<WelcomePage> { 
-@override 
-Widget build(BuildContext context) { 
-	return Scaffold( 
-	backgroundColor: Colors.white, 
-	appBar: AppBar( 
-		title: Text("GeeksforGeeks"), 
-	), 
-	body: SingleChildScrollView( 
-		child: Column( 
-		children: <Widget>[ 
-			Padding( 
-			padding: const EdgeInsets.only(top: 110.0), 
-			child: Center( 
-				child: Container( 
-					width: 200, 
-					height: 100, 
-					/*decoration: BoxDecoration( 
-						color: Colors.red, 
-						borderRadius: BorderRadius.circular(50.0)),*/
-					child: Image.asset('assets/welcome/fullHD_landscape.jpg')), 
-			), 
-			), 
-			Padding( 
-			//padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0), 
-			padding: EdgeInsets.symmetric(horizontal: 15), 
-			child: TextField( 
-				decoration: InputDecoration( 
-					border: OutlineInputBorder(), 
-					labelText: 'Phone number, email or username', 
-					hintText: 'Enter valid email id as abc@gmail.com'), 
-			), 
-			), 
-			Padding( 
-			padding: const EdgeInsets.only( 
-				left: 15.0, right: 15.0, top: 15, bottom: 0), 
-			//padding: EdgeInsets.symmetric(horizontal: 15), 
-			child: TextField( 
-
-				obscureText: true, 
-				decoration: InputDecoration( 
-					border: OutlineInputBorder(), 
-					labelText: 'Password', 
-					hintText: 'Enter secure password'), 
-			), 
-			), 
-
-		SizedBox( 
-			height: 65, 
-			width: 360, 
-			child: Container( 
-				child: Padding( 
-				padding: const EdgeInsets.only(top: 20.0), 
-				child: ElevatedButton( 
-					child: Text( 'Log in ', style: TextStyle(color: Colors.white, fontSize: 20), 
-					), 
-					onPressed: (){ 
-					print('Successfully log in '); 
-					}, 
-
-				), 
-				), 
-			), 
-		), 
-
-			SizedBox( 
-			height: 50, 
-			), 
-			Container( 
-				child: Center( 
-				child: Row( 
-					children: [ 
-
-					Padding( 
-						padding: const EdgeInsets.only(left: 62), 
-						child: Text('Forgot your login details? '), 
-					), 
-
-					Padding( 
-						padding: const EdgeInsets.only(left:1.0), 
-						child: InkWell( 
-						onTap: (){ 
-							print('hello'); 
-						}, 
-							child: Text('Get help logging in.', style: TextStyle(fontSize: 14, color: Colors.blue),)), 
-					) 
-					], 
-				), 
-				) 
-			) 
-		], 
-		), 
-	), 
-	); 
+//Função para definir a imagem de fundo
+String _getImage_path(double _height, double _width) {
+  if (_height < _width) {
+    _setImage_path = "assets/welcome/fullHD_portrait.jpg";
+  } else {
+    _setImage_path = "assets/welcome/fullHD_landscape.jpg";
+  }
+  return _setImage_path;
 }
+
+class WelcomePage extends StatefulWidget {
+  const WelcomePage({super.key});
+  @override
+  _WelcomePage createState() => _WelcomePage();
+}
+
+class _WelcomePage extends State<WelcomePage> {
+  //Instancia a Janela de boas-vindas
+  @override
+  Widget build(BuildContext context) {
+    //AppBar (no topo da tela)
+    return MaterialApp(
+      //-------------------------------------------> MaterialApp
+      home: Scaffold(
+        //------------------------------------------------> Scaffold
+        appBar: AppBar(
+          //------------------------------------------------> AppBar
+          title: Text("Rent a House"), //Texto da Barra do App
+          backgroundColor: Color(0xffB0E0E6), //Cor da Barra do App
+        ), // Fim do AppBar
+        body:
+        //Preventivo para ajustar widgets a telas de smartphones ou menores
+        SingleChildScrollView(
+          //------------------------> SingleChildScrollView
+
+          //Encapsulamento de itens da tela
+          child: Container(
+            //----------------------------------------------> Container
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+
+            decoration: BoxDecoration(
+              //--------------------------> BoxDecoration
+              image: DecorationImage(
+                //-------------------------> DecorationImage
+                fit: BoxFit.fill,
+                //Usarei futuramente uma função para definir a imagem
+                image: AssetImage("assets/welcome/fullHD_landscape.jpg"),
+              ), // Fim do DecorationImage
+            ), // Fim do BoxDecoration
+            //===================================================================
+            child: Padding(
+              //-------------------------------------------> Padding
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Padding(
+                //----------------------------------------------> Padding
+                padding: const EdgeInsets.all(12.0),
+                child: 
+                  TextField(
+                  //-------------------------------------> TextField
+                  inputFormatters: [LengthLimitingTextInputFormatter(10)],
+                  decoration: InputDecoration(
+                    //------------------> InputDecoration
+                    filled: true,
+                    fillColor: const Color.fromARGB(255, 140, 233, 132),
+                    labelText: 'Nome do Usuário',
+                    floatingLabelBehavior: FloatingLabelBehavior.auto,
+                    floatingLabelStyle: TextStyle(
+                      //--------------> Estilo do Texto
+                      fontWeight: FontWeight.bold,
+                      color: const Color.fromARGB(255, 37, 37, 37),
+                      fontSize: 20,
+                    ), // Fim do Estilo do Texto
+                    hintMaxLines: 1,
+                    icon: Icon(Icons.person),
+                    hintText: 'Informe o seu nome de usuário',
+                    border: OutlineInputBorder(
+                      //--------------> OutlineInputBorder
+                      borderRadius: BorderRadius.circular(30),
+                    ), // Fim do OutlineInputBorder
+                  ), // Fim do InputDecoration
+                ), // Fim do TextField
+                
+
+
+              ), // Fim do Padding
+            ), // Fim do Padding
+          ), // Fim do Container
+        ), // Fim do SingleChildScrollView
+      ), // Fim do Scaffold
+    ); // Fim do MaterialApp
+  }
 }
