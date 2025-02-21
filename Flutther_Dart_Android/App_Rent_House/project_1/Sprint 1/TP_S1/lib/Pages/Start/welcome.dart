@@ -1,20 +1,5 @@
-//Update 1_21_02_2025
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-String _setImage_path = ""; //Armazenará o caminho da imagem de fundo
-
-//Função para definir a imagem de fundo
-String _getImage_path(double _height, double _width) {
-  if (_height < _width) {
-    _setImage_path = "assets/welcome/fullHD_portrait.jpg";
-  } else {
-    _setImage_path = "assets/welcome/fullHD_landscape.jpg";
-  }
-  return _setImage_path;
-}
+import 'package:rent_house/Pages/Home/home.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -24,6 +9,8 @@ class WelcomePage extends StatefulWidget {
 
 class _WelcomePage extends State<WelcomePage> {
   //Instancia a Janela de boas-vindas
+
+  bool passwordVisible = true;
   @override
   Widget build(BuildContext context) {
     //AppBar (no topo da tela)
@@ -38,64 +25,134 @@ class _WelcomePage extends State<WelcomePage> {
         ), // Fim do AppBar
         body:
         //Preventivo para ajustar widgets a telas de smartphones ou menores
-        SingleChildScrollView(
-          //------------------------> SingleChildScrollView
+        Container(
+          //----------------------------------------------> Container
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
 
-          //Encapsulamento de itens da tela
-          child: Container(
-            //----------------------------------------------> Container
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            //--------------------------> BoxDecoration
+            image: DecorationImage(
+              //-------------------------> DecorationImage
+              fit: BoxFit.fill,
+              //Usarei futuramente uma função para definir a imagem
+              image: AssetImage("assets/welcome/fullHD_landscape.jpg"),
+            ), // Fim do DecorationImage
+          ), // Fim do BoxDecoration
 
-            decoration: BoxDecoration(
-              //--------------------------> BoxDecoration
-              image: DecorationImage(
-                //-------------------------> DecorationImage
-                fit: BoxFit.fill,
-                //Usarei futuramente uma função para definir a imagem
-                image: AssetImage("assets/welcome/fullHD_landscape.jpg"),
-              ), // Fim do DecorationImage
-            ), // Fim do BoxDecoration
-            //===================================================================
-            child: Padding(
-              //-------------------------------------------> Padding
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Padding(
-                //----------------------------------------------> Padding
-                padding: const EdgeInsets.all(12.0),
-                child: 
-                  TextField(
-                  //-------------------------------------> TextField
-                  inputFormatters: [LengthLimitingTextInputFormatter(10)],
-                  decoration: InputDecoration(
-                    //------------------> InputDecoration
-                    filled: true,
-                    fillColor: const Color.fromARGB(255, 140, 233, 132),
-                    labelText: 'Nome do Usuário',
-                    floatingLabelBehavior: FloatingLabelBehavior.auto,
-                    floatingLabelStyle: TextStyle(
-                      //--------------> Estilo do Texto
-                      fontWeight: FontWeight.bold,
-                      color: const Color.fromARGB(255, 37, 37, 37),
-                      fontSize: 20,
-                    ), // Fim do Estilo do Texto
-                    hintMaxLines: 1,
-                    icon: Icon(Icons.person),
-                    hintText: 'Informe o seu nome de usuário',
-                    border: OutlineInputBorder(
-                      //--------------> OutlineInputBorder
-                      borderRadius: BorderRadius.circular(30),
-                    ), // Fim do OutlineInputBorder
-                  ), // Fim do InputDecoration
-                ), // Fim do TextField
-                
-
-
-              ), // Fim do Padding
-            ), // Fim do Padding
-          ), // Fim do Container
-        ), // Fim do SingleChildScrollView
+          child: Column(
+            children: <Widget>[
+              //=============================================> Nome do Usuário
+              Padding(
+                //-------------------------------------------> Padding
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Padding(
+                  //----------------------------------------------> Padding
+                  padding: const EdgeInsets.all(12.0),
+                  child: TextField(
+                    //-------------------------------------> TextField
+                    decoration: InputDecoration(
+                      //------------------> InputDecoration
+                      filled: true,
+                      fillColor: const Color.fromARGB(255, 140, 233, 132),
+                      labelText: 'Nome do Usuário',
+                      floatingLabelBehavior: FloatingLabelBehavior.auto,
+                      floatingLabelStyle: TextStyle(
+                        //--------------> Estilo do Texto
+                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(255, 37, 37, 37),
+                        fontSize: 20,
+                      ), // Fim do Estilo do Texto
+                      hintMaxLines: 1,
+                      icon: Icon(Icons.person),
+                      hintText: 'Informe o seu nome de usuário',
+                      border: OutlineInputBorder(
+                        //--------------> OutlineInputBorder
+                        borderRadius: BorderRadius.circular(30),
+                      ), // Fim do OutlineInputBorder
+                    ), // Fim do InputDecoration
+                  ), // Fim do TextField --------> Caixa de texto (Nome)
+                ), // Fim do Padding ------------> Caixa de texto (Nome)
+              ), // Fim do Padding --------------> Caixa de texto (Nome)
+              //=============================================> Senha do Usuário
+              Padding(
+                //-------------------------------------------> Padding
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Padding(
+                  //----------------------------------------------> Padding
+                  padding: const EdgeInsets.all(12.0),
+                  child: TextField(
+                    //-------------------------------------> TextField
+                    obscureText: passwordVisible,
+                    decoration: InputDecoration(
+                      //------------------> InputDecoration
+                      filled: true,
+                      fillColor: const Color.fromARGB(255, 140, 233, 132),
+                      labelText: 'Senha do Usuário',
+                      floatingLabelBehavior: FloatingLabelBehavior.auto,
+                      floatingLabelStyle: TextStyle(
+                        //--------------> Estilo do Texto
+                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(255, 37, 37, 37),
+                        fontSize: 20,
+                      ), // Fim do Estilo do Texto
+                      hintMaxLines: 1,
+                      icon: Icon(Icons.key),
+                      hintText: 'Informe a senha nome de usuário',
+                      helperText: "A senha deve conter caracteres especiais",
+                      border: OutlineInputBorder(
+                        //--------------> OutlineInputBorder
+                        borderRadius: BorderRadius.circular(30),
+                      ), // Fim do OutlineInputBorder
+                      helperStyle: TextStyle(color: Colors.green),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            passwordVisible = !passwordVisible;
+                          });
+                        },
+                      ), //Fim do IconButton(Olho)
+                    ), // Fim do InputDecoration
+                    keyboardType: TextInputType.visiblePassword,
+                    textInputAction: TextInputAction.done,
+                  ), // Fim do TextField --------> Caixa de texto (Senha)
+                ), // Fim do Padding ------------> Caixa de texto (Senha)
+              ), // Fim do Padding --------------> Caixa de texto (Senha)
+              //=============================================> Botão da Tela
+              Padding(
+                //-------------------------------------------> Padding
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Padding(
+                  //----------------------------------------------> Padding
+                  padding: const EdgeInsets.all(12.0),
+                  child: ElevatedButton(
+                    child: Text('Entrar na Aplicação'),
+                    style: ElevatedButton.styleFrom(
+                      side: BorderSide(color: Colors.yellow, width: 5),
+                      textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontStyle: FontStyle.normal,
+                      ),
+                    ),
+                    onPressed:
+                        () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const HomeScreen(),
+                          ),
+                        ),
+                  ),
+                ),
+              ),
+            ], // Fim do children<Widget>[]
+          ), // Fim da Column
+        ), // Fim do Container
       ), // Fim do Scaffold
     ); // Fim do MaterialApp
-  }
-}
+  } // Fim do retorno
+} // Fim do Metodo

@@ -1,17 +1,24 @@
-//Update 1_21_02_2025
 import 'package:flutter/material.dart';
 import 'package:rent_house/Pages/Start/welcome.dart';
 
-//Primeira tela da aplicação
+//Chamada da primeira tela da aplicação
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    //AppBar (no topo da tela)
-    return MaterialApp(home: WelcomePage());
+    //Constroi a aplicação ao dar o retorno
+
+    //Retorno sem usar Rotas como NodeJS
+    //return MaterialApp(home: WelcomePage());
+
+    //Retorno usando o conceito de Rotas como NodeJS
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/', //Rotas
+      routes: {
+        '/': (context) => WelcomePage(), //Página de Login e Boas-vindas
+      },
+    );
   }
 }
-
-
-
