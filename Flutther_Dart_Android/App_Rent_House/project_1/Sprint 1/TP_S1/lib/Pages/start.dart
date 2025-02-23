@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rent_house/Pages/Home/home.dart';
 import 'package:rent_house/Pages/Start/welcome.dart';
 
 //Chamada da primeira tela da aplicação
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/', //Rotas
       routes: {
-        '/': (context) => WelcomePage(), //Página de Login e Boas-vindas
+        '/': (context) => HomeScreen(), //Página Inicial
+        '/login': (context) => WelcomePage(), //Página de Login
       },
     );
   }

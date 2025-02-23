@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rent_house/Pages/Start/welcome.dart';
+import 'package:rent_house/Pages/Home/NavBar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,18 +14,19 @@ class _HomeScreen extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Navbar(),
       appBar: AppBar(
         //------------------------------------> AppBar
         backgroundColor: Colors.green,
-        title: Text('Préludio HomePage'),
-        leading: IconButton(
-          // ------> Icone Home
-          onPressed: () {
-            Navigator.pushReplacementNamed(context, '/');
-            Navigator.popAndPushNamed(context, '/');
-          },
-          icon: Icon(Icons.home),
+        title: Text('Rent a House - HomePage'),
+        leading: Builder(
+          builder:
+              (context) => IconButton(
+                icon: Icon(Icons.person_2_rounded),
+                onPressed: () => Scaffold.of(context).openDrawer(),
+              ),
         ), // Fim do Icone Home
+
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))],
       ), // Fim do AppBar
 
