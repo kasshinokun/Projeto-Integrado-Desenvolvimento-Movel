@@ -1,0 +1,111 @@
+import 'package:flutter/material.dart';
+import 'package:rent_house/Pages/Start/welcome.dart';
+
+String setNameAccount(bool connection) {
+  return connection ? 'Offline User' : "Michiko Shindou";
+}
+
+String setEmailAccount(bool connection) {
+  return connection ? "Offline Email" : "shin.michiko2004@gmail.com";
+}
+
+String setExitButton(bool connection) {
+  return connection ? 'Entrar/Registrar' : 'Sair';
+}
+
+IconData getUserConnect(bool connection) {
+  return connection ? Icons.exit_to_app : Icons.person_2_rounded;
+}
+
+class Navbar extends StatelessWidget {
+  const Navbar({super.key});
+  @override
+  Widget build(BuildContext context) {
+    bool connection = setConnectionState();
+    String urlUserName = setNameAccount(connection);
+    String urlUserEmail = setEmailAccount(connection);
+    return Drawer(
+      child: ListView(
+        children: [
+          UserAccountsDrawerHeader(
+            accountName: Text(urlUserName),
+            accountEmail: Text(urlUserEmail),
+            currentAccountPicture: CircleAvatar(child: ClipOval()),
+            decoration: BoxDecoration(color: Colors.blue),
+          ),
+          ListTile(
+            leading: Icon(Icons.notifications),
+            title: Text('Página Inicial'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/');
+              Navigator.popAndPushNamed(context, '/');
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.notifications),
+            title: Text('Notificações'),
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.beach_access_rounded),
+            title: Text('Alugar House'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/');
+              Navigator.popAndPushNamed(context, '/');
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.home),
+            title: Text('My Houses'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/client');
+              Navigator.popAndPushNamed(context, '/client');
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.room_service_rounded),
+            title: Text('Cadastrar House'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/register');
+              Navigator.popAndPushNamed(context, '/register');
+            },
+          ),
+
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text('Configurações'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/settings');
+              Navigator.popAndPushNamed(context, '/settings');
+            },
+          ),
+          Divider(),
+          ListTile(
+            title: Text(setExitButton(connection)),
+            leading: Icon(getUserConnect(connection)),
+            onTap: () {
+              if (connection == true) {
+                Navigator.pushReplacementNamed(context, '/login');
+                Navigator.popAndPushNamed(context, '/login');
+              }
+              //
+              else {
+                Navigator.pushReplacementNamed(context, '/');
+                Navigator.popAndPushNamed(context, '/');
+              }
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+
+/*
+          
+
+
+*/

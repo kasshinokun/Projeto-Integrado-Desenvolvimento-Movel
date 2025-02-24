@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:rent_house/Pages/Start/welcome.dart';
 import 'package:rent_house/Pages/Home/navbar.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class ClientScreen extends StatefulWidget {
+  const ClientScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreen();
+  State<ClientScreen> createState() => _ClientScreen();
 }
 
-class _HomeScreen extends State<HomeScreen> {
+class _ClientScreen extends State<ClientScreen> {
   TextEditingController textEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class _HomeScreen extends State<HomeScreen> {
       appBar: AppBar(
         //------------------------------------> AppBar
         backgroundColor: Colors.green,
-        title: Text('Rent a House - HomePage'),
+        title: Text('Rent a House - MyHouses'),
         leading: Builder(
           builder:
               (context) => IconButton(
@@ -48,6 +48,8 @@ class _HomeScreen extends State<HomeScreen> {
             ), // Fim do AssetImage
           ), // Fim do DecorationImage
         ), // Fim do BoxDecoration
+        //=============================================>
+        //
         //=============================================> Fim do Itens na Tela
         //Adicione mais Widgets aqui neste espaço
         //=============================================>

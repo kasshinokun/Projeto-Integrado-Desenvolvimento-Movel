@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:rent_house/Pages/Home/home.dart';
 import 'package:rent_house/Pages/Client/register.dart';
 
+bool connection = false;
+bool setConnectionState() {
+  connection = !connection; //Gerar a Mudança
+  return connection;
+}
+
 String getPathImageHome(double height, double width) {
   return height < width
       ? "assets/welcome/fullHD_landscape.jpg"

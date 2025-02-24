@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:rent_house/Pages/Start/welcome.dart';
 import 'package:rent_house/Pages/Home/navbar.dart';
+import 'package:rent_house/Pages/Start/welcome.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreen();
+  State<RegisterScreen> createState() => _RegisterScreen();
 }
 
-class _HomeScreen extends State<HomeScreen> {
+class _RegisterScreen extends State<RegisterScreen> {
   TextEditingController textEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class _HomeScreen extends State<HomeScreen> {
       appBar: AppBar(
         //------------------------------------> AppBar
         backgroundColor: Colors.green,
-        title: Text('Rent a House - HomePage'),
+        title: Text('Rent a House - Cadastrar para Alugar'),
         leading: Builder(
           builder:
               (context) => IconButton(
@@ -27,7 +27,6 @@ class _HomeScreen extends State<HomeScreen> {
               ),
         ), // Fim do Icone Home
       ), // Fim do AppBar
-
       body: Container(
         //----------------------------------------------> Container
         width: MediaQuery.of(context).size.width,
