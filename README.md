@@ -4,7 +4,7 @@ no primeiro semestre de 2025 pela PUC Minas Coração Eucarístico.
 
 --> Flutter, Dart e Android Studio:
 
-[Dicas dos Processos Iniciais PT-BR](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Dicas_Flutther/Hints.md)
+[Dicas dos Processos Iniciais PT-BR](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Dicas_Flutter/Hints.md)
 
 [Criando Pasta do App via PowerShell e Metódos Similares PT-BR](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Dicas_Flutther/criar_app.md)
 
