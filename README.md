@@ -2,13 +2,9 @@
 Criada para upload de arquivos referentes a matéria de Projeto Integrado I - Desenvolvimento Móvel
 no primeiro semestre de 2025 pela PUC Minas Coração Eucarístico.
 
-### Acerca do Flutter, Dart e Android Studio:
+### Orientações e como desenvolvemos o código:
+[Dicas para uso do Flutter](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/tree/main/Dicas_Flutter)
 
-[Dicas dos Processos Iniciais PT-BR](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Dicas_Flutter/Hints.md)
-
-[Criando Pasta do App via PowerShell e Metódos Similares PT-BR](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Dicas_Flutter/criar_app.md)
-
-[Rodando Debug do App no Dispositivo Android PT-BR](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Dicas_Flutter/run_on_device.md))
 
 ### Projeto:
 
