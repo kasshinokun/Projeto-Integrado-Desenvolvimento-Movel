@@ -105,7 +105,7 @@ Se um usuário do Sistema Operacional já possuir o Flutter-SDK não execute os 
 
 #### Checagem da Instalação do SDK e adição de Dependências
 - Rode o comando ```flutter --version``` no ```PowerShell``` ou ```Prompt de Comando``` como ```Adminstrador```, este comando permite checar a instalação se usou o comando git, ou realizar a adição de dependências caso seja via zip.
-![Tela após rodar o código](https://github.com/kasshinokun/Q1_Q2_2025_Public/blob/main/Flutther_Dart_Android/powershell.png)
+![Tela após rodar o código](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Dicas_Flutter/powershell.png)
 
  ### Após instalação e indexação no PATH 
 - Rode o comando no terminal ```flutter doctor``` por favor;
