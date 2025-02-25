@@ -14,7 +14,8 @@ Exemplo ```flutter create --project-name flutter-app --platform android  ./```
 
 Digite ```code .\```
 
-![Tela ao abrir](https://github.com/kasshinokun/Q1_Q2_2025_Public/blob/main/Flutther_Dart_Android/Tela%20VS%20Code.jpg)
+![Tela ao abrir]
+(https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Dicas_Flutter/Tela%20VS%20Code.jpg)
 
 ### --> Dentro do VS Code (um pouco mais profissional - Sem o PowerShell):
 
@@ -45,7 +46,7 @@ IMPORTANTE: Instale as extensões do Dart e do Flutter no VS Code Antes.
 ---> E por fim aperte ```Enter``` no teclado.
 
 ```IMPORTANTE: ALGUNS SMARTPHONES RODAM APENAS JAVA, SE USAR KOTLIN NÃO FUNCIONARÁ CORRETAMENTE. EM GERAL, O ANDROID STUDIO INFORMA DURANTE A CONFIGURAÇÃO DE EMULAÇÃO SE O DISPOSITIVO É SOMENTE JAVA(JAVA ONLY) OU NÃO.```
-![Tela](https://github.com/kasshinokun/Q1_Q2_2025_Public/blob/main/Flutther_Dart_Android/emul_and.jpg)
+![Tela](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Dicas_Flutter/emul_and.jpg)
 
 ```IMPORTANTE PARA NOVATOS:```
 
