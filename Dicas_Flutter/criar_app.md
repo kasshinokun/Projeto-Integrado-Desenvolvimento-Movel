@@ -14,8 +14,7 @@ Exemplo ```flutter create --project-name flutter-app --platform android  ./```
 
 Digite ```code .\```
 
-![Tela ao abrir]
-(https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Dicas_Flutter/Tela%20VS%20Code.jpg)
+![Tela ao abrir](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Dicas_Flutter/Tela%20VS%20Code.jpg)
 
 ### --> Dentro do VS Code (um pouco mais profissional - Sem o PowerShell):
 
