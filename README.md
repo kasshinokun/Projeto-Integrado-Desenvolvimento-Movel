@@ -10,5 +10,11 @@ no primeiro semestre de 2025 pela PUC Minas Coração Eucarístico.
 
 [Rodando Debug do App no Dispositivo Android PT-BR](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Dicas_Flutter/run_on_device.md))
 
+## Desenvolvido pelos alunos:
+Diego Vitor Pinto Mariano Portella
+
+[Gabriel Batista de Almeida](https://github.com/GabrielBatistadeAlmeida)
+
+[Gabriel da Silva Cassino](https://github.com/kasshinokun)
 
 Bons Estudos e espero que o ajude em sua jornada.
