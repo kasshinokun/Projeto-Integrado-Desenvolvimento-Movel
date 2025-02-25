@@ -4,9 +4,9 @@ PUC Minas - Unidade Coração Eucarístico
 ## Alunos:
 Diego Vitor Pinto Mariano Portella
 
-Gabriel Batista de Almeida 
+[Gabriel Batista de Almeida](https://github.com/GabrielBatistadeAlmeida)
 
-Gabriel da Silva Cassino 
+[Gabriel da Silva Cassino](https://github.com/kasshinokun)
 
 ### Período: 1° Semestre de 2025
 
