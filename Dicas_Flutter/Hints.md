@@ -112,7 +112,7 @@ Se um usuário do Sistema Operacional já possuir o Flutter-SDK não execute os 
 - Se houver os erros descritos acima no inicio deste tutorial, [veja as dicas no post do StackOverflow](https://stackoverflow.com/questions/60475481/flutter-doctor-error-android-sdkmanager-tool-not-found-windows) por favor;
 - Rode o comando no terminal ```flutter doctor --android-licenses``` e aceite todas por favor;
 - Se tudo estiver certo, rode mais uma vez o comando no terminal ```flutter doctor``` por favor;
-![Resultado esperado](https://github.com/kasshinokun/Q1_Q2_2025_Public/blob/main/Flutther_Dart_Android/flutter_doctor.png)
+![Resultado esperado](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Dicas_Flutter/flutter_doctor.png)
 
 
 
