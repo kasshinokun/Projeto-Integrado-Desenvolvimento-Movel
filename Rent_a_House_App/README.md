@@ -19,4 +19,4 @@ com ambos se comunicando via sensores e atudores aliado a uma base de dados, a q
 
 no Firebase, ou outro SGBD para gerir o banco de dados em nuvem.
 
-
+[Conheça um pouco mais do nosso projeto](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/TP_S1/)
