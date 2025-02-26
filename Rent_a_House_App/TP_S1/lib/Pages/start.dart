@@ -6,6 +6,10 @@ import 'package:rent_house/Pages/Client/clienthouse.dart';
 import 'package:rent_house/Pages/Manage/registerhouse.dart';
 import 'package:rent_house/Pages/Manage/settings.dart';
 import 'package:rent_house/Pages/Manage/terms.dart';
+//==================================> Testes <======================
+import 'package:rent_house/Pages/Test/curved.dart';
+import 'package:rent_house/Pages/Test/curvedlabeled.dart';
+//==================================================================
 
 //Chamada da primeira tela da aplicação
 class MyApp extends StatelessWidget {
@@ -30,6 +34,10 @@ class MyApp extends StatelessWidget {
         '/register': (context) => RegisterScreen(),
         '/settings': (context) => SettingsScreen(),
         '/terms': (context) => TermsScreen(),
+        //==================================> Testes <======================
+        '/curved': (context) => CurvedNavBar(),
+        '/curvedlabeled': (context) => CurvedLabeledNavBar(),
+        //==================================================================
       },
     );
   }
