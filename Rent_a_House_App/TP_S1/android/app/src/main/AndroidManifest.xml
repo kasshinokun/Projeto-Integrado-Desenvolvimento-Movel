@@ -6,8 +6,7 @@
     
     <!-- Add below permission inside 'manifest' tag -->
 <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-<!-- Add below permission inside 'application' tag -->
-<receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+
     <intent-filter>
         <action android:name="android.intent.action.BOOT_COMPLETED"/>
         <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
@@ -16,6 +15,7 @@
     
 
     <application
+        
         android:label="rent_house"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
@@ -28,6 +28,9 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
+
+   <!-- Add below permission inside 'application' tag -->
+<receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
                  while the Flutter UI initializes. After that, this theme continues
