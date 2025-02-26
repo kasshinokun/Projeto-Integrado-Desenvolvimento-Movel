@@ -46,11 +46,15 @@ dependencies:
   #===========> PDF
   flutter_pdfview: ^1.2.5
   #===========> Bluetooth 
+  #
+  #
+  #============>
   cached_network_image: ^3.2.0
   curved_labeled_navigation_bar: ^2.0.6
   curved_navigation_bar: ^1.0.6
+  carousel_slider: ^5.0.0
+  image_picker: ^1.1.2
   #============>
- 
   # Demais dependencias adione aqui
   #============>
 dev_dependencies:
