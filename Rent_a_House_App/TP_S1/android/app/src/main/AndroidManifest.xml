@@ -4,7 +4,17 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />  
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>  
     
+    <!-- Add below permission inside 'manifest' tag -->
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+<!-- Add below permission inside 'application' tag -->
+<receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+    <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED"/>
+        <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+    </intent-filter>
+</receiver>
     
+
     <application
         android:label="rent_house"
         android:name="${applicationName}"
