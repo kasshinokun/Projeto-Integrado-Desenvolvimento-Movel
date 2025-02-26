@@ -28,7 +28,34 @@ class CarouselScreen extends StatefulWidget {
   @override
   State<CarouselScreen> createState() => _CarouselScreenState();
 }
-
+Widget setMyCarousel(){
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+      body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            // Other widgets
+            CarouselSlider(
+              items: carouselItems,
+              options: CarouselOptions(
+                height: size.height*0.2, // Customize the height of the carousel
+                autoPlay: true, // Enable auto-play
+                enlargeCenterPage: true, // Increase the size of the center item
+                enableInfiniteScroll: true, // Enable infinite scroll
+                onPageChanged: (index, reason) {
+                  // Optional callback when the page changes
+                  // You can use it to update any additional UI components
+                },
+              ),
+            ),
+            // Other widgets
+          ],
+        ),
+    );
+  }
+}
 class _CarouselScreenState extends State<CarouselScreen> {
   @override
   Widget build(BuildContext context) {
