@@ -34,16 +34,12 @@ class Navbar extends StatelessWidget {
             decoration: BoxDecoration(color: Colors.blue),
           ),
           ListTile(
-            leading: Icon(Icons.notifications),
+            leading: Icon(Icons.home),
             title: Text('Página Inicial'),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/');
               Navigator.popAndPushNamed(context, '/');
             },
-          ),
-          ListTile(
-            leading: Icon(Icons.notifications),
-            title: Text('Notificações'),
           ),
           Divider(),
           ListTile(
@@ -55,7 +51,7 @@ class Navbar extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.home),
+            leading: Icon(Icons.house),
             title: Text('My Houses'),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/client');
@@ -72,6 +68,22 @@ class Navbar extends StatelessWidget {
           ),
           Divider(),
           ListTile(
+            leading: Icon(Icons.notifications),
+            title: Text('Notificações'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/notifications');
+              Navigator.popAndPushNamed(context, '/notifications');
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.photo_album),
+            title: Text('Image Picker'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/imagepicker');
+              Navigator.popAndPushNamed(context, '/imagepicker');
+            },
+          ),
+          ListTile(
             leading: Icon(Icons.table_bar),
             title: Text('Curved NavBar'),
             onTap: () {
@@ -85,6 +97,14 @@ class Navbar extends StatelessWidget {
             onTap: () {
               Navigator.pushReplacementNamed(context, '/curvedlabeled');
               Navigator.popAndPushNamed(context, '/curvedlabeled');
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.table_bar),
+            title: Text('Carousel'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/carousel');
+              Navigator.popAndPushNamed(context, '/carousel');
             },
           ),
           Divider(),

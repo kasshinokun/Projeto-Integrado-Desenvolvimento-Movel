@@ -9,6 +9,9 @@ import 'package:rent_house/Pages/Manage/terms.dart';
 //==================================> Testes <======================
 import 'package:rent_house/Pages/Test/curved.dart';
 import 'package:rent_house/Pages/Test/curvedlabeled.dart';
+import 'package:rent_house/Pages/Test/carousel.dart';
+import 'package:rent_house/Pages/Test/imagepicker.dart';
+import 'package:rent_house/Pages/Test/notifications.dart';
 //==================================================================
 
 //Chamada da primeira tela da aplicação
@@ -37,6 +40,9 @@ class MyApp extends StatelessWidget {
         //==================================> Testes <======================
         '/curved': (context) => CurvedNavBar(),
         '/curvedlabeled': (context) => CurvedLabeledNavBar(),
+        '/carousel': (context) => CarouselScreen(),
+        '/imagepicker': (context) => ImagePickerScreen(),
+        '/notifications': (context) => NotificationsScreen(),
         //==================================================================
       },
     );
