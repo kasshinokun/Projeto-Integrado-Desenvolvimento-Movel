@@ -28,7 +28,10 @@ final imagesFull = List.generate(
     tag: images[index],
     child: CachedNetworkImage(
       imageUrl: images[index],
-      fit: BoxFit.fill,
+      //fit: BoxFit.fill
+      height: 150,
+      width: 150,
+      fit: BoxFit.cover,
       fadeInDuration: Duration.zero,
     ), // CachedNetworkImage
   ), // Hero
@@ -128,4 +131,44 @@ class _CarouselScreenState extends State<CarouselScreen> {
     ); // Fim do Scaffold
   } // Fim do Metodo
 }//Fim da classe
+
+/* Teste futuro A:
+Container(
+          margin:EdgeInsets.all(8.0),
+          child: Card(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8.0))),
+            child: InkWell(
+              onTap: () => print("ciao"),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8.0),
+                      topRight: Radius.circular(8.0),
+                    ),
+                    child: Image.network(
+                        'https://placeimg.com/640/480/any',
+                        // width: 300,
+                        height: 150,
+                        fit:BoxFit.fill
+
+                    ),
+                  ),
+                  ListTile(
+                    title: Text('Pub 1'),
+                    subtitle: Text('Location 1'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+*/
+/* Imagem usuário:
+CircleAvatar(
+  backgroundImage: NetworkImage("https://picsum.photos/id/237/200/300"),
+  radius: 100,
+)
+*/
 
