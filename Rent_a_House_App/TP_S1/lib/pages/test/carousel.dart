@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:rent_a_house/pages/home/navbar.dart';
 import 'package:rent_a_house/pages/welcome/welcome.dart';
 import 'package:flutter/material.dart';
 
+//Lista de URLs de imagens como Objeto
 List<String> images = [
   'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
   'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
@@ -18,6 +20,59 @@ List<String> images = [
   'https://images.unsplash.com/photo-1586953983027-d7508a64f4bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
 ];
 
+//Lista de imagens como Objeto
+final imagesFull = List.generate(
+  // List.generate
+  images.length,
+  (index) => Hero(
+    tag: images[index],
+    child: CachedNetworkImage(
+      imageUrl: images[index],
+      fit: BoxFit.fill,
+      fadeInDuration: Duration.zero,
+    ), // CachedNetworkImage
+  ), // Hero
+); // List.generate
+
+//Carousel como função
+Widget setMyCarousel(context) {
+  return ConstrainedBox(
+    // ConstrainedBox
+    constraints: BoxConstraints(
+      // BoxConstraints
+      maxWidth: MediaQuery.sizeOf(context).width - 20,
+      maxHeight: MediaQuery.sizeOf(context).height,
+    ), // Fim do BoxConstraints
+    //
+    child: CarouselView.weighted(
+      // CarouselView
+      onTap:
+          (index) => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder:
+                  (context) => Scaffold(
+                    extendBody: true,
+                    body: GestureDetector(
+                      onTap: () => Navigator.of(context).pop(),
+                      child: imagesFull[index],
+                    ),
+                  ),
+            ),
+          ),
+      flexWeights: [9, 2],
+      //itemExtent: 330,
+      shrinkExtent: 200,
+      itemSnapping: true,
+      padding: const EdgeInsets.all(10.0),
+      children: imagesFull,
+    ), // Fim do CarouselView
+  ); // Fim do ConstrainedBox
+}
+
+//Controller para Carousel
+final controller = CarouselController(initialItem: 1);
+
+//Classe - Construtor
 class CarouselScreen extends StatefulWidget {
   const CarouselScreen({super.key});
 
@@ -25,11 +80,12 @@ class CarouselScreen extends StatefulWidget {
   State<CarouselScreen> createState() => _CarouselScreenState();
 }
 
+// State da Classe
 class _CarouselScreenState extends State<CarouselScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Navbar(),
+      drawer: Navbar(), //Navigation Bar
       appBar: AppBar(
         //------------------------------------> AppBar
         backgroundColor: Colors.green,
@@ -39,7 +95,7 @@ class _CarouselScreenState extends State<CarouselScreen> {
               (context) => IconButton(
                 icon: Icon(Icons.person_2_rounded),
                 onPressed: () => Scaffold.of(context).openDrawer(),
-              ),
+              ), // IconButton
         ), // Fim do Icone Home
       ), // Fim do AppBar
 
@@ -57,35 +113,19 @@ class _CarouselScreenState extends State<CarouselScreen> {
             image: AssetImage(
               //-------------------------> AssetImage
               getPathImageHome(
+                //Função para alterar imagem-background
                 MediaQuery.of(context).size.height,
                 MediaQuery.of(context).size.width,
               ),
             ), // Fim do AssetImage
           ), // Fim do DecorationImage
         ), // Fim do BoxDecoration
-        child: SizedBox(
-          //SizedBox
-          //Precisa definir tamanho
-          child: ConstrainedBox(
-            //ConstrainedBox
-            constraints: const BoxConstraints(maxHeight: 200),
-            child: CarouselView(
-              itemExtent: 330,
-              shrinkExtent: 200,
-
-              padding: const EdgeInsets.all(10.0),
-              children: List.generate(
-                images.length,
-                (index) => Image.network(images[index], fit: BoxFit.cover),
-              ), //List.generate
-            ), //CarouselView
-          ), //ConstrainedBox
-        ), //SizedBox
+        child: setMyCarousel(context), //Carousel como Função
       ), // Fim do Container
-
       //=============================================> Fim do Itens na Tela
       //Adicione mais Widgets aqui neste espaço
       //=============================================>
-    );
-  }
-}
+    ); // Fim do Scaffold
+  } // Fim do Metodo
+}//Fim da classe
+
