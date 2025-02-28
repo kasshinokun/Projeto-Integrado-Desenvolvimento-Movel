@@ -73,6 +73,25 @@ Diego Vitor Pinto Mariano Portella
 
 ✔Painel de Controle – Dashboard com estatísticas sobre locações, faturamento e desempenho dos imóveis.
 
+### Observações sobre a pasta /build
+
+As pastas:
+
+- app
+
+- flutter_plugin_android_lifecycle
+
+- native_assets
+
+- windows
+
+- além do arquivo ````cache.dill.track.dill```.
+
+Precisarão ser providos via comando durante a reconstrução da aplicação, pois eram grandes em alguns casos (acima de 25Mb) 
+ou foram identificados como ```hidden```, o que impediu o upload para este repositório.
+
+---> Solução: Rodar o código-base para o código-fonte e adicionar as pastas que aqui estiverem presentes (exceto a pasta /build(mantida para apenas exemplificar a estrutura local da aplicação.)).
+
 ### Protótipos de Telas objetivadas inicialmente para o projeto:
 ![Tela de Login](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S1/imagens_envio/tela_login.jpg)
 
