@@ -86,6 +86,7 @@ Diego Vitor Pinto Mariano Portella
 
 ![Casas Alugadas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S1/imagens_envio/myhouses.jpg)
 
-####Teste em dispositivo estágio inicial de desenvolvimento 
+####Teste em dispositivo estágio inicial de desenvolvimento
+ 
 [Aplicação em teste inicial - Samsung A52S](https://youtu.be/cTVmHEY7E44?si=B3OFG4Xx-P7BVvFS)
 
