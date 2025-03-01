@@ -20,7 +20,34 @@ List<String> images = [
   'https://images.unsplash.com/photo-1586953983027-d7508a64f4bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
 ];
 
-//Lista de imagens como Objeto
+//Lista de imagens como Objeto teste A
+List imagesGenerate(context) {
+  return List.generate(
+    // List.generate
+    images.length,
+    (index) => Hero(
+      tag: images[index],
+      child: Stack(
+        alignment: AlignmentDirectional.bottomStart,
+        children: <Widget>[
+          ClipRect(
+            child: OverflowBox(
+              maxWidth: MediaQuery.sizeOf(context).height * 7 / 8,
+              minWidth: MediaQuery.sizeOf(context).height * 7 / 8,
+              child: CachedNetworkImage(
+                imageUrl: images[index],
+                fit: BoxFit.cover,
+                fadeInDuration: Duration.zero,
+              ), // CachedNetworkImage
+            ), //
+          ), //
+        ], //
+      ), //
+    ), // Hero
+  ); // List.generate
+}
+
+//Lista de imagens como Objeto B (em uso)
 final imagesFull = List.generate(
   // List.generate
   images.length,
