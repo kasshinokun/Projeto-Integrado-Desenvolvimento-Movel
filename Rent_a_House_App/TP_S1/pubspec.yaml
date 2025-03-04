@@ -39,6 +39,10 @@ dependencies:
   curved_navigation_bar: ^1.0.6
   image_picker: ^1.1.2
   carousel_slider: ^5.0.0
+  intl: ^0.20.2
+  rounded_background_text: ^0.5.0
+  dots_indicator: ^4.0.1
+  getwidget: ^6.0.0
   #============>
 dev_dependencies:
   flutter_test:
