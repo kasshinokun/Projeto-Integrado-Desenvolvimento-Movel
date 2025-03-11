@@ -5,6 +5,14 @@ import 'package:rounded_background_text/rounded_background_text.dart';
 import 'package:rent_a_house/pages/welcome/welcome.dart';
 import 'package:rent_a_house/pages/home/navbar.dart';
 
+List<String> addressClient = [
+  'Rua Alegre, 12345, bairro Brasil - Belo Horizonte',
+  'Rua Alfa, 3456, bairro França - Ouro Preto',
+  'Rua Puc Minas, 678, bairro Argentina - Sete Lagoas',
+  'Rua Alfa, 3456, bairro França - Ouro Branco',
+  'Rua Puc Minas, 678, bairro Argentina - Lagoa Santa',
+];
+
 List<String> carouselItems = [
   'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
 
@@ -16,11 +24,38 @@ List<String> carouselItems = [
 
   'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
 ];
+
+Widget getListAddress() {
+  return ListView.builder(
+    itemCount: addressClient.length - 1,
+    itemBuilder: (BuildContext context, int index) {
+      return ListTile(
+        leading: Icon(Icons.home),
+        title: Text(
+          getAddressMyHouse(addressClient[index + 1]),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            fontSize: 20.0 * MediaQuery.of(context).devicePixelRatio,
+          ), //
+        ), //
+        onTap: () {
+          // Handle item tap (e.g., navigate to a details screen)
+        },
+      ); //
+    }, //
+  ); //
+}
+
 String getDate() {
   final dateFormatter = DateFormat('dd-MM-yyyy');
   final DateTime now = DateTime.now();
   final formattedDate = dateFormatter.format(now);
   return formattedDate;
+}
+
+String getAddressMyHouse(String address) {
+  return address;
 }
 
 class ClientScreen extends StatefulWidget {
@@ -86,24 +121,24 @@ class _ClientScreen extends State<ClientScreen> {
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10.0),
-                      ),
+                      ),//
                       child: Center(
                         child: Text(
-                          'Rua Alegre, 12345, bairro Brasil - Belo Horizonte',
+                          getAddressMyHouse(addressClient[0]),
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                             fontSize: 20.0,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                          ),//
+                        ),//
+                      ),//
+                    ),//
+                  ),//
                   //Carousel Slider
-                  setMyCarousel(carouselItems, context, 0.45),
-                ],
-              ),
-            ),
+                  setMyCarousel(carouselItems, context, 0.4),//Carousel de Imagens
+                ],//
+              ),//
+            ),//
             Expanded(
               flex: 2,
 
@@ -111,11 +146,10 @@ class _ClientScreen extends State<ClientScreen> {
                 padding: EdgeInsets.all(8.0),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10.0),
-                  ),
+                  ),//
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Column(
@@ -128,9 +162,9 @@ class _ClientScreen extends State<ClientScreen> {
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                               fontSize: 20.0,
-                            ),
-                          ),
-                        ),
+                            ),//
+                          ),//
+                        ),//
                         SizedBox(height: 12),
                         Padding(
                           padding: EdgeInsets.all(16.0),
@@ -140,15 +174,15 @@ class _ClientScreen extends State<ClientScreen> {
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                               fontSize: 20.0,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
+                            ),//
+                          ),//
+                        ),//
+                      ],//
+                    ),//
+                  ),//
+                ),//
+              ),//
+            ),//
             Align(
               alignment: Alignment.topLeft,
               child: Padding(
@@ -159,13 +193,13 @@ class _ClientScreen extends State<ClientScreen> {
                     fontWeight: FontWeight.bold,
                     color: Colors.cyan,
                     fontSize: 20.0,
-                  ),
+                  ),//
                   backgroundColor: Colors.blue[50],
                   innerRadius: 15.0,
                   outerRadius: 10.0,
-                ),
-              ),
-            ),
+                ),//
+              ),//
+            ),//
             Expanded(
               flex: 2,
               child: Align(
@@ -178,73 +212,14 @@ class _ClientScreen extends State<ClientScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
                       color: const Color.fromARGB(255, 230, 158, 158),
-                    ),
-                    child: ListView(
-                      children: [
-                        ListTile(
-                          leading: Icon(Icons.home),
-                          title: Text(
-                            'Rua Alfa, 3456, bairro França - Ouro Preto',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize:
-                                  20.0 *
-                                  MediaQuery.of(context).devicePixelRatio,
-                            ),
-                          ),
-                        ),
-                        Divider(),
-                        ListTile(
-                          leading: Icon(Icons.home),
-                          title: Text(
-                            'Rua Puc Minas, 678, bairro Argentina - Sete Lagoas',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize:
-                                  20.0 *
-                                  MediaQuery.of(context).devicePixelRatio,
-                            ),
-                          ),
-                        ),
-                        Divider(),
-                        ListTile(
-                          leading: Icon(Icons.home),
-                          title: Text(
-                            'Rua Alfa, 3456, bairro França - Ouro Preto',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize:
-                                  20.0 *
-                                  MediaQuery.of(context).devicePixelRatio,
-                            ),
-                          ),
-                        ),
-                        Divider(),
-                        ListTile(
-                          leading: Icon(Icons.home),
-                          title: Text(
-                            'Rua Puc Minas, 678, bairro Argentina - Sete Lagoas',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize:
-                                  20.0 *
-                                  MediaQuery.of(context).devicePixelRatio,
-                            ),
-                          ),
-                        ),
-                        Divider(),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+                    ),//
+                    child: getListAddress(),//ListView
+                  ),//
+                ),//
+              ),//
+            ),//
+          ],//
+        ),//
         //=============================================> Fim do Itens na Tela
         //Adicione mais Widgets aqui neste espaço
         //=============================================>
