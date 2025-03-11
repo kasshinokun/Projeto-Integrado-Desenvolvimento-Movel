@@ -1,31 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dots_indicator/dots_indicator.dart';
+import 'package:rent_a_house/pages/test/carousel.dart';
 import 'package:rounded_background_text/rounded_background_text.dart';
 import 'package:rent_a_house/pages/welcome/welcome.dart';
 import 'package:rent_a_house/pages/home/navbar.dart';
 
-List<Widget> carouselItems = [
-  Image.network(
-    'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-    fit: BoxFit.cover,
-  ),
-  Image.network(
-    'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-  ),
-  Image.network(
-    'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-  ),
-  Image.network(
-    'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
-  ),
-  Image.network(
-    'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
-  ),
+List<String> carouselItems = [
+  'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
+
+  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
+
+  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
+
+  'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
+
+  'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
 ];
 String getDate() {
-  final dateFormatter = DateFormat('yyyy-MM-dd');
+  final dateFormatter = DateFormat('dd-MM-yyyy');
   final DateTime now = DateTime.now();
   final formattedDate = dateFormatter.format(now);
   return formattedDate;
@@ -43,7 +35,7 @@ class _ClientScreen extends State<ClientScreen> {
 
   @override
   Widget build(BuildContext context) {
-    int currentIndex = 0;
+    //int currentIndex = 0;
     return Scaffold(
       drawer: Navbar(),
       appBar: AppBar(
@@ -108,32 +100,7 @@ class _ClientScreen extends State<ClientScreen> {
                     ),
                   ),
                   //Carousel Slider
-                  CarouselSlider(
-                    items: carouselItems,
-                    //
-                    options: CarouselOptions(
-                      height:
-                          MediaQuery.of(context).size.height *
-                          0.4, // Customize the height of the carousel
-                      autoPlay: false, // Enable auto-play
-                      enlargeCenterPage:
-                          true, // Increase the size of the center item
-                      enableInfiniteScroll: true, // Enable infinite scroll
-
-                      onPageChanged: (index, reason) {
-                        setState(() {
-                          currentIndex = index;
-                        });
-                        // Optional callback when the page changes
-                        // You can use it to update any additional UI components
-                      },
-                    ),
-                  ),
-                  DotsIndicator(
-                    axis: Axis.horizontal,
-                    dotsCount: carouselItems.length,
-                    position: currentIndex.toDouble(),
-                  ),
+                  setMyCarousel(carouselItems, context, 0.45),
                 ],
               ),
             ),

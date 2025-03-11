@@ -227,28 +227,29 @@ class _WelcomePage extends State<WelcomePage> {
 
                     children: <Widget>[
                       //-----------------> children-Social
-                      OutlinedButton.icon(
-                        //Botão login com Google
-                        onPressed: () {
-                          // Add your on pressed event here
-                        },
-                        style: OutlinedButton.styleFrom(
-                          iconColor: Colors.green,
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
+                      Text(
+                        'Entrar com ',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontFamily: 'Roboto',
+                          color: Color(0xFF212121),
+                          fontWeight: FontWeight.bold,
                         ),
-                        icon: Image.asset(
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: CircleBorder(),
+                          padding: EdgeInsets.all(24),
+                        ),
+                        onPressed: () {},
+                        child: Image.asset(
                           //-------------------> Image
                           'assets/app/google_logo.png',
                           height: 20,
                           width: 20,
                           fit: BoxFit.cover,
                         ), //Fim da Imagem
-                        label: const Text('Entrar com'),
-                        iconAlignment: IconAlignment.end,
-                      ), // Fim do Botão login com Google
+                      ), // Fim do Botão google
                     ], // Fim do children<Widget>[] Social
                   ), // Fim do Row
                 ), // Fim do Container
@@ -258,12 +259,6 @@ class _WelcomePage extends State<WelcomePage> {
               //=============================================>
             ], // Fim do children<Widget>[]
           ), // Fim da Column
-        ), // Fim do Container
-      ), // Fim do Scaffold
-    ); // Fim do MaterialApp
-  } // Fim do retorno
-} // Fim do Metodo
-
         ), // Fim do Container
       ), // Fim do Scaffold
     ); // Fim do MaterialApp
