@@ -92,6 +92,8 @@ ou foram identificados como ```hidden```, o que impediu o upload para este repos
 
 ---> Solução: Rodar o código-base para o código-fonte e adicionar as pastas que aqui estiverem presentes (exceto a pasta /build(mantida para apenas exemplificar a estrutura local da aplicação.)).
 
+[Copie os códigos dentro do arquivo .bat ou execute o arquivo .bat para recriar o programa.](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Exemplos/create_app_folder.bat)
+
 ### Protótipos de Telas objetivadas inicialmente para o projeto:
 ![Tela de Login](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S1/imagens_envio/tela_login.jpg)
 
