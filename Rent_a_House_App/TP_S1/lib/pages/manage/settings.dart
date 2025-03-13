@@ -2,8 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:rent_a_house/pages/client/clienthouse.dart';
 import 'package:rent_a_house/pages/home/navbar.dart';
 
+//Rode antes: flutter pub add url_launcher
+import 'package:url_launcher/url_launcher.dart';//Acesso Web
+
+
 bool setLanguage = true;
 
+public void accessWeb(String url){
+  if (await canLaunch(url)) {
+    await launch(url, forceWebView: true, enableJavaScript: true);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -174,9 +185,24 @@ class _SettingsScreen extends State<SettingsScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text("PUC Coração Eucaristico Corporation\n"),
-          Text("Desenvolvido por: Diego Vitor Pinto Mariano Portella\n"),
-          Text("Desenvolvido por: Gabriel Batista de Almeida\n"),
-          Text("Desenvolvido por: Gabriel da Silva Cassino\n"),
+          InkWell(
+            child: Text("Desenvolvido por: Diego Vitor Pinto Mariano Portella\n"),
+            onTap: () {
+              accessWeb('https://github.com/diegovitorportella')
+            },
+          ), 
+          InkWell(
+            child: Text("Desenvolvido por: Gabriel Batista de Almeida\n"),
+            onTap: () {
+              accessWeb('https://github.com/GabrielBatistadeAlmeida')
+            },
+          ),
+          InkWell( 
+            child: Text("Desenvolvido por: Gabriel da Silva Cassino\n"),
+            onTap: () {
+              accessWeb('https://github.com/kasshinokun')
+            },
+          ),
           Text("Versão: Alpha 0.1.${getDate()}"),
           SingleChildScrollView(
             scrollDirection: Axis.vertical,
