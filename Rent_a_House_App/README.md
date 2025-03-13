@@ -2,7 +2,7 @@
 ## Instituição:
 PUC Minas - Unidade Coração Eucarístico 
 ## Alunos:
-Diego Vitor Pinto Mariano Portella
+[Diego Vitor Pinto Mariano Portella](https://github.com/diegovitorportella)
 
 [Gabriel Batista de Almeida](https://github.com/GabrielBatistadeAlmeida)
 
