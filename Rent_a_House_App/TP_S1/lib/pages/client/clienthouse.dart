@@ -121,7 +121,7 @@ class _ClientScreen extends State<ClientScreen> {
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10.0),
-                      ),//
+                      ), //
                       child: Center(
                         child: Text(
                           getAddressMyHouse(addressClient[0]),
@@ -129,16 +129,20 @@ class _ClientScreen extends State<ClientScreen> {
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                             fontSize: 20.0,
-                          ),//
-                        ),//
-                      ),//
-                    ),//
-                  ),//
+                          ), //
+                        ), //
+                      ), //
+                    ), //
+                  ), //
                   //Carousel Slider
-                  setMyCarousel(carouselItems, context, 0.4),//Carousel de Imagens
-                ],//
-              ),//
-            ),//
+                  setMyCarousel(
+                    carouselItems,
+                    context,
+                    0.4,
+                  ), //Carousel de Imagens
+                ], //
+              ), //
+            ), //
             Expanded(
               flex: 2,
 
@@ -149,7 +153,7 @@ class _ClientScreen extends State<ClientScreen> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10.0),
-                  ),//
+                  ), //
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Column(
@@ -162,9 +166,9 @@ class _ClientScreen extends State<ClientScreen> {
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                               fontSize: 20.0,
-                            ),//
-                          ),//
-                        ),//
+                            ), //
+                          ), //
+                        ), //
                         SizedBox(height: 12),
                         Padding(
                           padding: EdgeInsets.all(16.0),
@@ -174,15 +178,15 @@ class _ClientScreen extends State<ClientScreen> {
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                               fontSize: 20.0,
-                            ),//
-                          ),//
-                        ),//
-                      ],//
-                    ),//
-                  ),//
-                ),//
-              ),//
-            ),//
+                            ), //
+                          ), //
+                        ), //
+                      ], //
+                    ), //
+                  ), //
+                ), //
+              ), //
+            ), //
             Align(
               alignment: Alignment.topLeft,
               child: Padding(
@@ -193,13 +197,13 @@ class _ClientScreen extends State<ClientScreen> {
                     fontWeight: FontWeight.bold,
                     color: Colors.cyan,
                     fontSize: 20.0,
-                  ),//
+                  ), //
                   backgroundColor: Colors.blue[50],
                   innerRadius: 15.0,
                   outerRadius: 10.0,
-                ),//
-              ),//
-            ),//
+                ), //
+              ), //
+            ), //
             Expanded(
               flex: 2,
               child: Align(
@@ -212,14 +216,14 @@ class _ClientScreen extends State<ClientScreen> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
                       color: const Color.fromARGB(255, 230, 158, 158),
-                    ),//
-                    child: getListAddress(),//ListView
-                  ),//
-                ),//
-              ),//
-            ),//
-          ],//
-        ),//
+                    ), //
+                    child: getListAddress(), //ListView
+                  ), //
+                ), //
+              ), //
+            ), //
+          ], //
+        ), //
         //=============================================> Fim do Itens na Tela
         //Adicione mais Widgets aqui neste espaço
         //=============================================>

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:rent_a_house/pages/home/navbar.dart';
 import 'package:rent_a_house/pages/welcome/welcome.dart';
 import 'package:flutter/material.dart';
+//import 'package:dots_indicator/dots_indicator.dart';
 
 //Lista de URLs de imagens como Objeto
 List<String> imagesList = [
@@ -52,20 +53,23 @@ Widget setMyCarousel(List<String> images, context, double aspectRatio) {
 
         child: CarouselView.weighted(
           // CarouselView
-          onTap:
-              (index) => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder:
-                      (context) => Scaffold(
-                        extendBody: true,
-                        body: GestureDetector(
-                          onTap: () => Navigator.of(context).pop(),
+          onTap: (index) {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder:
+                    (context) => Scaffold(
+                      extendBody: true,
 
-                          child: imageFull[index],
-                        ),
+                      body: GestureDetector(
+                        onTap: () => Navigator.of(context).pop(),
+
+                        child: imageFull[index],
                       ),
-                ),
+                    ),
               ),
+            );
+          },
+
           flexWeights: [9, 2],
           //itemExtent: 330,
           shrinkExtent: 200,
@@ -77,9 +81,6 @@ Widget setMyCarousel(List<String> images, context, double aspectRatio) {
     ], // Fim do <Widget>[]
   ); // Fim do Column
 }
-
-//Controller para Carousel
-final controller = CarouselController(initialItem: 1);
 
 //Classe - Construtor
 class CarouselScreen extends StatefulWidget {
