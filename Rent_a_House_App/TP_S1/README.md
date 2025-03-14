@@ -107,3 +107,7 @@ ou foram identificados como ```hidden```, o que impediu o upload para este repos
 
 ![Casas Alugadas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S1/imagens_envio/myhouses.jpg)
 
+#### Previas de desenvolvimento 
+[Versão 1-11-03-2025](https://youtube.com/shorts/cTVmHEY7E44?si=hPk19S3dxK42wJA1)
+
+[Versão 1-14-03-2025](https://youtube.com/shorts/QjVhkhm4xPc?si=zLrbdjWetz8AhRfF)
