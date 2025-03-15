@@ -1,6 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:rent_a_house/pages/welcome/welcome.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:rent_a_house/pages/home/navbar.dart';
+
+//Lista de URLs de imagens como Objeto
+List<String> imagesList = [
+  'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
+  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
+  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
+  'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
+  'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
+  'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80',
+  'https://images.unsplash.com/photo-1586882829491-b81178aa622e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80',
+  'https://images.unsplash.com/photo-1586871608370-4adee64d1794?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2862&q=80',
+  'https://images.unsplash.com/photo-1586901533048-0e856dff2c0d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+  'https://images.unsplash.com/photo-1586902279476-3244d8d18285?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80',
+  'https://images.unsplash.com/photo-1586943101559-4cdcf86a6f87?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1556&q=80',
+  'https://images.unsplash.com/photo-1586951144438-26d4e072b891?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+  'https://images.unsplash.com/photo-1586953983027-d7508a64f4bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+  'https://images.unsplash.com/photo-1586953983027-d7508a64f4bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+];
+
+List<String> addressClient = [
+  'Rua Alegre, 12345, bairro Brasil - Belo Horizonte',
+  'Rua Alfa, 3456, bairro França - Ouro Preto',
+  'Rua Puc Minas, 678, bairro Argentina - Sete Lagoas',
+  'Rua Alfa, 3456, bairro França - Ouro Branco',
+  'Rua Puc Minas, 678, bairro Argentina - Lagoa Santa',
+  'Rua Alegre, 12345, bairro Brasil - Belo Horizonte',
+  'Rua Alfa, 3456, bairro França - Ouro Preto',
+  'Rua Puc Minas, 678, bairro Argentina - Sete Lagoas',
+  'Rua Alfa, 3456, bairro França - Ouro Branco',
+  'Rua Puc Minas, 678, bairro Argentina - Lagoa Santa',
+  'Rua Alegre, 12345, bairro Brasil - Belo Horizonte',
+  'Rua Alfa, 3456, bairro França - Ouro Preto',
+  'Rua Puc Minas, 678, bairro Argentina - Sete Lagoas',
+  'Rua Alfa, 3456, bairro França - Ouro Branco',
+  'Rua Puc Minas, 678, bairro Argentina - Lagoa Santa',
+];
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -27,31 +64,193 @@ class _HomeScreen extends State<HomeScreen> {
               ),
         ), // Fim do Icone Home
       ), // Fim do AppBar
+      body: SingleChildScrollView(child: carouselGrid()),
+    );
+  }
 
-      body: Container(
-        //----------------------------------------------> Container
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+  //Teste
+  Widget carouselGrid() {
+    return CarouselSlider(
+      items: [
+        Container(
+          margin: EdgeInsets.all(2),
+          child: StaggeredGrid.count(
+            crossAxisCount: imagesList.length,
+            mainAxisSpacing: 12,
+            crossAxisSpacing: 12,
+            children: generateListImages(imagesList.length),
+          ),
+        ),
+      ],
+      options: CarouselOptions(aspectRatio: 1, viewportFraction: 1),
+    );
+  }
 
-        decoration: BoxDecoration(
-          //--------------------------> BoxDecoration
-          image: DecorationImage(
-            //-------------------------> DecorationImage
-            fit: BoxFit.fill,
-            //Usarei futuramente uma função para definir a imagem
-            image: AssetImage(
-              //-------------------------> AssetImage
-              getPathImageHome(
-                MediaQuery.of(context).size.height,
-                MediaQuery.of(context).size.width,
+  Widget imageClip(int index) {
+    return Image.network(imagesList[index], fit: BoxFit.fill);
+  }
+
+  Widget addressClip(int index, double aspectValue) {
+    return Container(
+      height: 500 * aspectValue,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Text(
+        addressClient[index],
+        style: TextStyle(
+          fontSize: 20,
+          color: Colors.black,
+          fontWeight: FontWeight.w500,
+        ), //
+      ), //
+    ); //
+  }
+
+  Widget detailsHouseClip(int index, double aspectValue) {
+    return Container(
+      height: 500 * aspectValue,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: getDetailsHouse(index), //
+    ); //
+  }
+
+  Widget imageWidget(int index) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          InkWell(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: imageClip(index),
+            ), //
+            onTap:
+                () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder:
+                        (context) => Scaffold(
+                          extendBody: true,
+                          body: GestureDetector(
+                            onTap: () => Navigator.of(context).pop(),
+                            child: Column(
+                              children: [
+                                Image.network(
+                                  imagesList[index],
+                                  fit: BoxFit.cover,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.5,
+                                ),
+                                detailsHouseClip(index, 0.75),
+                              ],
+                            ),
+                          ),
+                        ),
+                  ),
+                ),
+          ), //
+          Padding(
+            //-----------------------------------> padding
+            padding: EdgeInsets.all(16.0),
+            child: addressClip(index, 0.25),
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<Widget> generateListImages(int valor) {
+    return List.generate(
+      valor,
+      (index) => StaggeredGridTile.count(
+        crossAxisCellCount: 3,
+        mainAxisCellCount: 3,
+        child: imageWidget(index),
+      ),
+    );
+  }
+}
+
+Widget getDetailsHouse(int index) {
+  return SingleChildScrollView(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Casa com 3 Quartos e 2 banheiros para Alugar, 274 m² por 10.000 reais/Mês',
+          style: TextStyle(
+            fontSize: 30,
+            color: Colors.black,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        Text(
+          addressClient[index],
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.black,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        ExpansionTile(
+          title: Text(
+            "Descrição",
+            style: TextStyle(
+              fontSize: 24,
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          leading: Icon(Icons.electrical_services_rounded),
+          controlAffinity: ListTileControlAffinity.leading,
+          children: <Widget>[
+            Text(
+              "Casa comercial para locação no Palmares!\n\nBenefícios:\n\n- Localização privilegiada, fácil acesso àAv. Cristiano Machado.\n- Próximo á Estação Minas Shopping, Minas Shopping, Mixpão Palmares.",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+                fontWeight: FontWeight.w300,
               ),
-            ), // Fim do AssetImage
-          ), // Fim do DecorationImage
-        ), // Fim do BoxDecoration
-        //=============================================> Fim do Itens na Tela
-        //Adicione mais Widgets aqui neste espaço
-        //=============================================>
-      ), // Fim do Container
-    ); // Fim do Scaffold
-  } // Fim do retorno
-} // Fim do Metodo
+            ),
+
+            Text(
+              "Casa:\n1º piso\n\n- Sala ampla para dois ambientes\n- Sala de jantar\n- Lavabo;\n- Banho social com armários e box de vidro temperado\n- Cozinha ampla com bancada em granito e armários\n",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+            Text(
+              "- Despensa\n- Dependência Completa de Empregada\n- Área de Serviço\n- Área externa com churrasqueira.\n\n2º piso\n- Sala de estar íntimo;\n- 03 Quartos com armários, sendo um suíte com varanda.\n",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+            Text(
+              "\n\nGaragem:\n- 15 vagas de garagem.\n\n\nOs valores de venda e dos encargos (IPTU/condomínio etc.) exibidos poderão sofrer mudanças e aumentos sem prévio aviso.\n",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+            Text(
+              "Por esse motivo os valores deverão ser confirmados no nosso setor comercial e os encargos no prédio/condomínio e IPTU na Prefeitura.",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
+}
