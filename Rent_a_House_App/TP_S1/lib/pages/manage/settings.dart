@@ -29,7 +29,7 @@ class _SettingsScreen extends State<SettingsScreen> {
               (context) => IconButton(
                 icon: Icon(Icons.person_2_rounded),
                 onPressed: () => Scaffold.of(context).openDrawer(),
-              ),
+              ),//
         ), // Fim do Icone Home
       ), // Fim do AppBar
       body: SingleChildScrollView(
@@ -43,8 +43,8 @@ class _SettingsScreen extends State<SettingsScreen> {
                   fontSize: 24 * aspect,
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
-                ),
-              ),
+                ),//
+              ),//
               leading: Icon(Icons.electrical_services_rounded),
               controlAffinity: ListTileControlAffinity.leading,
               children: <Widget>[
@@ -52,6 +52,8 @@ class _SettingsScreen extends State<SettingsScreen> {
                   leading: Icon(Icons.check),
                   title: Text(
                     "Configure o idioma do aplicativo",
+                    textAlign: TextAlign.left,
+                    //textAlign: TextAlign.start, //precaução 
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.black,
@@ -63,6 +65,8 @@ class _SettingsScreen extends State<SettingsScreen> {
                   leading: Icon(Icons.check),
                   title: Text(
                     "Organize a segurança",
+                    textAlign: TextAlign.left,
+                    //textAlign: TextAlign.start,//precaução 
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.black,
@@ -74,6 +78,8 @@ class _SettingsScreen extends State<SettingsScreen> {
                   leading: Icon(Icons.check),
                   title: Text(
                     "Busca por sua MyHouse Ativa",
+                    textAlign: TextAlign.left,
+                    //textAlign: TextAlign.start,//precaução 
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.black,
@@ -81,8 +87,8 @@ class _SettingsScreen extends State<SettingsScreen> {
                     ), //
                   ), //
                 ), //
-              ],
-            ),
+              ],//
+            ),//
             SizedBox(height: 12 * aspect),
             ExpansionTile(
               title: Text(
@@ -97,7 +103,7 @@ class _SettingsScreen extends State<SettingsScreen> {
               leading: Icon(Icons.language_rounded),
               controlAffinity: ListTileControlAffinity.leading,
               children: <Widget>[widgetLanguage(context)],
-            ),
+            ),//
             ExpansionTile(
               title: Text(
                 "Segurança",
@@ -111,15 +117,19 @@ class _SettingsScreen extends State<SettingsScreen> {
               leading: Icon(Icons.security),
               controlAffinity: ListTileControlAffinity.leading,
               children: <Widget>[
+                //Align(
+                //   alignment: Alignment.topLeft,
+                //   child: 
                 TextButton(
                   child: Text(
                     "Habilitar Autenticação Biométrica",
                     style: TextStyle(fontSize: 20 * aspect),
-                  ),
+                  ),//
                   onPressed: () => authenticate(),
-                ),
-              ],
-            ),
+                ),//
+                //),//
+              ],//
+            ),//
             ListTile(
               title: Text(
                 "Buscar MyHouses",
@@ -133,8 +143,8 @@ class _SettingsScreen extends State<SettingsScreen> {
               leading: Icon(Icons.bluetooth_outlined),
               onTap: () {
                 //
-              },
-            ),
+              },//
+            ),//
             SizedBox(height: 12 * aspect),
             ExpansionTile(
               title: Text(
@@ -143,12 +153,12 @@ class _SettingsScreen extends State<SettingsScreen> {
                   fontSize: 24 * aspect,
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
-                ),
-              ),
+                ),//
+              ),//
               leading: Icon(Icons.electrical_services_rounded),
               controlAffinity: ListTileControlAffinity.leading,
               children: <Widget>[polities(context)],
-            ),
+            ),//
             SizedBox(height: 12 * aspect),
             ExpansionTile(
               title: Text(
@@ -164,9 +174,9 @@ class _SettingsScreen extends State<SettingsScreen> {
               controlAffinity: ListTileControlAffinity.leading,
               children: <Widget>[
                 SingleChildScrollView(child: widgetAbout(context)),
-              ],
-            ),
-            SizedBox(height: 12 * aspect),
+              ],//
+            ),//
+            SizedBox(height: 12 * aspect),//
             ExpansionTile(
               title: Text(
                 "Privacidade",
@@ -174,37 +184,37 @@ class _SettingsScreen extends State<SettingsScreen> {
                   fontSize: 24 * aspect,
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
-                ),
-              ),
+                ),//
+              ),//
               leading: Icon(Icons.electrical_services_rounded),
               controlAffinity: ListTileControlAffinity.leading,
               children: <Widget>[polities(context)],
-            ),
-            SizedBox(height: 12 * aspect),
+            ),//
+            SizedBox(height: 12 * aspect),//
             ExpansionTile(
               title: Text("Termos de Serviço"),
               trailing: Icon(Icons.arrow_forward_ios),
               leading: Icon(Icons.electrical_services_rounded),
               controlAffinity: ListTileControlAffinity.leading,
               children: <Widget>[polities(context)],
-            ),
+            ),//
             ExpansionTile(
               title: Text("Politicas de Privacidade"),
               trailing: Icon(Icons.arrow_forward_ios),
               leading: Icon(Icons.privacy_tip_rounded),
               controlAffinity: ListTileControlAffinity.leading,
               children: <Widget>[polities(context)],
-            ),
+            ),//
             ExpansionTile(
               title: Text("Politicas de Segurança"),
               trailing: Icon(Icons.arrow_forward_ios),
               leading: Icon(Icons.policy),
               controlAffinity: ListTileControlAffinity.leading,
               children: <Widget>[polities(context)],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+            ),//
+          ],//
+        ),//
+      ),//
+    );//
+  }//
+}//
