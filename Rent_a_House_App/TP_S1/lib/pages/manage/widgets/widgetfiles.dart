@@ -6,7 +6,7 @@ import 'package:rent_a_house/pages/client/clienthouse.dart';
 
 //Rode antes: flutter pub add url_launcher
 //import 'package:url_launcher/url_launcher_string.dart'; //Acesso Web
-bool setLanguage = true;
+public bool setLanguage = true;
 
 Widget polities(context) {
   return Container(
