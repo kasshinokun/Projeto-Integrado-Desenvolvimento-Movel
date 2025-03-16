@@ -113,3 +113,7 @@ ou foram identificados como ```hidden```, o que impediu o upload para este repos
 [Versão 1-14-03-2025](https://youtube.com/shorts/QjVhkhm4xPc?si=zLrbdjWetz8AhRfF)
 
 [Versão 1-15-03-2025](https://youtube.com/shorts/Qy8Njn8hKzE?si=1ZMVO77sXQHFtOZH)
+
+Retrabalho para Preparação da tela Inicial(usando imagens comuns)
+
+![Retrabalho para Preparação da tela Inicial](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S1/8.png)
