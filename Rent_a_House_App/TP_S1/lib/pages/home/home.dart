@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:rent_a_house/pages/home/navbar.dart';
+import 'package:rent_a_house/pages/test/carousel.dart';
 
 //Lista de URLs de imagens como Objeto
 List<String> imagesList = [
@@ -48,6 +49,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreen extends State<HomeScreen> {
   TextEditingController textEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,25 +66,163 @@ class _HomeScreen extends State<HomeScreen> {
               ),
         ), // Fim do Icone Home
       ), // Fim do AppBar
-      body: SingleChildScrollView(child: carouselGrid()),
-    );
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              //-----------------------------------> padding
+              padding: EdgeInsets.all(16.0),
+              child: mySearchBar(),
+            ),
+            Text("Ultimas Visualizações"),
+            setMyCarousel(imagesList, context, 0.4), //Carousel de Imagens
+
+            Text("Destaques"),
+            Padding(
+              //-----------------------------------> padding
+              padding: EdgeInsets.only(
+                left: MediaQuery.of(context).size.width / 4,
+                top: 8.0,
+              ),
+              child: carouselGrid(),
+            ), //
+          ], //
+        ), //
+      ),
+    ); //
   }
 
   //Teste
   Widget carouselGrid() {
-    return CarouselSlider(
-      items: [
-        Container(
-          margin: EdgeInsets.all(2),
-          child: StaggeredGrid.count(
-            crossAxisCount: imagesList.length,
-            mainAxisSpacing: 12,
-            crossAxisSpacing: 12,
-            children: generateListImages(imagesList.length),
-          ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        CarouselSlider(
+          items: [
+            Container(
+              height: MediaQuery.of(context).size.height,
+              margin: EdgeInsets.all(2),
+              child: SingleChildScrollView(
+                //child: myGridView(), //Test
+                child: myStaggeredGrid(), //Modelo Inicial
+              ),
+            ),
+          ],
+          options: CarouselOptions(aspectRatio: 1, viewportFraction: 1),
         ),
       ],
-      options: CarouselOptions(aspectRatio: 1, viewportFraction: 1),
+    );
+  }
+
+  Widget mySearchBar() {
+    return TextField(
+      //-------------------------------------> TextField
+      decoration: InputDecoration(
+        //------------------> InputDecoration
+        filled: true,
+        fillColor: const Color.fromARGB(255, 246, 248, 246),
+        labelText: 'Pesquisar',
+        floatingLabelBehavior: FloatingLabelBehavior.auto,
+        floatingLabelStyle: TextStyle(
+          //--------------> Estilo do Texto
+          fontWeight: FontWeight.bold,
+          color: const Color.fromARGB(255, 37, 37, 37),
+          fontSize: 20,
+        ), // Fim do Estilo do Texto
+        hintMaxLines: 1,
+
+        suffixIcon: IconButton(
+          icon: Icon(Icons.clear),
+          onPressed: () => textEditingController.clear(),
+        ),
+        // Add a search icon or button to the search bar
+        prefixIcon: IconButton(
+          icon: Icon(Icons.search),
+          onPressed: () {
+            // Perform the search here
+          },
+        ),
+        hintText: 'Informe um endereço por favor',
+        border: OutlineInputBorder(
+          //--------------> OutlineInputBorder
+          borderRadius: BorderRadius.circular(20),
+        ), // Fim do OutlineInputBorder
+      ), // Fim do InputDecoration
+    );
+  }
+
+  Widget myStaggeredGrid() {
+    return StaggeredGrid.count(
+      crossAxisCount: imagesList.length,
+      mainAxisSpacing: 12,
+      crossAxisSpacing: 12,
+      children: generateListImages(imagesList.length),
+    );
+  }
+
+  Widget myGridView() {
+    return SingleChildScrollView(
+      child: GridView.count(
+        // Create a grid with 2 columns.
+        // If you change the scrollDirection to horizontal,
+        // this produces 2 rows.
+        crossAxisCount: 2,
+        // Generate 100 widgets that display their index in the list.
+        children: generateListImages(imagesList.length),
+      ),
+    );
+  }
+
+  List<Widget> generateListImages(int valor) {
+    return List.generate(
+      valor,
+      (index) => StaggeredGridTile.count(
+        crossAxisCellCount: 10, //Largura
+        mainAxisCellCount: 5, //Altura
+        child: SingleChildScrollView(child: imageWidget(index)),
+      ),
+    );
+  }
+
+  Widget imageWidget(int index) {
+    return Column(
+      children: [
+        InkWell(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: imageClip(index),
+          ), //
+          onTap:
+              () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder:
+                      (context) => Scaffold(
+                        extendBody: true,
+                        body: GestureDetector(
+                          onTap: () => Navigator.of(context).pop(),
+                          child: Column(
+                            children: [
+                              Image.network(
+                                imagesList[index],
+                                fit: BoxFit.cover,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.5,
+                              ),
+                              detailsHouseClip(index, 0.75),
+                            ],
+                          ),
+                        ),
+                      ),
+                ),
+              ),
+        ), //
+        Padding(
+          //-----------------------------------> padding
+          padding: EdgeInsets.all(16.0),
+          child: addressClip(index, 0.25),
+        ),
+      ],
     );
   }
 
@@ -119,143 +259,93 @@ class _HomeScreen extends State<HomeScreen> {
     ); //
   }
 
-  Widget imageWidget(int index) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          InkWell(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: imageClip(index),
-            ), //
-            onTap:
-                () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder:
-                        (context) => Scaffold(
-                          extendBody: true,
-                          body: GestureDetector(
-                            onTap: () => Navigator.of(context).pop(),
-                            child: Column(
-                              children: [
-                                Image.network(
-                                  imagesList[index],
-                                  fit: BoxFit.cover,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.5,
-                                ),
-                                detailsHouseClip(index, 0.75),
-                              ],
-                            ),
-                          ),
-                        ),
-                  ),
-                ),
-          ), //
-          Padding(
-            //-----------------------------------> padding
-            padding: EdgeInsets.all(16.0),
-            child: addressClip(index, 0.25),
-          ),
-        ],
-      ),
-    );
-  }
-
-  List<Widget> generateListImages(int valor) {
-    return List.generate(
-      valor,
-      (index) => StaggeredGridTile.count(
-        crossAxisCellCount: 3,
-        mainAxisCellCount: 3,
-        child: imageWidget(index),
-      ),
-    );
-  }
-}
-
-Widget getDetailsHouse(int index) {
-  return //
-  SingleChildScrollView(
-    child: Padding(
-      //-----------------------------------> padding
-      padding: EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Casa com 3 Quartos e 2 banheiros para Alugar, 274 m² por 10.000 reais/Mês',
-            style: TextStyle(
-              fontSize: 30,
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          Text(
-            addressClient[index],
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          ExpansionTile(
-            title: Text(
-              "Descrição",
+  Widget getDetailsHouse(int index) {
+    return //
+    SingleChildScrollView(
+      child: Padding(
+        //-----------------------------------> padding
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              'Casa com 3 Quartos e 2 banheiros para Alugar, 274 m² por 10.000 reais/Mês',
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 30,
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),
             ),
-            leading: Icon(Icons.electrical_services_rounded),
-            controlAffinity: ListTileControlAffinity.leading,
-            children: <Widget>[
-              Text(
-                "Casa comercial para locação no Palmares!\n\nBenefícios:\n\n- Localização privilegiada, fácil acesso àAv. Cristiano Machado.\n- Próximo á Estação Minas Shopping, Minas Shopping, Mixpão Palmares.",
+            Text(
+              addressClient[index],
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            ExpansionTile(
+              title: Text(
+                "Descrição",
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 24,
                   color: Colors.black,
-                  fontWeight: FontWeight.w300,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
+              leading: Icon(Icons.list_rounded),
+              controlAffinity: ListTileControlAffinity.leading,
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Text(
+                      "Casa comercial para locação no Palmares!\n\nBenefícios:\n\n- Localização privilegiada, fácil acesso àAv. Cristiano Machado.\n- Próximo á Estação Minas Shopping, Minas Shopping, Mixpão Palmares.",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
 
-              Text(
-                "Casa:\n1º piso\n\n- Sala ampla para dois ambientes\n- Sala de jantar\n- Lavabo;\n- Banho social com armários e box de vidro temperado\n- Cozinha ampla com bancada em granito e armários\n",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w300,
-                ),
-              ),
-              Text(
-                "- Despensa\n- Dependência Completa de Empregada\n- Área de Serviço\n- Área externa com churrasqueira.\n\n2º piso\n- Sala de estar íntimo;\n- 03 Quartos com armários, sendo um suíte com varanda.\n",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w300,
-                ),
-              ),
-              Text(
-                "\n\nGaragem:\n- 15 vagas de garagem.\n\n\nOs valores de venda e dos encargos (IPTU/condomínio etc.) exibidos poderão sofrer mudanças e aumentos sem prévio aviso.\n",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w300,
-                ),
-              ),
-              Text(
-                "Por esse motivo os valores deverão ser confirmados no nosso setor comercial e os encargos no prédio/condomínio e IPTU na Prefeitura.",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w300,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    ),
-  );
+                    Text(
+                      "Casa:\n1º piso\n\n- Sala ampla para dois ambientes\n- Sala de jantar\n- Lavabo;\n- Banho social com armários e box de vidro temperado\n- Cozinha ampla com bancada em granito e armários\n",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                    Text(
+                      "- Despensa\n- Dependência Completa de Empregada\n- Área de Serviço\n- Área externa com churrasqueira.\n\n2º piso\n- Sala de estar íntimo;\n- 03 Quartos com armários, sendo um suíte com varanda.\n",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                    Text(
+                      "\n\nGaragem:\n- 15 vagas de garagem.\n\n\nOs valores de venda e dos encargos (IPTU/condomínio etc.) exibidos poderão sofrer mudanças e aumentos sem prévio aviso.\n",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                    Text(
+                      "Por esse motivo os valores deverão ser confirmados no nosso setor comercial e os encargos no prédio/condomínio e IPTU na Prefeitura.",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                  ], //
+                ), //
+              ], //
+            ), //
+          ],
+        ), //
+      ), //
+    ); //
+  }
 }

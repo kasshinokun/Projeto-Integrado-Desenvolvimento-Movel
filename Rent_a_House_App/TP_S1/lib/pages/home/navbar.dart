@@ -133,6 +133,22 @@ class Navbar extends StatelessWidget {
               }
             },
           ),
+          Divider(),
+          ListTile(
+            title: Text("Start"),
+            leading: Icon(Icons.sailing),
+            onTap: () {
+              if (connection == true) {
+                Navigator.pushReplacementNamed(context, '/start');
+                Navigator.popAndPushNamed(context, '/start');
+              }
+              //
+              else {
+                Navigator.pushReplacementNamed(context, '/');
+                Navigator.popAndPushNamed(context, '/');
+              }
+            },
+          ),
         ],
       ),
     );

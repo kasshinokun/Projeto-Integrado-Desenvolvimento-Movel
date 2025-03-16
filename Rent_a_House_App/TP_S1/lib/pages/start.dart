@@ -14,6 +14,7 @@ import 'package:rent_a_house/Pages/Test/curvedlabeled.dart';
 import 'package:rent_a_house/Pages/Test/carousel.dart';
 import 'package:rent_a_house/Pages/Test/imagepicker.dart';
 import 'package:rent_a_house/Pages/Test/notifications.dart';
+
 //==================================================================
 
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
@@ -38,6 +39,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Rent a House',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

@@ -69,7 +69,6 @@ Widget setMyCarousel(List<String> images, context, double aspectRatio) {
               ),
             );
           },
-
           flexWeights: [9, 2],
           //itemExtent: 330,
           shrinkExtent: 200,
