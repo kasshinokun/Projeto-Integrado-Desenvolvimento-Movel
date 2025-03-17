@@ -1,0 +1,307 @@
+COMO EXECUTAR O CÓDIGO DO CHAT APP COM FIREBASE
+
+Este é um aplicativo Flutter que utiliza o Firebase Firestore para enviar e receber mensagens em tempo real. Abaixo estão as instruções para configurar e executar o projeto.
+
+---
+
+### PASSO 1: CONFIGURAÇÃO DO AMBIENTE
+
+1. **Instale o Flutter**:
+   - Certifique-se de que o Flutter está instalado na sua máquina.
+   - Siga o guia oficial de instalação: https://flutter.dev/docs/get-started/install.
+
+2. **Instale o Android Studio ou VS Code**:
+   - Recomenda-se usar o Android Studio ou VS Code para desenvolvimento Flutter.
+   - Instale o plugin do Flutter e Dart na sua IDE.
+
+3. **Verifique a Instalação**:
+   - No terminal, execute:
+     ```bash
+     flutter doctor
+     ```
+   - Certifique-se de que tudo está configurado corretamente.
+
+---
+
+### PASSO 2: CRIAR UM PROJETO FLUTTER
+
+1. **Crie um Novo Projeto**:
+   - No terminal, execute:
+     ```bash
+     flutter create meu_chat_app
+     ```
+   - Navegue até a pasta do projeto:
+     ```bash
+     cd meu_chat_app
+     ```
+
+2. **Substitua o Código**:
+   - Abra o arquivo `lib/main.dart` no seu editor de código.
+   - Substitua o conteúdo pelo código fornecido abaixo.
+
+---
+
+### PASSO 3: ADICIONAR DEPENDÊNCIAS
+
+1. **Edite o `pubspec.yaml`**:
+   - Abra o arquivo `pubspec.yaml` no seu projeto.
+   - Adicione as dependências do Firebase:
+     ```yaml
+     dependencies:
+       flutter:
+         sdk: flutter
+       firebase_core: latest_version
+       cloud_firestore: latest_version
+     ```
+   - Substitua `latest_version` pelas versões mais recentes desses pacotes. Consulte https://pub.dev.
+
+2. **Baixe as Dependências**:
+   - No terminal, execute:
+     ```bash
+     flutter pub get
+     ```
+
+---
+
+### PASSO 4: CONFIGURAR O FIREBASE
+
+1. **Crie um Projeto no Firebase**:
+   - Acesse o Firebase Console: https://console.firebase.google.com/.
+   - Crie um novo projeto.
+
+2. **Adicione o Firebase ao Flutter**:
+   - Siga o guia oficial: https://firebase.flutter.dev/docs/overview.
+   - Adicione o Firebase ao seu app Android e/ou iOS.
+
+3. **Baixe os Arquivos de Configuração**:
+   - Para Android: Baixe o `google-services.json` e coloque na pasta `android/app/`.
+   - Para iOS: Baixe o `GoogleService-Info.plist` e coloque na pasta `ios/Runner/`.
+
+4. **Configure as Regras do Firestore**:
+   - No Firebase Console, vá para Firestore Database.
+   - Defina as regras para permitir leitura e escrita durante o desenvolvimento:
+     ```plaintext
+     rules_version = '2';
+     service cloud.firestore {
+       match /databases/{database}/documents {
+         match /{document=**} {
+           allow read, write: if true;
+         }
+       }
+     }
+     ```
+
+---
+
+### PASSO 5: EXECUTAR O PROJETO
+
+1. **Conecte um Dispositivo ou Emulador**:
+   - Conecte um dispositivo físico ou inicie um emulador Android/iOS.
+
+2. **Execute o Projeto**:
+   - No terminal, execute:
+     ```bash
+     flutter run
+     ```
+
+3. **Teste o Aplicativo**:
+   - Na tela inicial, clique em "Enviar Mensagem de Teste" para enviar uma mensagem ao Firestore.
+   - Navegue para a tela de notificações para ver as mensagens não lidas.
+   - Use o chat para enviar e receber mensagens em tempo real.
+
+---
+
+### CÓDIGO COMPLETO
+
+Aqui está o código completo para o arquivo `lib/main.dart`:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(ChatApp());
+}
+
+class ChatApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Chat App',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: TestScreen(),
+    );
+  }
+}
+
+class TestScreen extends StatelessWidget {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  void _sendTestMessage() {
+    _firestore.collection("messages").add({
+      "text": "Mensagem de teste",
+      "timestamp": FieldValue.serverTimestamp(),
+      "isRead": false,
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Tela de Teste")),
+      body: Column(
+        children: [
+          Expanded(child: ChatScreen()),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: ElevatedButton(
+              onPressed: _sendTestMessage,
+              child: Text("Enviar Mensagem de Teste"),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ChatScreen extends StatefulWidget {
+  @override
+  _ChatScreenState createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final TextEditingController _messageController = TextEditingController();
+
+  void _sendMessage() {
+    if (_messageController.text.trim().isEmpty) return;
+    _firestore.collection("messages").add({
+      "text": _messageController.text.trim(),
+      "timestamp": FieldValue.serverTimestamp(),
+      "isRead": false,
+    });
+    _messageController.clear();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Chat com Firebase"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.notifications),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NotificationsScreen()),
+              );
+            },
+          ),
+        ],
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: StreamBuilder<QuerySnapshot>(
+              stream: _firestore
+                  .collection("messages")
+                  .orderBy("timestamp", descending: true)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData)
+                  return Center(child: CircularProgressIndicator());
+                var messages = snapshot.data!.docs;
+                return ListView.builder(
+                  reverse: true,
+                  itemCount: messages.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(title: Text(messages[index]["text"]));
+                  },
+                );
+              },
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _messageController,
+                    decoration: InputDecoration(
+                      hintText: "Digite uma mensagem...",
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 8),
+                ElevatedButton(
+                  onPressed: _sendMessage,
+                  child: Text("Enviar"),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class NotificationsScreen extends StatelessWidget {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  void _markAsRead(DocumentSnapshot doc) {
+    doc.reference.update({"isRead": true});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Notificações")),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: _firestore
+            .collection("messages")
+            .where("isRead", isEqualTo: false)
+            .orderBy("timestamp", descending: true)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData)
+            return Center(child: CircularProgressIndicator());
+          var messages = snapshot.data!.docs;
+          if (messages.isEmpty)
+            return Center(child: Text("Nenhuma nova notificação"));
+          return ListView.builder(
+            itemCount: messages.length,
+            itemBuilder: (context, index) {
+              var message = messages[index];
+              return Dismissible(
+                key: Key(message.id),
+                onDismissed: (direction) => _markAsRead(message),
+                background: Container(
+                  color: Colors.green,
+                  alignment: Alignment.centerRight,
+                  padding: EdgeInsets.only(right: 20),
+                  child: Icon(Icons.check, color: Colors.white),
+                ),
+                child: ListTile(
+                  title: Text(message["text"]),
+                  trailing: IconButton(
+                    icon: Icon(Icons.check),
+                    onPressed: () => _markAsRead(message),
+                  ),
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+}
