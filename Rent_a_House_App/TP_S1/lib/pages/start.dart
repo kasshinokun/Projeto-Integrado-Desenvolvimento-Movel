@@ -5,7 +5,7 @@ import 'package:rent_a_house/pages/welcome/welcome.dart';
 import 'package:rent_a_house/Pages/Home/home.dart';
 import 'package:rent_a_house/Pages/Manage/renthouse.dart';
 import 'package:rent_a_house/Pages/Client/clienthouse.dart';
-import 'package:rent_a_house/Pages/Manage/registerhouse.dart';
+import 'package:rent_a_house/Pages/Manage/registerhouse.dart' as defaultreg;
 import 'package:rent_a_house/Pages/Manage/settings.dart';
 import 'package:rent_a_house/Pages/Manage/terms.dart';
 //==================================> Testes <======================
@@ -14,7 +14,7 @@ import 'package:rent_a_house/Pages/Test/curvedlabeled.dart';
 import 'package:rent_a_house/Pages/Test/carousel.dart';
 import 'package:rent_a_house/Pages/Test/imagepicker.dart';
 import 'package:rent_a_house/Pages/Test/notifications.dart';
-
+import 'package:rent_a_house/pages/test/testregisterhouse.dart' as testereg;
 //==================================================================
 
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
 
         '/client': (context) => ClientScreen(),
         '/rent': (context) => RentScreen(),
-        '/register': (context) => RegisterScreen(),
+        '/register': (context) => defaultreg.RegisterScreen(),
         '/settings': (context) => SettingsScreen(),
         '/terms': (context) => TermsScreen(),
         //==================================> Testes <======================
@@ -62,7 +62,7 @@ class _MyAppState extends State<MyApp> {
         '/carousel': (context) => CarouselScreen(),
         '/imagepicker': (context) => ImagePickerScreen(),
         '/notifications': (context) => NotificationsScreen(),
-
+        '/paginateste': (context) => testereg.TestScreen(),
         //==================================================================
       },
     );

@@ -2,7 +2,7 @@
 
 ### Desenvolvido por:
 
-[Diego Vitor Pinto Mariano Portella](https://github.com/diegovitorportella)
+Diego Vitor Pinto Mariano Portella
 
 [Gabriel Batista de Almeida](https://github.com/GabrielBatistadeAlmeida)
 
@@ -73,27 +73,6 @@
 
 ✔Painel de Controle – Dashboard com estatísticas sobre locações, faturamento e desempenho dos imóveis.
 
-### Observações sobre a pasta /build
-
-As pastas:
-
-- app
-
-- flutter_plugin_android_lifecycle
-
-- native_assets
-
-- windows
-
-- além do arquivo ````cache.dill.track.dill```.
-
-Precisarão ser providos via comando durante a reconstrução da aplicação, pois eram grandes em alguns casos (acima de 25Mb) 
-ou foram identificados como ```hidden```, o que impediu o upload para este repositório.
-
----> Solução: Rodar o código-base para o código-fonte e adicionar as pastas que aqui estiverem presentes (exceto a pasta /build(mantida para apenas exemplificar a estrutura local da aplicação.)).
-
-[Copie os códigos dentro do arquivo .bat ou execute o arquivo .bat para recriar o programa.](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Exemplos/create_app_folder.bat)
-
 ### Protótipos de Telas objetivadas inicialmente para o projeto:
 ![Tela de Login](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S1/imagens_envio/tela_login.jpg)
 
@@ -107,13 +86,3 @@ ou foram identificados como ```hidden```, o que impediu o upload para este repos
 
 ![Casas Alugadas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S1/imagens_envio/myhouses.jpg)
 
-#### Previas de desenvolvimento 
-[Versão 1-11-03-2025](https://youtube.com/shorts/cTVmHEY7E44?si=hPk19S3dxK42wJA1)
-
-[Versão 1-14-03-2025](https://youtube.com/shorts/QjVhkhm4xPc?si=zLrbdjWetz8AhRfF)
-
-[Versão 1-15-03-2025](https://youtube.com/shorts/Qy8Njn8hKzE?si=1ZMVO77sXQHFtOZH)
-
-Retrabalho para Preparação da tela Inicial(usando imagens comuns)
-
-![Retrabalho para Preparação da tela Inicial](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S1/8.png)

@@ -135,12 +135,12 @@ class Navbar extends StatelessWidget {
           ),
           Divider(),
           ListTile(
-            title: Text("Start"),
-            leading: Icon(Icons.sailing),
+            title: Text("Registro Test"),
+            leading: Icon(Icons.list_rounded),
             onTap: () {
               if (connection == true) {
-                Navigator.pushReplacementNamed(context, '/start');
-                Navigator.popAndPushNamed(context, '/start');
+                Navigator.pushReplacementNamed(context, '/paginateste');
+                Navigator.popAndPushNamed(context, '/paginateste');
               }
               //
               else {
