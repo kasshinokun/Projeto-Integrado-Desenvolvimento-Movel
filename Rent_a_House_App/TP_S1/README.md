@@ -118,6 +118,11 @@
  
  ![Retrabalho para Preparação da tela Inicial](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S1/8.png)
 
+
+[Revisão Tela feita por Gabriel Batista(ainda não tem Image Picker)](https://youtu.be/Axw2B2z6pZo?si=IixtB8ebeFua9GuG)
+
+[Revisão da área de casas alugadas(MyHouses)](https://youtu.be/Bnod7S_0inQ?si=XcqxxKrTQVwA_RbK)
+
 #### Bugs detectado por versão:
 
 17-03-2025_1:
@@ -127,3 +132,5 @@
   (Overflow em telas detectado, necessidade de rearranjo para mobile)
   
    [Atualização de 17-03-2025 Página de Registro de imóveis](https://youtu.be/qtA02pSkzLM?si=XwOG-YthXZI0zo7F)
+
+  
