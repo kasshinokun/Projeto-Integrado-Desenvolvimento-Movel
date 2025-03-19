@@ -4,8 +4,19 @@ import 'package:rent_a_house/pages/test/carousel.dart';
 import 'package:rounded_background_text/rounded_background_text.dart';
 import 'package:rent_a_house/pages/welcome/welcome.dart';
 import 'package:rent_a_house/pages/home/navbar.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 List<String> addressClient = [
+  'Rua Alegre, 12345, bairro Brasil - Belo Horizonte',
+  'Rua Alfa, 3456, bairro França - Ouro Preto',
+  'Rua Puc Minas, 678, bairro Argentina - Sete Lagoas',
+  'Rua Alfa, 3456, bairro França - Ouro Branco',
+  'Rua Puc Minas, 678, bairro Argentina - Lagoa Santa',
+  'Rua Alegre, 12345, bairro Brasil - Belo Horizonte',
+  'Rua Alfa, 3456, bairro França - Ouro Preto',
+  'Rua Puc Minas, 678, bairro Argentina - Sete Lagoas',
+  'Rua Alfa, 3456, bairro França - Ouro Branco',
+  'Rua Puc Minas, 678, bairro Argentina - Lagoa Santa',
   'Rua Alegre, 12345, bairro Brasil - Belo Horizonte',
   'Rua Alfa, 3456, bairro França - Ouro Preto',
   'Rua Puc Minas, 678, bairro Argentina - Sete Lagoas',
@@ -36,7 +47,7 @@ Widget getListAddress() {
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.black,
-            fontSize: 20.0 * MediaQuery.of(context).devicePixelRatio,
+            fontSize: 20.0,
           ), //
         ), //
         onTap: () {
@@ -86,82 +97,46 @@ class _ClientScreen extends State<ClientScreen> {
         ), // Fim do Icone Home
       ), // Fim do AppBar
 
-      body: Container(
-        //----------------------------------------------> Container
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+      body: SingleChildScrollView(
+        child: Container(
+          //----------------------------------------------> Container
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
 
-        decoration: BoxDecoration(
-          //--------------------------> BoxDecoration
-          image: DecorationImage(
-            //-------------------------> DecorationImage
-            fit: BoxFit.fill,
-            //Usarei futuramente uma função para definir a imagem
-            image: AssetImage(
-              //-------------------------> AssetImage
-              getPathImageHome(
-                MediaQuery.of(context).size.height,
-                MediaQuery.of(context).size.width,
-              ),
-            ), // Fim do AssetImage
-          ), // Fim do DecorationImage
-        ), // Fim do BoxDecoration
-        //=============================================>
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              flex: 5,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10.0),
-                      ), //
-                      child: Center(
-                        child: Text(
-                          getAddressMyHouse(addressClient[0]),
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontSize: 20.0,
-                          ), //
+          decoration: BoxDecoration(
+            //--------------------------> BoxDecoration
+            image: DecorationImage(
+              //-------------------------> DecorationImage
+              fit: BoxFit.fill,
+              //Usarei futuramente uma função para definir a imagem
+              image: AssetImage(
+                //-------------------------> AssetImage
+                getPathImageHome(
+                  MediaQuery.of(context).size.height,
+                  MediaQuery.of(context).size.width,
+                ),
+              ), // Fim do AssetImage
+            ), // Fim do DecorationImage
+          ), // Fim do BoxDecoration
+          //=============================================>
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                flex: 4,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10.0),
                         ), //
-                      ), //
-                    ), //
-                  ), //
-                  //Carousel Slider
-                  setMyCarousel(
-                    carouselItems,
-                    context,
-                    0.4,
-                  ), //Carousel de Imagens
-                ], //
-              ), //
-            ), //
-            Expanded(
-              flex: 2,
-
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.0),
-                  ), //
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(16.0),
+                        child: Center(
                           child: Text(
-                            'Status da locação Ativo / Encerrado',
+                            getAddressMyHouse(addressClient[0]),
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
@@ -169,65 +144,171 @@ class _ClientScreen extends State<ClientScreen> {
                             ), //
                           ), //
                         ), //
-                        SizedBox(height: 12),
-                        Padding(
-                          padding: EdgeInsets.all(16.0),
-                          child: Text(
-                            'Data final do Aluguel - ${getDate()}',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 20.0,
+                      ), //
+                    ), //
+                    //Carousel Slider
+                    myCarouselSlider(MediaQuery.of(context).size.height * 0.35),
+                    /*
+                    setMyCarousel(
+                      carouselItems,
+                      context,
+                      0.35,
+                    ), //Carousel de Imagens
+                    */
+                  ], //
+                ), //
+              ), //
+              Expanded(
+                flex: 2,
+
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0),
+                    ), //
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'Status da locação Ativo / Encerrado',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontSize: 20.0,
+                              ), //
                             ), //
                           ), //
-                        ), //
-                      ], //
+                          SizedBox(height: 12),
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'Data final do Aluguel - ${getDate()}',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                                fontSize: 20.0,
+                              ), //
+                            ), //
+                          ), //
+                        ], //
+                      ), //
                     ), //
                   ), //
                 ), //
               ), //
-            ), //
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: EdgeInsets.only(left: 32.0),
-                child: RoundedBackgroundText(
-                  'Locações Finalizadas',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.cyan,
-                    fontSize: 20.0,
-                  ), //
-                  backgroundColor: Colors.blue[50],
-                  innerRadius: 15.0,
-                  outerRadius: 10.0,
-                ), //
-              ), //
-            ), //
-            Expanded(
-              flex: 2,
-              child: Align(
+              Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 2,
-                    padding: EdgeInsets.all(16.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: const Color.fromARGB(255, 230, 158, 158),
+                  padding: EdgeInsets.only(left: 32.0),
+                  child: RoundedBackgroundText(
+                    'Locações Finalizadas',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.cyan,
+                      fontSize: 20.0,
                     ), //
-                    child: getListAddress(), //ListView
+                    backgroundColor: Colors.blue[50],
+                    innerRadius: 15.0,
+                    outerRadius: 10.0,
                   ), //
                 ), //
               ), //
-            ), //
-          ], //
-        ), //
-        //=============================================> Fim do Itens na Tela
-        //Adicione mais Widgets aqui neste espaço
-        //=============================================>
-      ), // Fim do Container
+              Expanded(
+                flex: 2,
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      padding: EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: const Color.fromARGB(255, 230, 158, 158),
+                      ), //
+                      child: getListAddress(), //ListView
+                    ), //
+                  ), //
+                ), //
+              ), //
+            ], //
+          ), //
+          //=============================================> Fim do Itens na Tela
+          //Adicione mais Widgets aqui neste espaço
+          //=============================================>
+        ), // Fim do Container
+      ), // Fim do SingleChildScrollView
     ); // Fim do Scaffold
   } // Fim do retorno
+
+  List<Widget> generateListImages(List<String> images) {
+    return List.generate(
+      images.length,
+      (index) => myImageContainer(images[index]),
+    );
+  }
+
+  Widget myImageContainer(String url) {
+    return Container(
+      margin: EdgeInsets.all(6.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        image: DecorationImage(image: NetworkImage(url), fit: BoxFit.cover),
+      ),
+      child: InkWell(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder:
+                  (context) => Scaffold(
+                    extendBody: true,
+
+                    body: GestureDetector(
+                      onTap: () => Navigator.of(context).pop(),
+
+                      child: Container(
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(url),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget myCarouselSlider(double childHeight) {
+    return CarouselSlider(
+      items: generateListImages(imagesList),
+
+      //Slider Container properties
+      options: CarouselOptions(
+        height: childHeight,
+
+        //enlargeCenterPage: true,
+        enlargeCenterPage: false,
+        autoPlay: false,
+        reverse: true,
+        aspectRatio: 16 / 9,
+        autoPlayCurve: Curves.fastOutSlowIn,
+        enableInfiniteScroll: true,
+        autoPlayAnimationDuration: Duration(milliseconds: 800),
+        viewportFraction: 0.8,
+      ),
+    );
+  }
 } // Fim do Metodo

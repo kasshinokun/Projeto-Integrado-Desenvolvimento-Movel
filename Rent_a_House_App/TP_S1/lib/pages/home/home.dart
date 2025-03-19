@@ -94,7 +94,6 @@ class _HomeScreen extends State<HomeScreen> {
   }
 
   Widget mySearchBar() {
-    TextEditingController textEditingController = TextEditingController();
     return Padding(
       padding: EdgeInsets.all(24.0),
       child: TextField(

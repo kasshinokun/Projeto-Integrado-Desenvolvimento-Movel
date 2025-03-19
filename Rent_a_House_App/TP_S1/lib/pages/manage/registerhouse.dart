@@ -1,12 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:rent_a_house/pages/home/navbar.dart';
 import 'package:rent_a_house/pages/welcome/welcome.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+
+List<String> imagesList = [
+  'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
+  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
+  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
+  'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
+  'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
+  'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80',
+  'https://images.unsplash.com/photo-1586882829491-b81178aa622e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80',
+  'https://images.unsplash.com/photo-1586871608370-4adee64d1794?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2862&q=80',
+  'https://images.unsplash.com/photo-1586901533048-0e856dff2c0d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+  'https://images.unsplash.com/photo-1586902279476-3244d8d18285?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80',
+  'https://images.unsplash.com/photo-1586943101559-4cdcf86a6f87?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1556&q=80',
+  'https://images.unsplash.com/photo-1586951144438-26d4e072b891?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+  'https://images.unsplash.com/photo-1586953983027-d7508a64f4bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+  'https://images.unsplash.com/photo-1586953983027-d7508a64f4bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+];
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreen();
+}
+
+Widget myImageTest(double childHeight, double childWidth) {
+  return Padding(
+    padding: EdgeInsets.all(16.0),
+    child: Container(
+      height: childHeight * 0.4,
+      width: childWidth * 0.8,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        image: DecorationImage(
+          image: AssetImage(getPathImageHome(childHeight, childWidth)),
+          fit: BoxFit.cover, //ajusta a imagem no container
+        ),
+      ),
+    ),
+  );
 }
 
 class _RegisterScreen extends State<RegisterScreen> {
@@ -67,25 +102,8 @@ class _RegisterScreen extends State<RegisterScreen> {
             //------------------------------------> Container igual o anterior
             Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.4,
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      image: DecorationImage(
-                        image: AssetImage(
-                          getPathImageHome(
-                            MediaQuery.of(context).size.height,
-                            MediaQuery.of(context).size.width,
-                          ),
-                        ),
-                        fit: BoxFit.cover, //ajusta a imagem no container
-                      ),
-                    ),
-                  ),
-                ),
+                myCarouselSlider(MediaQuery.of(context).size.height * 0.45),
+                //myImageTest( MediaQuery.of(context).size.height, MediaQuery.of(context).size.width),
               ],
             ),
             //Local para preencher as informações do registro
@@ -241,4 +259,69 @@ class _RegisterScreen extends State<RegisterScreen> {
       ), // Fim do Container
     ); // Fim do Scaffold
   } // Fim do retorno
+
+  List<Widget> generateListImages(List<String> images) {
+    return List.generate(
+      images.length,
+      (index) => myImageContainer(images[index]),
+    );
+  }
+
+  Widget myImageContainer(String url) {
+    return Container(
+      margin: EdgeInsets.all(6.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        image: DecorationImage(image: NetworkImage(url), fit: BoxFit.cover),
+      ),
+      child: InkWell(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder:
+                  (context) => Scaffold(
+                    extendBody: true,
+
+                    body: GestureDetector(
+                      onTap: () => Navigator.of(context).pop(),
+
+                      child: Container(
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(url),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget myCarouselSlider(double childHeight) {
+    return CarouselSlider(
+      items: generateListImages(imagesList),
+
+      //Slider Container properties
+      options: CarouselOptions(
+        height: childHeight,
+
+        //enlargeCenterPage: true,
+        enlargeCenterPage: false,
+        autoPlay: false,
+        reverse: true,
+        aspectRatio: 16 / 9,
+        autoPlayCurve: Curves.fastOutSlowIn,
+        enableInfiniteScroll: true,
+        autoPlayAnimationDuration: Duration(milliseconds: 800),
+        viewportFraction: 0.8,
+      ),
+    );
+  }
 } // Fim do Metodo
