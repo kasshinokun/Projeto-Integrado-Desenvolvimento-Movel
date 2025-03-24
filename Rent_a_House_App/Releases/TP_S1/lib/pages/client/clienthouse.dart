@@ -121,22 +121,57 @@ class _ClientScreen extends State<ClientScreen> {
           //=============================================>
           child: Column(
             children: <Widget>[
-              Expanded(
-                flex: 4,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10.0),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.0),
+                      ), //
+                      child: Center(
+                        child: Text(
+                          getAddressMyHouse(addressClient[0]),
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontSize: 20.0,
+                          ), //
                         ), //
-                        child: Center(
+                      ), //
+                    ), //
+                  ), //
+                  //Carousel Slider
+                  myCarouselSlider(MediaQuery.of(context).size.height * 0.45),
+                  /*
+                    setMyCarousel(
+                      carouselItems,
+                      context,
+                      0.35,
+                    ), //Carousel de Imagens
+                    */
+                ], //
+              ), //
+              //
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10.0),
+                  ), //
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
-                            getAddressMyHouse(addressClient[0]),
+                            'Status da locação Ativo / Encerrado',
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
@@ -144,64 +179,24 @@ class _ClientScreen extends State<ClientScreen> {
                             ), //
                           ), //
                         ), //
-                      ), //
-                    ), //
-                    //Carousel Slider
-                    myCarouselSlider(MediaQuery.of(context).size.height * 0.35),
-                    /*
-                    setMyCarousel(
-                      carouselItems,
-                      context,
-                      0.35,
-                    ), //Carousel de Imagens
-                    */
-                  ], //
-                ), //
-              ), //
-              Expanded(
-                flex: 2,
-
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10.0),
-                    ), //
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              'Status da locação Ativo / Encerrado',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                fontSize: 20.0,
-                              ), //
+                        SizedBox(height: 12),
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            'Data final do Aluguel - ${getDate()}',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 20.0,
                             ), //
                           ), //
-                          SizedBox(height: 12),
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              'Data final do Aluguel - ${getDate()}',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                fontSize: 20.0,
-                              ), //
-                            ), //
-                          ), //
-                        ], //
-                      ), //
+                        ), //
+                      ], //
                     ), //
                   ), //
                 ), //
               ), //
+
               Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
