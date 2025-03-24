@@ -10,7 +10,7 @@
 
 [Sobre o Projeto - Página Inicial](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/)
 
-#### Previas de desenvolvimento Sprint 1
+#### Previas de desenvolvimento Sprint 1 - vídeos
 
  [Versão 1-11-03-2025](https://youtube.com/shorts/cTVmHEY7E44?si=hPk19S3dxK42wJA1)
  
