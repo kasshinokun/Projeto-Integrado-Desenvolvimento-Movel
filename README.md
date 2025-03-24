@@ -10,7 +10,7 @@ no primeiro semestre de 2025 pela PUC Minas Coração Eucarístico.
 
 [Página de Introdução do Projeto - Resumo](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/)
 
-[Conheça um pouco mais sobre nossos objetivos](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/TP_S1/)
+[Conheça um pouco mais sobre nossos objetivos - Pasta Releases](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/)
 
 ## Desenvolvido pelos alunos:
 [Diego Vitor Pinto Mariano Portella](https://github.com/diegovitorportella)
