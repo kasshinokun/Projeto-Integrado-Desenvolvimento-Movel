@@ -3,7 +3,7 @@ flutter pub add responsive_framework -->biblioteca dart
 
 */
 //Source URL: https://pub.dev/packages/responsive_framework/example
-
+/*
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
@@ -80,3 +80,4 @@ class MyApp extends StatelessWidget {
         });
   }
 }
+*/

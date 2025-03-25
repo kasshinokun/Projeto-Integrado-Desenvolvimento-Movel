@@ -1,14 +1,14 @@
 //https://codelabs.developers.google.com/codelabs/flutter-codelab-first?hl=pt-br#2
 
-//================================== OBS. IMPORTANTE: =================================== 
-//Pode haver erros de código, pois somente sintetizei em um arquivo todo o exemplo, porém 
-//não testei o funcionamento 
+//================================== OBS. IMPORTANTE: ===================================
+//Pode haver erros de código, pois somente sintetizei em um arquivo todo o exemplo, porém
+//não testei o funcionamento
 //=======================================================================================
 
 //Rode antes: flutter pub add english_words
 import 'package:english_words/english_words.dart';
 
-//Bibliotecas Padrão 
+//Bibliotecas Padrão
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -34,36 +34,33 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 //Exemplo apenas
-var messages=['Hello','Ahoj','こんにちは']
-Widget myMessages(){
-  return Column(
-    children:[
-      Text('Messages:'),
-      for(var msg in messages)//opção 1
-        Text(msg),
-      //messages.map((msg) => Text(msg)).toList(); //opção 2
-    ]
-  
-  );
+var messages = ['Hello', 'Ahoj', 'こんにちは'];
+Widget myMessages() {
+  return Column(children: [
+    Text('Messages:'),
+    for (var msg in messages) //opção 1
+      Text(msg),
+    //messages.map((msg) => Text(msg)).toList(); //opção 2
+  ]);
 }
+
 class MyAppState extends ChangeNotifier {
-  
   var current = WordPair.random();
   var favorites = <WordPair>[];
   var selectedIndex = 0;
   var selectedIndexAnotherWidget = 0;
   var indexInYetAnotherWidget = 42;
-  var optionASelected=false;
-  var optionBSelected=false;
-  var loadingFromNetwork=false;
- 
-  
-    
+  var optionASelected = false;
+  var optionBSelected = false;
+  var loadingFromNetwork = false;
+
   void getNext() {
     current = WordPair.random();
     notifyListeners();
   }
+
   void toggleFavorite() {
     if (favorites.contains(current)) {
       favorites.remove(current);
@@ -73,6 +70,7 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 }
+
 class BigCard extends StatelessWidget {
   const BigCard({
     super.key,
@@ -83,10 +81,10 @@ class BigCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);       
+    final theme = Theme.of(context);
 
     return Card(
-      color: theme.colorScheme.primary,    
+      color: theme.colorScheme.primary,
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Text(pair.asLowerCase),
@@ -94,29 +92,28 @@ class BigCard extends StatelessWidget {
     );
   }
 }
+
 class MyHomePage extends StatefulWidget {
-  
+  const MyHomePage({super.key});
   @override
-  State<MyHomePage> createState()=> _MyHomePageState;
-  
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-  var selectedIndex = 0;    
+  var selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     Widget page;
-      switch (selectedIndex) {
-        case 0:
-          page = GeneratorPage();
-          break;
-        case 1:
-          page = FavoritesPage();
-          break;
-        default:
-          throw UnimplementedError('no widget for $selectedIndex');
+    switch (selectedIndex) {
+      case 0:
+        page = GeneratorPage();
+        break;
+      case 1:
+        page = FavoritesPage();
+        break;
+      default:
+        throw UnimplementedError('no widget for $selectedIndex');
     }
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
@@ -124,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             SafeArea(
               child: NavigationRail(
-                extended: constraints.maxWidth >= 600,  
+                extended: constraints.maxWidth >= 600,
                 destinations: [
                   NavigationRailDestination(
                     icon: Icon(Icons.home),
@@ -156,8 +153,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-
 class FavoritesPage extends StatelessWidget {
+  const FavoritesPage({super.key});
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
@@ -185,8 +182,8 @@ class FavoritesPage extends StatelessWidget {
   }
 }
 
-
 class GeneratorPage extends StatelessWidget {
+  const GeneratorPage({super.key});
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
@@ -229,4 +226,3 @@ class GeneratorPage extends StatelessWidget {
     );
   }
 }
-                
