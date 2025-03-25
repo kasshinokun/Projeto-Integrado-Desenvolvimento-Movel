@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rent_a_house/pages/home/homepage.dart';
+import 'package:rent_a_house/pages/responsive/responsive.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -13,10 +14,13 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/', //Rotas
       routes: {
-        '/':
+        '/home':
             (context) =>
                 MyHomePage(title: 'Flutter Demo Home Page'), //Página Inicial
-        //'/login': (context) => WelcomePage(), //Página de Login MyHomePage(title: 'Flutter Demo Home Page'),
+        '/':
+            (context) => MyResponsivePage(
+              title: 'Flutter Responsive Home Page',
+            ), //Página de Login MyHomePage(title: 'Flutter Demo Home Page'),
       },
     );
   }

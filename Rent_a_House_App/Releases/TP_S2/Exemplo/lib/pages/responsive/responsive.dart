@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/':
             (context) => MyResponsivePage(
-              title: 'Flutter Demo Home Page',
+              title: 'Flutter Responsive Home Page',
             ), //Página Inicial
         //'/login': (context) => WelcomePage(), //Página de Login MyHomePage(title: 'Flutter Demo Home Page'),
       },
@@ -69,20 +69,44 @@ class MyResponsivePage extends StatefulWidget {
 class _MyResponsivePageState extends State<MyResponsivePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+    final currentWidth = MediaQuery.of(context).size.width;
+    final currentHeight = MediaQuery.of(context).size.height;
+    return myScaffold(currentWidth, currentHeight);
+  }
 
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            //
-          ],
-        ),
-      ),
-    );
+  Widget myScaffold(double currentWidth, double currentHeight) {
+    return currentWidth < 600
+        ? Scaffold(
+          appBar: AppBar(
+            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+
+            title: Text(widget.title),
+          ),
+          body: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                //
+                Expanded(flex: 2, child: Text(currentWidth.toString())),
+                Expanded(flex: 2, child: Text(currentHeight.toString())),
+              ],
+            ),
+          ),
+        )
+        : Scaffold(
+          appBar: AppBar(
+            backgroundColor: Theme.of(context).colorScheme.onPrimary, //
+            title: Text(widget.title),
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(flex: 2, child: Text(currentWidth.toString())),
+                Expanded(flex: 2, child: Text(currentHeight.toString())),
+              ],
+            ),
+          ),
+        );
   }
 }
