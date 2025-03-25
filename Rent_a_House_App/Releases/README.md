@@ -10,6 +10,8 @@ Revisão 1-24-03-2025
 
 [Gabriel da Silva Cassino](https://github.com/kasshinokun)
 
+Igor Cesar Avelar Leão
+
 ### Objetivo do app:
  O aplicativo Rent a House tem como objetivo facilitar o
  aluguel de imóveis por temporada, conectando locatários e
