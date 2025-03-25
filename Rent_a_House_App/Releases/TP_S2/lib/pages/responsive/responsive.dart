@@ -83,7 +83,8 @@ class _MyResponsivePageState extends State<MyResponsivePage> {
             title: Text(widget.title),
           ),
           body: SingleChildScrollView(
-            child: Row(
+            scrollDirection: Axis.vertical,
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text("Imagem 1"),
@@ -93,6 +94,7 @@ class _MyResponsivePageState extends State<MyResponsivePage> {
                   // Image.network(src)
                   child: Image.network(
                     "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    fit: BoxFit.fill,
                   ),
                 ),
                 Text("Imagem 2"),
@@ -100,6 +102,7 @@ class _MyResponsivePageState extends State<MyResponsivePage> {
                   padding: const EdgeInsets.all(8.0),
                   child: Image.network(
                     "https://images.pexels.com/photos/2899097/pexels-photo-2899097.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    fit: BoxFit.fill,
                   ),
                 ),
               ],
@@ -112,7 +115,8 @@ class _MyResponsivePageState extends State<MyResponsivePage> {
             title: Text(widget.title),
           ),
           body: SingleChildScrollView(
-            child: Column(
+            scrollDirection: Axis.horizontal,
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text("Imagem 1"),
