@@ -1,7 +1,14 @@
 //https://codelabs.developers.google.com/codelabs/flutter-codelab-first?hl=pt-br#2
 
+//================================== OBS. IMPORTANTE: =================================== 
+//Pode haver erros de código, pois somente sintetizei em um arquivo todo o exemplo, porém 
+//não testei o funcionamento 
+//=======================================================================================
 
+//Rode antes: flutter pub add english_words
 import 'package:english_words/english_words.dart';
+
+//Bibliotecas Padrão 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,7 +34,19 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
+//Exemplo apenas
+var messages=['Hello','Ahoj','こんにちは']
+Widget myMessages(){
+  return Column(
+    children:[
+      Text('Messages:'),
+      for(var msg in messages)//opção 1
+        Text(msg),
+      //messages.map((msg) => Text(msg)).toList(); //opção 2
+    ]
+  
+  );
+}
 class MyAppState extends ChangeNotifier {
   
   var current = WordPair.random();
@@ -39,7 +58,7 @@ class MyAppState extends ChangeNotifier {
   var optionBSelected=false;
   var loadingFromNetwork=false;
  
-  //var messages=['Hello','Ahoj','こんにちは']
+  
     
   void getNext() {
     current = WordPair.random();
@@ -94,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
           page = GeneratorPage();
           break;
         case 1:
-          page = Placeholder();
+          page = FavoritesPage();
           break;
         default:
           throw UnimplementedError('no widget for $selectedIndex');
