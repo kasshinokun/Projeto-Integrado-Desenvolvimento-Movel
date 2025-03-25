@@ -8,6 +8,8 @@ PUC Minas - Unidade Coração Eucarístico
 
 [Gabriel da Silva Cassino](https://github.com/kasshinokun)
 
+Igor Cesar Avelar Leão
+
 ### Período: 1° Semestre de 2025
 
 ## Sobre o Projeto - Resumo
