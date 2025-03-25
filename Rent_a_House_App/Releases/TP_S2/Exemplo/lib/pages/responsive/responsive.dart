@@ -82,13 +82,26 @@ class _MyResponsivePageState extends State<MyResponsivePage> {
 
             title: Text(widget.title),
           ),
-          body: Center(
+          body: SingleChildScrollView(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                //
-                Expanded(flex: 2, child: Text(currentWidth.toString())),
-                Expanded(flex: 2, child: Text(currentHeight.toString())),
+                Text("Imagem 1"),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+
+                  // Image.network(src)
+                  child: Image.network(
+                    "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                  ),
+                ),
+                Text("Imagem 2"),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.network(
+                    "https://images.pexels.com/photos/2899097/pexels-photo-2899097.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                  ),
+                ),
               ],
             ),
           ),
@@ -98,12 +111,26 @@ class _MyResponsivePageState extends State<MyResponsivePage> {
             backgroundColor: Theme.of(context).colorScheme.onPrimary, //
             title: Text(widget.title),
           ),
-          body: Center(
+          body: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Expanded(flex: 2, child: Text(currentWidth.toString())),
-                Expanded(flex: 2, child: Text(currentHeight.toString())),
+                Text("Imagem 1"),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+
+                  // Image.network(src)
+                  child: Image.network(
+                    "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                  ),
+                ),
+                Text("Imagem 2"),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.network(
+                    "https://images.pexels.com/photos/2899097/pexels-photo-2899097.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                  ),
+                ),
               ],
             ),
           ),
