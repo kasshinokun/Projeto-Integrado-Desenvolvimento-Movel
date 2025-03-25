@@ -29,14 +29,22 @@ class MyApp extends StatelessWidget {
 }
 
 class MyAppState extends ChangeNotifier {
+  
   var current = WordPair.random();
-
+  var favorites = <WordPair>[];
+  var selectedIndex = 0;
+  var selectedIndexAnotherWidget = 0;
+  var indexInYetAnotherWidget = 42;
+  var optionASelected=false;
+  var optionBSelected=false;
+  var loadingFromNetwork=false;
+ 
+  //var messages=['Hello','Ahoj','こんにちは']
+    
   void getNext() {
     current = WordPair.random();
     notifyListeners();
   }
-  var favorites = <WordPair>[];
-
   void toggleFavorite() {
     if (favorites.contains(current)) {
       favorites.remove(current);
@@ -73,68 +81,92 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState()=> _MyHomePageState;
   
 }
+
 class _MyHomePageState extends State<MyHomePage> {
 
-  
-class GeneratorPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
-    var pair = appState.current;
-
-    IconData icon;
-    if (appState.favorites.contains(pair)) {
-  var selectedIndex = 0;
+  var selectedIndex = 0;    
 
   @override
   Widget build(BuildContext context) {
     Widget page;
-    switch (selectedIndex) {
-      case 0:
-        page = GeneratorPage();
-        break;
-      case 1:
-        page = Placeholder();
-        break;
-      default:
-        throw UnimplementedError('no widget for $selectedIndex');
+      switch (selectedIndex) {
+        case 0:
+          page = GeneratorPage();
+          break;
+        case 1:
+          page = Placeholder();
+          break;
+        default:
+          throw UnimplementedError('no widget for $selectedIndex');
+    }
+    return LayoutBuilder(builder: (context, constraints) {
+      return Scaffold(
+        body: Row(
+          children: [
+            SafeArea(
+              child: NavigationRail(
+                extended: constraints.maxWidth >= 600,  
+                destinations: [
+                  NavigationRailDestination(
+                    icon: Icon(Icons.home),
+                    label: Text('Home'),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.favorite),
+                    label: Text('Favorites'),
+                  ),
+                ],
+                selectedIndex: selectedIndex,
+                onDestinationSelected: (value) {
+                  setState(() {
+                    selectedIndex = value;
+                  });
+                },
+              ),
+            ),
+            Expanded(
+              child: Container(
+                color: Theme.of(context).colorScheme.primaryContainer,
+                child: page,
+              ),
+            ),
+          ],
+        ),
+      );
+    });
+  }
+}
+
+
+class FavoritesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+
+    if (appState.favorites.isEmpty) {
+      return Center(
+        child: Text('No favorites yet.'),
+      );
     }
 
-    return Scaffold(
-      body: Row(
-        children: [
-          SafeArea(
-            child: NavigationRail(
-              extended: false,
-              destinations: [
-                NavigationRailDestination(
-                  icon: Icon(Icons.home),
-                  label: Text('Home'),
-                ),
-                NavigationRailDestination(
-                  icon: Icon(Icons.favorite),
-                  label: Text('Favorites'),
-                ),
-              ],
-              selectedIndex: selectedIndex,
-              onDestinationSelected: (value) {
-                setState(() {
-                  selectedIndex = value;
-                });
-              },
-            ),
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Text('You have '
+              '${appState.favorites.length} favorites:'),
+        ),
+        for (var pair in appState.favorites)
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text(pair.asLowerCase),
           ),
-          Expanded(
-            child: Container(
-              color: Theme.of(context).colorScheme.primaryContainer,
-              child: page,  
-            ),
-          ),
-        ],
-      ),
+      ],
     );
-  } 
-}     
+  }
+}
+
+
 class GeneratorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -178,3 +210,4 @@ class GeneratorPage extends StatelessWidget {
     );
   }
 }
+                
