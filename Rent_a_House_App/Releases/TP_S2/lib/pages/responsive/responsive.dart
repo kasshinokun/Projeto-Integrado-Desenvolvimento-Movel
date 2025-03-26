@@ -79,32 +79,20 @@ class _MyResponsivePageState extends State<MyResponsivePage> {
         ? Scaffold(
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
             title: Text(widget.title),
           ),
-          body: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
+          body: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(color: Colors.white),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text("Imagem 1"),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-
-                  // Image.network(src)
-                  child: Image.network(
-                    "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                    fit: BoxFit.fill,
-                  ),
+                myImage(
+                  "https://i0.wp.com/catagua.com.br/wp-content/uploads/2023/11/veja-dicas-de-decoracao-para-apartamentos-pequenos.jpg",
+                  "Imagem Topo",
                 ),
-                Text("Imagem 2"),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.network(
-                    "https://images.pexels.com/photos/2899097/pexels-photo-2899097.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                    fit: BoxFit.fill,
-                  ),
-                ),
+                mySingleChildScrollView(),
               ],
             ),
           ),
@@ -114,30 +102,102 @@ class _MyResponsivePageState extends State<MyResponsivePage> {
             backgroundColor: Theme.of(context).colorScheme.onPrimary, //
             title: Text(widget.title),
           ),
-          body: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
+          body: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(color: Colors.white),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text("Imagem 1"),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-
-                  // Image.network(src)
-                  child: Image.network(
-                    "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                  ),
+                myImage(
+                  "https://i0.wp.com/catagua.com.br/wp-content/uploads/2023/11/veja-dicas-de-decoracao-para-apartamentos-pequenos.jpg",
+                  "Imagem Lateral",
                 ),
-                Text("Imagem 2"),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.network(
-                    "https://images.pexels.com/photos/2899097/pexels-photo-2899097.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                  ),
-                ),
+                mySingleChildScrollView(),
               ],
             ),
           ),
         );
+  }
+
+  Widget myImage(String url, String id) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(id),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.network(
+            url,
+            fit: BoxFit.cover,
+            height:
+                MediaQuery.of(context).orientation == Orientation.portrait
+                    ? MediaQuery.of(context).size.height / 2.5
+                    : MediaQuery.of(context).size.height / 1.6,
+            width:
+                MediaQuery.of(context).orientation == Orientation.portrait
+                    ? MediaQuery.of(context).size.width
+                    : MediaQuery.of(context).size.width / 2.6,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget mySingleChildScrollView() {
+    return Expanded(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            Container(
+              height:
+                  MediaQuery.of(context).orientation == Orientation.portrait
+                      ? MediaQuery.of(context).size.height / 2.2
+                      : MediaQuery.of(context).size.height / 1.4,
+              width:
+                  MediaQuery.of(context).orientation == Orientation.portrait
+                      ? MediaQuery.of(context).size.width
+                      : MediaQuery.of(context).size.width / 2.2,
+              color: Colors.red,
+              child: myImage(
+                "https://pointer.com.br/blog/wp-content/uploads/2021/02/5a8c590ea936140d7f6def44.jpg",
+                "Imagem 1",
+              ),
+            ),
+            Container(
+              height:
+                  MediaQuery.of(context).orientation == Orientation.portrait
+                      ? MediaQuery.of(context).size.height / 2.2
+                      : MediaQuery.of(context).size.height / 1.4,
+              width:
+                  MediaQuery.of(context).orientation == Orientation.portrait
+                      ? MediaQuery.of(context).size.width
+                      : MediaQuery.of(context).size.width / 2.2,
+              color: Colors.blue,
+              child: myImage(
+                "https://s2.glbimg.com/ulqlv4AMKzTknUujSFXc0aGKQXI=/smart/e.glbimg.com/og/ed/f/original/2019/10/15/decoracao-casa-de-praia-8.jpg",
+                "Imagem 2",
+              ),
+            ),
+            Container(
+              height:
+                  MediaQuery.of(context).orientation == Orientation.portrait
+                      ? MediaQuery.of(context).size.height / 2.2
+                      : MediaQuery.of(context).size.height / 1.4,
+              width:
+                  MediaQuery.of(context).orientation == Orientation.portrait
+                      ? MediaQuery.of(context).size.width
+                      : MediaQuery.of(context).size.width / 2.2,
+              color: Colors.green,
+              child: myImage(
+                "https://images.homify.com/v1448129217/p/photo/image/1135013/7.jpg",
+                "Imagem 3",
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
