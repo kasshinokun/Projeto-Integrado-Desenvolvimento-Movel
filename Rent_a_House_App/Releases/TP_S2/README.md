@@ -16,7 +16,8 @@ Use o arquivo ou código da Sprint 1 e copie a pasta /lib, e faça um merge do p
 
 #### Previas de desenvolvimento Sprint 2 - vídeos
 
-Update 1-26-03-2025 demonstração - vídeo (em processo de upload)
+[Update 1-26-03-2025 demonstração layout responsivo adaptativo - vídeo](https://youtu.be/TkVjUKvodDA) 
+
 
  
   
