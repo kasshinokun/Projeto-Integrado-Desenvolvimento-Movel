@@ -8,9 +8,10 @@
 
 [Gabriel da Silva Cassino](https://github.com/kasshinokun)
 
+[Igor Cesar Avelar Leao](https://github.com/Igor-leao)
+
 [Sobre o Projeto - Página Inicial](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/)
 
-Igor Cesar Avelar Leão
 
 #### Previas de desenvolvimento Sprint 1 - vídeos
 
