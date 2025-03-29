@@ -10,26 +10,13 @@
 
 [Sobre o Projeto - Página Inicial](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/)
 
-#### Previas de desenvolvimento Sprint 1 - vídeos
+#### Previas de desenvolvimento Sprint 2 - vídeos
 
- [Versão 1-11-03-2025](https://youtube.com/shorts/cTVmHEY7E44?si=hPk19S3dxK42wJA1)
+ [Versão 1-26-03-2025](https://www.youtube.com/watch?v=TkVjUKvodDA&list=PLBiA8fTn3ssumAiK2gg7J8_bXRNuP2DKf)
  
- [Versão 1-14-03-2025](https://youtube.com/shorts/QjVhkhm4xPc?si=zLrbdjWetz8AhRfF)
  
- [Versão 1-15-03-2025](https://youtube.com/shorts/Qy8Njn8hKzE?si=1ZMVO77sXQHFtOZH)
- 
- Retrabalho para Preparação da tela Inicial(usando imagens comuns)
- 
- ![Retrabalho para Preparação da tela Inicial](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S1/8.png)
-
 #### Bugs detectado por versão:
 
-17-03-2025_1:
 
-- Processo de adequação de layout
-
-  (Overflow em telas detectado, necessidade de rearranjo para mobile)
-  
-   [Atualização de 17-03-2025 Página de Registro de imóveis](https://youtu.be/qtA02pSkzLM?si=XwOG-YthXZI0zo7F)
 
   
