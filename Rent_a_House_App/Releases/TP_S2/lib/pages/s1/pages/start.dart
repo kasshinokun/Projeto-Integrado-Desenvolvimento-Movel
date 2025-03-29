@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:rent_a_house/pages/home/homepage.dart' as stwo;
-import 'package:rent_a_house/pages/responsive/responsive.dart';
-
+import 'package:flutter/gestures.dart';
 //==================================================================
 import 'package:rent_a_house/pages/s1/pages/welcome/welcome.dart';
-import 'package:rent_a_house/pages/s1/pages/Home/home.dart' as sone;
+import 'package:rent_a_house/pages/s1/pages/Home/home.dart';
 import 'package:rent_a_house/pages/s1/pages/Manage/renthouse.dart';
 import 'package:rent_a_house/pages/s1/pages/Client/clienthouse.dart';
 import 'package:rent_a_house/pages/s1/pages/Manage/registerhouse.dart'
@@ -19,9 +17,6 @@ import 'package:rent_a_house/pages/s1/pages/Test/imagepicker.dart';
 import 'package:rent_a_house/pages/s1/pages/Test/notifications.dart';
 import 'package:rent_a_house/pages/s1/pages/test/testregisterhouse.dart'
     as testereg;
-import 'package:flutter/gestures.dart';
-//orientação dos widgets
-//import 'package:flutter/services.dart';
 //==================================================================
 
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
@@ -33,32 +28,28 @@ class MyCustomScrollBehavior extends MaterialScrollBehavior {
   };
 }
 
-//==================================================================
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  // This widget is the root of your application.
+
+  @override
   Widget build(BuildContext context) {
-    //final Size size = MediaQuery.sizeOf(context);
-    //final double currentWidth = size.width;
-    //final double currentHeight = size.height;
     return MaterialApp(
-      debugShowCheckedModeBanner: false, //tirar o banner
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Rent a House',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
+      scrollBehavior: MyCustomScrollBehavior(), //Scroll
       initialRoute: '/', //Rotas
       routes: {
-        '/sprint2':
-            (context) => stwo.MyHomePage(
-              title: 'Flutter Demo Home Page',
-            ), //Página Inicial
-        '/responsive':
-            (context) => MyResponsivePage(
-              title: 'Flutter Responsive Home Page',
-            ), //Página de Login MyHomePage(title: 'Flutter Demo Home Page'),
-        '/': (context) => sone.HomeScreen(), //Página Inicial
+        '/': (context) => HomeScreen(), //Página Inicial
 
         '/login': (context) => WelcomePage(), //Página de Login
 
@@ -74,7 +65,6 @@ class MyApp extends StatelessWidget {
         '/imagepicker': (context) => ImagePickerScreen(),
         '/notifications': (context) => NotificationsScreen(),
         '/paginateste': (context) => testereg.TestScreen(),
-
         //==================================================================
       },
     );

@@ -75,49 +75,54 @@ class _MyResponsivePageState extends State<MyResponsivePage> {
   }
 
   Widget myScaffold(double currentWidth, double currentHeight) {
-    return currentWidth < 600
-        ? Scaffold(
-          appBar: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-            title: Text(widget.title),
-          ),
-          body: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(color: Colors.white),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                myImage(
-                  "https://i0.wp.com/catagua.com.br/wp-content/uploads/2023/11/veja-dicas-de-decoracao-para-apartamentos-pequenos.jpg",
-                  "Imagem Topo",
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
+        actions: [
+          Padding(
+            //-----------------------------------> padding
+            padding: EdgeInsets.only(right: 16.0),
+            child: IconButton(
+              // ------> Icone Home
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/sprint2');
+                Navigator.popAndPushNamed(context, '/sprint2');
+              },
+              icon: Icon(Icons.home_rounded),
+            ), // Fim do Icone Home
+          ), // Fim do Padding
+        ],
+      ),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(color: Colors.white),
+        child:
+            currentWidth < 600
+                //If ternario nos filhos do container
+                ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    myImage(
+                      "https://i0.wp.com/catagua.com.br/wp-content/uploads/2023/11/veja-dicas-de-decoracao-para-apartamentos-pequenos.jpg",
+                      "Imagem Topo",
+                    ),
+                    mySingleChildScrollView(),
+                  ],
+                )
+                : Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    myImage(
+                      "https://i0.wp.com/catagua.com.br/wp-content/uploads/2023/11/veja-dicas-de-decoracao-para-apartamentos-pequenos.jpg",
+                      "Imagem Lateral",
+                    ),
+                    mySingleChildScrollView(),
+                  ],
                 ),
-                mySingleChildScrollView(),
-              ],
-            ),
-          ),
-        )
-        : Scaffold(
-          appBar: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.onPrimary, //
-            title: Text(widget.title),
-          ),
-          body: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(color: Colors.white),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                myImage(
-                  "https://i0.wp.com/catagua.com.br/wp-content/uploads/2023/11/veja-dicas-de-decoracao-para-apartamentos-pequenos.jpg",
-                  "Imagem Lateral",
-                ),
-                mySingleChildScrollView(),
-              ],
-            ),
-          ),
-        );
+      ),
+    );
   }
 
   Widget myImage(String url, String id) {
@@ -161,7 +166,7 @@ class _MyResponsivePageState extends State<MyResponsivePage> {
                       : MediaQuery.of(context).size.width / 2.2,
               color: Colors.red,
               child: myImage(
-                "https://pointer.com.br/blog/wp-content/uploads/2021/02/5a8c590ea936140d7f6def44.jpg",
+                "https://i0.wp.com/catagua.com.br/wp-content/uploads/2023/11/veja-dicas-de-decoracao-para-apartamentos-pequenos.jpg",
                 "Imagem 1",
               ),
             ),
@@ -176,7 +181,7 @@ class _MyResponsivePageState extends State<MyResponsivePage> {
                       : MediaQuery.of(context).size.width / 2.2,
               color: Colors.blue,
               child: myImage(
-                "https://s2.glbimg.com/ulqlv4AMKzTknUujSFXc0aGKQXI=/smart/e.glbimg.com/og/ed/f/original/2019/10/15/decoracao-casa-de-praia-8.jpg",
+                "https://i0.wp.com/catagua.com.br/wp-content/uploads/2023/11/veja-dicas-de-decoracao-para-apartamentos-pequenos.jpg",
                 "Imagem 2",
               ),
             ),
