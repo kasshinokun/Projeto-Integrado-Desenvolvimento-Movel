@@ -10,7 +10,7 @@ Revisão 1-24-03-2025
 
 [Gabriel da Silva Cassino](https://github.com/kasshinokun)
 
-Igor Cesar Avelar Leão
+[Igor Cesar Avelar Leao](https://github.com/Igor-leao)
 
 ### Objetivo do app:
  O aplicativo Rent a House tem como objetivo facilitar o
