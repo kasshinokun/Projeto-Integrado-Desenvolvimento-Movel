@@ -19,7 +19,7 @@ no primeiro semestre de 2025 pela PUC Minas Coração Eucarístico.
 
 [Gabriel da Silva Cassino](https://github.com/kasshinokun)
 
-Igor Cesar Avelar Leão
+[Igor Cesar Avelar Leao](https://github.com/Igor-leao)
 
 
 Bons Estudos e espero que o ajude em sua jornada.
