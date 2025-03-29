@@ -19,10 +19,14 @@ Igor Cesar Avelar Leão
  [Versão 1-14-03-2025](https://youtube.com/shorts/QjVhkhm4xPc?si=zLrbdjWetz8AhRfF)
  
  [Versão 1-15-03-2025](https://youtube.com/shorts/Qy8Njn8hKzE?si=1ZMVO77sXQHFtOZH)
+
+ [Versão 1-19-03-2025](https://www.youtube.com/watch?v=Bnod7S_0inQ&list=PLBiA8fTn3ssumAiK2gg7J8_bXRNuP2DKf&index=2)
  
  Retrabalho para Preparação da tela Inicial(usando imagens comuns)
  
  ![Retrabalho para Preparação da tela Inicial](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S1/8.png)
+
+Obs.: o Update de 24-03-2025-1 apenas foi feito o upload para o repositório.
 
 #### Bugs detectado por versão:
 
@@ -34,4 +38,4 @@ Igor Cesar Avelar Leão
   
    [Atualização de 17-03-2025 Página de Registro de imóveis](https://youtu.be/qtA02pSkzLM?si=XwOG-YthXZI0zo7F)
 
-  
+  Update 1-24-03-2025: melhorou o overflow, mas travou o scroll
