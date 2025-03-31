@@ -19,6 +19,7 @@ import 'package:rent_a_house/pages/s1/pages/Test/imagepicker.dart';
 import 'package:rent_a_house/pages/s1/pages/Test/notifications.dart';
 import 'package:rent_a_house/pages/s1/pages/test/testregisterhouse.dart'
     as testereg;
+import 'package:rent_a_house/pages/chat/chat_simulator.dart';
 import 'package:flutter/gestures.dart';
 //orientação dos widgets
 //import 'package:flutter/services.dart';
@@ -67,11 +68,13 @@ class MyApp extends StatelessWidget {
         '/register': (context) => defaultreg.RegisterScreen(),
         '/settings': (context) => SettingsScreen(),
         '/terms': (context) => TermsScreen(),
+
         //==================================> Testes <======================
         '/curved': (context) => CurvedNavBar(),
         '/curvedlabeled': (context) => CurvedLabeledNavBar(),
         '/carousel': (context) => CarouselScreen(),
         '/imagepicker': (context) => ImagePickerScreen(),
+        '/chat': (context) => ChatScreen(),
         '/notifications': (context) => NotificationsScreen(),
         '/paginateste': (context) => testereg.TestScreen(),
 

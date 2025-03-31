@@ -324,7 +324,7 @@ class _HomeScreen extends State<HomeScreen> {
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [getTitleHouse(4), getExpandedDetailsHouse()],
+          children: [getTitleHouse(index), getExpandedDetailsHouse()],
         ),
       ),
     );

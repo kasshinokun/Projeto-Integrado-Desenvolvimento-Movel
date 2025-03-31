@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:rounded_background_text/rounded_background_text.dart';
 import 'package:rent_a_house/pages/s1/pages/home/navbar.dart';
 import 'package:rent_a_house/pages/s1/pages/welcome/welcome.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 List<String> addressClient = [
   '1 Rua Alegre, 12345, bairro Brasil - Belo Horizonte',
@@ -61,7 +62,7 @@ class ClientScreen extends StatefulWidget {
 class _ClientScreen extends State<ClientScreen> {
   TextEditingController textEditingController = TextEditingController();
   final ScrollController _controllerScroll = ScrollController();
-
+  final int lastLocation = 0;
   @override
   void dispose() {
     _controllerScroll.dispose();
@@ -72,6 +73,7 @@ class _ClientScreen extends State<ClientScreen> {
   Widget build(BuildContext context) {
     final currentWidth = MediaQuery.of(context).size.width;
     final currentHeight = MediaQuery.of(context).size.height;
+
     return myScaffold(currentWidth, currentHeight);
   }
 
@@ -118,8 +120,8 @@ class _ClientScreen extends State<ClientScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     myTopSideImage(
-                      carouselItems[0],
-                      addressClient[0],
+                      carouselItems[lastLocation], //irrelevante no estágio atual
+                      addressClient[lastLocation],
                       Colors.pink,
                     ),
                     mySingleChildScrollView(myList()),
@@ -130,8 +132,8 @@ class _ClientScreen extends State<ClientScreen> {
                   children: <Widget>[
                     mySingleChildScrollView(
                       myTopSideImage(
-                        carouselItems[0],
-                        addressClient[0],
+                        carouselItems[lastLocation], //irrelevante no estágio atual
+                        addressClient[lastLocation],
                         Colors.cyanAccent,
                       ),
                     ),
@@ -149,24 +151,57 @@ class _ClientScreen extends State<ClientScreen> {
               ? [
                 //Landscape Layout
                 myPaddingText("Casa na Praia", Colors.white), //
-                myContainer(myImage(url), cor), //
+                myCarouselSlider(),
+                //myImageContainer(url),
+                //myContainer(myImage(url), cor), //
                 myPaddingText(id, Colors.white), //
                 myStatusHouse(),
               ] //
               : [
                 //Portrait Layout
                 myPaddingText("Casa na Praia", Colors.white), //
-                myContainer(myImage(url), cor), //
+                myCarouselSlider(),
+                //myImageContainer(url),
+                //myContainer(myImage(url), cor), //
                 myPaddingText(id, Colors.white), //
               ],
     );
   }
 
+  Widget myCarouselSlider() {
+    return CarouselSlider(
+      items: generateListImages(carouselItems),
+
+      //Slider Container properties
+      options: CarouselOptions(
+        height:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? MediaQuery.of(context).size.height / 2.2
+                : MediaQuery.of(context).size.height / 1.55,
+
+        //enlargeCenterPage: true,
+        enlargeCenterPage: false,
+        autoPlay: false,
+        reverse: true,
+        aspectRatio: 16 / 9,
+        autoPlayCurve: Curves.fastOutSlowIn,
+        enableInfiniteScroll: true,
+        autoPlayAnimationDuration: Duration(milliseconds: 800),
+        viewportFraction: 0.8,
+      ),
+    );
+  }
+
   Widget mySingleChildScrollView(Widget myObjects) {
     return Expanded(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(children: [myObjects]),
+      child: Scrollbar(
+        //isAlwaysShown: true,
+        controller: _controllerScroll,
+        child: SingleChildScrollView(
+          controller: _controllerScroll,
+          scrollDirection: Axis.vertical,
+          child: Column(children: [myObjects]),
+        ),
       ),
     );
   }
@@ -214,6 +249,17 @@ class _ClientScreen extends State<ClientScreen> {
         : Column(
           children: [
             myStatusHouse(),
+            RoundedBackgroundText(
+              'Locações Finalizadas',
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.cyan,
+                fontSize: 20.0,
+              ), //
+              backgroundColor: Colors.blue[50],
+              innerRadius: 15.0,
+              outerRadius: 10.0,
+            ),
             //Lista de endereços
             myTravel(),
             myPaddingText("Imagem 1", Colors.lightGreenAccent),
@@ -245,18 +291,133 @@ class _ClientScreen extends State<ClientScreen> {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.all(4.0),
+          padding: EdgeInsets.all(8.0),
           child: Container(
             height: addressClient.length * 20.0,
             width:
                 MediaQuery.of(context).orientation == Orientation.portrait
                     ? MediaQuery.of(context).size.width
                     : MediaQuery.of(context).size.width / 2.05,
-            color: Colors.pink.shade100,
+
+            decoration: BoxDecoration(
+              color: Colors.pink.shade100,
+              //--------------------------> BoxDecoration
+              borderRadius: BorderRadius.circular(30),
+            ), // Fim do BoxDecoration
             child: getListAddress(),
           ), //
         ),
       ],
+    );
+  }
+
+  //Carousel de Imagens
+  //
+  //
+  //
+  List<Widget> generateListImages(List<String> images) {
+    return List.generate(
+      images.length,
+      (index) => myImageContainer(images[index]),
+    );
+  }
+
+  Widget myImageContainer(String url) {
+    return Padding(
+      padding: EdgeInsets.all(4.0),
+      child: Container(
+        margin: EdgeInsets.all(4.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          image: DecorationImage(image: NetworkImage(url), fit: BoxFit.cover),
+          color: Colors.white,
+        ),
+        height:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? MediaQuery.of(context).size.height / 2.2
+                : MediaQuery.of(context).size.height / 1.55,
+        width:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? MediaQuery.of(context).size.width
+                : MediaQuery.of(context).size.width / 2.05,
+
+        child: InkWell(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder:
+                    (context) => Scaffold(
+                      extendBody: true,
+
+                      body: GestureDetector(
+                        onTap: () => Navigator.of(context).pop(),
+
+                        child: SizedBox(
+                          //----------------------------------------------> SizedBox
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height,
+                          //
+                          child:
+                              MediaQuery.of(context).size.width < 600
+                                  //If ternario nos filhos do container
+                                  ? Column(
+                                    children: [
+                                      myContainer(
+                                        Image.network(
+                                          url,
+                                          fit: BoxFit.cover,
+                                          height:
+                                              MediaQuery.of(
+                                                        context,
+                                                      ).orientation ==
+                                                      Orientation.portrait
+                                                  ? MediaQuery.of(
+                                                        context,
+                                                      ).size.height /
+                                                      2.2
+                                                  : MediaQuery.of(
+                                                        context,
+                                                      ).size.height /
+                                                      1.55,
+                                        ),
+                                        Colors.purple,
+                                      ),
+                                      detailsHouseClip(lastLocation),
+                                    ],
+                                  )
+                                  : Row(
+                                    children: [
+                                      myContainer(
+                                        Image.network(
+                                          url,
+                                          fit: BoxFit.cover,
+                                          height:
+                                              MediaQuery.of(
+                                                        context,
+                                                      ).orientation ==
+                                                      Orientation.portrait
+                                                  ? MediaQuery.of(
+                                                        context,
+                                                      ).size.height /
+                                                      2.2
+                                                  : MediaQuery.of(
+                                                        context,
+                                                      ).size.height /
+                                                      1.55,
+                                        ),
+                                        Colors.green,
+                                      ),
+                                      detailsHouseClip(lastLocation),
+                                    ],
+                                  ),
+                        ),
+                      ),
+                    ),
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 
@@ -421,4 +582,181 @@ class _ClientScreen extends State<ClientScreen> {
       }, //
     ); //
   }
+
+  //========================================================================================================
+  //Detalhes do imovel
+  Widget detailsHouseClip(int index) {
+    return mySingleChildScrollView(getDetailsHouse(index)); //
+  }
+
+  //======================================================================================
+  Widget getDetailsHouse(int index) {
+    return //
+    Padding(
+      padding: EdgeInsets.all(24.0),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [getTitleHouse(index), getExpandedDetailsHouse()],
+        ),
+      ),
+    );
+  }
+
+  Widget getTitleHouse(int index) {
+    return Padding(
+      //-----------------------------------> padding
+      padding: EdgeInsets.all(4.0),
+      child: Column(
+        children: <Widget>[
+          Align(
+            alignment: Alignment.topCenter,
+            child: Column(
+              children: <Widget>[
+                Text(
+                  'Casa com 3 Quartos e 2 banheiros para Alugar, 274 m² por 10.000 reais/Mês',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Text(
+                  addressClient[index],
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ); //
+  }
+
+  Widget getExpandedDetailsHouse() {
+    return ExpansionTile(
+      expandedCrossAxisAlignment: CrossAxisAlignment.start,
+      expandedAlignment: Alignment.topLeft,
+      title: Text(
+        "Descrição",
+        style: TextStyle(
+          fontSize: 24,
+          color: Colors.black,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      leading: Icon(Icons.list_rounded),
+      controlAffinity: ListTileControlAffinity.leading,
+      children: <Widget>[
+        Column(
+          children: <Widget>[
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Casa comercial para locação no Palmares!\n\nBenefícios:\n\n- Localização privilegiada, fácil acesso àAv. Cristiano Machado.\n- Próximo á Estação Minas Shopping, Minas Shopping, Mixpão Palmares.",
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Casa:\n1º piso\n\n- Sala ampla para dois ambientes\n- Sala de jantar\n- Lavabo;\n- Banho social com armários e box de vidro temperado\n- Cozinha ampla com bancada em granito e armários\n",
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "- Despensa\n- Dependência Completa de Empregada\n- Área de Serviço\n- Área externa com churrasqueira.\n\n2º piso\n- Sala de estar íntimo;\n- 03 Quartos com armários, sendo um suíte com varanda.\n",
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "\n\nGaragem:\n- 15 vagas de garagem.\n\n\nOs valores de venda e dos encargos (IPTU/condomínio etc.) exibidos poderão sofrer mudanças e aumentos sem prévio aviso.\n",
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Por esse motivo os valores deverão ser confirmados no nosso setor comercial e os encargos no prédio/condomínio e IPTU na Prefeitura.",
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+            ),
+            //
+          ],
+        ),
+      ],
+    );
+  }
 }
+/*
+MediaQuery.of(context).orientation ==
+                                    Orientation.portrait
+                                ? Column(
+                                  children: [
+                                    Image.network(
+                                      url,
+                                      fit: BoxFit.cover,
+                                      height:
+                                          MediaQuery.of(context).orientation ==
+                                                  Orientation.portrait
+                                              ? MediaQuery.of(
+                                                    context,
+                                                  ).size.height /
+                                                  2.2
+                                              : MediaQuery.of(
+                                                    context,
+                                                  ).size.height /
+                                                  1.55,
+                                    ),
+                                    detailsHouseClip(lastLocation),
+                                  ],
+                                )
+                                : Row(
+                                  children: [
+                                    Image.network(
+                                      url,
+                                      fit: BoxFit.cover,
+                                      height:
+                                          MediaQuery.of(context).orientation ==
+                                                  Orientation.portrait
+                                              ? MediaQuery.of(
+                                                    context,
+                                                  ).size.height /
+                                                  2.2
+                                              : MediaQuery.of(
+                                                    context,
+                                                  ).size.height /
+                                                  1.55,
+                                    ),
+                                    detailsHouseClip(lastLocation),
+                                  ],
+                                ),
+                                */

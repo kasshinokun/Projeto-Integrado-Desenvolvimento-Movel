@@ -1,0 +1,61 @@
+Este é um aplicativo de chat Flutter que simula uma conversa entre um locatário e um inquilino. Abaixo estão as principais funcionalidades:
+
+1. Interface do Chat
+Tela principal de mensagens com lista de conversas
+
+Bubbles de mensagens estilizadas diferentemente para remetente/destinatário
+
+Layout responsivo que se adapta a diferentes tamanhos de tela
+------------------------------------------------------------------------------------------------------------------------------------------
+
+2. Troca de Mensagens
+Campo de texto para digitar novas mensagens
+
+Botão "Enviar" (laranja) para enviar mensagens digitadas
+
+Botão "Simular" (ciano) para gerar uma resposta automática do outro usuário
+
+Exibição de horário em cada mensagem enviada
+------------------------------------------------------------------------------------------------------------------------------------------
+
+3. Alternância de Perfil
+Switch no AppBar para alternar entre os perfis de Locatário e Inquilino
+
+Indicação visual de qual perfil está ativo no momento
+
+Mensagens estilizadas de acordo com o perfil remetente
+------------------------------------------------------------------------------------------------------------------------------------------
+
+4. Estilização e Temas
+Tema principal em tons de ciano
+
+Tema secundário em tons de laranja
+
+Bubbles coloridas diferenciadas para cada usuário
+
+AppBar personalizada com cores do tema
+------------------------------------------------------------------------------------------------------------------------------------------
+
+5. Funcionalidades Adicionais
+Botão de anexo (não funcional, apenas demonstração)
+
+Feedback visual ao tentar anexar arquivos (SnackBar)
+
+Lista reversa de mensagens (as mais recentes aparecem primeiro)
+
+Observações:
+Este é um simulador de chat, não possui backend real ou persistência de dados
+
+As mensagens existem apenas durante a execução do aplicativo
+
+A funcionalidade de anexar arquivos é apenas ilustrativa
+
+O aplicativo demonstra conceitos básicos de:
+
+Gerenciamento de estado com setState
+
+Construção de interfaces com Widgets
+
+Manipulação de listas e interação do usuário
+
+Personalização de temas e estilos no Flutter

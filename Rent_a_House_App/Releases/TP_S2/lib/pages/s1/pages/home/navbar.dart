@@ -44,10 +44,10 @@ class Navbar extends StatelessWidget {
           Divider(),
           ListTile(
             leading: Icon(Icons.beach_access_rounded),
-            title: Text('Alugar House'),
+            title: Text('Chat App'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, '/');
-              Navigator.popAndPushNamed(context, '/');
+              Navigator.pushReplacementNamed(context, '/chat');
+              Navigator.popAndPushNamed(context, '/chat');
             },
           ),
           ListTile(
