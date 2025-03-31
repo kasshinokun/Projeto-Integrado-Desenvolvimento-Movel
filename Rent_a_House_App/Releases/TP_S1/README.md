@@ -21,7 +21,7 @@
  
  [Versão 1-15-03-2025](https://youtube.com/shorts/Qy8Njn8hKzE?si=1ZMVO77sXQHFtOZH)
 
- [Versão 1-19-03-2025](https://www.youtube.com/watch?v=Bnod7S_0inQ&list=PLBiA8fTn3ssumAiK2gg7J8_bXRNuP2DKf&index=2)
+ [Versão 1-19-03-2025 Melhorias e Cadastro de Imóvel Gabriel Batista e Gabriel Cassino](https://www.youtube.com/watch?v=Bnod7S_0inQ&list=PLBiA8fTn3ssumAiK2gg7J8_bXRNuP2DKf&index=2)
  
  Retrabalho para Preparação da tela Inicial(usando imagens comuns)
  
