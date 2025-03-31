@@ -18,7 +18,10 @@
 
  [Versão 1-29-03-2025](https://youtu.be/o3Bmsndpx0k?si=zyZ8cqco6g-9_yZ0)
 
+ Versão 1-31-03-2025 (em processo de upload, pórem código já disponível em ```/Releases/TP_S2/lib/pages/s1/pageges/client/clienthouse.dart```)
 
+ Página de Chat em processo de anexação ao projeto (31-03-2025)
+ 
  ##### Layout area de casas alugadas MyHouses - Imagens
 
  Portrait Layout
