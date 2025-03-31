@@ -20,7 +20,7 @@
 
  Versão 1-31-03-2025 (código já disponível em ```/Releases/TP_S2/lib/pages/s1/pageges/client/clienthouse.dart```, o update foi fundido ao update 2-31-03-2025)
 
- [Página de Chat e update MyHouses 2-31-03-2025](https://youtu.be/tILwWaeay54?feature=shared)
+ [Página de Chat e update MyHouses 2-31-03-2025 - Diego Portella e Gabriel Cassino](https://youtu.be/tILwWaeay54?feature=shared)
  
  ##### Layout area de casas alugadas MyHouses - Imagens
 
