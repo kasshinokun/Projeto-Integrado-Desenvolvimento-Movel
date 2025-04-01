@@ -12,6 +12,15 @@
 
 [Sobre o Projeto - Página Inicial](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/)
 
+#### Etapas Modo Descritivo
+
+26-03-2025 Inicio --> Layout adaptativo e responsivo teste
+  - 29-03-2025 --> Correção
+  - 31-03-2025 --> Adição Sistema de Chat
+  - 01-04-2025:
+     -  --> Inicio Sistema de Notificação: Testes
+     -  --> Inicio Adaptação da página Home(página Inicial)
+
 #### Previas de desenvolvimento Sprint 2 - vídeos e imagens
 
  [Versão 1-26-03-2025 Teste layout adaptativo](https://www.youtube.com/watch?v=TkVjUKvodDA&list=PLBiA8fTn3ssumAiK2gg7J8_bXRNuP2DKf)
