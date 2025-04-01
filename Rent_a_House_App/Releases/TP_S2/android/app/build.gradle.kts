@@ -12,12 +12,20 @@ android {
     ndkVersion = "27.0.12077973"
 
     compileOptions {
+        // Flag to enable support for the new language APIs
+        isCoreLibraryDesugaringEnabled = true    //<----Atualização de 01-04-2025
+
+        // Sets Java compatibility to Java
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+        //
+        //sourceCompatibility = JavaVersion.VERSION_21
+        //targetCompatibility = JavaVersion.VERSION_21
     }
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
+        //jvmTarget = JavaVersion.VERSION_21.toString()
     }
     
 
@@ -40,7 +48,9 @@ android {
         }
     }
 }
-
+dependencies { //<-----------------------------------------------------------Atualização de 01-04-2025
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4") //<----Atualização de 01-04-2025
+}//<-------------------------------------------------------------------------Atualização de 01-04-2025
 flutter {
     source = "../.."
 }
