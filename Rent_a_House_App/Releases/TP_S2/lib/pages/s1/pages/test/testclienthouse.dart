@@ -25,32 +25,37 @@ List<String> imagesList = [
 
 List<String> addressClient = [
   'Rua Alegre, 12345, bairro Brasil - Belo Horizonte',
-  'Rua Alfa, 3456, bairro França - Ouro Preto',
-  'Rua Puc Minas, 678, bairro Argentina - Sete Lagoas',
-  'Rua Alfa, 3456, bairro França - Ouro Branco',
-  'Rua Puc Minas, 678, bairro Argentina - Lagoa Santa',
-  'Rua Alegre, 12345, bairro Brasil - Belo Horizonte',
-  'Rua Alfa, 3456, bairro França - Ouro Preto',
-  'Rua Puc Minas, 678, bairro Argentina - Sete Lagoas',
-  'Rua Alfa, 3456, bairro França - Ouro Branco',
-  'Rua Puc Minas, 678, bairro Argentina - Lagoa Santa',
-  'Rua Alegre, 12345, bairro Brasil - Belo Horizonte',
-  'Rua Alfa, 3456, bairro França - Ouro Preto',
-  'Rua Puc Minas, 678, bairro Argentina - Sete Lagoas',
-  'Rua Alfa, 3456, bairro França - Ouro Branco',
-  'Rua Puc Minas, 678, bairro Argentina - Lagoa Santa',
+  'Rua Javae, 3456, bairro Nogueirinha - Itaúna',
+  'Rua César Dacorso Filho, 678, bairro Barreiro - Belo Horizonte',
+  "Rua Rua Três, 3456, bairro Olhos D'Água - Belo Horizonte",
+  'Rua Rosa de Pedra, 678, bairro Etelvina Carneiro - Belo Horizonte',
+  'Avenida Perimetral, 12345, bairro Jardim Arizona - Sete Lagoas',
+  'Rua Virgínia de Oliveira Maciel, 3456, bairro Morro do Claro - Sete Lagoas',
+  'Rua Manoel Correa da Cunha, 678, bairro Recanto do Cedro - Sete Lagoas',
+  'Rua Rei Salomão, 3456, bairro Esperança - Sete Lagoas',
+  'Rua Q, 678, bairro Eldorado - Sete Lagoas',
+  'Rua Geraldo Francisco de Azevedo, 340, bairro Centro - Ouro Branco',
+  'Rua Alvarenga, 494, bairro Cabeças - Ouro Preto',
+  'Rua Marieta de Barros Valadão, 678, bairro Nossa Senhora de Fátima - Patos de Minas',
+  'Rua dos Otis, 3456, bairro Suzana - Belo Horizonte',
+  'Avenida Manoel Pinheiro Diniz, 265, bairro Pinheiros - Itatiaiuçu',
 ];
 
 List<String> carouselItems = [
-  'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-
-  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-
-  'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
-
-  'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-1.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-2.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-3.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-4.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-5.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-1.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-2.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-3.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-4.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-5.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-1.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-2.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-3.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-4.jpg',
 ];
 
 Widget getListAddress() {

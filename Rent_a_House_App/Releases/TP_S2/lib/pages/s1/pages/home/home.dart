@@ -2,45 +2,62 @@ import 'package:flutter/material.dart';
 //import 'package:carousel_slider/carousel_slider.dart';
 //import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:rent_a_house/pages/s1/pages/home/navbar.dart';
+//import 'package:carousel_slider/carousel_slider.dart';
+
+List<String> lastVisualizationsAddress = [
+  '1 Rua Alegre, 12345, bairro Brasil - Belo Horizonte',
+  '2 Rua Javae, 3456, bairro Nogueirinha - Itaúna',
+  '3 Rua César Dacorso Filho, 678, bairro Barreiro - Belo Horizonte',
+  "4 Rua Rua Três, 3456, bairro Olhos D'Água - Belo Horizonte",
+  '5 Rua Rosa de Pedra, 678, bairro Etelvina Carneiro - Belo Horizonte',
+];
+List<String> lastVisualizationsItems = [
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-1.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-1.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-2.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-1.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-2.jpg',
+];
 
 List<String> addressItens = [
   '1 Rua Alegre, 12345, bairro Brasil - Belo Horizonte',
-  '2 Rua Alfa, 3456, bairro França - Ouro Preto',
-  '3 Rua Puc Minas, 678, bairro Argentina - Sete Lagoas',
-  '4 Rua Alfa, 3456, bairro França - Ouro Branco',
-  '5 Rua Puc Minas, 678, bairro Argentina - Lagoa Santa',
-  '6 Rua Alegre, 12345, bairro Brasil - Belo Horizonte',
-  '7 Rua Alfa, 3456, bairro França - Ouro Preto',
-  '8 Rua Puc Minas, 678, bairro Argentina - Sete Lagoas',
-  '9 Rua Alfa, 3456, bairro França - Ouro Branco',
-  '10 Rua Puc Minas, 678, bairro Argentina - Lagoa Santa',
-  '11 Rua Alegre, 12345, bairro Brasil - Belo Horizonte',
-  '12 Rua Alfa, 3456, bairro França - Ouro Preto',
-  '13 Rua Puc Minas, 678, bairro Argentina - Sete Lagoas',
-  '14 Rua Alfa, 3456, bairro França - Ouro Branco',
-  '15 Rua Puc Minas, 678, bairro Argentina - Lagoa Santa',
+  '2 Rua Javae, 3456, bairro Nogueirinha - Itaúna',
+  '3 Rua César Dacorso Filho, 678, bairro Barreiro - Belo Horizonte',
+  "4 Rua Rua Três, 3456, bairro Olhos D'Água - Belo Horizonte",
+  '5 Rua Rosa de Pedra, 678, bairro Etelvina Carneiro - Belo Horizonte',
+  '6 Avenida Perimetral, 12345, bairro Jardim Arizona - Sete Lagoas',
+  '7 Rua Virgínia de Oliveira Maciel, 3456, bairro Morro do Claro - Sete Lagoas',
+  '8 Rua Manoel Correa da Cunha, 678, bairro Recanto do Cedro - Sete Lagoas',
+  '9 Rua Rei Salomão, 3456, bairro Esperança - Sete Lagoas',
+  '10 Rua Q, 678, bairro Eldorado - Sete Lagoas',
+  '11 Rua Geraldo Francisco de Azevedo, 340, bairro Centro - Ouro Branco',
+  '12 Rua Alvarenga, 494, bairro Cabeças - Ouro Preto',
+  '13 Rua Marieta de Barros Valadão, 678, bairro Nossa Senhora de Fátima - Patos de Minas',
+  '14 Rua dos Otis, 3456, bairro Suzana - Belo Horizonte',
+  '15 Avenida Manoel Pinheiro Diniz, 265, bairro Pinheiros - Itatiaiuçu',
 ];
 
 List<String> imagesItems = [
-  'https://images.homify.com/v1591213520/p/photo/image/3509801/foto2-m.jpg',
-  'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
-  'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
-  'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
-  'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
-  'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80',
-  'https://images.unsplash.com/photo-1586882829491-b81178aa622e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80',
-  'https://images.unsplash.com/photo-1586871608370-4adee64d1794?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2862&q=80',
-  'https://images.unsplash.com/photo-1586901533048-0e856dff2c0d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
-  'https://images.unsplash.com/photo-1586902279476-3244d8d18285?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80',
-  'https://images.unsplash.com/photo-1586943101559-4cdcf86a6f87?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1556&q=80',
-  'https://images.unsplash.com/photo-1586951144438-26d4e072b891?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
-  'https://images.unsplash.com/photo-1586953983027-d7508a64f4bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-1.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-2.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-3.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-4.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-5.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-6.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-7.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-1.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-2.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-3.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-4.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-5.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-6.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-7.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-1.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-2.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-3.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-4.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-5.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-6.jpg',
 ];
 
 //
@@ -56,6 +73,7 @@ class HomeScreenApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false, //tirar o banner
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -94,6 +112,11 @@ class _HomeScreen extends State<HomeScreen> {
                 onPressed: () => Scaffold.of(context).openDrawer(),
               ),
         ), // Fim do Icone Home
+        actions: [
+          //Actions
+          //SearchBar
+          mySearchButton(),
+        ], // Fim do Actions
       ), // Fim do AppBar
       body: Container(
         height: double.infinity,
@@ -104,27 +127,118 @@ class _HomeScreen extends State<HomeScreen> {
                 ? SingleChildScrollView(
                   child: Column(
                     children: [
-                      myContainer(myImage(imagesItems[0]), Colors.pink),
-                      myContainer(myImage(imagesItems[1]), Colors.cyan),
-                      myContainer(myImage(imagesItems[2]), Colors.yellow),
-                      myContainer(myImage(imagesItems[3]), Colors.blue),
-                      myContainer(myImage(imagesItems[4]), Colors.white),
-                      myContainer(myImage(imagesItems[5]), Colors.greenAccent),
+                      Text(
+                        "Ultimas Visualizações",
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      myColumnImage(
+                        lastVisualizationsItems[0],
+                        lastVisualizationsAddress[0],
+                        Colors.pink,
+                      ),
+                      Text(
+                        "Destaques",
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      myColumnImage(
+                        imagesItems[0],
+                        addressItens[0],
+                        Colors.pink,
+                      ),
+                      myColumnImage(
+                        imagesItems[1],
+                        addressItens[1],
+                        Colors.cyan,
+                      ),
+                      myColumnImage(
+                        imagesItems[2],
+                        addressItens[2],
+                        Colors.yellow,
+                      ),
+                      myColumnImage(
+                        imagesItems[3],
+                        addressItens[3],
+                        Colors.blue,
+                      ),
+                      myColumnImage(
+                        imagesItems[4],
+                        addressItens[4],
+                        Colors.white,
+                      ),
+                      myColumnImage(
+                        imagesItems[5],
+                        addressItens[5],
+                        Colors.greenAccent,
+                      ),
                     ],
                   ),
                 )
                 : Row(
                   children: [
-                    myContainer(myImage(imagesItems[0]), Colors.pink),
+                    Column(
+                      children: [
+                        Text(
+                          "Ultimas Visualizações",
+                          style: TextStyle(
+                            fontSize: 24,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        myColumnImage(
+                          lastVisualizationsItems[0],
+                          lastVisualizationsAddress[0],
+                          Colors.pink,
+                        ),
+                      ],
+                    ),
                     SingleChildScrollView(
                       child: Column(
                         children: [
-                          myContainer(myImage(imagesItems[1]), Colors.cyan),
-                          myContainer(myImage(imagesItems[2]), Colors.yellow),
-                          myContainer(myImage(imagesItems[3]), Colors.blue),
-                          myContainer(myImage(imagesItems[4]), Colors.white),
-                          myContainer(
-                            myImage(imagesItems[5]),
+                          Text(
+                            "Destaques",
+                            style: TextStyle(
+                              fontSize: 24,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          myColumnImage(
+                            imagesItems[0],
+                            addressItens[0],
+                            Colors.pink,
+                          ),
+                          myColumnImage(
+                            imagesItems[1],
+                            addressItens[1],
+                            Colors.cyan,
+                          ),
+                          myColumnImage(
+                            imagesItems[2],
+                            addressItens[2],
+                            Colors.yellow,
+                          ),
+                          myColumnImage(
+                            imagesItems[3],
+                            addressItens[3],
+                            Colors.blue,
+                          ),
+                          myColumnImage(
+                            imagesItems[4],
+                            addressItens[4],
+                            Colors.white,
+                          ),
+                          myColumnImage(
+                            imagesItems[5],
+                            addressItens[5],
                             Colors.greenAccent,
                           ),
                         ],
@@ -136,7 +250,68 @@ class _HomeScreen extends State<HomeScreen> {
     );
   }
 
+  Widget mySearchButton() {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width / 4.0,
+      height: MediaQuery.of(context).size.height / 9.0,
+      child: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: ElevatedButton.icon(
+          label: Text(
+            "Clique para pesquisar",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          onPressed: () {
+            showSearch(
+              context: context, //
+              delegate: CustomSearchDelegate(), //
+            );
+          },
+          icon: Icon(Icons.search),
+        ),
+      ),
+    ); //Fim do SearchBar
+  }
+
+  Widget myColumnImage(String image, String address, Color cor) {
+    return Column(
+      children: [
+        myContainer(myImage(image), cor),
+        Text(
+          address,
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget myImage(String url) {
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Image.network(
+        url,
+        fit: BoxFit.cover,
+        height:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? MediaQuery.of(context).size.height / 2.5
+                : MediaQuery.of(context).size.height / 1.6,
+        width:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? MediaQuery.of(context).size.width
+                : MediaQuery.of(context).size.width / 2.6,
+      ),
+    );
+  }
+
+  Widget myImage2(String url) {
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Image.network(
@@ -176,6 +351,75 @@ class _HomeScreen extends State<HomeScreen> {
   }
 }
 
+class CustomSearchDelegate extends SearchDelegate {
+  //Buscará em uma lista(pode ser List<Strings>) => addressItens
+  //Criar TextField com hinttext em portugues
+  //Deixar searchdelegate transparente sem destruir a página anterior
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      ElevatedButton.icon(
+        label: Text(
+          "Limpar",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        onPressed: () {
+          query = '';
+        },
+        icon: Icon(Icons.clear_rounded),
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        close(context, null);
+      },
+      icon: Icon(Icons.arrow_back),
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List<String> matchQuery = []; //Coleta os resultados
+    for (var address in addressItens) {
+      if (address.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(address);
+      }
+    }
+    return ListView.builder(
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) {
+        var result = matchQuery[index];
+        return ListTile(title: Text(result));
+      },
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> matchQuery = []; //Coleta os resultados
+    for (var address in addressItens) {
+      if (address.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(address);
+      }
+    }
+    return ListView.builder(
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) {
+        var result = matchQuery[index];
+        return ListTile(title: Text(result));
+      },
+    );
+  }
+}
     
     
     
