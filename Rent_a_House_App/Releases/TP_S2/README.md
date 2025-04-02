@@ -20,6 +20,18 @@
   - 01-04-2025:
      -  --> Inicio Sistema de Notificação: Testes
      -  --> Inicio Adaptação da página Home(página Inicial)
+  - 02-04-2025:
+    - --> Correção de rotas duplicadas nas Classes Inicializadoras 
+      -- A classe de Cadastro de casas possuía o mesmo nome da classe de Registro de usuário (ambas eram ```RegisterScreen```), seu novo nome é: ```RegisterHouseScreen```
+    - --> Teste de Layout com MyCurvedLabeledNavBar
+    - --> Adição de inicializadores do tipo ```void main runApp()``` para conseguir redesenhar as páginas sem a necessidade de chamar a aplicação por completo
+      - -->Aplicado em:
+        - MyCurvedLabeledNavBar : ```lib/pages/s1/pages/test/curvedlabeled.dart```
+        - Cadastrar House: ```lib/pages/s1/pages/manage/registerhouse.dart```
+        - Homepage da Aplicação: ```lib/pages/s1/pages/home/home.dart```
+        - MyHouses: ```lib/pages/s1/pages/client/clienthouse.dart```
+    - --> Início do teste das páginas como objetos para conseguir fazer reuso em outras páginas e layouts
+      - --> Aplicado em MyHouses: ```lib/pages/s1/pages/client/clienthouse.dart```
 
 #### Previas de desenvolvimento Sprint 2 - vídeos e imagens
 
