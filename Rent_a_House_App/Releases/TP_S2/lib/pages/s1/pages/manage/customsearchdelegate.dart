@@ -10,7 +10,7 @@ class CustomSearchDelegate extends SearchDelegate<String>{
   //Customizando o SearchDelegate
   final String? hintText;
   final List<String>? listAddress;
-  CustomSearchDelegate({this.hintText}): super(
+  CustomSearchDelegate({this.hintText, this.listAddress}): super(
           //searchFieldLabel: hintText, // Descomente em caso derro
           keyboardType: TextInputType.text,
           searchFieldStyle: TextStyle(
