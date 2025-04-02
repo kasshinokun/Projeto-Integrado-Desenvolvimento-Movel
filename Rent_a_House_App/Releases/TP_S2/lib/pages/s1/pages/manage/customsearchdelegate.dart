@@ -9,7 +9,7 @@ class CustomSearchDelegate extends SearchDelegate<String>{
   
   //Customizando o SearchDelegate
   final String? hintText;
-  
+  final List<String>? listAddress;
   CustomSearchDelegate({this.hintText}): super(
           //searchFieldLabel: hintText, // Descomente em caso derro
           keyboardType: TextInputType.text,
@@ -56,7 +56,7 @@ class CustomSearchDelegate extends SearchDelegate<String>{
   @override
   Widget buildResults(BuildContext context) {
     List<String> matchQuery = []; //Coleta os resultados
-    for (var address in addressItens) {
+    for (var address in listAddress) {
       if (address.toLowerCase().contains(query.toLowerCase())) {
         matchQuery.add(address);
       }
@@ -73,7 +73,7 @@ class CustomSearchDelegate extends SearchDelegate<String>{
   @override
   Widget buildSuggestions(BuildContext context) {
     List<String> matchQuery = []; //Coleta os resultados
-    for (var address in addressItens) {
+    for (var address in listAddress) {
       if (address.toLowerCase().contains(query.toLowerCase())) {
         matchQuery.add(address);
       }
