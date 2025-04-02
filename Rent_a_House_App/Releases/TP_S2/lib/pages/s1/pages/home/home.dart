@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 //import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:rent_a_house/pages/s1/pages/home/navbar.dart';
 //import 'package:carousel_slider/carousel_slider.dart';
-
+//import 'package';
 List<String> lastVisualizationsAddress = [
   '1 Rua Alegre, 12345, bairro Brasil - Belo Horizonte',
   '2 Rua Javae, 3456, bairro Nogueirinha - Itaúna',
@@ -266,9 +266,9 @@ class _HomeScreen extends State<HomeScreen> {
             ),
           ),
           onPressed: () {
-            showSearch(
+            showSearch<String>(
               context: context, //
-              delegate: CustomSearchDelegate(), //
+              delegate: CustomSearchDelegate(hintText: 'Buscar endereços'), //
             );
           },
           icon: Icon(Icons.search),
@@ -351,84 +351,3 @@ class _HomeScreen extends State<HomeScreen> {
   }
 }
 
-class CustomSearchDelegate extends SearchDelegate {
-  //Buscará em uma lista(pode ser List<Strings>) => addressItens
-  //Criar TextField com hinttext em portugues
-  //Deixar searchdelegate transparente sem destruir a página anterior
-
-  @override
-  List<Widget> buildActions(BuildContext context) {
-    return [
-      ElevatedButton.icon(
-        label: Text(
-          "Limpar",
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-        ),
-        onPressed: () {
-          query = '';
-        },
-        icon: Icon(Icons.clear_rounded),
-      ),
-    ];
-  }
-
-  @override
-  Widget buildLeading(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        close(context, null);
-      },
-      icon: Icon(Icons.arrow_back),
-    );
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    List<String> matchQuery = []; //Coleta os resultados
-    for (var address in addressItens) {
-      if (address.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(address);
-      }
-    }
-    return ListView.builder(
-      itemCount: matchQuery.length,
-      itemBuilder: (context, index) {
-        var result = matchQuery[index];
-        return ListTile(title: Text(result));
-      },
-    );
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    List<String> matchQuery = []; //Coleta os resultados
-    for (var address in addressItens) {
-      if (address.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(address);
-      }
-    }
-    return ListView.builder(
-      itemCount: matchQuery.length,
-      itemBuilder: (context, index) {
-        var result = matchQuery[index];
-        return ListTile(title: Text(result));
-      },
-    );
-  }
-}
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//================================================================================    
-    
