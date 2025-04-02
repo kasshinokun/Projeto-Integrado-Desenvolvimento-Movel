@@ -32,7 +32,8 @@
         - MyHouses: ```lib/pages/s1/pages/client/clienthouse.dart```
     - --> Início do teste das páginas como objetos para conseguir fazer reuso em outras páginas e layouts
       - --> Aplicado em MyHouses: ```lib/pages/s1/pages/client/clienthouse.dart```
-
+    - --> Continuação: Adaptação da página Home(página Inicial) e adição Sistema de Pesquisa na Home Page (Update 2-02-04-2025)
+      
 #### Previas de desenvolvimento Sprint 2 - vídeos e imagens
 
  [Versão 1-26-03-2025 Teste layout adaptativo](https://www.youtube.com/watch?v=TkVjUKvodDA&list=PLBiA8fTn3ssumAiK2gg7J8_bXRNuP2DKf)
