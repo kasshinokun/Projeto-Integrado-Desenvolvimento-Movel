@@ -1,5 +1,4 @@
-
-
+import 'package:flutter/material.dart'
 
 class CustomSearchDelegate extends SearchDelegate<String>{
   //Buscará em uma lista(pode ser List<Strings>) => addressItens
@@ -9,6 +8,8 @@ class CustomSearchDelegate extends SearchDelegate<String>{
   //---> Fim dos objetivos em aberto 
   
   //Customizando o SearchDelegate
+  final String? hintText;
+  
   CustomSearchDelegate({this.hintText}): super(
           //searchFieldLabel: hintText, // Descomente em caso derro
           keyboardType: TextInputType.text,
@@ -23,7 +24,7 @@ class CustomSearchDelegate extends SearchDelegate<String>{
   //*/Fim do trecho 
   
   @override
-  List<Widget> buildActions(BuildContext context) {
+  List<Widget>? buildActions(BuildContext context) {
     return [
       ElevatedButton.icon(
         label: Text(
