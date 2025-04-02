@@ -1,4 +1,4 @@
-
+import 'package:flutter/material.dart';
 
 
 class CustomSearchDelegate extends SearchDelegate<String>{
@@ -6,6 +6,7 @@ class CustomSearchDelegate extends SearchDelegate<String>{
 
   //---> Objetivos em aberto 
   //Deixar searchdelegate transparente sem destruir a página anterior
+  //Receber List<String> e gerar visualização prévia do resultado 
   //---> Fim dos objetivos em aberto 
   
   //Customizando o SearchDelegate
