@@ -43,6 +43,34 @@ List<String> imagesItems = [
   'https://images.unsplash.com/photo-1586953983027-d7508a64f4bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
 ];
 
+//
+//
+//Inicio do Inicializador
+void main() {
+  runApp(HomeScreenApp());
+}
+
+class HomeScreenApp extends StatelessWidget {
+  const HomeScreenApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      ),
+      initialRoute: '/', //Rotas
+      routes: {
+        '/': (context) => HomeScreen(), //Página Inicial
+      },
+    );
+  }
+}
+
+//Fim do Inicializador
+//
+//
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 

@@ -20,11 +20,39 @@ List<String> imagesList = [
   'https://images.unsplash.com/photo-1586953983027-d7508a64f4bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80',
 ];
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+//
+//
+//Inicio do Inicializador
+void main() {
+  runApp(RegisterHouseScreenApp());
+}
+
+class RegisterHouseScreenApp extends StatelessWidget {
+  const RegisterHouseScreenApp({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreen();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      ),
+      initialRoute: '/', //Rotas
+      routes: {
+        '/': (context) => RegisterHouseScreen(), //Página Inicial
+      },
+    );
+  }
+}
+
+//Fim do Inicializador
+//
+//
+class RegisterHouseScreen extends StatefulWidget {
+  const RegisterHouseScreen({super.key});
+
+  @override
+  State<RegisterHouseScreen> createState() => _RegisterHouseScreen();
 }
 
 Widget myImageTest(double childHeight, double childWidth) {
@@ -44,7 +72,7 @@ Widget myImageTest(double childHeight, double childWidth) {
   );
 }
 
-class _RegisterScreen extends State<RegisterScreen> {
+class _RegisterHouseScreen extends State<RegisterHouseScreen> {
   final TextEditingController _nameController =
       TextEditingController(); //recebe o nome
   final TextEditingController _priceController =

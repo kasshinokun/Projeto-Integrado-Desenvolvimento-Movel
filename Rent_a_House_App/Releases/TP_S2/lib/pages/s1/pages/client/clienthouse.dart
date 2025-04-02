@@ -52,6 +52,34 @@ String getDate() {
   return formattedDate;
 }
 
+//
+//
+//Inicio do Inicializador
+void main() {
+  runApp(ClientScreenApp());
+}
+
+class ClientScreenApp extends StatelessWidget {
+  const ClientScreenApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      ),
+      initialRoute: '/', //Rotas
+      routes: {
+        '/': (context) => ClientScreen(), //Página Inicial
+      },
+    );
+  }
+}
+
+//Fim do Inicializador
+//
+//
 class ClientScreen extends StatefulWidget {
   const ClientScreen({super.key});
 
@@ -113,35 +141,39 @@ class _ClientScreen extends State<ClientScreen> {
           ), // Fim do DecorationImage
         ), // Fim do BoxDecoration
         //=============================================>
-        child:
-            currentWidth < 600
-                //If ternario nos filhos do container
-                ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    myTopSideImage(
-                      carouselItems[lastLocation], //irrelevante no estágio atual
-                      addressClient[lastLocation],
-                      Colors.pink,
-                    ),
-                    mySingleChildScrollView(myList()),
-                  ],
-                )
-                : Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    mySingleChildScrollView(
-                      myTopSideImage(
-                        carouselItems[lastLocation], //irrelevante no estágio atual
-                        addressClient[lastLocation],
-                        Colors.cyanAccent,
-                      ),
-                    ),
-                    mySingleChildScrollView(myList()),
-                  ],
-                ),
+        child: myClientHousePage(),
       ),
     );
+  }
+
+  Widget myClientHousePage() {
+    //Preparação para exportar página
+    return MediaQuery.of(context).size.width < 600
+        //If ternario nos filhos do container
+        ? Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            myTopSideImage(
+              carouselItems[lastLocation], //irrelevante no estágio atual
+              addressClient[lastLocation],
+              Colors.pink,
+            ),
+            mySingleChildScrollView(myList()),
+          ],
+        )
+        : Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            mySingleChildScrollView(
+              myTopSideImage(
+                carouselItems[lastLocation], //irrelevante no estágio atual
+                addressClient[lastLocation],
+                Colors.cyanAccent,
+              ),
+            ),
+            mySingleChildScrollView(myList()),
+          ],
+        );
   }
 
   Widget myTopSideImage(String url, String id, Color cor) {

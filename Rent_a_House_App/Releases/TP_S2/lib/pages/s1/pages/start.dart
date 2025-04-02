@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:rent_a_house/pages/s1/pages/manage/registerhouse.dart';
 //==================================================================
 import 'package:rent_a_house/pages/s1/pages/welcome/welcome.dart';
 import 'package:rent_a_house/pages/s1/pages/Home/home.dart';
 import 'package:rent_a_house/pages/s1/pages/Manage/renthouse.dart';
 import 'package:rent_a_house/pages/s1/pages/Client/clienthouse.dart';
-import 'package:rent_a_house/pages/s1/pages/Manage/registerhouse.dart'
-    as defaultreg;
 import 'package:rent_a_house/pages/s1/pages/Manage/settings.dart';
 import 'package:rent_a_house/pages/s1/pages/Manage/terms.dart';
 //==================================> Testes <======================
@@ -55,7 +54,7 @@ class _MyAppState extends State<MyApp> {
 
         '/client': (context) => ClientScreen(),
         '/rent': (context) => RentScreen(),
-        '/register': (context) => defaultreg.RegisterScreen(),
+        '/register': (context) => RegisterHouseScreen(),
         '/settings': (context) => SettingsScreen(),
         '/terms': (context) => TermsScreen(),
         //==================================> Testes <======================
