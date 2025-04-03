@@ -102,9 +102,8 @@ class CustomSearchDelegate extends SearchDelegate<String> {
         return ListTile(
           title: Text(matchQuery[index]),
           onTap: () {
-            String resultado = matchQuery[index];
             // Manipula o resultado da pesquisa selecionado.
-            close(context, resultado);
+            close(context, matchQuery[index]);
           },
         );
       },
@@ -130,6 +129,87 @@ class CustomSearchDelegate extends SearchDelegate<String> {
           onTap: () {
             // Mostrar os resultados da pesquisa com base na sugestão selecionada.
             query = suggestionList[index];
+            int indexImage = index;
+
+            //Objetivo: ao receber o valor busca
+            //o índice e envia a um Scafold que
+            //carregará todos os dados do imóvel
+            //a ser alugado
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder:
+                    (context) => Scaffold(
+                      appBar: AppBar(
+                        //------------------------------------> AppBar
+                        backgroundColor: Colors.green,
+                        title: Text('Busca - Imovel'), //Text
+                      ), //Appbar
+                      extendBody: true,
+                      body: GestureDetector(
+                        onTap: () => Navigator.of(context).pop(),
+
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height,
+                          //
+                          child:
+                              MediaQuery.of(context).size.width < 600
+                                  //If ternario nos filhos do container
+                                  ? SingleChildScrollView(
+                                    scrollDirection: Axis.vertical,
+                                    child: Column(
+                                      children: [
+                                        myContainerSearch(
+                                          context,
+                                          indexImage,
+                                          query,
+                                        ),
+                                        myContainerSearch(
+                                          context,
+                                          indexImage,
+                                          query,
+                                        ),
+                                        myContainerSearch(
+                                          context,
+                                          indexImage,
+                                          query,
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                  : Row(
+                                    children: [
+                                      myContainerSearch(
+                                        context,
+                                        indexImage,
+                                        query,
+                                      ),
+                                      SingleChildScrollView(
+                                        scrollDirection: Axis.vertical,
+                                        child: Column(
+                                          children: [
+                                            myContainerSearch(
+                                              context,
+                                              indexImage,
+                                              query,
+                                            ),
+                                            myContainerSearch(
+                                              context,
+                                              indexImage,
+                                              query,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                          //
+                        ),
+                      ),
+                    ),
+              ),
+            );
           },
         );
       },
@@ -155,3 +235,63 @@ class CustomSearchDelegate extends SearchDelegate<String> {
 }
 
 //================================================================================
+Widget myContainerSearch(context, int index, String resultado) {
+  return Container(
+    color: Colors.pink.shade50,
+    child: Column(
+      children: [
+        myPaddingText(
+          context,
+          "Clique sobre a imagem para voltar",
+          Colors.pink,
+        ),
+        myImageSearch(context, index),
+        myPaddingText(context, resultado, Colors.pink),
+      ],
+    ),
+  );
+}
+
+Widget myPaddingText(context, String information, Color cor) {
+  return Padding(
+    padding: EdgeInsets.all(4.0),
+    child: Container(
+      width:
+          MediaQuery.of(context).orientation == Orientation.portrait
+              ? MediaQuery.of(context).size.width
+              : MediaQuery.of(context).size.width / 2.05,
+      decoration: BoxDecoration(
+        color: cor,
+        borderRadius: BorderRadius.circular(9.0),
+      ), //
+      child: Padding(
+        padding: EdgeInsets.all(4.0),
+        child: Center(
+          child: Text(
+            information,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontSize: 20.0,
+            ), //
+          ), //
+        ), //
+      ),
+    ), //
+  );
+}
+
+Widget myImageSearch(context, int index) {
+  return Image.network(
+    imagesItems[index],
+    fit: BoxFit.cover,
+    height:
+        MediaQuery.of(context).orientation == Orientation.portrait
+            ? MediaQuery.of(context).size.height / 2.2
+            : MediaQuery.of(context).size.height / 1.55,
+    width:
+        MediaQuery.of(context).orientation == Orientation.portrait
+            ? MediaQuery.of(context).size.width
+            : MediaQuery.of(context).size.width / 2.6,
+  );
+}

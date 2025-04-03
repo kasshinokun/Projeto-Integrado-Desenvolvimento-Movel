@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 //import 'package:carousel_slider/carousel_slider.dart';
 //import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:rent_a_house/pages/s1/pages/home/navbar.dart';
-//import 'package:carousel_slider/carousel_slider.dart';
-import 'package:rent_a_house/pages/s1/pages/manage/customsearchdelegate.dart';
+import 'package:rent_a_house/pages/s1/pages/manage/cdsearch/customsearchdelegate.dart';
+//import 'dart:async';
 
 List<String> lastVisualizationsAddress = [
   '1 Rua Alegre, 12345, bairro Brasil - Belo Horizonte',
@@ -276,22 +276,14 @@ class _HomeScreen extends State<HomeScreen> {
             ),
           ),
           onPressed: () async {
-            final String? resultado = await showSearch<String>(
+            showSearch<String>(
+              //Ainda não tem retorno
               context: context, //
               delegate: CustomSearchDelegate(
                 hintText: 'Buscar endereços', //texto dica do TextField
                 listAddress: addressItens, //envia a lista de endereços
               ),
             );
-            //Apenas feedback(Por favor leia por gentileza
-            //o objetivo abaixo do print(resultado))
-            print('result: $resultado');
-            //Objetivo: ao receber o valor busca
-            //o índice e envia a um Scafold que
-            //carregará todos os dados do imóvel
-            //a ser alugado (quanto a este processo,
-            //ele precisa ser feito para reuso por
-            //causa da parte de últimas visualizações)
           },
           icon: Icon(Icons.search),
           iconAlignment: IconAlignment.end,
