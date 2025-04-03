@@ -98,6 +98,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> {
+  //final TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -282,8 +284,10 @@ class _HomeScreen extends State<HomeScreen> {
               delegate: CustomSearchDelegate(
                 hintText: 'Buscar endereços', //texto dica do TextField
                 listAddress: addressItens, //envia a lista de endereços
+                //searchController: searchController //teste para retorno 
               ),
             );
+            //print(searchController); //Exibir retorno no terminal 
           },
           icon: Icon(Icons.search),
           iconAlignment: IconAlignment.end,
