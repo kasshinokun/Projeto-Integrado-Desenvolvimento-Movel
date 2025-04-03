@@ -43,7 +43,9 @@
  Versão 1-31-03-2025 (código já disponível em ```/Releases/TP_S2/lib/pages/s1/pageges/client/clienthouse.dart```, o update foi fundido ao update 2-31-03-2025)
 
  [Página de Chat e update MyHouses 2-31-03-2025 - Diego Portella e Gabriel Cassino](https://youtu.be/tILwWaeay54?feature=shared)
- 
+
+  [Versão 1-02-04-2025 - Adaptação Home Page da aplicação e Sistema de busca de endereços](https://youtu.be/3GIdiQnqh3g?si=kvKT8S0u0Pq-enQD)
+  
  ##### Layout area de casas alugadas MyHouses - Imagens
 
  Portrait Layout
@@ -58,8 +60,12 @@
 
  ![Nova estrutura](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S2/organizacao_pasta_s2.jpg)
 
+
 #### Bugs detectado por versão:
  - Versão 1-29-03-2025
    Por ser uma estrutura generica há erros ainda no tamanho de widgets e overflow em alguns casos, execução no chrome está estável, já no smartphone  apresenta as falhas descritas.
+
+ - Versão 1-02-04-2025 e micro-atualizações
+   Overflow de widgets(falhas em estudo) e sem retorno de função(apenas não está implementado).
 
   
