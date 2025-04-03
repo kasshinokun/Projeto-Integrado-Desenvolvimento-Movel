@@ -10,6 +10,8 @@ class CustomSearchDelegate extends SearchDelegate<String>{
   //Customizando o SearchDelegate
   final String? hintText;
   final List<String>? listAddress;
+  String resultado;//coleta do valor selecionado 
+  
   CustomSearchDelegate({this.hintText, this.listAddress}): super(
           //searchFieldLabel: hintText, // Descomente em caso derro
           keyboardType: TextInputType.text,
@@ -47,7 +49,7 @@ class CustomSearchDelegate extends SearchDelegate<String>{
   Widget buildLeading(BuildContext context) {
     return IconButton(
       onPressed: () {
-        close(context, null);
+        close(context, resultado); //retorno da busca 
       },
       icon: Icon(Icons.arrow_back),
     );
@@ -65,7 +67,13 @@ class CustomSearchDelegate extends SearchDelegate<String>{
       itemCount: matchQuery.length,
       itemBuilder: (context, index) {
         var result = matchQuery[index];
-        return ListTile(title: Text(result));
+        return ListTile(
+          title: Text(result),
+          onTap(){
+            resultado=result;
+            close(context, resultado);
+          }
+        );
       },
     );
   }
@@ -82,7 +90,12 @@ class CustomSearchDelegate extends SearchDelegate<String>{
       itemCount: matchQuery.length,
       itemBuilder: (context, index) {
         var result = matchQuery[index];
-        return ListTile(title: Text(result));
+        return ListTile(
+          title: Text(result),
+          onTap(){
+            query=result;
+          }
+        );
       },
     );
   }
