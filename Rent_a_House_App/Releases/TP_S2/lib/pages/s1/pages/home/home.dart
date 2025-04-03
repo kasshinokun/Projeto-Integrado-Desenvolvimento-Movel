@@ -266,8 +266,8 @@ class _HomeScreen extends State<HomeScreen> {
               color: Colors.black,
             ),
           ),
-          onPressed: () {
-            showSearch<String>(
+          onPressed: () async{
+            final resultado= await showSearch<String>(
               context: context, //
               delegate: CustomSearchDelegate(
                 //Comente este trecho
@@ -283,6 +283,15 @@ class _HomeScreen extends State<HomeScreen> {
                 */
               ), 
             );
+            //Apenas feedback(Por favor leia por gentileza
+            //o objetivo abaixo do print(resultado))
+            print(resultado);
+            //Objetivo: ao receber o valor busca 
+            //o índice e envia a um Scafold que 
+            //carregará todos os dados do imóvel 
+            //a ser alugado (quanto a este processo,
+            //ele precisa ser feito para reuso por 
+            //causa da parte de últimas visualizações)
           },
           icon: Icon(Icons.search),
         ),
