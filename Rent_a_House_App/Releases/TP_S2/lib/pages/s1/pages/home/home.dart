@@ -269,7 +269,19 @@ class _HomeScreen extends State<HomeScreen> {
           onPressed: () {
             showSearch<String>(
               context: context, //
-              delegate: CustomSearchDelegate(hintText: 'Buscar endereços', listAddress:addressItems), //envia a lista de endereços 
+              delegate: CustomSearchDelegate(
+                //Comente este trecho
+                //se houver erro de envio
+                hintText: 'Buscar endereços', //texto dica do TextField
+                listAddress:addressItems //envia a lista de endereços 
+
+                //Descomente este trecho
+                //se houver erro de envio
+                /*
+                'Buscar endereços', //texto dica do TextField
+                addressItems //envia a lista de endereços 
+                */
+              ), 
             );
           },
           icon: Icon(Icons.search),
