@@ -1,33 +1,59 @@
-import 'package:flutter/material.dart'
+import 'package:flutter/material.dart';
 
-class CustomSearchDelegate extends SearchDelegate<String>{
+List<String> imagesItems = [
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-1.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-2.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-3.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-4.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-5.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-6.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-7.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-1.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-2.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-3.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-4.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-5.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-6.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Apart/apart-7.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-1.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-2.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-3.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-4.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-5.jpg',
+  'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-6.jpg',
+];
+
+class CustomSearchDelegate extends SearchDelegate<String> {
   //Buscará em uma lista(pode ser List<Strings>) => addressItens
 
-  //---> Objetivos em aberto 
+  //---> Objetivos em aberto
   //Deixar searchdelegate transparente sem destruir a página anterior
-  //---> Fim dos objetivos em aberto 
-  
+  //---> Fim dos objetivos em aberto
+
   //Customizando o SearchDelegate
   final String? hintText;
-  final List<String>? listAddress;
-  String resultado;//coleta do valor selecionado 
-  
-  CustomSearchDelegate({this.hintText, this.listAddress}): super(
-          //searchFieldLabel: hintText, // Descomente em caso derro
-          keyboardType: TextInputType.text,
-          searchFieldStyle: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold),
-        );
-  
+  final List<String> listAddress;
+  String resultado = "";
+  CustomSearchDelegate({required this.hintText, required this.listAddress})
+    : super(
+        //searchFieldLabel: hintText, // Descomente em caso derro
+        keyboardType: TextInputType.text,
+        textInputAction: TextInputAction.search,
+        searchFieldStyle: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),
+      );
+  //coleta do valor selecionado
   ///* Em caso de erro, deixe este trecho comentado
   @override
   String? get searchFieldLabel => hintText;
-  //*/Fim do trecho 
-  
+  //*/Fim do trecho
+
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
+      // Constroi o botao limpar.
       ElevatedButton.icon(
         label: Text(
           "Limpar",
@@ -39,6 +65,7 @@ class CustomSearchDelegate extends SearchDelegate<String>{
         ),
         onPressed: () {
           query = '';
+          // Quando pressionado a query limpa a partir da search bar.
         },
         icon: Icon(Icons.clear_rounded),
       ),
@@ -47,9 +74,12 @@ class CustomSearchDelegate extends SearchDelegate<String>{
 
   @override
   Widget buildLeading(BuildContext context) {
+    // Constroi o icone no inicio do TextField
     return IconButton(
+      // Saindo da tela de pesquisa
+      //onPressed: () => Navigator.of(context).pop(),
       onPressed: () {
-        close(context, resultado); //retorno da busca 
+        close(context, resultado); //retorno da busca
       },
       icon: Icon(Icons.arrow_back),
     );
@@ -57,22 +87,25 @@ class CustomSearchDelegate extends SearchDelegate<String>{
 
   @override
   Widget buildResults(BuildContext context) {
-    List<String> matchQuery = []; //Coleta os resultados
-    for (var address in listAddress) {
-      if (address.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(address);
-      }
-    }
+    // Construindo o sistema de busca de resultados.
+    final List<String> matchQuery =
+        query.isEmpty
+            ? []
+            : listAddress
+                .where(
+                  (item) => item.toLowerCase().contains(query.toLowerCase()),
+                )
+                .toList();
     return ListView.builder(
       itemCount: matchQuery.length,
       itemBuilder: (context, index) {
-        var result = matchQuery[index];
         return ListTile(
-          title: Text(result),
-          onTap(){
-            resultado=result;
+          title: Text(matchQuery[index]),
+          onTap: () {
+            String resultado = matchQuery[index];
+            // Manipula o resultado da pesquisa selecionado.
             close(context, resultado);
-          }
+          },
         );
       },
     );
@@ -80,35 +113,45 @@ class CustomSearchDelegate extends SearchDelegate<String>{
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<String> matchQuery = []; //Coleta os resultados
-    for (var address in listAddress) {
-      if (address.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(address);
-      }
-    }
+    // Construindo o sistema de busca de sugestões.
+    final List<String> suggestionList =
+        query.isEmpty
+            ? []
+            : listAddress
+                .where(
+                  (item) => item.toLowerCase().contains(query.toLowerCase()),
+                )
+                .toList();
     return ListView.builder(
-      itemCount: matchQuery.length,
+      itemCount: suggestionList.length,
       itemBuilder: (context, index) {
-        var result = matchQuery[index];
         return ListTile(
-          title: Text(result),
-          onTap(){
-            query=result;
-          }
+          title: Text(suggestionList[index]),
+          onTap: () {
+            // Mostrar os resultados da pesquisa com base na sugestão selecionada.
+            query = suggestionList[index];
+          },
         );
       },
     );
   }
+
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    return ThemeData(
+      textTheme: TextTheme(
+        // Use this to change the query's text style
+        headlineMedium: TextStyle(fontSize: 20.0, color: Colors.white),
+      ),
+      appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
+      inputDecorationTheme: InputDecorationTheme(
+        border: InputBorder.none,
+
+        // Use this change the placeholder's text style
+        hintStyle: TextStyle(fontSize: 20.0),
+      ),
+    );
+  }
 }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//================================================================================    
-    
+
+//================================================================================

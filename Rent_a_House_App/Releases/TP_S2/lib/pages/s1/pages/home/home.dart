@@ -105,7 +105,11 @@ class _HomeScreen extends State<HomeScreen> {
       appBar: AppBar(
         //------------------------------------> AppBar
         backgroundColor: Colors.green,
-        title: Text('Rent a House - HomePage'),
+        title: Text(
+          MediaQuery.of(context).orientation == Orientation.portrait
+              ? 'Página Inicial'
+              : 'Rent a House - HomePage',
+        ),
         leading: Builder(
           builder:
               (context) => IconButton(
@@ -253,47 +257,44 @@ class _HomeScreen extends State<HomeScreen> {
 
   Widget mySearchButton() {
     return SizedBox(
-      width: MediaQuery.of(context).size.width / 4.0,
+      width:
+          MediaQuery.of(context).orientation == Orientation.portrait
+              ? MediaQuery.of(context).size.width / 2.5
+              : MediaQuery.of(context).size.width / 4.0,
       height: MediaQuery.of(context).size.height / 9.0,
       child: Padding(
         padding: EdgeInsets.all(8.0),
         child: ElevatedButton.icon(
           label: Text(
-            "Clique para pesquisar",
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? "Pesquisar"
+                : "Clique para pesquisar",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
           ),
-          onPressed: () async{
-            final resultado= await showSearch<String>(
+          onPressed: () async {
+            final String? resultado = await showSearch<String>(
               context: context, //
               delegate: CustomSearchDelegate(
-                //Comente este trecho
-                //se houver erro de envio
                 hintText: 'Buscar endereços', //texto dica do TextField
-                listAddress:addressItems //envia a lista de endereços 
-
-                //Descomente este trecho
-                //se houver erro de envio
-                /*
-                'Buscar endereços', //texto dica do TextField
-                addressItems //envia a lista de endereços 
-                */
-              ), 
+                listAddress: addressItens, //envia a lista de endereços
+              ),
             );
             //Apenas feedback(Por favor leia por gentileza
             //o objetivo abaixo do print(resultado))
-            print(resultado);
-            //Objetivo: ao receber o valor busca 
-            //o índice e envia a um Scafold que 
-            //carregará todos os dados do imóvel 
+            print('result: $resultado');
+            //Objetivo: ao receber o valor busca
+            //o índice e envia a um Scafold que
+            //carregará todos os dados do imóvel
             //a ser alugado (quanto a este processo,
-            //ele precisa ser feito para reuso por 
+            //ele precisa ser feito para reuso por
             //causa da parte de últimas visualizações)
           },
           icon: Icon(Icons.search),
+          iconAlignment: IconAlignment.end,
         ),
       ),
     ); //Fim do SearchBar
@@ -372,4 +373,3 @@ class _HomeScreen extends State<HomeScreen> {
     );
   }
 }
-
