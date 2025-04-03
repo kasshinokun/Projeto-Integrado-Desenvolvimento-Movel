@@ -63,9 +63,11 @@
 
 #### Bugs detectado por versão:
  - Versão 1-29-03-2025
+   
    Por ser uma estrutura generica há erros ainda no tamanho de widgets e overflow em alguns casos, execução no chrome está estável, já no smartphone  apresenta as falhas descritas.
 
  - Versão 1-02-04-2025 e micro-atualizações
+   
    Overflow de widgets(falhas em estudo) e sem retorno de função(apenas não está implementado).
 
   
