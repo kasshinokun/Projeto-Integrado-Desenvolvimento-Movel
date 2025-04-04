@@ -6,6 +6,35 @@ import 'package:rent_a_house/pages/myapp.dart' as mainapp;
 
 double aspect = 1.0;
 
+//
+//
+//Inicio do Inicializador
+void main() {
+  runApp(SettingsScreenApp());
+}
+
+class SettingsScreenApp extends StatelessWidget {
+  const SettingsScreenApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false, //tirar o banner
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      ),
+      initialRoute: '/', //Rotas
+      routes: {
+        '/': (context) => SettingsScreen(), //Página Inicial
+      },
+    );
+  }
+}
+
+//Fim do Inicializador
+//
+//
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 

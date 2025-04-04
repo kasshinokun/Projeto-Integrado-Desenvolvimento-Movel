@@ -98,24 +98,35 @@ class _RentScreen extends State<RentScreen> {
                   //If ternario nos filhos do container
                   ? SingleChildScrollView(
                     scrollDirection: Axis.vertical,
-                    child: Column(
-                      children: [
-                        myContainerSearch(widget.index, widget.query),
-                        myCarousel(),
-                        detailsHouseClip(),
-                      ],
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          myPaddingText(widget.query, Colors.pink),
+                          myContainerSearch(widget.index),
+                          myPaddingText("Detalhes", Colors.pink),
+                          myCarousel(),
+                          detailsHouseClip(),
+                        ],
+                      ),
                     ),
                   )
                   : Row(
                     children: [
-                      myContainerSearch(widget.index, widget.query),
+                      myContainerSearch(widget.index),
                       SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: Column(
                           children: [
                             Padding(
                               padding: EdgeInsets.only(left: 32.0),
-                              child: myCarousel(),
+                              child: Column(
+                                children: [
+                                  myPaddingText(widget.query, Colors.pink),
+                                  myPaddingText("Detalhes", Colors.pink),
+                                  myCarousel(),
+                                ],
+                              ),
                             ),
                             detailsHouseClip(),
                           ],
@@ -132,18 +143,16 @@ class _RentScreen extends State<RentScreen> {
   //Carousel de Imagens
   //
   Widget myCarousel() {
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        // BoxConstraints
-        maxHeight:
-            MediaQuery.of(context).orientation == Orientation.portrait
-                ? MediaQuery.of(context).size.height / 2.1
-                : MediaQuery.of(context).size.height / 1.45,
-        maxWidth:
-            MediaQuery.of(context).orientation == Orientation.portrait
-                ? MediaQuery.of(context).size.width
-                : MediaQuery.of(context).size.width / 2.4,
-      ), // Fim do BoxConstraints
+    return SizedBox(
+      height:
+          MediaQuery.of(context).orientation == Orientation.portrait
+              ? MediaQuery.of(context).size.height / 2.1
+              : MediaQuery.of(context).size.height / 1.45,
+      width:
+          MediaQuery.of(context).orientation == Orientation.portrait
+              ? MediaQuery.of(context).size.width
+              : MediaQuery.of(context).size.width / 2.4,
+
       child: Center(
         child: CarouselSlider(
           items: getListImage(imagesItems),
@@ -187,15 +196,16 @@ class _RentScreen extends State<RentScreen> {
   }
 
   //
-  Widget myContainerSearch(int index, String resultado) {
-    return Container(
-      color: Colors.pink.shade50,
-      child: Column(
-        children: [
-          myPaddingText("Clique sobre a imagem para voltar", Colors.pink),
-          myImageSearch(index),
-          myPaddingText(resultado, Colors.pink),
-        ],
+  Widget myContainerSearch(int index) {
+    return Padding(
+      padding: EdgeInsets.all(4.0),
+      child: Container(
+        height:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? MediaQuery.of(context).size.height / 2.1
+                : MediaQuery.of(context).size.height / 1.45,
+        color: Colors.pink.shade50,
+        child: Column(children: [myImageSearch(index)]),
       ),
     );
   }
@@ -230,44 +240,47 @@ class _RentScreen extends State<RentScreen> {
   }
 
   Widget myImageSearch(int index) {
-    return InkWell(
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.network(
-          imagesItems[index],
-          fit: BoxFit.cover,
-          height:
-              MediaQuery.of(context).orientation == Orientation.portrait
-                  ? MediaQuery.of(context).size.height / 2.2
-                  : MediaQuery.of(context).size.height / 1.55,
-          width:
-              MediaQuery.of(context).orientation == Orientation.portrait
-                  ? MediaQuery.of(context).size.width
-                  : MediaQuery.of(context).size.width / 2.6,
-        ), //
-      ),
-      onTap:
-          () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder:
-                  (context) => Scaffold(
-                    extendBody: true,
-                    body: GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            Image.network(
-                              imagesItems[index],
-                              fit: BoxFit.cover,
-                            ),
-                          ],
+    return Padding(
+      padding: EdgeInsets.all(8.0),
+      child: InkWell(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Image.network(
+            imagesItems[index],
+            fit: BoxFit.cover,
+            height:
+                MediaQuery.of(context).orientation == Orientation.portrait
+                    ? MediaQuery.of(context).size.height / 2.2
+                    : MediaQuery.of(context).size.height / 1.55,
+            width:
+                MediaQuery.of(context).orientation == Orientation.portrait
+                    ? MediaQuery.of(context).size.width
+                    : MediaQuery.of(context).size.width / 2.6,
+          ), //
+        ),
+        onTap:
+            () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder:
+                    (context) => Scaffold(
+                      extendBody: true,
+                      body: GestureDetector(
+                        onTap: () => Navigator.of(context).pop(),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              Image.network(
+                                imagesItems[index],
+                                fit: BoxFit.cover,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
+              ),
             ),
-          ),
+      ),
     );
   }
 
@@ -319,7 +332,7 @@ class _RentScreen extends State<RentScreen> {
                 Text(
                   'Casa com 3 Quartos e 2 banheiros para Alugar, 274 m² por 10.000 reais/Mês',
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 22,
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
                   ),
@@ -348,7 +361,7 @@ class _RentScreen extends State<RentScreen> {
       title: Text(
         "Descrição",
         style: TextStyle(
-          fontSize: 24,
+          fontSize: 20,
           color: Colors.black,
           fontWeight: FontWeight.w500,
         ),

@@ -36,6 +36,11 @@ List<String> addressItens = [
   '13 Rua Marieta de Barros Valadão, 678, bairro Nossa Senhora de Fátima - Patos de Minas',
   '14 Rua dos Otis, 3456, bairro Suzana - Belo Horizonte',
   '15 Avenida Manoel Pinheiro Diniz, 265, bairro Pinheiros - Itatiaiuçu',
+  '16 Avenida Perimetral, 12345, bairro Jardim Arizona - Sete Lagoas',
+  '17 Rua Virgínia de Oliveira Maciel, 3456, bairro Morro do Claro - Sete Lagoas',
+  '18 Rua Manoel Correa da Cunha, 678, bairro Recanto do Cedro - Sete Lagoas',
+  '19 Rua Rei Salomão, 3456, bairro Esperança - Sete Lagoas',
+  '20 Rua Q, 678, bairro Eldorado - Sete Lagoas',
 ];
 
 List<String> imagesItems = [
@@ -109,8 +114,8 @@ class _HomeScreen extends State<HomeScreen> {
         backgroundColor: Colors.green,
         title: Text(
           MediaQuery.of(context).orientation == Orientation.portrait
-              ? 'Página Inicial'
-              : 'Rent a House - HomePage',
+              ? 'Início'
+              : 'Página Inicial',
         ),
         leading: Builder(
           builder:
@@ -125,121 +130,114 @@ class _HomeScreen extends State<HomeScreen> {
           mySearchButton(),
         ], // Fim do Actions
       ), // Fim do AppBar
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: BoxDecoration(color: Colors.white),
-        child:
-            MediaQuery.of(context).orientation == Orientation.portrait
-                ? SingleChildScrollView(
-                  child: Column(
-                    children: <Widget>[
-                      myPaddingText(
-                        "Ultimas Visualizações",
-                        Colors.greenAccent,
-                      ),
-                      myCarousel(),
-                      myPaddingText("Destaques", Colors.greenAccent),
-                      myColumnImage(
-                        myImage(imagesItems[0]),
-                        addressItens[0],
-                        Colors.pink,
-                      ),
-                      myColumnImage(
-                        myImage(imagesItems[1]),
-                        addressItens[1],
-                        Colors.cyan,
-                      ),
-                      myColumnImage(
-                        myImage(imagesItems[2]),
-                        addressItens[2],
-                        Colors.yellow,
-                      ),
-                      myColumnImage(
-                        myImage(imagesItems[3]),
-                        addressItens[3],
-                        Colors.blue,
-                      ),
-                      myColumnImage(
-                        myImage(imagesItems[4]),
-                        addressItens[4],
-                        Colors.white,
-                      ),
-                      myColumnImage(
-                        myImage(imagesItems[5]),
-                        addressItens[5],
-                        Colors.greenAccent,
-                      ),
-                    ],
-                  ),
-                )
-                : Row(
-                  children: [
-                    Column(
-                      children: [
+      body:
+          MediaQuery.of(context).size.width < 600
+              //If ternario nos filhos do container
+              ? SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                padding: EdgeInsets.all(8.0),
+                child: Column(
+                  children: <Widget>[
+                    myPaddingText(
+                      "Ultimas Visualizações",
+                      Colors.lightGreenAccent,
+                    ),
+                    myCarousel(),
+                    myPaddingText("Destaques", Colors.lightGreenAccent),
+                    myListHouse(),
+                  ],
+                ),
+              )
+              : Row(
+                children: [
+                  SingleChildScrollView(
+                    padding: EdgeInsets.all(6.0),
+                    child: Column(
+                      children: <Widget>[
                         myPaddingText(
                           "Ultimas Visualizações",
-                          Colors.greenAccent,
+                          Colors.lightGreenAccent,
                         ),
                         myCarousel(),
                       ],
                     ),
-                    SingleChildScrollView(
-                      child: Column(
-                        children: <Widget>[
-                          myPaddingText("Destaques", Colors.greenAccent),
-
-                          myColumnImage(
-                            myImage(imagesItems[0]),
-                            addressItens[0],
-                            Colors.pink,
-                          ),
-                          myColumnImage(
-                            myImage(imagesItems[1]),
-                            addressItens[1],
-                            Colors.cyan,
-                          ),
-                          myColumnImage(
-                            myImage(imagesItems[2]),
-                            addressItens[2],
-                            Colors.yellow,
-                          ),
-                          myColumnImage(
-                            myImage(imagesItems[3]),
-                            addressItens[3],
-                            Colors.blue,
-                          ),
-                          myColumnImage(
-                            myImage(imagesItems[4]),
-                            addressItens[4],
-                            Colors.white,
-                          ),
-                          myColumnImage(
-                            myImage(imagesItems[5]),
-                            addressItens[5],
-                            Colors.greenAccent,
-                          ),
-                        ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(6.0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 2.2,
+                      decoration: BoxDecoration(
+                        color: Colors.lightBlueAccent,
+                        borderRadius: BorderRadius.circular(9.0),
+                      ),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Column(
+                          children: <Widget>[
+                            myPaddingText("Destaques", Colors.lightGreenAccent),
+                            myListHouse(),
+                          ],
+                        ),
                       ),
                     ),
-                  ],
-                ),
-      ),
+                  ),
+                ],
+              ),
     );
+  }
+
+  Widget mySearchButton() {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width / 2,
+      height: MediaQuery.of(context).size.height / 8.5,
+      child: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: ElevatedButton.icon(
+          label: Text(
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? "Pesquisar"
+                : "Clique para pesquisar",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          onPressed: () async {
+            showSearch<String>(
+              //Ainda não tem retorno
+              context: context, //
+              delegate: CustomSearchDelegate(
+                hintText: 'Buscar endereços', //texto dica do TextField
+                listAddress: addressItens, //envia a lista de endereços
+                //searchController: searchController //teste para retorno
+              ),
+            );
+            //print(searchController); //Exibir retorno no terminal
+          },
+          icon: Icon(Icons.search),
+          iconAlignment: IconAlignment.end,
+        ),
+      ),
+    ); //Fim do SearchBar
   }
 
   //Carousel de Imagens
   //
   Widget myCarousel() {
-    return SizedBox(
+    return Container(
       height:
           MediaQuery.of(context).orientation == Orientation.portrait
-              ? MediaQuery.of(context).size.height / 1.7
-              : MediaQuery.of(context).size.height / 1.2,
+              ? MediaQuery.of(context).size.height / 2.2
+              : MediaQuery.of(context).size.height / 1.1,
       width:
           MediaQuery.of(context).orientation == Orientation.portrait
               ? MediaQuery.of(context).size.width
               : MediaQuery.of(context).size.width / 2,
+      decoration: BoxDecoration(
+        color: Colors.pinkAccent,
+        borderRadius: BorderRadius.circular(9.0),
+      ),
       child: Center(
         child: CarouselSlider(
           items: getListImage(
@@ -268,47 +266,62 @@ class _HomeScreen extends State<HomeScreen> {
     return List.generate(
       // List.generate
       images.length,
-      (index) => Padding(
-        padding: EdgeInsets.all(4.0),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(9.0),
-            //color: Colors.pink,
-          ),
-          width:
-              MediaQuery.of(context).orientation == Orientation.portrait
-                  ? MediaQuery.of(context).size.width
-                  : MediaQuery.of(context).size.width / 2.4,
-          child: Column(
-            children: [
-              myPaddingText(address[index], Colors.white),
-              myImageLast(images[index]),
-              myPaddingText(address[index], Colors.white),
-            ],
-          ),
-        ), //
-      ), //
+      (index) => Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(9.0),
+          //color: Colors.pink,
+        ),
+        height:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? MediaQuery.of(context).size.height / 2.3
+                : MediaQuery.of(context).size.height / 1.2,
+        width:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? MediaQuery.of(context).size.width
+                : MediaQuery.of(context).size.width / 2.1,
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(4.0),
+              child: myImageLast(images[index]),
+            ),
+            myPaddingText(address[index], Colors.white),
+          ],
+        ),
+      ),
     ); // List.generate
+  }
+
+  Widget myListHouse() {
+    return ListView.separated(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      scrollDirection: Axis.vertical,
+      itemCount: imagesItems.length,
+      itemBuilder: (context, index) {
+        return myColumnImage(
+          myImage(imagesItems[index]),
+          addressItens[index],
+          Colors.pinkAccent,
+        );
+      },
+      separatorBuilder: (context, i) {
+        return Divider();
+      },
+    );
   }
 
   Widget myImageLast(String url) {
     return InkWell(
-      child: Padding(
-        padding: const EdgeInsets.all(4.0),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Image.network(
-            url,
-            fit: BoxFit.cover,
-            height:
-                MediaQuery.of(context).orientation == Orientation.portrait
-                    ? MediaQuery.of(context).size.height / 2.5
-                    : MediaQuery.of(context).size.height / 1.8,
-            width:
-                MediaQuery.of(context).orientation == Orientation.portrait
-                    ? MediaQuery.of(context).size.width
-                    : MediaQuery.of(context).size.width / 2.6,
-          ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: Image.network(
+          url,
+          fit: BoxFit.cover,
+          width:
+              MediaQuery.of(context).orientation == Orientation.portrait
+                  ? MediaQuery.of(context).size.width
+                  : MediaQuery.of(context).size.width / 2,
         ),
       ),
       onTap: () => getPage(url),
@@ -322,7 +335,7 @@ class _HomeScreen extends State<HomeScreen> {
         width:
             MediaQuery.of(context).orientation == Orientation.portrait
                 ? MediaQuery.of(context).size.width
-                : MediaQuery.of(context).size.width / 2.05,
+                : MediaQuery.of(context).size.width / 2,
         decoration: BoxDecoration(
           color: cor,
           borderRadius: BorderRadius.circular(9.0),
@@ -344,57 +357,13 @@ class _HomeScreen extends State<HomeScreen> {
     );
   }
 
-  Widget mySearchButton() {
-    return SizedBox(
-      width:
-          MediaQuery.of(context).orientation == Orientation.portrait
-              ? MediaQuery.of(context).size.width / 2.5
-              : MediaQuery.of(context).size.width / 4.0,
-      height: MediaQuery.of(context).size.height / 9.0,
-      child: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: ElevatedButton.icon(
-          label: Text(
-            MediaQuery.of(context).orientation == Orientation.portrait
-                ? "Pesquisar"
-                : "Clique para pesquisar",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-          ),
-          onPressed: () async {
-            showSearch<String>(
-              //Ainda não tem retorno
-              context: context, //
-              delegate: CustomSearchDelegate(
-                hintText: 'Buscar endereços', //texto dica do TextField
-                listAddress: addressItens, //envia a lista de endereços
-                //searchController: searchController //teste para retorno 
-              ),
-            );
-            //print(searchController); //Exibir retorno no terminal 
-          },
-          icon: Icon(Icons.search),
-          iconAlignment: IconAlignment.end,
-        ),
-      ),
-    ); //Fim do SearchBar
-  }
-
   Widget myColumnImage(Widget image, String address, Color cor) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        myPaddingText(address, Colors.lightGreenAccent),
         myContainer(image, cor),
-        Text(
-          address,
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        myPaddingText(address, Colors.white),
       ],
     );
   }
@@ -461,16 +430,55 @@ class _HomeScreen extends State<HomeScreen> {
     );
   }
 }
-/*ConstrainedBox(
-      constraints: BoxConstraints(
-        // BoxConstraints
-        maxHeight:
-            MediaQuery.of(context).orientation == Orientation.portrait
-                ? MediaQuery.of(context).size.height / 2.1
-                : MediaQuery.of(context).size.height / 1.45,
-        maxWidth:
-            MediaQuery.of(context).orientation == Orientation.portrait
-                ? MediaQuery.of(context).size.width
-                : MediaQuery.of(context).size.width / 2.4,
-      ), // Fim do BoxConstraints
-      child: */
+/*
+
+ListView(
+  children: List.generate(
+    imagesItems.length,
+    (index) => myColumnImage(
+      myImage(imagesItems[index]),
+      addressItens[index],
+      Colors.pinkAccent,
+    ),
+  ),
+),
+
+
+
+
+myPaddingText(
+                        "Ultimas Visualizações",
+                        Colors.greenAccent,
+                      ),
+                      myCarousel(),
+                      myPaddingText("Destaques", Colors.greenAccent),
+                      myColumnImage(
+                        myImage(imagesItems[0]),
+                        addressItens[0],
+                        Colors.pink,
+                      ),
+                      myColumnImage(
+                        myImage(imagesItems[1]),
+                        addressItens[1],
+                        Colors.cyan,
+                      ),
+                      myColumnImage(
+                        myImage(imagesItems[2]),
+                        addressItens[2],
+                        Colors.yellow,
+                      ),
+                      myColumnImage(
+                        myImage(imagesItems[3]),
+                        addressItens[3],
+                        Colors.blue,
+                      ),
+                      myColumnImage(
+                        myImage(imagesItems[4]),
+                        addressItens[4],
+                        Colors.white,
+                      ),
+                      myColumnImage(
+                        myImage(imagesItems[5]),
+                        addressItens[5],
+                        Colors.greenAccent,
+                      ), */
