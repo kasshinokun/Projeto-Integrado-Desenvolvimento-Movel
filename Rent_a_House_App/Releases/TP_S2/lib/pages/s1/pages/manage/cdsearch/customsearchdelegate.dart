@@ -36,7 +36,12 @@ class CustomSearchDelegate extends SearchDelegate<String> {
   final String? hintText;
   final List<String> listAddress;
   String resultado = "";
-  CustomSearchDelegate({required this.hintText, required this.listAddress})
+  //final TextEditingController searchController;//teste retorno
+
+  CustomSearchDelegate({required this.hintText, 
+    required this.listAddress,
+    //required this.searchController //teste retorno 
+    })
     : super(
         //searchFieldLabel: hintText, // Descomente em caso derro
         keyboardType: TextInputType.text,
@@ -81,7 +86,7 @@ class CustomSearchDelegate extends SearchDelegate<String> {
       // Saindo da tela de pesquisa
       //onPressed: () => Navigator.of(context).pop(),
       onPressed: () {
-        close(context, resultado); //retorno da busca
+        close(context, resultado);close(context, resultado); //retorno da busca //retorno da busca
       },
       icon: Icon(Icons.arrow_back),
     );
@@ -105,7 +110,9 @@ class CustomSearchDelegate extends SearchDelegate<String> {
           title: Text(matchQuery[index]),
           onTap: () {
             // Manipula o resultado da pesquisa selecionado.
+            //searchController.text = matchQuery[index];
             close(context, matchQuery[index]);
+            //close(context, searchController.text);
           },
         );
       },
@@ -132,11 +139,22 @@ class CustomSearchDelegate extends SearchDelegate<String> {
             // Mostrar os resultados da pesquisa com base na sugestão selecionada.
             query = suggestionList[index];
 
+            //========> Teste de retorno 
+            //Exemplo-base: https://stackoverflow.com/questions/61048477/flutter-return-search-delegate-result-string-to-a-textfield
+            //
+            // Manipula o resultado da pesquisa selecionado.
+            //searchController.text = matchQuery[index];
+            //close(context, matchQuery[index]);
+            //close(context, searchController.text);
+
             //Objetivo: ao receber o valor busca
             //o índice e envia a um Scafold que
             //carregará todos os dados do imóvel
             //a ser alugado
-            Navigator.push(
+            Navigator.push(//=========> Futuramente, se possível,
+                           //=========> será enviado a página 
+                           //=========> especializada para tratar
+                           //=========> o resultado da busca 
               context,
               MaterialPageRoute(
                 builder:

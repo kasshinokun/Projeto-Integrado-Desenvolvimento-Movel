@@ -33,6 +33,11 @@
     - --> Início do teste das páginas como objetos para conseguir fazer reuso em outras páginas e layouts
       - --> Aplicado em MyHouses: ```lib/pages/s1/pages/client/clienthouse.dart```
     - --> Continuação: Adaptação da página Home(página Inicial) e adição Sistema de Pesquisa na Home Page (Update 2-02-04-2025)
+
+ - Updates 1-03-04-2025 e 1.1-03-04-2025
+    - Adequação e globalização do CustomSearchDelegate
+    - Criação de página para exibir os detalhes do item buscado dentro do sistema de busca
+    - Adaptação Inicial para layout responsivo-adaptativo
       
 #### Previas de desenvolvimento Sprint 2 - vídeos e imagens
 
@@ -45,6 +50,8 @@
  [Página de Chat e update MyHouses 2-31-03-2025 - Diego Portella e Gabriel Cassino](https://youtu.be/tILwWaeay54?feature=shared)
 
   [Versão 1-02-04-2025 - Adaptação Home Page da aplicação e Sistema de busca de endereços](https://youtu.be/3GIdiQnqh3g?si=kvKT8S0u0Pq-enQD)
+
+  [Versão 1-03-04-2025](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S2/Update%201-03-04-2025.pdf)
   
  ##### Layout area de casas alugadas MyHouses - Imagens
 
