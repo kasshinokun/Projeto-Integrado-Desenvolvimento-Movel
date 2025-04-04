@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rent_a_house/pages/s1/pages/manage/renthouse.dart';
 
+/*
 List<String> imagesItems = [
   'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-1.jpg',
   'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-2.jpg',
@@ -22,7 +24,7 @@ List<String> imagesItems = [
   'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-5.jpg',
   'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/Beach/beach-6.jpg',
 ];
-
+*/
 class CustomSearchDelegate extends SearchDelegate<String> {
   //Buscará em uma lista(pode ser List<Strings>) => addressItens
 
@@ -129,7 +131,6 @@ class CustomSearchDelegate extends SearchDelegate<String> {
           onTap: () {
             // Mostrar os resultados da pesquisa com base na sugestão selecionada.
             query = suggestionList[index];
-            int indexImage = index;
 
             //Objetivo: ao receber o valor busca
             //o índice e envia a um Scafold que
@@ -139,75 +140,12 @@ class CustomSearchDelegate extends SearchDelegate<String> {
               context,
               MaterialPageRoute(
                 builder:
-                    (context) => Scaffold(
-                      appBar: AppBar(
-                        //------------------------------------> AppBar
-                        backgroundColor: Colors.green,
-                        title: Text('Busca - Imovel'), //Text
-                      ), //Appbar
-                      extendBody: true,
-                      body: GestureDetector(
-                        onTap: () => Navigator.of(context).pop(),
-
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height,
-                          //
-                          child:
-                              MediaQuery.of(context).size.width < 600
-                                  //If ternario nos filhos do container
-                                  ? SingleChildScrollView(
-                                    scrollDirection: Axis.vertical,
-                                    child: Column(
-                                      children: [
-                                        myContainerSearch(
-                                          context,
-                                          indexImage,
-                                          query,
-                                        ),
-                                        myContainerSearch(
-                                          context,
-                                          indexImage,
-                                          query,
-                                        ),
-                                        myContainerSearch(
-                                          context,
-                                          indexImage,
-                                          query,
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                  : Row(
-                                    children: [
-                                      myContainerSearch(
-                                        context,
-                                        indexImage,
-                                        query,
-                                      ),
-                                      SingleChildScrollView(
-                                        scrollDirection: Axis.vertical,
-                                        child: Column(
-                                          children: [
-                                            myContainerSearch(
-                                              context,
-                                              indexImage,
-                                              query,
-                                            ),
-                                            myContainerSearch(
-                                              context,
-                                              indexImage,
-                                              query,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                          //
-                        ),
-                      ),
+                    (context) => RentScreen(
+                      title: 'Busca - Imovel',
+                      index: index,
+                      query: query,
                     ),
+                //builder: (context) => myScaffold(context, index, query),
               ),
             );
           },
@@ -232,6 +170,54 @@ class CustomSearchDelegate extends SearchDelegate<String> {
       ),
     );
   }
+}
+/*
+Widget myScaffold(context, int indexImage, String query) {
+  return Scaffold(
+    appBar: AppBar(
+      //------------------------------------> AppBar
+      backgroundColor: Colors.green,
+      title: Text('Busca - Imovel'), //Text
+    ), //Appbar
+    extendBody: true,
+    body: GestureDetector(
+      onTap: () => Navigator.of(context).pop(),
+
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        //
+        child:
+            MediaQuery.of(context).size.width < 600
+                //If ternario nos filhos do container
+                ? SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    children: [
+                      myContainerSearch(context, indexImage, query),
+                      myContainerSearch(context, indexImage, query),
+                      myContainerSearch(context, indexImage, query),
+                    ],
+                  ),
+                )
+                : Row(
+                  children: [
+                    myContainerSearch(context, indexImage, query),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(
+                        children: [
+                          myContainerSearch(context, indexImage, query),
+                          myContainerSearch(context, indexImage, query),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+        //
+      ),
+    ),
+  );
 }
 
 //================================================================================
@@ -295,3 +281,4 @@ Widget myImageSearch(context, int index) {
             : MediaQuery.of(context).size.width / 2.6,
   );
 }
+*/

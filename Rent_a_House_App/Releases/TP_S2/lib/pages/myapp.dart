@@ -6,7 +6,7 @@ import 'package:rent_a_house/pages/s1/pages/manage/registerhouse.dart';
 //==================================================================
 import 'package:rent_a_house/pages/s1/pages/welcome/welcome.dart';
 import 'package:rent_a_house/pages/s1/pages/Home/home.dart' as sone;
-import 'package:rent_a_house/pages/s1/pages/Manage/renthouse.dart';
+
 import 'package:rent_a_house/pages/s1/pages/Client/clienthouse.dart';
 import 'package:rent_a_house/pages/s1/pages/Manage/settings.dart';
 import 'package:rent_a_house/pages/s1/pages/Manage/terms.dart';
@@ -33,6 +33,9 @@ class MyCustomScrollBehavior extends MaterialScrollBehavior {
   };
 }
 
+bool logged = false;
+bool manager = false;
+
 //==================================================================
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -42,6 +45,7 @@ class MyApp extends StatelessWidget {
     //final Size size = MediaQuery.sizeOf(context);
     //final double currentWidth = size.width;
     //final double currentHeight = size.height;
+
     return MaterialApp(
       debugShowCheckedModeBanner: false, //tirar o banner
       title: 'Flutter Demo',
@@ -63,7 +67,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => WelcomePage(), //Página de Login
 
         '/client': (context) => ClientScreen(),
-        '/rent': (context) => RentScreen(),
+
         '/register': (context) => RegisterHouseScreen(),
         '/settings': (context) => SettingsScreen(),
         '/terms': (context) => TermsScreen(),

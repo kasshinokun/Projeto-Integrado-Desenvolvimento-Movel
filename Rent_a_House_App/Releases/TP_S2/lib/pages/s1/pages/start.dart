@@ -4,7 +4,7 @@ import 'package:rent_a_house/pages/s1/pages/manage/registerhouse.dart';
 //==================================================================
 import 'package:rent_a_house/pages/s1/pages/welcome/welcome.dart';
 import 'package:rent_a_house/pages/s1/pages/Home/home.dart';
-import 'package:rent_a_house/pages/s1/pages/Manage/renthouse.dart';
+
 import 'package:rent_a_house/pages/s1/pages/Client/clienthouse.dart';
 import 'package:rent_a_house/pages/s1/pages/Manage/settings.dart';
 import 'package:rent_a_house/pages/s1/pages/Manage/terms.dart';
@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
         '/login': (context) => WelcomePage(), //Página de Login
 
         '/client': (context) => ClientScreen(),
-        '/rent': (context) => RentScreen(),
+
         '/register': (context) => RegisterHouseScreen(),
         '/settings': (context) => SettingsScreen(),
         '/terms': (context) => TermsScreen(),

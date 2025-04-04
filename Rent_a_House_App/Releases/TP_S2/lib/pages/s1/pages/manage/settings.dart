@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rent_a_house/pages/s1/pages/manage/widgets/widgetfiles.dart';
 import 'package:rent_a_house/pages/s1/pages/home/navbar.dart';
 import 'package:rent_a_house/pages/s1/pages/manage/widgets/security.dart';
+import 'package:rent_a_house/pages/myapp.dart' as mainapp;
 
 double aspect = 1.0;
 
@@ -48,6 +49,16 @@ class _SettingsScreen extends State<SettingsScreen> {
               leading: Icon(Icons.electrical_services_rounded),
               controlAffinity: ListTileControlAffinity.leading,
               children: <Widget>[
+                ListTile(
+                  title: Text(
+                    'Funções - Descrição:',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                ),
                 ListTile(
                   leading: Icon(Icons.check),
                   title: Text(
@@ -110,30 +121,8 @@ class _SettingsScreen extends State<SettingsScreen> {
               trailing: Icon(Icons.arrow_forward_ios),
               leading: Icon(Icons.security),
               controlAffinity: ListTileControlAffinity.leading,
-              children: <Widget>[
-                TextButton(
-                  child: Text(
-                    "Habilitar Autenticação Biométrica",
-                    style: TextStyle(fontSize: 20 * aspect),
-                  ),
-                  onPressed: () => authenticate(),
-                ),
-              ],
-            ),
-            ListTile(
-              title: Text(
-                "Buscar MyHouses",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ), //
-              ), //
-              trailing: Icon(Icons.rss_feed),
-              leading: Icon(Icons.bluetooth_outlined),
-              onTap: () {
-                //
-              },
+
+              children: <Widget>[mySetHouse()],
             ),
             SizedBox(height: 12 * aspect),
             ExpansionTile(
@@ -206,5 +195,95 @@ class _SettingsScreen extends State<SettingsScreen> {
         ),
       ),
     );
+  }
+
+  Widget mySetHouse() {
+    return mainapp.logged == false
+        ? Column(
+          children: [
+            //Habilitar digital
+            ListTile(
+              title: Text(
+                "Habilitar Autenticação Biométrica",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ), //
+              ), //
+              trailing: Icon(Icons.rss_feed),
+              leading: Icon(Icons.fingerprint),
+              onTap: () => authenticate(),
+            ),
+            //Habilitar busca
+            ListTile(
+              title: Text(
+                "Buscar MyHouses",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ), //
+              ), //
+              trailing: Icon(Icons.rss_feed),
+              leading: Icon(Icons.bluetooth_outlined),
+              onTap: () {
+                //
+              },
+            ),
+            //Se for o dono da casa
+            mainapp.manager == false
+                ? Column(
+                  children: [
+                    ListTile(
+                      title: Text(
+                        "Gestor - Ativar MyHouse",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                        ), //
+                      ), //
+                      trailing: Icon(Icons.rss_feed),
+                      leading: Icon(Icons.bluetooth_outlined),
+                      onTap: () {
+                        //
+                      },
+                    ),
+                    ListTile(
+                      title: Text(
+                        "Gestor - Abrir MyHouse",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                        ), //
+                      ), //
+                      trailing: Icon(Icons.rss_feed),
+                      leading: Icon(Icons.bluetooth_outlined),
+                      onTap: () {
+                        //
+                      },
+                    ),
+                  ],
+                )
+                : ListTile(
+                  title: Text(
+                    "Acesso Usuário",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+          ],
+        )
+        : ListTile(
+          title: Text(
+            "Favor logar para Habilitar Serviços",
+            style: TextStyle(fontSize: 20 * aspect),
+          ),
+        );
   }
 }
