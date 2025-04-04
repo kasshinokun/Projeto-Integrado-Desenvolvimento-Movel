@@ -38,6 +38,12 @@
     - Adequação e globalização do CustomSearchDelegate
     - Criação de página para exibir os detalhes do item buscado dentro do sistema de busca
     - Adaptação Inicial para layout responsivo-adaptativo
+  
+  - Updates 1-04-04-2025 até 1.4-03-04-2025
+    - Continuação: Adequação e globalização do CustomSearchDelegate
+    - Adequação: página para exibir os detalhes do item buscado dentro do sistema de busca
+    - Continuação: Adaptação Inicial para layout responsivo-adaptativo
+    - Adequação: Configuração de Segurança baseada em estado de login (sem login, logado e gestor)
       
 #### Previas de desenvolvimento Sprint 2 - vídeos e imagens
 
@@ -53,6 +59,8 @@
 
   [Versão 1-03-04-2025](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S2/Update%201-03-04-2025.pdf)
   
+  [Versão 1.4-04-04-2025](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S2/Update%201.4-04-04-2025.pdf)
+
  ##### Layout area de casas alugadas MyHouses - Imagens
 
  Portrait Layout
