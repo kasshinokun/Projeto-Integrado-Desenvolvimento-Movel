@@ -38,19 +38,19 @@ class CustomSearchDelegate extends SearchDelegate<String> {
   String resultado = "";
   //final TextEditingController searchController;//teste retorno
 
-  CustomSearchDelegate({required this.hintText, 
+  CustomSearchDelegate({
+    required this.hintText,
     required this.listAddress,
-    //required this.searchController //teste retorno 
-    })
-    : super(
-        //searchFieldLabel: hintText, // Descomente em caso derro
-        keyboardType: TextInputType.text,
-        textInputAction: TextInputAction.search,
-        searchFieldStyle: TextStyle(
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
-        ),
-      );
+    //required this.searchController //teste retorno
+  }) : super(
+         //searchFieldLabel: hintText, // Descomente em caso derro
+         keyboardType: TextInputType.text,
+         textInputAction: TextInputAction.search,
+         searchFieldStyle: TextStyle(
+           color: Colors.black,
+           fontWeight: FontWeight.bold,
+         ),
+       );
   //coleta do valor selecionado
   ///* Em caso de erro, deixe este trecho comentado
   @override
@@ -86,7 +86,7 @@ class CustomSearchDelegate extends SearchDelegate<String> {
       // Saindo da tela de pesquisa
       //onPressed: () => Navigator.of(context).pop(),
       onPressed: () {
-        close(context, resultado);close(context, resultado); //retorno da busca //retorno da busca
+        close(context, resultado); //retorno da busca
       },
       icon: Icon(Icons.arrow_back),
     );
@@ -139,7 +139,7 @@ class CustomSearchDelegate extends SearchDelegate<String> {
             // Mostrar os resultados da pesquisa com base na sugestão selecionada.
             query = suggestionList[index];
 
-            //========> Teste de retorno 
+            //========> Teste de retorno
             //Exemplo-base: https://stackoverflow.com/questions/61048477/flutter-return-search-delegate-result-string-to-a-textfield
             //
             // Manipula o resultado da pesquisa selecionado.
@@ -151,10 +151,11 @@ class CustomSearchDelegate extends SearchDelegate<String> {
             //o índice e envia a um Scafold que
             //carregará todos os dados do imóvel
             //a ser alugado
-            Navigator.push(//=========> Futuramente, se possível,
-                           //=========> será enviado a página 
-                           //=========> especializada para tratar
-                           //=========> o resultado da busca 
+            Navigator.push(
+              //=========> Futuramente, se possível,
+              //=========> será enviado a página
+              //=========> especializada para tratar
+              //=========> o resultado da busca
               context,
               MaterialPageRoute(
                 builder:
