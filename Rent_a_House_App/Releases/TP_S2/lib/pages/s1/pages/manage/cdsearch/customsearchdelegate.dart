@@ -43,14 +43,14 @@ class CustomSearchDelegate extends SearchDelegate<String> {
     required this.listAddress,
     //required this.searchController //teste retorno
   }) : super(
-         //searchFieldLabel: hintText, // Descomente em caso derro
-         keyboardType: TextInputType.text,
-         textInputAction: TextInputAction.search,
-         searchFieldStyle: TextStyle(
-           color: Colors.black,
-           fontWeight: FontWeight.bold,
-         ),
-       );
+          //searchFieldLabel: hintText, // Descomente em caso derro
+          keyboardType: TextInputType.text,
+          textInputAction: TextInputAction.search,
+          searchFieldStyle: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        );
   //coleta do valor selecionado
   ///* Em caso de erro, deixe este trecho comentado
   @override
@@ -86,6 +86,9 @@ class CustomSearchDelegate extends SearchDelegate<String> {
       // Saindo da tela de pesquisa
       //onPressed: () => Navigator.of(context).pop(),
       onPressed: () {
+        //este trecho estava repetido na versão 1.4-04-04-2025
+        //e pode ser a causa da tela vermelha ao sair da busca
+        //(pois somente este processo gerencia a saída da busca)
         close(context, resultado); //retorno da busca
       },
       icon: Icon(Icons.arrow_back),
@@ -95,14 +98,13 @@ class CustomSearchDelegate extends SearchDelegate<String> {
   @override
   Widget buildResults(BuildContext context) {
     // Construindo o sistema de busca de resultados.
-    final List<String> matchQuery =
-        query.isEmpty
-            ? []
-            : listAddress
-                .where(
-                  (item) => item.toLowerCase().contains(query.toLowerCase()),
-                )
-                .toList();
+    final List<String> matchQuery = query.isEmpty
+        ? []
+        : listAddress
+            .where(
+              (item) => item.toLowerCase().contains(query.toLowerCase()),
+            )
+            .toList();
     return ListView.builder(
       itemCount: matchQuery.length,
       itemBuilder: (context, index) {
@@ -122,14 +124,13 @@ class CustomSearchDelegate extends SearchDelegate<String> {
   @override
   Widget buildSuggestions(BuildContext context) {
     // Construindo o sistema de busca de sugestões.
-    final List<String> suggestionList =
-        query.isEmpty
-            ? []
-            : listAddress
-                .where(
-                  (item) => item.toLowerCase().contains(query.toLowerCase()),
-                )
-                .toList();
+    final List<String> suggestionList = query.isEmpty
+        ? []
+        : listAddress
+            .where(
+              (item) => item.toLowerCase().contains(query.toLowerCase()),
+            )
+            .toList();
     return ListView.builder(
       itemCount: suggestionList.length,
       itemBuilder: (context, index) {
@@ -158,12 +159,11 @@ class CustomSearchDelegate extends SearchDelegate<String> {
               //=========> o resultado da busca
               context,
               MaterialPageRoute(
-                builder:
-                    (context) => RentScreen(
-                      title: 'Busca - Imovel',
-                      index: index,
-                      query: query,
-                    ),
+                builder: (context) => RentScreen(
+                  title: 'Busca - Imovel',
+                  index: index,
+                  query: query,
+                ),
                 //builder: (context) => myScaffold(context, index, query),
               ),
             );

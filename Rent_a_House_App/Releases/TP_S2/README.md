@@ -85,4 +85,6 @@
    
    Overflow de widgets(falhas em estudo) e sem retorno de função(apenas não está implementado).
 
-  
+ - Versão 1-04-04-2025 e micro-atualizações
+   
+   Tela vermelha ao finalizar a pesquisa e tentar voltar a página inicial 
