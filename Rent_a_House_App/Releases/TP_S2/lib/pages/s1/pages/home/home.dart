@@ -227,7 +227,7 @@ class _HomeScreen extends State<HomeScreen> {
     return Container(
       height:
           MediaQuery.of(context).orientation == Orientation.portrait
-              ? MediaQuery.of(context).size.height / 1.95
+              ? MediaQuery.of(context).size.height / 1.8
               : MediaQuery.of(context).size.height / 1.45,
       width:
           MediaQuery.of(context).orientation == Orientation.portrait
@@ -270,6 +270,10 @@ class _HomeScreen extends State<HomeScreen> {
           borderRadius: BorderRadius.circular(9.0),
           //color: Colors.pink,
         ),
+        height:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? MediaQuery.of(context).size.height / 1.9
+                : MediaQuery.of(context).size.height / 1.45,
         width:
             MediaQuery.of(context).orientation == Orientation.portrait
                 ? MediaQuery.of(context).size.width
@@ -325,12 +329,12 @@ class _HomeScreen extends State<HomeScreen> {
           fit: BoxFit.cover,
           height:
               MediaQuery.of(context).orientation == Orientation.portrait
-                  ? MediaQuery.of(context).size.height / 2.6
-                  : MediaQuery.of(context).size.height / 1.65,
+                  ? MediaQuery.of(context).size.height / 2.9
+                  : MediaQuery.of(context).size.height / 1.55,
           width:
               MediaQuery.of(context).orientation == Orientation.portrait
                   ? MediaQuery.of(context).size.width
-                  : MediaQuery.of(context).size.width / 2,
+                  : MediaQuery.of(context).size.width / 2.2,
         ),
       ),
 

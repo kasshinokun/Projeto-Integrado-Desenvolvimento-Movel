@@ -175,7 +175,7 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
                 children: [
                   //Carousel de imagens
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(4.0),
                     child: myContainer(myInit()),
                   ),
 
@@ -204,7 +204,7 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
           MediaQuery.of(context).orientation == Orientation.portrait
               //If ternario nos filhos do container
               ? MediaQuery.of(context).size.height / 2.7
-              : MediaQuery.of(context).size.height / 2.1,
+              : MediaQuery.of(context).size.height / 1.35,
       width:
           MediaQuery.of(context).orientation == Orientation.portrait
               //If ternario nos filhos do container
