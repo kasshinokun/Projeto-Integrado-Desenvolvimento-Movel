@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 //import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:rent_a_house/pages/s1/pages/home/navbar.dart';
 import 'package:rent_a_house/pages/s1/pages/manage/cdsearch/customsearchdelegate.dart';
+import 'package:rent_a_house/pages/s1/pages/manage/renthouse.dart';
 //import 'dart:async';
 
 List<String> lastVisualizationsAddress = [
@@ -103,7 +104,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreen extends State<HomeScreen> {
-  //final TextEditingController searchController = TextEditingController();
+  final TextEditingController searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -194,9 +195,7 @@ class _HomeScreen extends State<HomeScreen> {
         padding: EdgeInsets.all(8.0),
         child: ElevatedButton.icon(
           label: Text(
-            MediaQuery.of(context).orientation == Orientation.portrait
-                ? "Pesquisar"
-                : "Clique para pesquisar",
+            "Pesquisar",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -210,10 +209,10 @@ class _HomeScreen extends State<HomeScreen> {
               delegate: CustomSearchDelegate(
                 hintText: 'Buscar endereços', //texto dica do TextField
                 listAddress: addressItens, //envia a lista de endereços
-                //searchController: searchController //teste para retorno
+                //searchController: searchController, //teste para retorno
               ),
             );
-            //print(searchController); //Exibir retorno no terminal
+            //print(searchController.text); //Exibir retorno no terminal
           },
           icon: Icon(Icons.search),
           iconAlignment: IconAlignment.end,
@@ -228,8 +227,8 @@ class _HomeScreen extends State<HomeScreen> {
     return Container(
       height:
           MediaQuery.of(context).orientation == Orientation.portrait
-              ? MediaQuery.of(context).size.height / 2.2
-              : MediaQuery.of(context).size.height / 1.1,
+              ? MediaQuery.of(context).size.height / 1.95
+              : MediaQuery.of(context).size.height / 1.45,
       width:
           MediaQuery.of(context).orientation == Orientation.portrait
               ? MediaQuery.of(context).size.width
@@ -271,23 +270,29 @@ class _HomeScreen extends State<HomeScreen> {
           borderRadius: BorderRadius.circular(9.0),
           //color: Colors.pink,
         ),
-        height:
-            MediaQuery.of(context).orientation == Orientation.portrait
-                ? MediaQuery.of(context).size.height / 2.3
-                : MediaQuery.of(context).size.height / 1.2,
         width:
             MediaQuery.of(context).orientation == Orientation.portrait
                 ? MediaQuery.of(context).size.width
                 : MediaQuery.of(context).size.width / 2.1,
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(4.0),
-              child: myImageLast(images[index]),
-            ),
-            myPaddingText(address[index], Colors.white),
-          ],
-        ),
+        child:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(4.0),
+                      child: myImageLast(images[index]),
+                    ),
+                    myPaddingText(address[index], Colors.white),
+                  ],
+                )
+                : Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(4.0),
+                      child: myImageLast(images[index]),
+                    ),
+                  ],
+                ),
       ),
     ); // List.generate
   }
@@ -318,14 +323,30 @@ class _HomeScreen extends State<HomeScreen> {
         child: Image.network(
           url,
           fit: BoxFit.cover,
+          height:
+              MediaQuery.of(context).orientation == Orientation.portrait
+                  ? MediaQuery.of(context).size.height / 2.6
+                  : MediaQuery.of(context).size.height / 1.65,
           width:
               MediaQuery.of(context).orientation == Orientation.portrait
                   ? MediaQuery.of(context).size.width
                   : MediaQuery.of(context).size.width / 2,
         ),
       ),
-      onTap: () => getPage(url),
+
+      onTap:
+          () => getPage(
+            "Ultimas Visualizações",
+            url,
+            lastVisualizationsAddress[lastVisualizationsItems.indexOf(url)],
+          ),
     );
+  }
+
+  int searchValue() {
+    int value = 0;
+
+    return value;
   }
 
   Widget myPaddingText(String information, Color cor) {
@@ -335,7 +356,7 @@ class _HomeScreen extends State<HomeScreen> {
         width:
             MediaQuery.of(context).orientation == Orientation.portrait
                 ? MediaQuery.of(context).size.width
-                : MediaQuery.of(context).size.width / 2,
+                : MediaQuery.of(context).size.width / 2.2,
         decoration: BoxDecoration(
           color: cor,
           borderRadius: BorderRadius.circular(9.0),
@@ -369,7 +390,11 @@ class _HomeScreen extends State<HomeScreen> {
   }
 
   Widget myImage(String url) {
-    return InkWell(child: myClipRect(url), onTap: () => getPage(url));
+    return InkWell(
+      child: myClipRect(url),
+      onTap:
+          () => getPage("Alugar", url, addressItens[imagesItems.indexOf(url)]),
+    );
   }
 
   Widget myContainer(Widget children, Color cor) {
@@ -378,12 +403,12 @@ class _HomeScreen extends State<HomeScreen> {
       child: Container(
         height:
             MediaQuery.of(context).orientation == Orientation.portrait
-                ? MediaQuery.of(context).size.height / 2.1
+                ? MediaQuery.of(context).size.height / 1.95
                 : MediaQuery.of(context).size.height / 1.45,
         width:
             MediaQuery.of(context).orientation == Orientation.portrait
                 ? MediaQuery.of(context).size.width
-                : MediaQuery.of(context).size.width / 2.05,
+                : MediaQuery.of(context).size.width / 2.2,
         decoration: BoxDecoration(
           color: cor,
           borderRadius: BorderRadius.circular(10),
@@ -411,74 +436,12 @@ class _HomeScreen extends State<HomeScreen> {
     );
   }
 
-  Future<dynamic> getPage(String url) {
+  Future<dynamic> getPage(String title, String url, String address) {
     return Navigator.of(context).push(
       MaterialPageRoute(
         builder:
-            (context) => Scaffold(
-              extendBody: true,
-              body: GestureDetector(
-                onTap: () => Navigator.of(context).pop(),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [Image.network(url, fit: BoxFit.cover)],
-                  ),
-                ),
-              ),
-            ),
+            (context) => RentScreen(title: title, url: url, query: address),
       ),
     );
   }
 }
-/*
-
-ListView(
-  children: List.generate(
-    imagesItems.length,
-    (index) => myColumnImage(
-      myImage(imagesItems[index]),
-      addressItens[index],
-      Colors.pinkAccent,
-    ),
-  ),
-),
-
-
-
-
-myPaddingText(
-                        "Ultimas Visualizações",
-                        Colors.greenAccent,
-                      ),
-                      myCarousel(),
-                      myPaddingText("Destaques", Colors.greenAccent),
-                      myColumnImage(
-                        myImage(imagesItems[0]),
-                        addressItens[0],
-                        Colors.pink,
-                      ),
-                      myColumnImage(
-                        myImage(imagesItems[1]),
-                        addressItens[1],
-                        Colors.cyan,
-                      ),
-                      myColumnImage(
-                        myImage(imagesItems[2]),
-                        addressItens[2],
-                        Colors.yellow,
-                      ),
-                      myColumnImage(
-                        myImage(imagesItems[3]),
-                        addressItens[3],
-                        Colors.blue,
-                      ),
-                      myColumnImage(
-                        myImage(imagesItems[4]),
-                        addressItens[4],
-                        Colors.white,
-                      ),
-                      myColumnImage(
-                        myImage(imagesItems[5]),
-                        addressItens[5],
-                        Colors.greenAccent,
-                      ), */

@@ -76,8 +76,26 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
       TextEditingController(); //recebe o nome
   final TextEditingController _priceController =
       TextEditingController(); //recebe o valor
+  final TextEditingController _cepController =
+      TextEditingController(); //recebe o cep
+  final TextEditingController _addressController =
+      TextEditingController(); //recebe o endereço inicial via api
+  final TextEditingController _complementHouseController =
+      TextEditingController(); //recebe o complemento
+  final TextEditingController _numberHouseController =
+      TextEditingController(); //recebe o numero
+  /*
+  final TextEditingController _numberRoomsController=
+      TextEditingController(); //recebe o numero de quartos
+  final TextEditingController _numberBathroomController=
+      TextEditingController(); //recebe o numero de banheiros
+  final TextEditingController _sizeHouseController =
+      TextEditingController(); //recebe o tamanho da casa
+  */
+
   final TextEditingController _descriptionController =
       TextEditingController(); //recebe a descrição
+
   String _selectedtype = "casa"; //tipo padrão
   bool _showlist = false; //controle da exibição dos imoveis adicionados
 
@@ -91,6 +109,15 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
         houseslist.add({
           "name": _nameController.text,
           "price": _priceController.text,
+          "zipcode": _cepController.text,
+          "address": _addressController.text,
+          "complement": _complementHouseController.text,
+          "number house": _numberHouseController.text,
+          /*
+          "rooms": _numberRoomsController.text,
+          "bathrooms": _numberBathroomController.text,
+          "size": sizeHouseController.text,
+          */
           "description": _descriptionController.text,
           "type": _selectedtype,
         });
@@ -98,6 +125,15 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
         //limpa as variaveis após o cadastro estar feito
         _nameController.clear();
         _priceController.clear();
+        _cepController.clear();
+        _addressController.clear();
+        _complementHouseController.clear();
+        _numberHouseController.clear();
+        /*
+        _numberRoomsController.clear();
+        _numberBathroomController.clear();
+        _sizeHouseController.clear();
+        */
         _descriptionController.clear();
         _selectedtype = "casa";
       });
@@ -120,172 +156,349 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
               ),
         ), // Fim do Icone Home
       ), // Fim do AppBar
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(color: Colors.white),
-        child: Column(
-          children: [
-            //------------------------------------> Container igual o anterior
-            Column(
-              children: [
-                myCarouselSlider(MediaQuery.of(context).size.height * 0.45),
-                //myImageTest( MediaQuery.of(context).size.height, MediaQuery.of(context).size.width),
-              ],
-            ),
-            //Local para preencher as informações do registro
-            Expanded(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.all(14),
+      body:
+          MediaQuery.of(context).size.width < 600
+              //If ternario nos filhos do container
+              ? SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                padding: EdgeInsets.all(8.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    //preencher o nome
-                    Text("Nome:"),
-                    TextField(
-                      controller: _nameController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        hintText: "digite o nome",
-                      ),
-                    ),
+                  children: <Widget>[
+                    //Carousel de imagens
+                    myContainer(myInit()),
 
-                    //preencher o preço
-                    SizedBox(height: 12),
-                    Text("Preço:"),
-                    TextField(
-                      controller: _priceController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        hintText: "Digite o preço do aluguel",
-                      ),
-                    ),
-
-                    //preencher a descrição
-                    SizedBox(height: 12),
-                    Text("Descrição:"),
-                    TextField(
-                      controller: _descriptionController,
-                      maxLines: 5,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        hintText: "Descreva brevemente seu imovel",
-                      ),
-                    ),
-
-                    //selecionar o tipo
-                    SizedBox(height: 12),
-                    Text("Tipo do Imóvel:"),
-                    DropdownButton<String>(
-                      value: _selectedtype,
-                      items:
-                          [
-                                "casa",
-                                "apartamento",
-                                "kitnet",
-                                "sítio",
-                                "pousada",
-                                "outros",
-                              ]
-                              .map(
-                                (String tipo) => DropdownMenuItem<String>(
-                                  value: tipo,
-                                  child: Text(tipo),
-                                ),
-                              )
-                              .toList(),
-                      onChanged: (String? novoTipo) {
-                        setState(() {
-                          //atualiza a tela quando a pessoa escolhe o tipo
-                          _selectedtype =
-                              novoTipo!; //atualiza a variavel quando o valor é diferente de null
-                        });
-                      },
-                    ),
-
-                    //botão para concluir o cadastro
-                    SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: _houseregister,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                        foregroundColor: Colors.black,
-                      ),
-                      child: Text("Cadastrar Imovel"),
-                    ),
-
-                    //botão para mostrar/esconder os imoveis
-                    SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          _showlist = !_showlist;
-                        });
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                        foregroundColor: Colors.black,
-                      ),
-                      child: Text(
-                        _showlist ? "Esconder imóveis" : "Mostrar imóveis",
-                      ),
-                    ),
-
-                    //Mostrar os imóveis cadastrados
-                    SizedBox(height: 20),
-                    if (_showlist)
-                      Column(
-                        children:
-                            houseslist.map((house) {
-                              return Card(
-                                child: ListTile(
-                                  title: Text((house["name"] ?? "Sem nome")),
-                                  subtitle: Text(
-                                    "Tipo de Imóvel: ${house['type']} \nPreço: R\$ ${house['price']}\nDescrição: ${house['description']}",
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                      ),
+                    myListForm(), //Demais detalhes
                   ],
                 ),
-              ),
-            ),
-          ],
-          /*//----------------------------------------------> Container
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+              )
+              : Row(
+                children: [
+                  //Carousel de imagens
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: myContainer(myInit()),
+                  ),
 
-          decoration: BoxDecoration(
-            //--------------------------> BoxDecoration
-            image: DecorationImage(
-              //-------------------------> DecorationImage
-              fit: BoxFit.fill,
-              //Usarei futuramente uma função para definir a imagem
-              image: AssetImage(
-                //-------------------------> AssetImage
-                getPathImageHome(
-                  MediaQuery.of(context).size.height,
-                  MediaQuery.of(context).size.width,
-                ),
-              ), // Fim do AssetImage
-            ), // Fim do DecorationImage
-          ), // Fim do BoxDecoration
-          //=============================================> Fim do Itens na Tela
-          //Adicione mais Widgets aqui neste espaço
-          //=============================================>
-          */
-        ), //
-      ), // Fim do Container
+                  Padding(
+                    padding: EdgeInsets.all(6.0),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 2.2,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(9.0),
+                      ),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Column(children: <Widget>[myListForm()]),
+                      ),
+                    ),
+                  ),
+                ],
+              ), // Fim da Row
     ); // Fim do Scaffold
   } // Fim do retorno
+
+  Widget myContainer(Widget children) {
+    return Container(
+      height:
+          MediaQuery.of(context).orientation == Orientation.portrait
+              //If ternario nos filhos do container
+              ? MediaQuery.of(context).size.height / 2.7
+              : MediaQuery.of(context).size.height / 2.1,
+      width:
+          MediaQuery.of(context).orientation == Orientation.portrait
+              //If ternario nos filhos do container
+              ? MediaQuery.of(context).size.width
+              : MediaQuery.of(context).size.width / 1.95,
+      decoration: BoxDecoration(
+        color: Colors.pinkAccent,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Padding(padding: EdgeInsets.all(4.0), child: children),
+    );
+  }
+
+  Widget myInit() {
+    return Column(
+      children: [
+        myCarouselSlider(),
+        //myImageTest( MediaQuery.of(context).size.height, MediaQuery.of(context).size.width),
+        IconButton(
+          icon: Icon(Icons.upload_file_rounded, color: Colors.cyan[700]),
+          onPressed: () {
+            // Ação para anexar arquivo (não implementada)
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  "Funcionalidade de anexar arquivo (não desenvolvida)",
+                ),
+              ),
+            );
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget myPaddingText(String information, Color cor) {
+    return Padding(
+      padding: EdgeInsets.all(4.0),
+      child: Container(
+        width:
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? MediaQuery.of(context).size.width
+                : MediaQuery.of(context).size.width / 2.2,
+        decoration: BoxDecoration(
+          color: cor,
+          borderRadius: BorderRadius.circular(9.0),
+        ), //
+        child: Padding(
+          padding: EdgeInsets.all(4.0),
+          child: Center(
+            child: Text(
+              information,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+                fontSize: 20.0,
+              ), //
+            ), //
+          ), //
+        ),
+      ), //
+    );
+  }
+
+  Widget myListForm() {
+    return ListView(
+      padding: EdgeInsets.all(8.0),
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      scrollDirection: Axis.vertical,
+      children: [
+        myPaddingText("Dados do imovel", Colors.greenAccent),
+        //preencher o nome
+        Text("Nome:"),
+        TextField(
+          controller: _nameController,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+            hintText: "digite o nome",
+          ),
+        ),
+
+        //preencher o preço
+        Divider(),
+        Text("Preço:"),
+        TextField(
+          controller: _priceController,
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+            hintText: "Digite o preço do aluguel",
+          ),
+        ),
+
+        //preencher a descrição
+        Divider(),
+        Text("Descrição:"),
+        TextField(
+          controller: _descriptionController,
+          maxLines: MediaQuery.of(context).size.width < 600 ? 5 : 10,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            hintText: "Descreva brevemente seu imovel",
+          ),
+        ),
+        //preencher o cep
+        Divider(),
+        Text("CEP do imovel:"),
+        Divider(),
+        TextField(
+          controller: _cepController,
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            hintText: "digite o cep",
+          ),
+        ),
+        //exibe o endereço a partir do cep
+        Divider(),
+        Text("Endereço:"),
+        TextField(
+          controller: _addressController,
+          maxLines: MediaQuery.of(context).size.width < 600 ? 2 : 4,
+          readOnly: true,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            hintText: "Endereço do imovel",
+          ),
+        ),
+        MediaQuery.of(context).size.width < 600
+            ? Row(
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 4.0,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      //preencher o numero do imovel
+                      Text("Numero do imovel:"),
+                      TextField(
+                        controller: _numberHouseController,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          hintText: "nº do imovel",
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.75,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        //preencher a descrição
+                        Text("Complemento:"),
+                        TextField(
+                          controller: _complementHouseController,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            hintText: "digite o complemento",
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            )
+            : Column(
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 4.0,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      //preencher o numero do imovel
+                      Text("Numero do imovel:"),
+                      TextField(
+                        controller: _numberHouseController,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          hintText: "nº do imovel",
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.75,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        //preencher a descrição
+                        Text("Complemento:"),
+                        TextField(
+                          controller: _complementHouseController,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            hintText: "digite o complemento",
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+        //selecionar o tipo
+        Divider(),
+        Text("Tipo do Imóvel:"),
+        DropdownButton<String>(
+          value: _selectedtype,
+          items:
+              ["casa", "apartamento", "kitnet", "sítio", "pousada", "outros"]
+                  .map(
+                    (String tipo) => DropdownMenuItem<String>(
+                      value: tipo,
+                      child: Text(tipo),
+                    ),
+                  )
+                  .toList(),
+          onChanged: (String? novoTipo) {
+            setState(() {
+              //atualiza a tela quando a pessoa escolhe o tipo
+              _selectedtype =
+                  novoTipo!; //atualiza a variavel quando o valor é diferente de null
+            });
+          },
+        ),
+
+        //botão para concluir o cadastro
+        SizedBox(height: 20),
+        ElevatedButton(
+          onPressed: _houseregister,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.green,
+            foregroundColor: Colors.black,
+          ),
+          child: Text("Cadastrar Imovel"),
+        ),
+
+        //botão para mostrar/esconder os imoveis
+        SizedBox(height: 20),
+        ElevatedButton(
+          onPressed: () {
+            setState(() {
+              _showlist = !_showlist;
+            });
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.green,
+            foregroundColor: Colors.black,
+          ),
+          child: Text(_showlist ? "Esconder imóveis" : "Mostrar imóveis"),
+        ),
+
+        //Mostrar os imóveis cadastrados
+        SizedBox(height: 20),
+        if (_showlist)
+          Column(
+            children:
+                houseslist.map((house) {
+                  return Card(
+                    child: ListTile(
+                      title: Text((house["name"] ?? "Sem nome")),
+                      subtitle: Text("""Tipo de Imóvel: ${house['type']} 
+                                    \nPreço: R\$ ${house['price']}
+                                    \nCEP: ${house['zipcode']} 
+                                    \nEndereço: ${house['address']} 
+                                    \nComplento ${house['complement']} 
+                                    \nNumero: ${house['number house']}        
+                                    \nDescrição: ${house['description']}"""),
+                    ),
+                  );
+                }).toList(),
+          ),
+      ],
+    );
+  }
 
   List<Widget> generateListImages(List<String> images) {
     return List.generate(
@@ -331,14 +544,12 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
     );
   }
 
-  Widget myCarouselSlider(double childHeight) {
+  Widget myCarouselSlider() {
     return CarouselSlider(
       items: generateListImages(imagesList),
 
       //Slider Container properties
       options: CarouselOptions(
-        height: childHeight,
-
         //enlargeCenterPage: true,
         enlargeCenterPage: false,
         autoPlay: false,

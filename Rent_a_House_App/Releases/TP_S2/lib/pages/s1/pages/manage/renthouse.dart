@@ -48,7 +48,7 @@ class HomeScreenApp extends StatelessWidget {
         '/':
             (context) => RentScreen(
               title: "Teste",
-              index: 1,
+              url: imagesItems[0],
               query: "Rua Bendita da Silva, 1500, Caldas Novas - Minas Gerais",
             ), //Página Inicial
       },
@@ -62,12 +62,12 @@ class HomeScreenApp extends StatelessWidget {
 
 class RentScreen extends StatefulWidget {
   final String query;
-  final int index;
+  final String url;
   final String title;
   const RentScreen({
     super.key,
     required this.title,
-    required this.index,
+    required this.url,
     required this.query,
   }) : super();
 
@@ -103,7 +103,7 @@ class _RentScreen extends State<RentScreen> {
                       child: Column(
                         children: [
                           myPaddingText(widget.query, Colors.pink),
-                          myContainerSearch(widget.index),
+                          myContainerSearch(widget.url),
                           myPaddingText("Detalhes", Colors.pink),
                           myCarousel(),
                           detailsHouseClip(),
@@ -113,7 +113,7 @@ class _RentScreen extends State<RentScreen> {
                   )
                   : Row(
                     children: [
-                      myContainerSearch(widget.index),
+                      myContainerSearch(widget.url),
                       SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: Column(
@@ -189,23 +189,23 @@ class _RentScreen extends State<RentScreen> {
               MediaQuery.of(context).orientation == Orientation.portrait
                   ? MediaQuery.of(context).size.width
                   : MediaQuery.of(context).size.width / 2.4,
-          child: myImageSearch(index),
+          child: myImageSearch(images[index]),
         ), //
       ), //
     ); // List.generate
   }
 
   //
-  Widget myContainerSearch(int index) {
+  Widget myContainerSearch(String url) {
     return Padding(
       padding: EdgeInsets.all(4.0),
       child: Container(
         height:
             MediaQuery.of(context).orientation == Orientation.portrait
-                ? MediaQuery.of(context).size.height / 2.1
+                ? MediaQuery.of(context).size.height / 2.05
                 : MediaQuery.of(context).size.height / 1.45,
         color: Colors.pink.shade50,
-        child: Column(children: [myImageSearch(index)]),
+        child: Column(children: [myImageSearch(url)]),
       ),
     );
   }
@@ -239,14 +239,14 @@ class _RentScreen extends State<RentScreen> {
     );
   }
 
-  Widget myImageSearch(int index) {
+  Widget myImageSearch(String url) {
     return Padding(
       padding: EdgeInsets.all(8.0),
       child: InkWell(
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Image.network(
-            imagesItems[index],
+            url,
             fit: BoxFit.cover,
             height:
                 MediaQuery.of(context).orientation == Orientation.portrait
@@ -268,12 +268,7 @@ class _RentScreen extends State<RentScreen> {
                         onTap: () => Navigator.of(context).pop(),
                         child: SingleChildScrollView(
                           child: Column(
-                            children: [
-                              Image.network(
-                                imagesItems[index],
-                                fit: BoxFit.cover,
-                              ),
-                            ],
+                            children: [Image.network(url, fit: BoxFit.cover)],
                           ),
                         ),
                       ),
