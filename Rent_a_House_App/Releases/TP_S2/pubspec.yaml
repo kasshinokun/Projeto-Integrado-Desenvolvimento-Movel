@@ -53,6 +53,9 @@ dependencies:
   english_words: ^4.0.0
   flutter_local_notifications: ^19.0.0
   flutter_screenutil: ^5.9.3
+  postal_code: ^0.0.4
+  world_zipcode_validator: ^0.0.2
+  search_cep: ^4.0.2
   #============>
 dev_dependencies:
   flutter_test:

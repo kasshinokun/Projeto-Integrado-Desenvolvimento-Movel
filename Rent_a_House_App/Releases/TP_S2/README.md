@@ -39,12 +39,20 @@
     - Criação de página para exibir os detalhes do item buscado dentro do sistema de busca
     - Adaptação Inicial para layout responsivo-adaptativo
   
-  - Updates 1-04-04-2025 até 1.4-03-04-2025
+  - Updates 1-04-04-2025 até 1.4-04-04-2025
     - Continuação: Adequação e globalização do CustomSearchDelegate
     - Adequação: página para exibir os detalhes do item buscado dentro do sistema de busca
     - Continuação: Adaptação Inicial para layout responsivo-adaptativo
     - Adequação: Configuração de Segurança baseada em estado de login (sem login, logado e gestor)
-      
+  
+  - Updates 1-05-04-2025 e 1.2-05-04-2025
+    - Continuação: Adequação e globalização da Página RentScreen
+    - Adequação: página de registro para receber resultados da API de CEP
+    - Continuação: Adaptação Inicial para layout responsivo-adaptativo
+    - Correção: Tela vermelha ao sair da busca para a página inicial
+    - Pequenos ajustes baseados em dispositivo físico
+    - Bibliotecas de CEP adicionadas ao ```pubspec.yaml```
+
 #### Previas de desenvolvimento Sprint 2 - vídeos e imagens
 
  [Versão 1-26-03-2025 Teste layout adaptativo](https://www.youtube.com/watch?v=TkVjUKvodDA&list=PLBiA8fTn3ssumAiK2gg7J8_bXRNuP2DKf)
