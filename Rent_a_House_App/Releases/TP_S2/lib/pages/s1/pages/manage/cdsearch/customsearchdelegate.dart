@@ -86,7 +86,7 @@ class CustomSearchDelegate extends SearchDelegate<String> {
       // Saindo da tela de pesquisa
       //onPressed: () => Navigator.of(context).pop(),
       onPressed: () {
-        close(context, resultado);close(context, resultado); //retorno da busca //retorno da busca
+        close(context, resultado); //retorno da busca //retorno da busca
       },
       icon: Icon(Icons.arrow_back),
     );
