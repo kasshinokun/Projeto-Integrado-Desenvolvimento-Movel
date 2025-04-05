@@ -43,7 +43,7 @@ class CustomSearchDelegate extends SearchDelegate<String> {
     //required this.searchController //teste retorno 
     })
     : super(
-        //searchFieldLabel: hintText, // Descomente em caso derro
+        //searchFieldLabel: hintText, // Descomente em caso de erro
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.search,
         searchFieldStyle: TextStyle(
@@ -86,7 +86,10 @@ class CustomSearchDelegate extends SearchDelegate<String> {
       // Saindo da tela de pesquisa
       //onPressed: () => Navigator.of(context).pop(),
       onPressed: () {
-        close(context, resultado); //retorno da busca //retorno da busca
+        //este trecho estava repetido na versão 1.4-04-04-2025
+        //e pode ser a causa da tela vermelha ao sair da busca 
+        //(pois somente este processo gerencia a saída da busca)
+        close(context, resultado); //retorno da busca
       },
       icon: Icon(Icons.arrow_back),
     );
