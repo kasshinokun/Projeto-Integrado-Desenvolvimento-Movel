@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rent_a_house/pages/s1/pages/home/navbar.dart';
 import 'package:rent_a_house/pages/s1/pages/Home/home.dart' as sone;
 
@@ -8,6 +9,7 @@ void main() {
 
 class ChatApp extends StatelessWidget {
   const ChatApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,10 +22,10 @@ class ChatApp extends StatelessWidget {
           secondary: Colors.orange,
         ),
       ),
-      initialRoute: '/chat', //Rotas
+      initialRoute: '/chat',
       routes: {
-        '/chat': (context) => ChatScreen(), //Aplicação de chat
-        '/': (context) => sone.HomeScreen(), //Página Inicial
+        '/chat': (context) => ChatScreen(),
+        '/': (context) => sone.HomeScreen(),
       },
     );
   }
@@ -41,6 +43,39 @@ class _ChatScreen extends State<ChatScreen> {
   final List<ChatMessage> _messages = [];
   bool _isLocatario = true;
 
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  void _initNotifications() async {
+    const androidInit = AndroidInitializationSettings('@mipmap/ic_launcher');
+    const initSettings = InitializationSettings(android: androidInit);
+    await flutterLocalNotificationsPlugin.initialize(initSettings);
+  }
+
+  void _showNotification(String title, String body) async {
+    const androidDetails = AndroidNotificationDetails(
+      'chat_channel',
+      'Chat Notifications',
+      importance: Importance.high,
+      priority: Priority.high,
+    );
+
+    const platformDetails = NotificationDetails(android: androidDetails);
+
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      title,
+      body,
+      platformDetails,
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initNotifications();
+  }
+
   void _sendMessage() {
     if (_messageController.text.trim().isEmpty) return;
 
@@ -57,16 +92,18 @@ class _ChatScreen extends State<ChatScreen> {
   }
 
   void _simulateReply() {
+    final reply = _isLocatario ? "Resposta do inquilino" : "Resposta do locatário";
     setState(() {
       _messages.add(
         ChatMessage(
-          text:
-              _isLocatario ? "Resposta do inquilino" : "Resposta do locatário",
+          text: reply,
           isSentByLocatario: !_isLocatario,
           timestamp: DateTime.now(),
         ),
       );
     });
+
+    _showNotification('Nova mensagem', reply);
   }
 
   @override
@@ -74,17 +111,14 @@ class _ChatScreen extends State<ChatScreen> {
     return Scaffold(
       drawer: Navbar(),
       appBar: AppBar(
-        //------------------------------------> AppBar
         backgroundColor: Colors.cyan[700],
         title: Text("Chat Simulator", style: TextStyle(color: Colors.white)),
-
         leading: Builder(
-          builder:
-              (context) => IconButton(
-                icon: Icon(Icons.person_2_rounded),
-                onPressed: () => Scaffold.of(context).openDrawer(),
-              ),
-        ), // Fim do Icone Home
+          builder: (context) => IconButton(
+            icon: Icon(Icons.person_2_rounded),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
+        ),
         actions: [
           Row(
             children: [
@@ -124,12 +158,9 @@ class _ChatScreen extends State<ChatScreen> {
                 IconButton(
                   icon: Icon(Icons.attach_file, color: Colors.cyan[700]),
                   onPressed: () {
-                    // Ação para anexar arquivo (não implementada)
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text(
-                          "Funcionalidade de anexar arquivo (não desenvolvida)",
-                        ),
+                        content: Text("Funcionalidade de anexar arquivo (não desenvolvida)"),
                       ),
                     );
                   },
