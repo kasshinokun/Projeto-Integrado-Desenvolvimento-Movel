@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rent_a_house/pages/s1/pages/home/navbar.dart';
-import 'package:rent_a_house/pages/s1/pages/welcome/welcome.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:rent_a_house/pages/cep/viacep.dart';
 
@@ -53,23 +52,6 @@ class RegisterHouseScreen extends StatefulWidget {
 
   @override
   State<RegisterHouseScreen> createState() => _RegisterHouseScreen();
-}
-
-Widget myImageTest(double childHeight, double childWidth) {
-  return Padding(
-    padding: EdgeInsets.all(16.0),
-    child: Container(
-      height: childHeight * 0.4,
-      width: childWidth * 0.8,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        image: DecorationImage(
-          image: AssetImage(getPathImageHome(childHeight, childWidth)),
-          fit: BoxFit.cover, //ajusta a imagem no container
-        ),
-      ),
-    ),
-  );
 }
 
 class _RegisterHouseScreen extends State<RegisterHouseScreen> {
@@ -223,7 +205,6 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
     return Column(
       children: [
         myCarouselSlider(),
-        //myImageTest( MediaQuery.of(context).size.height, MediaQuery.of(context).size.width),
         IconButton(
           icon: Icon(Icons.upload_file_rounded, color: Colors.cyan[700]),
           onPressed: () {
@@ -313,9 +294,6 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
         ),
         //preencher o cep
         Divider(),
-        Text("CEP do imovel:"),
-        Divider(),
-        Container(width: 250.0, height: 50.0, color: Colors.amber),
         MediaQuery.of(context).size.width < 600
             ? Row(
               children: [
@@ -409,6 +387,30 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
                 ),
               ],
             ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            //preencher o numero do imovel
+            Text("CEP do imovel:"),
+            TextField(
+              controller: _cepController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                hintText: "nº do CEP",
+                suffixIcon: IconButton(
+                  icon: Icon(Icons.search_rounded),
+                  onPressed: () {
+                    _searchCep();
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+        Divider(),
         //exibe o endereço a partir do cep
         Divider(),
         Text("Endereço:"),
@@ -418,7 +420,7 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
           readOnly: true,
           decoration: InputDecoration(
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-            hintText: "Endereço do imovel\n\nAguardando Resultado",
+            hintText: "Endereço do imovel\nAguardando Resultado ...",
           ),
         ),
         //selecionar o tipo
@@ -479,11 +481,11 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
                   return Card(
                     child: ListTile(
                       title: Text((house["name"] ?? "Sem nome")),
-                      subtitle: Text("""Tipo de Imóvel: ${house['type']} 
+                      subtitle: Text("""\nTipo de Imóvel: ${house['type']} 
                                     \nPreço: R\$ ${house['price']}
                                     \nCEP: ${house['zipcode']} 
                                     \nEndereço: ${house['address']} 
-                                    \nComplento ${house['complement']} 
+                                    \nComplento: ${house['complement']} 
                                     \nNumero: ${house['number house']}        
                                     \nDescrição: ${house['description']}"""),
                     ),
@@ -503,7 +505,7 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
 
     setState(() {
       _addressController.text =
-          """${resultCep.logradouro}, ${_numberHouseController.text == '' ? 'S/N' : _numberHouseController.text}${_complementHouseController.text == '' ? ', ' : '${_complementHouseController.text}, '} ${resultCep.bairro} - ${resultCep.localidade}/${resultCep.estado}, CEP: ${resultCep.cep}""";
+          """${resultCep.logradouro}, ${_numberHouseController.text == '' ? 'S/N' : _numberHouseController.text}${_complementHouseController.text == '' ? ', ' : ', ${_complementHouseController.text}, '} ${resultCep.bairro} - ${resultCep.localidade}, ${resultCep.estado}, CEP: ${resultCep.cep}""";
     });
 
     _searching(false);

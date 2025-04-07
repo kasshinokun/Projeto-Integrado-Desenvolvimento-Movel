@@ -8,6 +8,23 @@ bool setConnectionState() {
   return connection;
 }
 
+Widget myImageTest(double childHeight, double childWidth) {
+  return Padding(
+    padding: EdgeInsets.all(16.0),
+    child: Container(
+      height: childHeight,
+      width: childWidth,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        image: DecorationImage(
+          image: AssetImage(getPathImageHome(childHeight, childWidth)),
+          fit: BoxFit.cover, //ajusta a imagem no container
+        ),
+      ),
+    ),
+  );
+}
+
 String getPathImageHome(double height, double width) {
   return height < width
       ? "assets/welcome/fullHD_landscape.jpg"
