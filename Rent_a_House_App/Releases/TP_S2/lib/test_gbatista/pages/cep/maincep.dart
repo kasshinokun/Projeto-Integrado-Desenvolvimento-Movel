@@ -5,33 +5,44 @@
 //Rode antes: flutter pub add http
 //import 'package:http/http.dart'; //se precisar, descomente este import
 
-
 import 'package:rent_a_house/pages/cep/viacep.dart';
 import 'package:flutter/material.dart';
 
 //main class
 void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: HomePage(),
-    theme: ThemeData(brightness: Brightness.light, primarySwatch: Colors.amber),
-    darkTheme: ThemeData(
-      brightness: Brightness.dark,
-    ),
-  ));
+  runApp(CepApp());
+}
+
+class CepApp extends StatelessWidget {
+  const CepApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primarySwatch: Colors.amber,
+      ),
+      darkTheme: ThemeData(brightness: Brightness.dark),
+    );
+  }
 }
 
 //homepage class
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
-  _HomePageState createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  var _searchCepController = TextEditingController();
+  final TextEditingController _searchCepController = TextEditingController();
   bool _loading = false;
   bool _enableField = true;
-  String _result;
+  String? _result;
 
   @override
   void dispose() {
@@ -42,9 +53,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Consultar CEP'),
-      ),
+      appBar: AppBar(title: Text('Consultar CEP')),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20.0),
         child: Column(
@@ -52,7 +61,7 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             _buildSearchCepTextField(),
             _buildSearchCepButton(),
-            _buildResultForm()
+            _buildResultForm(),
           ],
         ),
       ),
@@ -64,7 +73,7 @@ class _HomePageState extends State<HomePage> {
       autofocus: true,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.done,
-      decoration: InputDecoration(labelText: 'Cep'),
+      decoration: InputDecoration(labelText: 'CEP'),
       controller: _searchCepController,
       enabled: _enableField,
     );
@@ -73,22 +82,19 @@ class _HomePageState extends State<HomePage> {
   Widget _buildSearchCepButton() {
     return Padding(
       padding: const EdgeInsets.only(top: 20.0),
-      child:
-      ElevatedButton(
+      child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-           backgroundColor: Colors.blue,
-           shape: RoundedRectangleBorder(
-             borderRadius: BorderRadius.circular(5.0),
-           ),
-           side: const BorderSide(
-              width: 2,
-              color: Colors.black87,. 
-            ),
-         ),
-        onPressed: _searchCep,
-        child: _loading ? _circularLoading() : Text('Consultar',
-          style: TextStyle(color: Colors.white),
+          backgroundColor: Colors.blue,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.0),
+          ),
+          side: const BorderSide(width: 2, color: Colors.black87),
         ),
+        onPressed: _searchCep,
+        child:
+            _loading
+                ? _circularLoading()
+                : Text('Consultar', style: TextStyle(color: Colors.white)),
       ),
     );
   }
@@ -102,22 +108,29 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _circularLoading() {
-    return Container(
+    return SizedBox(
       height: 15.0,
       width: 15.0,
       child: CircularProgressIndicator(),
     );
   }
+
   Future _searchCep() async {
     _searching(true);
 
     final cep = _searchCepController.text;
 
     final resultCep = await ViaCepService.fetchCep(cep: cep);
-    print(resultCep.localidade); // Exibindo somente a localidade no terminal
 
     setState(() {
-      _result = resultCep.toJson();
+      _result = """CEP: ${resultCep.cep} 
+                  \nLogradouro: ${resultCep.logradouro}
+                  \nComplemento: ${resultCep.complemento}
+                  \nBairro: ${resultCep.bairro}
+                  \nLocalidade: ${resultCep.localidade}  
+                  \nUF: ${resultCep.uf}
+                  \nEstado: ${resultCep.estado}
+                  \n${resultCep.logradouro}, 678, ${resultCep.bairro} - ${resultCep.localidade}/${resultCep.estado}, CEP: ${resultCep.cep}""";
     });
 
     _searching(false);

@@ -53,11 +53,11 @@
     - Pequenos ajustes baseados em dispositivo físico
     - Bibliotecas de CEP adicionadas ao ```pubspec.yaml```
 
-  - Updates 1-07-04-2025 e 1.2-07-04-2025 e micro-atualizações de 1.2-05-04-2025 até a atual
+  - Updates 1-07-04-2025 e 1.4-07-04-2025 e micro-atualizações de 1.2-05-04-2025 até a atual
     - Continuação: Adaptação Inicial para layout responsivo-adaptativo
     - Sistema de busca de CEP via API ViaCEP dos Correios por meio de requisição HTTP
     - Correção de erros de rotas provenientes das micro-atualizações
-    - Criação de Sistema de Notificação vinculado ao Chat(em desenvolvimento, podendo haver erros(Estágio pre-alpha_0.0))
+    - Criação de Sistema de Notificação vinculado ao Chat - Diego, Gabriel Batista e Igor Avelar <\br>(em desenvolvimento, podendo haver erros(Estágio pre-alpha_0.1))
 
 #### Previas de desenvolvimento Sprint 2 - vídeos e imagens
 
