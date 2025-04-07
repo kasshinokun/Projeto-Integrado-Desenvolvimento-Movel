@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rent_a_house/pages/s1/pages/home/navbar.dart';
 import 'package:rent_a_house/pages/s1/pages/welcome/welcome.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:rent_a_house/pages/cep/viacep.dart';
 
 List<String> imagesList = [
   'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-1.jpg',
@@ -203,7 +204,7 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
       height:
           MediaQuery.of(context).orientation == Orientation.portrait
               //If ternario nos filhos do container
-              ? MediaQuery.of(context).size.height / 2.7
+              ? MediaQuery.of(context).size.height / 2.4
               : MediaQuery.of(context).size.height / 1.35,
       width:
           MediaQuery.of(context).orientation == Orientation.portrait
@@ -314,26 +315,7 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
         Divider(),
         Text("CEP do imovel:"),
         Divider(),
-        TextField(
-          controller: _cepController,
-          keyboardType: TextInputType.number,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-            hintText: "digite o cep",
-          ),
-        ),
-        //exibe o endereço a partir do cep
-        Divider(),
-        Text("Endereço:"),
-        TextField(
-          controller: _addressController,
-          maxLines: MediaQuery.of(context).size.width < 600 ? 2 : 4,
-          readOnly: true,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-            hintText: "Endereço do imovel",
-          ),
-        ),
+        Container(width: 250.0, height: 50.0, color: Colors.amber),
         MediaQuery.of(context).size.width < 600
             ? Row(
               children: [
@@ -427,6 +409,18 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
                 ),
               ],
             ),
+        //exibe o endereço a partir do cep
+        Divider(),
+        Text("Endereço:"),
+        TextField(
+          controller: _addressController,
+          maxLines: MediaQuery.of(context).size.width < 600 ? 2 : 4,
+          readOnly: true,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            hintText: "Endereço do imovel\n\nAguardando Resultado",
+          ),
+        ),
         //selecionar o tipo
         Divider(),
         Text("Tipo do Imóvel:"),
@@ -500,6 +494,46 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
     );
   }
 
+  Future _searchCep() async {
+    _searching(true);
+
+    final cep = _cepController.text;
+
+    final resultCep = await ViaCepService.fetchCep(cep: cep);
+
+    setState(() {
+      _addressController.text =
+          """${resultCep.logradouro}, ${_numberHouseController.text == '' ? 'S/N' : _numberHouseController.text}${_complementHouseController.text == '' ? ', ' : '${_complementHouseController.text}, '} ${resultCep.bairro} - ${resultCep.localidade}/${resultCep.estado}, CEP: ${resultCep.cep}""";
+    });
+
+    _searching(false);
+  }
+
+  void _searching(bool enable) {
+    setState(() {
+      _addressController.text = enable ? '' : _addressController.text;
+    });
+  }
+
+  Widget myCarouselSlider() {
+    return CarouselSlider(
+      items: generateListImages(imagesList),
+
+      //Slider Container properties
+      options: CarouselOptions(
+        //enlargeCenterPage: true,
+        enlargeCenterPage: false,
+        autoPlay: false,
+        reverse: true,
+        aspectRatio: 16 / 9,
+        autoPlayCurve: Curves.fastOutSlowIn,
+        enableInfiniteScroll: true,
+        autoPlayAnimationDuration: Duration(milliseconds: 800),
+        viewportFraction: 0.8,
+      ),
+    );
+  }
+
   List<Widget> generateListImages(List<String> images) {
     return List.generate(
       images.length,
@@ -540,25 +574,6 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
             ),
           );
         },
-      ),
-    );
-  }
-
-  Widget myCarouselSlider() {
-    return CarouselSlider(
-      items: generateListImages(imagesList),
-
-      //Slider Container properties
-      options: CarouselOptions(
-        //enlargeCenterPage: true,
-        enlargeCenterPage: false,
-        autoPlay: false,
-        reverse: true,
-        aspectRatio: 16 / 9,
-        autoPlayCurve: Curves.fastOutSlowIn,
-        enableInfiniteScroll: true,
-        autoPlayAnimationDuration: Duration(milliseconds: 800),
-        viewportFraction: 0.8,
       ),
     );
   }

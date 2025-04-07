@@ -56,6 +56,7 @@ dependencies:
   postal_code: ^0.0.4
   world_zipcode_validator: ^0.0.2
   search_cep: ^4.0.2
+  http: any
   #============>
 dev_dependencies:
   flutter_test:
@@ -111,4 +112,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
-  flutter_local_notifications: ^16.3.1

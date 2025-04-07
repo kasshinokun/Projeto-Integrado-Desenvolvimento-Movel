@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rent_a_house/pages/home/homepage.dart' as stwo;
 import 'package:rent_a_house/pages/responsive/responsive.dart';
-import 'package:rent_a_house/pages/s1/pages/client/clienthouse.dart';
 import 'package:rent_a_house/pages/s1/pages/manage/registerhouse.dart';
-import 'package:rent_a_house/pages/s1/pages/manage/settings.dart';
-import 'package:rent_a_house/pages/s1/pages/manage/terms.dart';
-import 'package:rent_a_house/pages/s1/pages/test/carousel.dart';
-import 'package:rent_a_house/pages/s1/pages/test/curved.dart';
-import 'package:rent_a_house/pages/s1/pages/test/curvedlabeled.dart';
-import 'package:rent_a_house/pages/s1/pages/test/imagepicker.dart';
-import 'package:rent_a_house/pages/s1/pages/test/notifications.dart';
 
 //==================================================================
 import 'package:rent_a_house/pages/s1/pages/welcome/welcome.dart';

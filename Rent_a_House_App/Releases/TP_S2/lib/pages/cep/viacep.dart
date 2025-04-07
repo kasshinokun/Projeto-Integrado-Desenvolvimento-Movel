@@ -5,13 +5,14 @@
 //Rode antes: flutter pub add http
 //import 'package:http/http.dart'; //se precisar, descomente este import
 
-
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as httptasker;
 import 'package:rent_a_house/pages/cep/resultcep.dart';
 
 class ViaCepService {
-  static Future<ResultCep> fetchCep({String cep}) async {
-    final response = await http.get('https://viacep.com.br/ws/$cep/json/');
+  static Future<ResultCep> fetchCep({String? cep}) async {
+    final response = await httptasker.get(
+      Uri.parse('https://viacep.com.br/ws/$cep/json/'),
+    );
     if (response.statusCode == 200) {
       return ResultCep.fromJson(response.body);
     } else {

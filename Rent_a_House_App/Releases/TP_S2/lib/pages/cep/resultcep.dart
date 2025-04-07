@@ -5,56 +5,82 @@
 //Rode antes: flutter pub add http
 //import 'package:http/http.dart'; //se precisar, descomente este import
 
-//Classe para receber os valores 
+//Classe para receber os valores
 
 import 'dart:convert';
 
 class ResultCep {
-    String cep;
-    String logradouro;
-    String complemento;
-    String bairro;
-    String localidade;
-    String uf;
-    //String unidade;
-    
-  
+  String? cep;
+  String? logradouro;
+  String? complemento;
+  String? bairro;
+  String? localidade;
+  String? uf;
+  String? estado;
 
-    ResultCep({
-        this.cep,
-        this.logradouro,
-        this.complemento,
-        this.bairro,
-        this.localidade,
-        this.uf,
-        //this.unidade,
+  ResultCep({
+    this.cep,
+    this.logradouro,
+    this.complemento,
+    this.bairro,
+    this.localidade,
+    this.uf,
+    this.estado,
+  });
 
-    
-    });
+  factory ResultCep.fromJson(String str) => ResultCep.fromMap(json.decode(str));
 
-    factory ResultCep.fromJson(String str) => ResultCep.fromMap(json.decode(str));
+  String toJson() => json.encode(toMap());
 
-    String toJson() => json.encode(toMap());
+  factory ResultCep.fromMap(Map<String, dynamic> json) => ResultCep(
+    cep: json["cep"],
+    logradouro: json["logradouro"],
+    complemento: json["complemento"],
+    bairro: json["bairro"],
+    localidade: json["localidade"],
+    uf: json["uf"],
+    estado: json["estado"],
+  );
 
-    factory ResultCep.fromMap(Map<String, dynamic> json) => ResultCep(
-        cep: json["cep"],
-        logradouro: json["logradouro"],
-        complemento: json["complemento"],
-        bairro: json["bairro"],
-        localidade: json["localidade"],
-        uf: json["uf"],
-        //unidade: json["unidade"],
-    
-    );
+  String? _estado() => getState[uf].toString();
 
-    Map<String, dynamic> toMap() => {
-        "cep": cep,
-        "logradouro": logradouro,
-        "complemento": complemento,
-        "bairro": bairro,
-        "localidade": localidade,
-        "uf": uf,
-        //"unidade": unidade,
-    
-    };
+  final getState = {
+    "AC": "Acre",
+    "AL": "Alagoas",
+    "AP": "Amapá",
+    "AM": "Amazonas",
+    "BA": "Bahia",
+    "CE": "Ceará",
+    "DF": "Distrito Federal",
+    "ES": "Espírito Santo",
+    "GO": "Goiás",
+    "MA": "Maranhão",
+    "MT": "Mato Grosso",
+    "MS": "Mato Grosso do Sul",
+    "MG": "Minas Gerais",
+    "PA": "Pará",
+    "PB": "Paraíba",
+    "PR": "Paraná",
+    "PE": "Pernambuco",
+    "PI": "Piauí",
+    "RJ": "Rio de Janeiro",
+    "RN": "Rio Grande do Norte",
+    "RS": "Rio Grande do Sul",
+    "RO": "Rondônia",
+    "RR": "Roraima",
+    "SC": "Santa Catarina",
+    "SP": "São Paulo",
+    "SE": "Sergipe",
+    "TO": "Tocantins",
+  };
+
+  Map<String, dynamic> toMap() => {
+    "cep": cep,
+    "logradouro": logradouro,
+    "complemento": complemento,
+    "bairro": bairro,
+    "localidade": localidade,
+    "uf": uf,
+    "estado": _estado(),
+  };
 }
