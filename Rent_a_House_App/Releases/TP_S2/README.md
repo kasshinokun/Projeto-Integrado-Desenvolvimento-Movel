@@ -74,7 +74,8 @@
   [Versão 1-03-04-2025](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S2/Update%201-03-04-2025.pdf)
   
   [Versão 1.4-04-04-2025](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S2/Update%201.4-04-04-2025.pdf)
-
+  
+ [Versão 1.4-07-04-2025](https://youtu.be/1x30DdtBpNg?si=k2VWGyo6NEmoNe3J)
  ##### Layout area de casas alugadas MyHouses - Imagens
 
  Portrait Layout
@@ -101,4 +102,8 @@
 
  - Versão 1-04-04-2025 e micro-atualizações
    
-   Tela vermelha ao finalizar a pesquisa e tentar voltar a página inicial 
+   Tela vermelha ao finalizar a pesquisa e tentar voltar a página inicial
+
+- Versão 1-07-04-2025 e micro-atualizações
+   
+   Overflow no login e não solicita ao usuário as permissões.
