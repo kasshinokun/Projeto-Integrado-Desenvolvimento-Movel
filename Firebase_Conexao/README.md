@@ -38,8 +38,38 @@ no caso de nosso grupo foi: ```flutter create --org com.grupo.rentahouse --platf
 - Por favor ``` instale a CLI Firebase de acordo com seu sistema operacional``` link: ```https://firebase.google.com/docs/cli?hl=pt#setup_update_cli```
  - inicialmente, será Linux(Manjaro Linux): abra o terminal e cole ```curl -sL https://firebase.tools | bash```
  -posteriormente, poderá ser adicionado Windows(mas leia a documentação referente ao seu sistema operacional por gentileza)
-- Prossiga para fazer login e testar a CLI: ```firebase login```
+- Deixe a conta Google logada no(s) navegadores do computador em uso e prossiga para fazer login e testar a CLI: ```firebase login```
+![Apos Login](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S3/aposloginterminalbrowser.jpg)
 - Execute: ```firebase projects:list```
 - Atualizar versão: ```curl -sL https://firebase.tools | upgrade=true```
 - Pode ser feito pelo npm do NodeJS(siga os passos necessários para instalar o npm), rode: ```npm install -g firebase-tools```
 - Quanto ao mais leia os processos de conexão, configuração do CLI e CI do Firebase
+##### Firebase Realtime Database
+- Clique em: ```https://firebase.google.com/products/realtime-database?hl=pt```
+- Clique em: ```Go to console```
+- Clique em: ```Criar um projeto```
+- Digite um nome, poreḿ se o sistema sugerir um identificador exclusivo global do seu projeto, por favor o escolha também.
+- Clique em ```Continuar``` até aparecer ```Configurar o Google Analytics```, por favor escolha o ```Brasil ou seu pais de origem```.
+- Clique em: ```Criar um projeto```
+- Clique em ```Continuar```
+  ![Apos Login](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S3/projetoconcluido.png)
+- Clique em: ```Realtime Database``` na lista lateral no item ```Criação```, se já houver o atalho no topo clique sobre ```Realtime Database```.
+- Ou acesse: ```https://console.firebase.google.com/u/0/project/<identificador_exclusivo_global_do_projeto>/database?hl=pt```
+- Clique em: ```Criar banco de dados```, siga tutoriais para este processo por gentileza.
+###### Estrutura Inicial para teste
+--> Usuario do aplicativo:
+    
+    --> Email do Usuario do aplicativo;
+    
+    --> Senha do Usuario do aplicativo;
+    
+    --> Nome de Usuario do aplicativo;
+
+##### Conexão com aplicativo
+- Siga as etapas descritas em:
+  - Ou se iOS, acesse ```https://firebase.google.com/docs/flutter/setup?hl=pt&platform=ios```
+  - Ou se Android, acesse ```https://firebase.google.com/docs/flutter/setup?hl=pt&platform=android```
+  - Ou se Web, acesse ```https://firebase.google.com/docs/flutter/setup?hl=pt&platform=web```
+##### Etapa final
+- Realize testes para verificar
+
