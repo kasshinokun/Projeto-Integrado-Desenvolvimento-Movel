@@ -6,3 +6,4 @@ Sendo integrante da Sprint 3.
 ###### Etapa Sprint 3 Apêndice 
 
 - 13-04-2025: Upload de documentação Google para conexão em pdf
+- 20-04-2025: Arquivo-teste conexão (pode conter erros, apenas lógica implementada)
