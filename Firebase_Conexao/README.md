@@ -7,3 +7,4 @@ Sendo integrante da Sprint 3.
 
 - 13-04-2025: Upload de documentação Google para conexão em pdf
 - 20-04-2025: Arquivo-teste conexão (pode conter erros, apenas lógica implementada)
+- 21-04-2025: Arquivo-teste login-registro (pode conter erros, apenas lógica implementada)
