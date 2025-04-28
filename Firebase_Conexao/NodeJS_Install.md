@@ -23,8 +23,10 @@ o NodeJS depende do Python, VS Redistributable C++ e Chocolatey
 #### Erros possíveis
 Ao usar o ```Windows 11 Education com 2 usuários e já tendo o Python, VS Redistributable C++ e Chocolatey```
 <br>houve erro, principalmente ao rodar ```npm -v```, apresentou erro que não permitia a execução do script.
-<br>
-<br>
+<br>----------------------- ```Texto apresentado``` -------------------------------------
+<br>npm : o arquivo c:\program files\nodejs\npm.ps1 não pode ser carregado 
+<br>porque a execução de scripts foi desabilitada neste sistema.
+<br>-------------------------------------------------------------------------------
 <br>```Solução:```
 <br>Acessei o site:
 <br>```https://pt.stackoverflow.com/questions/220078/o-que-significa-o-erro-execu%C3%A7%C3%A3o-de-scripts-foi-desabilitada-neste-sistema```
