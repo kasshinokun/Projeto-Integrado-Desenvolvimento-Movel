@@ -32,7 +32,8 @@ Ao usar o ```Windows 11 Education com 2 usuários e já tendo o Python, VS Redis
 <br>```https://pt.stackoverflow.com/questions/220078/o-que-significa-o-erro-execu%C3%A7%C3%A3o-de-scripts-foi-desabilitada-neste-sistema```
 <br>Rodei o script ```Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser```
 <br>Marquei apenas ```"S"```, pois quero apenas para o usuário atual.
-<br>Após isto, ao rodar ```npm -v```, me mostrou a versão.
+<br>Após isto, ao rodar ```npm -v```, deve mostrar a versão do NPM.
+<br>rode também ```node -v```, deve mostrar a versão do NodeJS.
 
 ##### Verificar o Python, VS Redistributable C++ e Chocolatey
 Comandos realizados no Powershell
