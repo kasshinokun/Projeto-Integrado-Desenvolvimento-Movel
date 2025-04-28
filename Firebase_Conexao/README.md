@@ -42,7 +42,7 @@ no caso de nosso grupo foi: ```flutter create --org com.grupo.rentahouse --platf
 ![Apos Login](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S3/aposloginterminalbrowser.jpg)
 - Execute: ```firebase projects:list```
 - Atualizar versão: ```curl -sL https://firebase.tools | upgrade=true```
-- Pode ser feito pelo npm do NodeJS(siga os passos necessários para instalar o npm), rode: ```npm install -g firebase-tools```
+- Pode ser feito pelo npm do NodeJS([siga os passos necessários para instalar o npm](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Firebase_Conexao/NodeJS_Install.md)), rode: ```npm install -g firebase-tools```
 - Quanto ao mais leia os processos de conexão, configuração do CLI e CI do Firebase
 ##### Firebase Realtime Database
 - Clique em: ```https://firebase.google.com/products/realtime-database?hl=pt```
