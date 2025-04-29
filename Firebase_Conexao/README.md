@@ -8,7 +8,8 @@ Sendo integrante da Sprint 3.
 - 13-04-2025: Upload de documentação Google para conexão em pdf
 - 20-04-2025: Arquivo-teste conexão (pode conter erros, apenas lógica implementada)
 - 21-04-2025: Arquivo-teste login-registro (pode conter erros, apenas lógica implementada)
-
+- 28-04-2025: Revisão dos ReadME's desta pasta para melhorar as orientações
+- 29-04-2025: Arquivos-teste Conexão-Firebase por Igor Leao
 ### Conexão com o Firebase
 
 #### Criar ou escolher Conta Google
