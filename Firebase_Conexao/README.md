@@ -37,14 +37,18 @@ no caso de nosso grupo foi: ```flutter create --org com.grupo.rentahouse --platf
 - Por favor siga ou observe as etapas de pré-requisitos
 - Por favor ``` instale a CLI Firebase de acordo com seu sistema operacional``` link: ```https://firebase.google.com/docs/cli?hl=pt#setup_update_cli```
  - inicialmente, será Linux(Manjaro Linux): abra o terminal e cole ```curl -sL https://firebase.tools | bash```
+
  -Caso seja Windows, [clique aqui por favor](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Firebase_Conexao/firebase_windows_install.md)
 (mas leia a documentação referente ao seu sistema operacional por gentileza)
+
 - Deixe a conta Google logada no(s) navegadores do computador em uso e prossiga para fazer login e testar a CLI: ```firebase login```
 ![Apos Login](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S3/aposloginterminalbrowser.jpg)
 - Execute: ```firebase projects:list```
 - Atualizar versão: ```curl -sL https://firebase.tools | upgrade=true```
+
 - Pode ser feito pelo npm do NodeJS([siga os passos necessários para instalar o npm](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Firebase_Conexao/NodeJS_Install.md)), rode: ```npm install -g firebase-tools```
 - Quanto ao mais leia os processos de conexão, configuração do CLI do Firebase e CLI do Firebase com sistemas CI
+
 ##### Firebase Realtime Database
 - Clique em: ```https://firebase.google.com/products/realtime-database?hl=pt```
 - Clique em: ```Go to console```
