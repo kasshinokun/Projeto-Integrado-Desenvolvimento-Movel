@@ -1,43 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:rent_a_house/pages/s1/pages/home/home.dart';
-import 'package:rent_a_house/pages/s1/pages/client/register.dart';
+import 'package:rent_a_house/pages/s1/pages/welcome/welcome.dart';
 
-bool connection = false;
-bool setConnectionState() {
-  connection = !connection; //Gerar a Mudança
-  return connection;
-}
-
-Widget myImageTest(double childHeight, double childWidth) {
-  return Padding(
-    padding: EdgeInsets.all(16.0),
-    child: Container(
-      height: childHeight,
-      width: childWidth,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        image: DecorationImage(
-          image: AssetImage(getPathImageHome(childHeight, childWidth)),
-          fit: BoxFit.cover, //ajusta a imagem no container
-        ),
-      ),
-    ),
-  );
-}
-
-String getPathImageHome(double height, double width) {
-  return height < width
-      ? "assets/welcome/fullHD_landscape.jpg"
-      : "assets/welcome/fullHD_portrait.jpg";
-}
-
-class WelcomePage extends StatefulWidget {
-  const WelcomePage({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
   @override
-  State<WelcomePage> createState() => _WelcomePage();
+  State<RegisterScreen> createState() => _RegisterScreen();
 }
 
-class _WelcomePage extends State<WelcomePage> {
+class _RegisterScreen extends State<RegisterScreen> {
   //Instancia a Janela de boas-vindas
 
   bool passwordVisible = true;
@@ -50,7 +20,7 @@ class _WelcomePage extends State<WelcomePage> {
         //------------------------------------------------> Scaffold
         appBar: AppBar(
           //------------------------------------------------> AppBar
-          title: Text("Login de Usuário"), //Texto da Barra do App
+          title: Text("Registro de Usuário"), //Texto da Barra do App
           backgroundColor: Color(0xffB0E0E6), //Cor da Barra do App
           actions: [
             //-----------------------------------> Actions
@@ -91,6 +61,39 @@ class _WelcomePage extends State<WelcomePage> {
 
           child: Column(
             children: <Widget>[
+              //=============================================> Nome do Usuário
+              Padding(
+                //-------------------------------------------> Padding
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Padding(
+                  //----------------------------------------------> Padding
+                  padding: const EdgeInsets.all(12.0),
+                  child: TextField(
+                    //-------------------------------------> TextField
+                    decoration: InputDecoration(
+                      //------------------> InputDecoration
+                      filled: true,
+                      fillColor: const Color.fromARGB(255, 140, 233, 132),
+                      labelText: 'Nome Completo',
+                      floatingLabelBehavior: FloatingLabelBehavior.auto,
+                      floatingLabelStyle: TextStyle(
+                        //--------------> Estilo do Texto
+                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(255, 37, 37, 37),
+                        fontSize: 20,
+                      ), // Fim do Estilo do Texto
+                      hintMaxLines: 1,
+                      icon: Icon(Icons.person_2_rounded),
+                      hintText: 'Informe o seu Nome Completo',
+                      border: OutlineInputBorder(
+                        //--------------> OutlineInputBorder
+                        borderRadius: BorderRadius.circular(30),
+                      ), // Fim do OutlineInputBorder
+                    ), // Fim do InputDecoration
+                  ), // Fim do TextField --------> Caixa de texto (Nome)
+                ), // Fim do Padding ------------> Caixa de texto (Nome)
+              ), // Fim do Padding --------------> Caixa de texto (Nome)
+              //=============================================> Senha do Usuário
               //=============================================> Nome do Usuário
               Padding(
                 //-------------------------------------------> Padding
@@ -196,81 +199,15 @@ class _WelcomePage extends State<WelcomePage> {
                     onPressed:
                         () => Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const HomeScreen(),
+                            builder: (context) => const WelcomePage(),
                           ),
                         ),
-                    child: Text('Entrar na Aplicação'),
+                    child: Text('Registrar Usuário'),
                   ), // Fim do ElevationButton --> Botão da Tela
                 ), // Fim do Padding -------------> Botão da Tela
               ), // Fim do Padding ---------------> Botão da Tela
               //======================================================================
-              Padding(
-                //-------------------------------------------> Padding
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Padding(
-                  //----------------------------------------------> Padding
-                  padding: EdgeInsets.fromLTRB(10.0, 3.0, 10.0, 3.0),
-                  child: ElevatedButton(
-                    //---------------------> Botão
-                    style: ElevatedButton.styleFrom(
-                      side: BorderSide(color: Colors.yellow, width: 5),
-                      textStyle: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontStyle: FontStyle.normal,
-                      ),
-                    ),
-                    onPressed:
-                        () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const RegisterScreen(),
-                          ),
-                        ),
-                    child: Text('Registrar Novo Usuário'),
-                  ), // Fim do ElevationButton --> Botão da Tela 2
-                ), // Fim do Padding -------------> Botão da Tela 2
-              ), // Fim do Padding ---------------> Botão da Tela 2
-              //======================================================================
-              Padding(
-                //-------------------------------------------> Padding
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Padding(
-                  //----------------------------------------------> Padding
-                  padding: EdgeInsets.fromLTRB(10.0, 3.0, 10.0, 3.0),
-                  child: Row(
-                    //-------------------------------> Row
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-
-                    children: <Widget>[
-                      //-----------------> children-Social
-                      Text(
-                        'Entrar com ',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontFamily: 'Roboto',
-                          color: Color(0xFF212121),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: CircleBorder(),
-                          padding: EdgeInsets.all(24),
-                        ),
-                        onPressed: () {},
-                        child: Image.asset(
-                          //-------------------> Image
-                          'assets/app/google_logo.png',
-                          height: 20,
-                          width: 20,
-                          fit: BoxFit.cover,
-                        ), //Fim da Imagem
-                      ), // Fim do Botão google
-                    ], // Fim do children<Widget>[] Social
-                  ), // Fim do Row
-                ), // Fim do Container
-              ), // Fim do Padding -------------> Row
+              //
               //=============================================> Fim do Itens na Tela
               //Adicione mais Widgets aqui neste espaço
               //=============================================>

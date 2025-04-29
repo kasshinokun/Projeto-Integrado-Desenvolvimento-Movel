@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rent_a_house/pages/s1/pages/home/navbar.dart';
+import 'package:rent_a_house/pages/s1/pages/welcome/welcome.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:rent_a_house/pages/cep/viacep.dart';
 
 List<String> imagesList = [
   'https://raw.githubusercontent.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/refs/heads/main/Rent_a_House_App/Imagens_S2/App/House/house-1.jpg',
@@ -52,6 +52,23 @@ class RegisterHouseScreen extends StatefulWidget {
 
   @override
   State<RegisterHouseScreen> createState() => _RegisterHouseScreen();
+}
+
+Widget myImageTest(double childHeight, double childWidth) {
+  return Padding(
+    padding: EdgeInsets.all(16.0),
+    child: Container(
+      height: childHeight * 0.4,
+      width: childWidth * 0.8,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        image: DecorationImage(
+          image: AssetImage(getPathImageHome(childHeight, childWidth)),
+          fit: BoxFit.cover, //ajusta a imagem no container
+        ),
+      ),
+    ),
+  );
 }
 
 class _RegisterHouseScreen extends State<RegisterHouseScreen> {
@@ -186,7 +203,7 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
       height:
           MediaQuery.of(context).orientation == Orientation.portrait
               //If ternario nos filhos do container
-              ? MediaQuery.of(context).size.height / 2.4
+              ? MediaQuery.of(context).size.height / 2.7
               : MediaQuery.of(context).size.height / 1.35,
       width:
           MediaQuery.of(context).orientation == Orientation.portrait
@@ -205,6 +222,7 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
     return Column(
       children: [
         myCarouselSlider(),
+        //myImageTest( MediaQuery.of(context).size.height, MediaQuery.of(context).size.width),
         IconButton(
           icon: Icon(Icons.upload_file_rounded, color: Colors.cyan[700]),
           onPressed: () {
@@ -294,6 +312,28 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
         ),
         //preencher o cep
         Divider(),
+        Text("CEP do imovel:"),
+        Divider(),
+        TextField(
+          controller: _cepController,
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            hintText: "digite o cep",
+          ),
+        ),
+        //exibe o endereço a partir do cep
+        Divider(),
+        Text("Endereço:"),
+        TextField(
+          controller: _addressController,
+          maxLines: MediaQuery.of(context).size.width < 600 ? 2 : 4,
+          readOnly: true,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            hintText: "Endereço do imovel",
+          ),
+        ),
         MediaQuery.of(context).size.width < 600
             ? Row(
               children: [
@@ -387,42 +427,6 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
                 ),
               ],
             ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            //preencher o numero do imovel
-            Text("CEP do imovel:"),
-            TextField(
-              controller: _cepController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                hintText: "nº do CEP",
-                suffixIcon: IconButton(
-                  icon: Icon(Icons.search_rounded),
-                  onPressed: () {
-                    _searchCep();
-                  },
-                ),
-              ),
-            ),
-          ],
-        ),
-        Divider(),
-        //exibe o endereço a partir do cep
-        Divider(),
-        Text("Endereço:"),
-        TextField(
-          controller: _addressController,
-          maxLines: MediaQuery.of(context).size.width < 600 ? 2 : 4,
-          readOnly: true,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-            hintText: "Endereço do imovel\nAguardando Resultado ...",
-          ),
-        ),
         //selecionar o tipo
         Divider(),
         Text("Tipo do Imóvel:"),
@@ -481,11 +485,11 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
                   return Card(
                     child: ListTile(
                       title: Text((house["name"] ?? "Sem nome")),
-                      subtitle: Text("""\nTipo de Imóvel: ${house['type']} 
+                      subtitle: Text("""Tipo de Imóvel: ${house['type']} 
                                     \nPreço: R\$ ${house['price']}
                                     \nCEP: ${house['zipcode']} 
                                     \nEndereço: ${house['address']} 
-                                    \nComplento: ${house['complement']} 
+                                    \nComplento ${house['complement']} 
                                     \nNumero: ${house['number house']}        
                                     \nDescrição: ${house['description']}"""),
                     ),
@@ -493,46 +497,6 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
                 }).toList(),
           ),
       ],
-    );
-  }
-
-  Future _searchCep() async {
-    _searching(true);
-
-    final cep = _cepController.text;
-
-    final resultCep = await ViaCepService.fetchCep(cep: cep);
-
-    setState(() {
-      _addressController.text =
-          """${resultCep.logradouro}, ${_numberHouseController.text == '' ? 'S/N' : _numberHouseController.text}${_complementHouseController.text == '' ? ', ' : ', ${_complementHouseController.text}, '} ${resultCep.bairro} - ${resultCep.localidade}, ${resultCep.estado}, CEP: ${resultCep.cep}""";
-    });
-
-    _searching(false);
-  }
-
-  void _searching(bool enable) {
-    setState(() {
-      _addressController.text = enable ? '' : _addressController.text;
-    });
-  }
-
-  Widget myCarouselSlider() {
-    return CarouselSlider(
-      items: generateListImages(imagesList),
-
-      //Slider Container properties
-      options: CarouselOptions(
-        //enlargeCenterPage: true,
-        enlargeCenterPage: false,
-        autoPlay: false,
-        reverse: true,
-        aspectRatio: 16 / 9,
-        autoPlayCurve: Curves.fastOutSlowIn,
-        enableInfiniteScroll: true,
-        autoPlayAnimationDuration: Duration(milliseconds: 800),
-        viewportFraction: 0.8,
-      ),
     );
   }
 
@@ -576,6 +540,25 @@ class _RegisterHouseScreen extends State<RegisterHouseScreen> {
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget myCarouselSlider() {
+    return CarouselSlider(
+      items: generateListImages(imagesList),
+
+      //Slider Container properties
+      options: CarouselOptions(
+        //enlargeCenterPage: true,
+        enlargeCenterPage: false,
+        autoPlay: false,
+        reverse: true,
+        aspectRatio: 16 / 9,
+        autoPlayCurve: Curves.fastOutSlowIn,
+        enableInfiniteScroll: true,
+        autoPlayAnimationDuration: Duration(milliseconds: 800),
+        viewportFraction: 0.8,
       ),
     );
   }

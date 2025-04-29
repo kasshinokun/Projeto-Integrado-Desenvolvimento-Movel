@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rent_a_house/pages/s1/pages/home/navbar.dart';
 import 'package:rent_a_house/pages/s1/pages/Home/home.dart' as sone;
+import 'package:rent_a_house/pages/notifyservice/notify_service.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await NotifyService.initNotification();
   runApp(ChatApp());
 }
 
@@ -62,12 +65,7 @@ class _ChatScreen extends State<ChatScreen> {
 
     const platformDetails = NotificationDetails(android: androidDetails);
 
-    await flutterLocalNotificationsPlugin.show(
-      0,
-      title,
-      body,
-      platformDetails,
-    );
+    await flutterLocalNotificationsPlugin.show(0, title, body, platformDetails);
   }
 
   @override
@@ -92,7 +90,8 @@ class _ChatScreen extends State<ChatScreen> {
   }
 
   void _simulateReply() {
-    final reply = _isLocatario ? "Resposta do inquilino" : "Resposta do locatário";
+    final reply =
+        _isLocatario ? "Resposta do inquilino" : "Resposta do locatário";
     setState(() {
       _messages.add(
         ChatMessage(
@@ -114,10 +113,11 @@ class _ChatScreen extends State<ChatScreen> {
         backgroundColor: Colors.cyan[700],
         title: Text("Chat Simulator", style: TextStyle(color: Colors.white)),
         leading: Builder(
-          builder: (context) => IconButton(
-            icon: Icon(Icons.person_2_rounded),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
+          builder:
+              (context) => IconButton(
+                icon: Icon(Icons.person_2_rounded),
+                onPressed: () => Scaffold.of(context).openDrawer(),
+              ),
         ),
         actions: [
           Row(
@@ -160,7 +160,9 @@ class _ChatScreen extends State<ChatScreen> {
                   onPressed: () {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text("Funcionalidade de anexar arquivo (não desenvolvida)"),
+                        content: Text(
+                          "Funcionalidade de anexar arquivo (não desenvolvida)",
+                        ),
                       ),
                     );
                   },
