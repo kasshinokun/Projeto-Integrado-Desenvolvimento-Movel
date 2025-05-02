@@ -1,9 +1,9 @@
-#### Processo de Integração ao Firebase 
+# Processo de Integração ao Firebase 
 
 Esta etapa vincula-se a Sprint 3 apresentando um passo-a-passo de como conectar a aplicação Flutter ao Firebase.
 Sendo integrante da Sprint 3.
 
-###### Sprint 3 - Etapas 
+## Sprint 3 - Etapas 
 
 - 13-04-2025: Upload de documentação Google para conexão em pdf
 - 20-04-2025: Arquivo-teste conexão (pode conter erros, apenas lógica implementada)
@@ -14,13 +14,13 @@ Sendo integrante da Sprint 3.
    - login por email e senha
    - login pela conta Google
      
-### Conexão com o Firebase
+## Conexão com o Firebase
 
-#### Criar ou escolher Conta Google
+### Criar ou escolher Conta Google
 
 Para conectar ao Firebase é necessário criar ou usar uma Conta Google.
 
-#### Criar ou adequar o aplicativo
+### Criar ou adequar o aplicativo
 - Se for criar use o código no Powershell ou VS Code(faça já na pasta que deseja fica mais fácil): ```flutter create --org com.<<nome_do_desenvolvedor> ou <nome_da_empresa_desenvolvedora>> --platform<liguagens_deploy> --project-name <nome_projeto> ./<path_da_pasta_do_app>```
 
 no caso de nosso grupo foi: ```flutter create --org com.grupo.rentahouse --platform android,web,windows --project-name rent_a_house ./```
@@ -32,8 +32,9 @@ no caso de nosso grupo foi: ```flutter create --org com.grupo.rentahouse --platf
   - ```flutter pub get```
   - ```flutter create --org com.<<nome_do_desenvolvedor> ou <nome_da_empresa_desenvolvedora>> ./<path_da_pasta_do_app>```
     
-#### Conectar Firebase ao aplicativo
-##### CLI e CI do Firebase (Apenas passos iniciais)
+### Conectar Firebase ao aplicativo
+
+#### CLI e CI do Firebase (Apenas passos iniciais)
 - Por favor pesquise no Google por ```firebase flutter```
 - Por favor clique no link ```Add Firebase to your Flutter app``` 
   - Ou se iOS, acesse ```https://firebase.google.com/docs/flutter/setup?hl=pt&platform=ios```
@@ -54,7 +55,8 @@ no caso de nosso grupo foi: ```flutter create --org com.grupo.rentahouse --platf
 - Pode ser feito pelo npm do NodeJS([siga os passos necessários para instalar o npm](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Firebase_Conexao/NodeJS_Install.md)), rode: ```npm install -g firebase-tools```
 - Quanto ao mais leia os processos de conexão, configuração do CLI do Firebase e CLI do Firebase com sistemas CI
 
-##### Firebase Realtime Database
+
+#### Firebase Realtime Database
 - Clique em: ```https://firebase.google.com/products/realtime-database?hl=pt```
 - Clique em: ```Go to console```
 - Clique em: ```Criar um projeto```
@@ -66,7 +68,25 @@ no caso de nosso grupo foi: ```flutter create --org com.grupo.rentahouse --platf
 - Clique em: ```Realtime Database``` na lista lateral no item ```Criação```, se já houver o atalho no topo clique sobre ```Realtime Database```.
 - Ou acesse: ```https://console.firebase.google.com/u/0/project/<identificador_exclusivo_global_do_projeto>/database?hl=pt```
 - Clique em: ```Criar banco de dados```, siga tutoriais para este processo por gentileza.
-###### Estrutura Inicial para teste
+
+#### A-Estrutura Inicial para teste
+
+Inicialmente, é necessário definir o método de login do usuário da aplicação.
+<br>Para isto, acesse ```https://console.firebase.google.com/``` no navegador de sua preferência, onde a <br>conta do Firebase está logada.
+- Clique sobre o projeto em desenvolvimento, e depois em ```Authentication``` na aba ```Criação```<br>(Se o OS estiver em português, se for inglês: <br>
+```Build```, então clique sobre ele, e depois em ```Authentication```).
+- Clique em ```Sign-in method``` ou em ```Método de login```
+- Escolha os métodos que desejar e leia as exigências e dependêncaias necessárias.
+
+Em ```Authentication``` há também:
+- ```Usuários``` --> Mostra os usuários logados na aplicação
+- ```Modelos``` --> Verificação, alteração e configuração do acesso
+- ```Uso``` --> Análise dos usuários ativos na aplicação por período
+- ```Configurações``` --> Configuração de vínculo do usuário a aplicação
+- ```Extensions``` --> Serviços adicionais da aplicação ligados à autenticação
+
+#### B-Estrutura Inicial para teste 
+
 --> Usuario do aplicativo:
     
     --> Email do Usuario do aplicativo;
@@ -75,11 +95,11 @@ no caso de nosso grupo foi: ```flutter create --org com.grupo.rentahouse --platf
     
     --> Nome de Usuario do aplicativo;
 
-##### Conexão com aplicativo
+#### Conexão com aplicativo
 - Siga as etapas descritas em:
   - Ou se iOS, acesse ```https://firebase.google.com/docs/flutter/setup?hl=pt&platform=ios```
   - Ou se Android, acesse ```https://firebase.google.com/docs/flutter/setup?hl=pt&platform=android```
   - Ou se Web, acesse ```https://firebase.google.com/docs/flutter/setup?hl=pt&platform=web```
-##### Etapa final
+#### Etapa final
 - Realize testes para verificar
 
