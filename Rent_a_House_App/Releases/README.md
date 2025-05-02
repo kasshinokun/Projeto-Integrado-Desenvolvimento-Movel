@@ -118,6 +118,8 @@ Revisão 1-24-03-2025
 
 [Desenvolvimento para Sprint 2](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S2/)
 
+[Desenvolvimento para Sprint 3](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S3/)
+
 
 #### README Descritivo da Etapa (Vídeos e Imagens)
 
@@ -126,3 +128,6 @@ Descrição do que foi feito por etapa de desenvolvimento ao longo do semestre (
 [TP_S1 - Sobre a Sprint 1](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S1/README.md)
 
 [TP_S2 - Sobre a Sprint 2](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S2/README.md)
+
+[TP_S2 - Sobre a Sprint 3](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S3/ReadME.md)
+
