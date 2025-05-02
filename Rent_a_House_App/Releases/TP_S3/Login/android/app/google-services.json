@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "864174472705",
+    "firebase_url": "https://rentahouse-47e4d-default-rtdb.firebaseio.com",
+    "project_id": "rentahouse-47e4d",
+    "storage_bucket": "rentahouse-47e4d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:864174472705:android:0be11cf0b89f985a21ca00",
+        "android_client_info": {
+          "package_name": "com.grupo.rentahouse.rent_a_house"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "864174472705-lq8jpteqdvpv7e5becksm6ulqehllgb2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgWUI49IvkZ0S3hjFRhM_Wr0XxDoVTXbo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "864174472705-lq8jpteqdvpv7e5becksm6ulqehllgb2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
