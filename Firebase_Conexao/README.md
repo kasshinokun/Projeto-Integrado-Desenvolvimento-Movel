@@ -100,6 +100,12 @@ Em ```Authentication``` há também:
   - Ou se iOS, acesse ```https://firebase.google.com/docs/flutter/setup?hl=pt&platform=ios```
   - Ou se Android, acesse ```https://firebase.google.com/docs/flutter/setup?hl=pt&platform=android```
   - Ou se Web, acesse ```https://firebase.google.com/docs/flutter/setup?hl=pt&platform=web```
+
+- Detalhamento do processo:
+  - ```dart pub global activate flutterfire_cli```
+  - Em seguida, na raiz do diretório do seu projeto do Flutter, execute o comando:
+    <br>```flutterfire configure --project=```<nome_do_projeto_no_firebase>```
+    <br>Com isso, seus apps são registrados automaticamente por plataforma com o Firebase, e um arquivo de <br>configuração lib/firebase_options.dart é adicionado ao seu projeto do Flutter.
 #### Etapa final
 - Realize testes para verificar
 
