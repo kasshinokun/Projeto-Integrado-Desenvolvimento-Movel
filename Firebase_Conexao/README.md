@@ -10,6 +10,10 @@ Sendo integrante da Sprint 3.
 - 21-04-2025: Arquivo-teste login-registro (pode conter erros, apenas lógica implementada)
 - 28-04-2025: Revisão dos ReadME's desta pasta para melhorar as orientações
 - 29-04-2025: Arquivos-teste Conexão-Firebase por Igor Leao
+- 01-05-2025: Métodos de login adicionados ao Firebase
+   - login por email e senha
+   - login pela conta Google
+     
 ### Conexão com o Firebase
 
 #### Criar ou escolher Conta Google
