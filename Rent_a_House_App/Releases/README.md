@@ -12,6 +12,25 @@ Revisão 1-24-03-2025
 
 [Igor Cesar Avelar Leao](https://github.com/Igor-leao)
 
+#### Etapas de Desenvolvimento - Pastas
+
+[Desenvolvimento para Sprint 1](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S1/)
+
+[Desenvolvimento para Sprint 2](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S2/)
+
+[Desenvolvimento para Sprint 3](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S3/)
+
+
+#### README Descritivo da Etapa (Vídeos e Imagens)
+
+Descrição do que foi feito por etapa de desenvolvimento ao longo do semestre (2025-1).
+
+[TP_S1 - Sobre a Sprint 1](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S1/README.md)
+
+[TP_S2 - Sobre a Sprint 2](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S2/README.md)
+
+[TP_S3 - Sobre a Sprint 3](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S3/ReadME.md)
+
 ### Objetivo do app:
  O aplicativo Rent a House tem como objetivo facilitar o
  aluguel de imóveis por temporada, conectando locatários e
@@ -112,22 +131,4 @@ Revisão 1-24-03-2025
 
 ![Casas Alugadas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S1/imagens_envio/myhouses.jpg)
 
-#### Etapas de Desenvolvimento - Pastas
-
-[Desenvolvimento para Sprint 1](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S1/)
-
-[Desenvolvimento para Sprint 2](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S2/)
-
-[Desenvolvimento para Sprint 3](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S3/)
-
-
-#### README Descritivo da Etapa (Vídeos e Imagens)
-
-Descrição do que foi feito por etapa de desenvolvimento ao longo do semestre (2025-1).
-
-[TP_S1 - Sobre a Sprint 1](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S1/README.md)
-
-[TP_S2 - Sobre a Sprint 2](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S2/README.md)
-
-[TP_S3 - Sobre a Sprint 3](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S3/ReadME.md)
 
