@@ -13,6 +13,14 @@ import 'package:flutter/material.dart';
 //Lottie
 //import 'package:lottie/lottie.dart';
 
+
+//-------------------------------Atenção----------------------------------------------------
+//------------------------------------------------------------------------------------------
+//Tutorial-base do Update 2-02-05-2025
+//https://medium.com/@genedvlpr/firebase-for-flutter-adding-authentication-c0b107c3a210
+//------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------
+
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
@@ -28,13 +36,22 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    FirebaseAuth auth= FirebaseAuth.instance;
+    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Login Demonstração',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      initialRoute: '/login',
+      //initialRoute: '/login', //Trecho anterior 
+      
+      //Em caso de erro, comente este trecho e descomente o anterior 
+      initialRoute: auth.currentUser == null
+          ? '/login'
+          : '/logged',
+      //Fim do trecho de teste 
+      
       routes: {
         '/login': (context) => MyLoginPage(title: 'Login Demonstração'),
         '/logged': (context) => MyLoggedPage(title: 'Logged User Demonstração'),
@@ -53,12 +70,16 @@ class MyLoginPage extends StatefulWidget {
 }
 
 class _MyLoginPageState extends State<MyLoginPage> {
-  bool executeLogin = true;
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  bool _visible = true;
+ 
+  FirebaseAuth auth = FirebaseAuth.instance;  
+  GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  
   final _emailUserController = TextEditingController(); //
   final _passwordUserController = TextEditingController(); //
 
+  bool _visible = true;//
+  bool executeLogin = true;//
+  
   @override
   void initState() {
     _visible = false;
@@ -81,6 +102,9 @@ class _MyLoginPageState extends State<MyLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
+      child:
+      Form(
+      key: _formKey,
       child: SizedBox(
         width: double.infinity,
         height: double.infinity,
@@ -115,8 +139,8 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   }
                   return null;
                 },
-              ),
-            ),
+              ),//TextFormField E-mail 
+            ),//Padding 
             Padding(
               padding: EdgeInsets.all(8.0),
               child: TextFormField(
@@ -164,8 +188,8 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   }
                   return null;
                 },
-              ),
-            ),
+              ),//TextFormField Senha
+            ),//Padding 
             Center(
               child:
               //------------------------------------
@@ -180,49 +204,98 @@ class _MyLoginPageState extends State<MyLoginPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                           20,
-                        ), // Set the radius here
+                        ), //Borda
                       ),
                     ),
                     child: Text('Entrar'),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 20),//Espaçamento apenas 
                   ElevatedButton(
                     onPressed: () {
-                      // Button action
+                      //
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                           20,
-                        ), // Set the radius here
+                        ), //Borda
                       ),
                     ),
                     child: Text('Continue com Google'),
-                  ),
-                  SizedBox(height: 50),
+                  ),//Login Google 
+                  SizedBox(height: 50),//Espaçamento apenas 
                   TextButton(
                     onPressed: () {
-                      // Button action
+                      // 
                     },
                     child: Text("Esqueceu a senha?"),
-                  ),
-                  SizedBox(height: 20),
+                  ),//Esqueceu a senha 
+                  SizedBox(height: 20),//Espaçamento apenas 
                   TextButton(
                     onPressed: () {
-                      // Button action
+                      //
                     },
                     child: Text("Registre-se"),
-                  ),
-                ],
-              ),
+                  ),//Registro 
+                ],//children
+              ),//Column
               //--------------------------------------------------
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+            ),//Center
+          ],//children
+        ),//Column
+      ),//SizedBox
+      )//Form
+    );//Material 
+    }//Método
+    void signIn() {
+    if (_formKey.currentState!.validate()) {
+      auth
+          .signInWithEmailAndPassword(
+              email: _emailUserController.text, password: _passwordUserController.text)
+          .whenComplete(
+            () => ScaffoldMessenger.of(context)
+                .showSnackBar(
+                  const SnackBar(
+                    content: Text("Login concluido com sucesso."),
+                  ),
+                )
+                .closed
+                .whenComplete(
+                  () => Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      //Home Page
+                    ),
+                  ),
+                ),
+          );
+      }
+    }//Login
+    void signUp() {
+    if (_formKey.currentState!.validate()) {
+      auth
+          .createUserWithEmailAndPassword(
+              email: _emailUserController.text, password: _passwordUserController.text)
+          .whenComplete(
+            () => ScaffoldMessenger.of(context)
+                .showSnackBar(
+                  const SnackBar(
+                    content: Text("Registro realizado com sucesso."),
+                  ),
+                )
+                .closed
+                .whenComplete(
+                  () => Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                    //Home Page
+                    ),
+                  ),
+                ),
+          );
+    }
+  }//Sign Up(Registro)
+}//Classe 
 
 class MyLoggedPage extends StatefulWidget {
   const MyLoggedPage({super.key, required this.title});
