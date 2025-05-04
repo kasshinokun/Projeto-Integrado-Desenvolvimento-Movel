@@ -57,7 +57,7 @@
     - Continuação: Adaptação Inicial para layout responsivo-adaptativo
     - Sistema de busca de CEP via API ViaCEP dos Correios por meio de requisição HTTP
     - Correção de erros de rotas provenientes das micro-atualizações
-    - Criação de Sistema de Notificação vinculado ao Chat - Diego, Gabriel Batista e Igor Avelar <\br>(em desenvolvimento, podendo haver erros(Estágio pre-alpha_0.1))
+    - Criação de Sistema de Notificação vinculado ao Chat - Diego, Gabriel Batista e Igor Avelar <br>(em desenvolvimento, podendo haver erros(Estágio pre-alpha_0.1))
 
 #### Previas de desenvolvimento Sprint 2 - vídeos e imagens
 
