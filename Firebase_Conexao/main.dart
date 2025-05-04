@@ -28,6 +28,7 @@ class ConnectionNotifier extends InheritedNotifier<ValueNotifier<bool>>{
 
 void main() async{
   final hasConnection= await InternetConnectionChecker().hasConnection;
+    await FirebaseService.initialize();
   runApp(
     ConnectionNotifier(
       notifier:ValueNotifier(hasConnection),
