@@ -106,6 +106,16 @@ Em ```Authentication``` há também:
   - Em seguida, na raiz do diretório do seu projeto do Flutter, execute o comando:
     <br>```flutterfire configure --project=```<nome_do_projeto_no_firebase>```
     <br>Com isso, seus apps são registrados automaticamente por plataforma com o Firebase, e um arquivo de <br>configuração lib/firebase_options.dart é adicionado ao seu projeto do Flutter.
+
+#### Verificação Inicial
+- Acesse o Firebase
+- Clique go to Console
+- Clique em Visão Geral do Projeto
+- Verifique se próximo ao ícone de uma matriz 3x3 existe algo como "X apps", onde X é um valor
+  ![Verificar](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S3/verificar_app_firebase.png)
+- Se sim, clique e verique se aparece a org Android definida para o projeto
+- Clique sobre a engrenagem para configurações e baixe o arquivo google-services.json
+- Adicione ao projeto flutter no caminho /android/app, caso já exista e seja igual ao fornecido<br>mantenha o qujá está na aplicação.
 #### Etapa final
 - Realize testes para verificar
 
