@@ -261,13 +261,10 @@ class _MyLoginPageState extends State<MyLoginPage> {
                 )
                 .closed
                 .whenComplete(
-                  () => Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      //Home Page
-                    ),
+                  () => Navigator.pushReplacementNamed(context, '/logged');
+                        Navigator.popAndPushNamed(context, '/logged');
                   ),
-                ),
+                
           );
       }
     }//Login
@@ -285,13 +282,9 @@ class _MyLoginPageState extends State<MyLoginPage> {
                 )
                 .closed
                 .whenComplete(
-                  () => Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                    //Home Page
-                    ),
+                  () => Navigator.pushReplacementNamed(context, '/login');
+                        Navigator.popAndPushNamed(context, '/login');
                   ),
-                ),
           );
     }
   }//Sign Up(Registro)
