@@ -1,11 +1,11 @@
 //Exemplo a ser adaptado
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'firebase_options.dart';
+import 'package:rent_a_house/services/authservices.dart';
+import 'package:rent_a_house/services/firebase_options.dart';
 
 const Color darkBlue = Color.fromARGB(255, 18, 32, 47);
 
@@ -15,15 +15,12 @@ void main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();
   } catch (e, st) {
-    print(e);
-    print(st);
+    throw AuthException('$e \n $st');
   }
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
- //
+  //
   await FirebaseAuth.instance.signInAnonymously();
   //
   runApp(MyApp());
@@ -32,7 +29,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   final DateFormat formatter = DateFormat('MM/dd HH:mm:SS');
 
-  MyApp({Key? key}) : super(key: key);
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +40,6 @@ class MyApp extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             
               const SizedBox(height: 32),
               Text(
                 'Digite um nova mensagem',
@@ -62,19 +58,18 @@ class MyApp extends StatelessWidget {
                 widthFactor: 0.5,
                 child: TextField(
                   decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Digite sua mensagem e por favor pressione Enter'),
+                    border: OutlineInputBorder(),
+                    hintText: 'Digite sua mensagem e por favor pressione Enter',
+                  ),
                   onSubmitted: (String value) {
-                    FirebaseFirestore.instance.collection('chat').add(
-                      {
-                        'message': value,
-                        'timestamp': DateTime.now().millisecondsSinceEpoch
-                      },
-                    );
+                    FirebaseFirestore.instance.collection('chat').add({
+                      'message': value,
+                      'timestamp': DateTime.now().millisecondsSinceEpoch,
+                    });
                   },
                 ),
               ),
-             
+
               const SizedBox(height: 32),
               Text(
                 'Últimas mensagens',
@@ -83,11 +78,12 @@ class MyApp extends StatelessWidget {
               const SizedBox(height: 16),
               Expanded(
                 child: StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance
-                      .collection('chat')
-                      .orderBy('timestamp', descending: true)
-                      .limit(messageLimit)
-                      .snapshots(),
+                  stream:
+                      FirebaseFirestore.instance
+                          .collection('chat')
+                          .orderBy('timestamp', descending: true)
+                          .limit(messageLimit)
+                          .snapshots(),
                   builder: (context, snapshot) {
                     if (snapshot.hasError) {
                       return Center(child: Text('$snapshot.error'));
@@ -109,9 +105,13 @@ class MyApp extends StatelessWidget {
                         return ListTile(
                           leading: DefaultTextStyle.merge(
                             style: const TextStyle(color: Colors.indigo),
-                            child: Text(formatter.format(
+                            child: Text(
+                              formatter.format(
                                 DateTime.fromMillisecondsSinceEpoch(
-                                    docs[i]['timestamp']))),
+                                  docs[i]['timestamp'],
+                                ),
+                              ),
+                            ),
                           ),
                           title: Text('${docs[i]['message']}'),
                         );
@@ -127,3 +127,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
