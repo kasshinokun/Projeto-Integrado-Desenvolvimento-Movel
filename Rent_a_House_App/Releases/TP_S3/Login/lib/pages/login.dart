@@ -113,7 +113,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(top: 100.0),
+          padding: EdgeInsets.only(top: 100.0, left: 8.0),
           child: Form(
             key: _formKey,
             child: Column(
