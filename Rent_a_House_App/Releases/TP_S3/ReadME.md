@@ -6,5 +6,6 @@
 - 03-05-2025: Template Chat via Firebase - Início
 - 04-05-2025: Código Teste - Igor Leao
   - Merge Codigo Login e Conexão - Gabriel Cassino e Igor Leao
+- 05-05-2025: Adaptação Merge Update 04-05-2025-2 - Início
 ##### Preparação 
 [Conexão com Firebase e dicas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Firebase_Conexao/README.md)
