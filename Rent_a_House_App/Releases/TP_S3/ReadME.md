@@ -7,8 +7,18 @@
 - 04-05-2025: Código Teste - Igor Leao
   - Merge Codigo Login e Conexão - Gabriel Cassino e Igor Leao
 - 05-05-2025: Adaptação Merge Update 04-05-2025-2 - Início
+  - Update 2.1-05-05-2025 - descrição:
+  - Merge Concluído
+  - Esqueleto de Páginas pronto e dentro de um<br>CurvedLabeledNavigationBar
+  - Adaptação para checagem de conexão - início
+  - Página para ausência de Internet - início
+  - Página de Chat no Firebase - início
+    
 ##### Preparação 
 [Conexão com Firebase e dicas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Firebase_Conexao/README.md)
 
 #### Preview - Etapas
 ![loginv1](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S3/paginaslogin.jpg)
+
+##### Vídeos
+[Vídeo de execução em dispositivo Update 2.1-05-05-2025](https://youtube.com/shorts/m4vbd-UxF-Q?si=mVjFNLSvkFdNYx9k)
