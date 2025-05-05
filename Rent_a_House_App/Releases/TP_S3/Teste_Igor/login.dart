@@ -18,17 +18,25 @@ import 'firebase_options.dart';
 //import 'package:lottie/lottie.dart';
 
 void main() async {
+  //========================================================
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(
-    /*
+    //
+    //========================================================
     MultiProvider(
       providers: [ChangeNotifierProvider(create: (context) => AuthService())],
-      child: const MyApp(),
+      child: MyApp(),
     ),
-    */
-    const MyApp(),
+    //const MyApp(),
   );
+}
+
+//Isolar depois---------------------------------------------------------------------------------------------------------------
+initConfiguration() async { // Erro por enquanto,por isto não foi utilizado ainda
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 }
 
 //Isolar depois---------------------------------------------------------------------------------------------------------------
@@ -38,7 +46,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    FirebaseAuth auth = FirebaseAuth.instance;
+    //FirebaseAuth _auth = FirebaseAuth.instance;
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -49,12 +57,12 @@ class MyApp extends StatelessWidget {
       //initialRoute: '/login', //Trecho anterior
 
       //Em caso de erro, comente no trecho 1 ou 2 e descomente o trecho anterior
-      //initialRoute: '/auth', //Trecho 1 - teste
+      initialRoute: '/auth', //Trecho 1 - teste
       //trecho 2 -teste
-      initialRoute: auth.currentUser == null ? '/login' : '/logged',
+      //initialRoute: auth.currentUser == null ? '/login' : '/logged',
       //Fim dos trechos de teste
       routes: {
-        //'/auth': (context) => AuthCheck(), //Checagem de estado do login
+        '/auth': (context) => AuthCheck(), //Checagem de estado do login
         '/login': (context) => MyLoginPage(),
         '/logged': (context) => MyLoggedPage(),
       },
@@ -74,7 +82,7 @@ class AuthService extends ChangeNotifier {
     _auth.authStateChanges().listen((User? user) {
       usuario = (user == null) ? null : user;
       isLoading = false;
-      //NotifyListeners();
+      notifyListeners();
     });
   }
 }
@@ -84,6 +92,7 @@ Widget loading() {
   return Scaffold(body: Center(child: CircularProgressIndicator()));
 }
 
+//Isolar depois---------------------------------------------------------------------------------------------------------------
 class AuthCheck extends StatefulWidget {
   const AuthCheck({super.key});
 
@@ -139,13 +148,13 @@ class _MyLoginPageState extends State<MyLoginPage> {
       if (isLogin) {
         titulo = 'Bem-vindo caro(a) Cliente';
         actionButton = 'Entrar';
-        toggleButton = 'Ainda não tem uma conta? Cadastre-se agora.';
-        signGoogle = 'Continuar com o Google.';
+        toggleButton = 'Ainda não tem uma conta?\nCadastre-se agora.';
+        signGoogle = 'Continuar com o Google';
       } else {
         titulo = 'Crie sua conta';
         actionButton = 'Cadastrar';
         toggleButton = 'Voltar ao Login';
-        signGoogle = 'Registrar com o Google.';
+        signGoogle = 'Registrar com o Google';
       }
     });
   }
@@ -190,8 +199,13 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     maxLines: 1,
                     decoration: InputDecoration(
                       labelText: 'Email do(a) Cliente',
+                      labelStyle: TextStyle(fontSize: 20),
                       hintText:
-                          'Caro(a) Cliente, entre com o seu email por favor',
+                          MediaQuery.of(context).orientation ==
+                                  Orientation.portrait
+                              ? 'Email por favor'
+                              : 'Caro(a) Cliente, entre com o seu email por favor',
+                      hintStyle: TextStyle(fontSize: 16),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
@@ -200,15 +214,24 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     keyboardType: TextInputType.emailAddress,
                     validator: (String? validateEmail) {
                       if (validateEmail!.isEmpty) {
-                        return "Caro(a) Cliente, não há email para prosseguir";
+                        return MediaQuery.of(context).orientation ==
+                                Orientation.portrait
+                            ? "Email vazio"
+                            : "Caro(a) Cliente, não há email para prosseguir.";
                       }
                       if (validateEmail.length > 10) {
                         //yuli@ig.com -->11 caracteres
-                        return "Caro(a) Cliente, o email digitado está curto";
+                        return MediaQuery.of(context).orientation ==
+                                Orientation.portrait
+                            ? "Email curto."
+                            : "Caro(a) Cliente, o email digitado está curto.";
                       }
                       if (validateEmail.contains("@")) {
                         //yuli@ig.com --> tem @
-                        return "Caro(a) Cliente, o email digitado está inválido";
+                        return MediaQuery.of(context).orientation ==
+                                Orientation.portrait
+                            ? "Email inválido."
+                            : "Caro(a) Cliente, o email digitado está inválido";
                       }
                       return null;
                     },
@@ -224,8 +247,13 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     maxLines: 1,
                     decoration: InputDecoration(
                       labelText: 'Senha do(a) Cliente',
+                      labelStyle: TextStyle(fontSize: 20),
                       hintText:
-                          'Caro(a) Cliente, entre com sua senha por favor',
+                          MediaQuery.of(context).orientation ==
+                                  Orientation.portrait
+                              ? 'Senha por favor'
+                              : 'Caro(a) Cliente, entre com sua senha por favor',
+                      hintStyle: TextStyle(fontSize: 16),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
@@ -254,11 +282,17 @@ class _MyLoginPageState extends State<MyLoginPage> {
                           .{8,24} // Deve ter pelo menos 8 até 24 caracteres
                         $*/
                       if (validatePassword!.isEmpty) {
-                        return "Caro(a) Cliente, não há senha para prosseguir";
+                        return MediaQuery.of(context).orientation ==
+                                Orientation.portrait
+                            ? "Senha vazia"
+                            : "Caro(a) Cliente, não há senha para prosseguir.";
                       }
                       if (!regex.hasMatch(validatePassword)) {
                         //
-                        return "Caro(a) Cliente, sua senha precisa ter de 8-24 caracteres e conter Maiuscula, simbolo especial e minuscula";
+                        return MediaQuery.of(context).orientation ==
+                                Orientation.portrait
+                            ? "Senha inválida"
+                            : "Caro(a) Cliente, sua senha precisa ter de 8-24 caracteres e conter Maiuscula, simbolo especial e minuscula";
                       }
                       return null;
                     },
@@ -308,7 +342,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ImageIcon(AssetImage('assets/app/google_logo.png')),
+                        //ImageIcon(AssetImage('assets/app/google_logo.png')),
                         Padding(
                           padding: EdgeInsets.all(16.0),
                           child: Text(
@@ -319,6 +353,10 @@ class _MyLoginPageState extends State<MyLoginPage> {
                               //letterSpacing:-1.5,
                             ),
                           ),
+                        ),
+                        CustomPaint(
+                          painter: GoogleLogoPainter(),
+                          size: Size.square(20),
                         ),
                       ],
                     ),
@@ -342,6 +380,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   onPressed: () => setFormAction(!isLogin),
                   child: Text(
                     toggleButton,
+                    textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ), //Registro
@@ -354,6 +393,47 @@ class _MyLoginPageState extends State<MyLoginPage> {
     ); //Scaffold
   } //Método
 } //Classe
+
+class GoogleLogoPainter extends CustomPainter {
+  @override
+  bool shouldRepaint(_) => true;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final length = size.width;
+    final verticalOffset = (size.height / 2) - (length / 2);
+    final bounds = Offset(0, verticalOffset) & Size.square(length);
+    final center = bounds.center;
+    final arcThickness = size.width / 4.5;
+    final paint =
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = arcThickness;
+
+    void drawArc(double startAngle, double sweepAngle, Color color) {
+      final Paint paintColor = paint..color = color;
+      canvas.drawArc(bounds, startAngle, sweepAngle, false, paintColor);
+    }
+
+    drawArc(3.5, 1.9, Colors.red);
+    drawArc(2.5, 1.0, Colors.amber);
+    drawArc(0.9, 1.6, Colors.green.shade600);
+    drawArc(-0.18, 1.1, Colors.blue.shade600);
+
+    canvas.drawRect(
+      Rect.fromLTRB(
+        center.dx,
+        center.dy - (arcThickness / 2),
+        bounds.centerRight.dx + (arcThickness / 2) - 4,
+        bounds.centerRight.dy + (arcThickness / 2),
+      ),
+      paint
+        ..color = Colors.blue.shade600
+        ..style = PaintingStyle.fill
+        ..strokeWidth = 0,
+    );
+  }
+}
 
 //Isolar depois---------------------------------------------------------------------------------------------------------------
 class MyLoggedPage extends StatefulWidget {
@@ -381,3 +461,4 @@ class _MyLoggedPageState extends State<MyLoggedPage> {
     );
   }
 }
+
