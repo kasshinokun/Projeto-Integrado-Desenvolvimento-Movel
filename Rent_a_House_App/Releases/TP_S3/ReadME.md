@@ -9,3 +9,6 @@
 - 05-05-2025: Adaptação Merge Update 04-05-2025-2 - Início
 ##### Preparação 
 [Conexão com Firebase e dicas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Firebase_Conexao/README.md)
+
+#### Preview - Etapas
+![loginv1](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S3/paginaslogin.jpg)
