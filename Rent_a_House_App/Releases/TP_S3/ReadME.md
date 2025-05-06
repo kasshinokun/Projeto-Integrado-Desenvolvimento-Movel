@@ -17,6 +17,8 @@
 ##### Preparação 
 [Conexão com Firebase e dicas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Firebase_Conexao/README.md)
 
+[Conexão com SQFLite e dicas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/tree/main/SQFLite_Conexao)
+
 #### Preview - Etapas
 ![loginv1](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S3/paginaslogin.jpg)
 
