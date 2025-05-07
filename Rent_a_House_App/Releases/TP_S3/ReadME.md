@@ -13,7 +13,9 @@
   - Adaptação para checagem de conexão - início
   - Página para ausência de Internet - início
   - Página de Chat no Firebase - início
-- 07-05-2025: Mudança na persistência do Firebase<br>para permitir verificação se o usuário<br>foi armazenado no SQLite - início 
+- 07-05-2025: Mudança na persistência do Firebase<br>para permitir verificação se o usuário<br>foi armazenado no SQLite - início
+  - Código de exemplo para criação de banco de dados
+   <br>em SQLite - início, caminho abaixo:<br> (/Rent_a_house_app/Releases/TP_S3/Teste_Igor/startdatadb.dart)
 
 ##### Preparação 
 [Conexão com Firebase e dicas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Firebase_Conexao/README.md)
