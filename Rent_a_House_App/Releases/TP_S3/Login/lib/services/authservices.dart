@@ -19,6 +19,9 @@ class AuthException implements Exception {
 //Isolar depois---------------------------------------------------------------------------------------------------------------
 class AuthService extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  //_auth.setPersistence(Persistence.SESSION);//manter persistência somente na sessão 
+  
   final GlobalKey<ScaffoldMessengerState> snackbarKey =
       GlobalKey<ScaffoldMessengerState>();
 
