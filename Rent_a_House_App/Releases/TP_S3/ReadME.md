@@ -13,7 +13,8 @@
   - Adaptação para checagem de conexão - início
   - Página para ausência de Internet - início
   - Página de Chat no Firebase - início
-    
+- 07-05-2025: Mudança na persistência do Firebase<br>para permitir verificação se o usuário<br>foi armazenado no SQLite - início 
+
 ##### Preparação 
 [Conexão com Firebase e dicas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Firebase_Conexao/README.md)
 
