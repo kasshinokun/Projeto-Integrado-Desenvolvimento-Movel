@@ -17,7 +17,8 @@
   - Código de exemplo para criação de banco de dados
    <br>em SQLite - início, caminho abaixo:<br> (/Rent_a_house_app/Releases/TP_S3/Teste_Igor/startdatadb.dart)
 - 08-05-2025: Update 1 até o último do dia - Upload de códigos
-  <br>de teste para tabela Logradouro
+  <br>de teste para tabela Logradouro e request de idToken do Firebase
+  <br>focado em processos a serem implantados como o chat
 
 ##### Preparação 
 [Conexão com Firebase e dicas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Firebase_Conexao/README.md)
