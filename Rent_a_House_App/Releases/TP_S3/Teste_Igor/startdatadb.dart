@@ -19,7 +19,7 @@ class Logradouro {
     return {'id': id, 'cep': cep, 'logradouro': logradouro};
   }
 
-  factory Logradouro.fromMap(Map<String, dynamic> map) {
+  factory logradouro.fromMap(Map<String, dynamic> map) {
     return Logradouro(
       id: map['id'],
       cep: map['cep'],
@@ -166,6 +166,56 @@ class DB {
     });
   }
 
+  //Teste de insert, caso exista, 
+  //sobrescreverá o registro(não testado ainda)
+  Future<void> insertTask(Logradouro logradouro) async {
+  final Database db = await database;
+
+  await db.insert(
+    'logradouro',
+    logradouro.toMap(),
+    conflictAlgorithm: ConflictAlgorithm.replace,
+  );
+  }
+
+//Querying Data
+Future<List<Task>> getLogradouros() async {
+  final Database db = await database;
+
+  final List<Map<String, dynamic>> maps = await db.query('logradouro');
+
+  return List.generate(maps.length, (i) {
+    return Task(
+      id: map['id'],
+      cep: map['cep'],
+      logradouro: map['logradouro'],
+    );
+  });
+}
+//Updating Data
+Future<void> updateLogradouro(Logradouro logradouro) async {
+  final Database db = await database;
+
+  await db.update(
+    'logradouro',
+    logradouro.toMap(),
+    where: 'id = ?',
+    whereArgs: [logradouro.id],
+  );
+}
+//Deleting Data
+Future<void> deleteLogradouro(int id) async {
+  final Database db = await database;
+
+  await db.delete(
+    'logradouro',
+    where: 'id = ?',
+    whereArgs: [id],
+  );
+}
+
+
+  
   //Verificar existencia do banco
   Future<bool> databaseExists(String path) =>
       databaseFactory.databaseExists(path);
