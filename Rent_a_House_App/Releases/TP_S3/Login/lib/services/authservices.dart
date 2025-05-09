@@ -26,6 +26,8 @@ class AuthService extends ChangeNotifier {
       GlobalKey<ScaffoldMessengerState>();
 
   User? usuario;
+  String? idToken;
+  
   bool isLoading = true;
   AuthService() {
     _authCheck();
@@ -48,7 +50,23 @@ class AuthService extends ChangeNotifier {
       notifyListeners();
     });
   }
-
+  //Armazenar no SQLite ou SharedPreferences ou .json
+  _getToken(){
+    usuario = _auth.currentUser;
+    if (usuario != null) {
+      usuario.getIdToken(true).then((idToken) {
+        // Use the idToken here, e.g., print it
+        print('ID Token: $idToken');
+        // Or send it to your backend
+      }).catchError((error) {
+        // Handle any errors
+        print('Error getting ID token: $error');
+      });
+    } else {
+      // Handle the case where no user is signed in
+      print('No user signed in');
+    }
+  }
   _getUser() {
     usuario = _auth.currentUser;
     notifyListeners();
