@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+//import 'package:provider/provider.dart';
+//import 'package:rent_a_house/services/authservices.dart';
 
 //Test Palcebo Apenas
 class HomeScreen extends StatelessWidget {
@@ -26,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                 //Definir rota futuramente
               },
               child: Text(
-                "Sair",
+                "Login",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
@@ -42,8 +44,23 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Profile Screen', style: TextStyle(fontSize: 24)),
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text('Profile Screen', style: TextStyle(fontSize: 24)),
+          Column(
+            children: [
+              Text('Usuario Logado', style: TextStyle(fontSize: 24)),
+              Text('Nome do Usuario', style: TextStyle(fontSize: 24)),
+              Text('Mudar senha', style: TextStyle(fontSize: 24)),
+              Text('Mudar email', style: TextStyle(fontSize: 24)),
+              Text('Mudar endereço', style: TextStyle(fontSize: 24)),
+              Text('Ver casas alugadas', style: TextStyle(fontSize: 24)),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

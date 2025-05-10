@@ -91,6 +91,18 @@ class _MyLoginPageState extends State<MyLoginPage> {
       );
     }
   }
+
+  //Guest User
+  callGuest() async {
+    try {
+      await context.read<AuthService>().loginGuestUser();
+    } on AuthException catch (e) {
+      snackbarLoginKey.currentState?.showSnackBar(
+        SnackBar(content: Text(e.message)),
+      );
+    }
+  }
+
   //Alterar
   //Sair
 
@@ -117,211 +129,232 @@ class _MyLoginPageState extends State<MyLoginPage> {
           child: Form(
             key: _formKey,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  titulo,
-                  style: TextStyle(
-                    fontSize: 35,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: -1.5,
+                Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                    onPressed: () {
+                      callGuest();
+                      // Respond to button press
+                    },
+                    icon: Icon(Icons.close, size: 40.0),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(24.0),
-                  child: TextFormField(
-                    controller: _emailUserController,
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      labelText: 'Email do(a) Cliente',
-                      labelStyle: TextStyle(fontSize: 20),
-                      hintText:
-                          MediaQuery.of(context).orientation ==
-                                  Orientation.portrait
-                              ? 'Email por favor'
-                              : 'Caro(a) Cliente, entre com o seu email por favor',
-                      hintStyle: TextStyle(fontSize: 16),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      suffixIcon: Icon(Icons.email_outlined),
-                    ),
-                    keyboardType: TextInputType.emailAddress,
-                    validator: (String? validateEmail) {
-                      if (validateEmail!.isEmpty) {
-                        return MediaQuery.of(context).orientation ==
-                                Orientation.portrait
-                            ? "Email vazio"
-                            : "Caro(a) Cliente, não há email para prosseguir.";
-                      }
-                      if (validateEmail.length < 10) {
-                        //yuli@ig.com -->11 caracteres
-                        return MediaQuery.of(context).orientation ==
-                                Orientation.portrait
-                            ? "Email curto."
-                            : "Caro(a) Cliente, o email digitado está curto.";
-                      }
-                      if (!validateEmail.contains("@")) {
-                        //yuli@ig.com --> tem @
-                        return MediaQuery.of(context).orientation ==
-                                Orientation.portrait
-                            ? "Email inválido."
-                            : "Caro(a) Cliente, o email digitado está inválido";
-                      }
-                      return null;
-                    },
-                  ), //TextFormField E-mail
-                ), //Padding
-                Padding(
-                  padding: EdgeInsets.all(24.0),
-                  child: TextFormField(
-                    keyboardType: TextInputType.text,
-                    controller: _passwordUserController,
-                    obscureText: !_visible,
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      labelText: 'Senha do(a) Cliente',
-                      labelStyle: TextStyle(fontSize: 20),
-                      hintText:
-                          MediaQuery.of(context).orientation ==
-                                  Orientation.portrait
-                              ? 'Senha por favor'
-                              : 'Caro(a) Cliente, entre com sua senha por favor',
-                      hintStyle: TextStyle(fontSize: 16),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _visible ? Icons.visibility : Icons.visibility_off,
-                          color: Colors.black87,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _visible = !_visible;
-                          });
-                        },
-                      ),
-                    ),
-                    validator: (String? validatePassword) {
-                      RegExp regex = RegExp(
-                        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,24}$',
-                      );
-                      /*Sobre o regex:
-                        r'^
-                          (?=.*[A-Z]) // deve conter pelo menos uma letra maiúscula
-                          (?=.*[a-z]) // deve conter pelo menos uma letra minúscula
-                          (?=.*?[0-9]) // deve conter pelo menos um dígito
-                          (?=.*?[!@#\$&*~]) // deve conter pelo menos um caractere especial
-                          .{8,24} // Deve ter pelo menos 8 até 24 caracteres
-                        $*/
-                      if (validatePassword!.isEmpty) {
-                        return MediaQuery.of(context).orientation ==
-                                Orientation.portrait
-                            ? "Senha vazia"
-                            : "Caro(a) Cliente, não há senha para prosseguir.";
-                      }
-                      if (!regex.hasMatch(validatePassword)) {
-                        //
-                        return MediaQuery.of(context).orientation ==
-                                Orientation.portrait
-                            ? "Senha inválida"
-                            : "Caro(a) Cliente, sua senha precisa ter de 8-24 caracteres e conter Maiuscula, simbolo especial e minuscula";
-                      }
-                      return null;
-                    },
-                  ), //TextFormField Senha
-                ), //Padding
-                Padding(
-                  padding: EdgeInsets.all(24.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      manageUser();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20), //Borda
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.check),
-                        Padding(
-                          padding: EdgeInsets.all(16.0),
-                          child: Text(
-                            actionButton,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              //letterSpacing:-1.5,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(24.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Button action
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20), //Borda
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        //ImageIcon(AssetImage('assets/app/google_logo.png')),
-                        Padding(
-                          padding: EdgeInsets.all(16.0),
-                          child: Text(
-                            signGoogle,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              //letterSpacing:-1.5,
-                            ),
-                          ),
-                        ),
-                        CustomPaint(
-                          painter: GoogleLogoPainter(),
-                          size: Size.square(20),
-                        ),
-                      ],
-                    ),
-                  ),
-                ), //Padding
-                if (isLogin)
-                  Padding(
-                    padding: EdgeInsets.all(24.0),
-                    child: TextButton(
-                      onPressed: () {},
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
                       child: Text(
-                        'Esqueci minha senha',
+                        titulo,
+                        style: TextStyle(
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: -1.5,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(24.0),
+                      child: TextFormField(
+                        controller: _emailUserController,
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        decoration: InputDecoration(
+                          labelText: 'Email do(a) Cliente',
+                          labelStyle: TextStyle(fontSize: 20),
+                          hintText:
+                              MediaQuery.of(context).orientation ==
+                                      Orientation.portrait
+                                  ? 'Email por favor'
+                                  : 'Caro(a) Cliente, entre com o seu email por favor',
+                          hintStyle: TextStyle(fontSize: 16),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          suffixIcon: Icon(Icons.email_outlined),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (String? validateEmail) {
+                          if (validateEmail!.isEmpty) {
+                            return MediaQuery.of(context).orientation ==
+                                    Orientation.portrait
+                                ? "Email vazio"
+                                : "Caro(a) Cliente, não há email para prosseguir.";
+                          }
+                          if (validateEmail.length < 10) {
+                            //yuli@ig.com -->11 caracteres
+                            return MediaQuery.of(context).orientation ==
+                                    Orientation.portrait
+                                ? "Email curto."
+                                : "Caro(a) Cliente, o email digitado está curto.";
+                          }
+                          if (!validateEmail.contains("@")) {
+                            //yuli@ig.com --> tem @
+                            return MediaQuery.of(context).orientation ==
+                                    Orientation.portrait
+                                ? "Email inválido."
+                                : "Caro(a) Cliente, o email digitado está inválido";
+                          }
+                          return null;
+                        },
+                      ), //TextFormField E-mail
+                    ), //Padding
+                    Padding(
+                      padding: EdgeInsets.all(24.0),
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        controller: _passwordUserController,
+                        obscureText: !_visible,
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        decoration: InputDecoration(
+                          labelText: 'Senha do(a) Cliente',
+                          labelStyle: TextStyle(fontSize: 20),
+                          hintText:
+                              MediaQuery.of(context).orientation ==
+                                      Orientation.portrait
+                                  ? 'Senha por favor'
+                                  : 'Caro(a) Cliente, entre com sua senha por favor',
+                          hintStyle: TextStyle(fontSize: 16),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _visible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Colors.black87,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _visible = !_visible;
+                              });
+                            },
+                          ),
+                        ),
+                        validator: (String? validatePassword) {
+                          RegExp regex = RegExp(
+                            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,24}$',
+                          );
+                          /*Sobre o regex:
+                            r'^
+                              (?=.*[A-Z]) // deve conter pelo menos uma letra maiúscula
+                              (?=.*[a-z]) // deve conter pelo menos uma letra minúscula
+                              (?=.*?[0-9]) // deve conter pelo menos um dígito
+                              (?=.*?[!@#\$&*~]) // deve conter pelo menos um caractere especial
+                              .{8,24} // Deve ter pelo menos 8 até 24 caracteres
+                            $*/
+                          if (validatePassword!.isEmpty) {
+                            return MediaQuery.of(context).orientation ==
+                                    Orientation.portrait
+                                ? "Senha vazia"
+                                : "Caro(a) Cliente, não há senha para prosseguir.";
+                          }
+                          if (!regex.hasMatch(validatePassword)) {
+                            //
+                            return MediaQuery.of(context).orientation ==
+                                    Orientation.portrait
+                                ? "Senha inválida"
+                                : "Caro(a) Cliente, sua senha precisa ter de 8-24 caracteres e conter Maiuscula, simbolo especial e minuscula";
+                          }
+                          return null;
+                        },
+                      ), //TextFormField Senha
+                    ), //Padding
+                    Padding(
+                      padding: EdgeInsets.all(24.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          manageUser();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20), //Borda
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.check),
+                            Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Text(
+                                actionButton,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  //letterSpacing:-1.5,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(24.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Button action
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20), //Borda
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            //ImageIcon(AssetImage('assets/app/google_logo.png')),
+                            Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Text(
+                                signGoogle,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  //letterSpacing:-1.5,
+                                ),
+                              ),
+                            ),
+                            CustomPaint(
+                              painter: GoogleLogoPainter(),
+                              size: Size.square(20),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ), //Padding
+                    if (isLogin)
+                      Padding(
+                        padding: EdgeInsets.all(24.0),
+                        child: TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Esqueci minha senha',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ), //Registro
+                      ),
+                    TextButton(
+                      onPressed: () => setFormAction(!isLogin),
+                      child: Text(
+                        toggleButton,
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ), //Registro
-                  ),
-                TextButton(
-                  onPressed: () => setFormAction(!isLogin),
-                  child: Text(
-                    toggleButton,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ), //Registro
-              ], //children
-            ), //Column
+                  ], //children
+                ), //Column
+              ],
+            ),
             //--------------------------------------------------
           ), //Form
         ), //Padding

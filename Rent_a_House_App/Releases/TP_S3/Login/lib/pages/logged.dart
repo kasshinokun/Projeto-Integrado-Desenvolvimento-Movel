@@ -6,7 +6,8 @@ import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:rent_a_house/pages/servicespages.dart';
 
 class MyLoggedPage extends StatefulWidget {
-  const MyLoggedPage({super.key});
+  //final bool isLogged;
+  const MyLoggedPage( /*this.isLogged, */ {super.key});
 
   @override
   State<MyLoggedPage> createState() => _MyLoggedPageState();

@@ -19,22 +19,20 @@ class AuthException implements Exception {
 //Isolar depois---------------------------------------------------------------------------------------------------------------
 class AuthService extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
-  //_auth.setPersistence(Persistence.SESSION);//manter persistência somente na sessão 
-  
   final GlobalKey<ScaffoldMessengerState> snackbarKey =
       GlobalKey<ScaffoldMessengerState>();
-
   User? usuario;
   String? idToken;
-  
   bool isLoading = true;
+  //bool isLogged = false;
   AuthService() {
     _authCheck();
   }
   _authCheck() {
-    _auth.authStateChanges().listen((User? user) {
+    _auth.authStateChanges().listen((User? user) async {
       usuario = (user == null) ? null : user;
+      //Captura de idToken
+      idToken = (user == null) ? null : await _auth.currentUser!.getIdToken();
       if (usuario == null) {
         snackbarKey.currentState?.showSnackBar(
           SnackBar(
@@ -47,26 +45,11 @@ class AuthService extends ChangeNotifier {
         );
       }
       isLoading = false;
+      //isLogged = (user == null || user.isAnonymous) ? false : true;
       notifyListeners();
     });
   }
-  //Armazenar no SQLite ou SharedPreferences ou .json
-  _getToken(){
-    usuario = _auth.currentUser;
-    if (usuario != null) {
-      usuario.getIdToken(true).then((idToken) {
-        // Use the idToken here, e.g., print it
-        print('ID Token: $idToken');
-        // Or send it to your backend
-      }).catchError((error) {
-        // Handle any errors
-        print('Error getting ID token: $error');
-      });
-    } else {
-      // Handle the case where no user is signed in
-      print('No user signed in');
-    }
-  }
+
   _getUser() {
     usuario = _auth.currentUser;
     notifyListeners();
@@ -78,6 +61,7 @@ class AuthService extends ChangeNotifier {
         email: email,
         password: password,
       );
+      //
       _getUser();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -91,6 +75,7 @@ class AuthService extends ChangeNotifier {
   loginUser(String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
+      //isLogged = true;
       _getUser();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -98,6 +83,16 @@ class AuthService extends ChangeNotifier {
       } else if (e.code == 'wrong-password') {
         throw AuthException('Senha errada\ntente novamente\npor favor.');
       }
+    }
+  }
+
+  loginGuestUser() async {
+    try {
+      await _auth.signInAnonymously();
+      //
+      _getUser();
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {}
     }
   }
 
@@ -129,7 +124,7 @@ class _AuthCheckState extends State<AuthCheck> {
     } else if (auth.usuario == null) {
       return MyLoginPage();
     } else {
-      return MyLoggedPage();
+      return MyLoggedPage(/*AuthService().isLogged*/);
     }
   }
 }

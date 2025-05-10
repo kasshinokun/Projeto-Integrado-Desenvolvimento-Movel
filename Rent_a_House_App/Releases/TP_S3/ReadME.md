@@ -19,7 +19,8 @@
 - 08-05-2025: Update 1 até o último do dia - Upload de códigos
   <br>de teste para tabela Logradouro e request de idToken do Firebase
   <br>focado em processos a serem implantados como o chat
-
+- 10-05-2025: Preparação de classes para receber <br>request de idToken do Firebase e preparação do banco de dados
+ local<br>para receber valores e armazenar
 ##### Preparação 
 [Conexão com Firebase e dicas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Firebase_Conexao/README.md)
 

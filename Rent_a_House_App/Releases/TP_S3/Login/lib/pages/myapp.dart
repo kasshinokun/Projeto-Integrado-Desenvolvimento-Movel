@@ -37,7 +37,8 @@ class MyApp extends StatelessWidget {
             ), //Checagem de estado da conexão
             */
         '/login': (context) => MyLoginPage(), //Pagina de Login
-        '/logged': (context) => MyLoggedPage(), //HomePage
+        '/logged':
+            (context) => MyLoggedPage(/*AuthService().isLogged*/), //HomePage
         '/nointernet': (context) => NoInternet(), //HomePage sem Internet
       },
     );
