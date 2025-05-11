@@ -3,7 +3,7 @@
 o NodeJS depende do Python, VS Redistributable C++ e Chocolatey
 <br>mas seu pacote .msi já possui as dependências.
 <br>
-<br>Mas é bompossui os instaladores em caso de erro.
+<br>Mas é bom possuir os instaladores em caso de erro.
 <br>```NodeJS:```
 <br>Acesse:
 <br>English-US: ```https://nodejs.org/en/download```
