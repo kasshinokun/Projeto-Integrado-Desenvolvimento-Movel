@@ -21,9 +21,10 @@
   <br>focado em processos a serem implantados como o chat
 - 10-05-2025: Preparação de classes para receber <br>request de idToken do Firebase e preparação do banco de dados
  local<br>para receber valores e armazenar
-- 11-05-2025: Descrição
+- 12-05-2025: Descrição (todos os Updates até o 2.1)
   - Criação das Classes Model e Classes DAO para gerir o SQLite
   - Reformulação da página de registro de imovel com ImagePicker e vinculo com SQLite em teste
+  - Ajuste da tela de perfil para receber a chamada da página de registro de imóveis 
   - Preparação da tela Inicial com SQLite - início (não está disponível, mas Gabriel Cassino já iniciou)
 ##### Preparação 
 [Conexão com Firebase e dicas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Firebase_Conexao/README.md)
