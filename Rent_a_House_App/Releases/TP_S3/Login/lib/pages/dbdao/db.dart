@@ -1,33 +1,20 @@
 //Precisa das libs: sqflite
-import 'package:sqflite/sqflite.dart';
+//import 'package:sqflite/sqflite.dart';
 
 //Precisa das libs: path
-import 'package:path/path.dart';
+//import 'package:path/path.dart';
 
 //Escreva manualmente os termos abaixo no pubspec.yaml
 //path: ^1.9.1
 //path_provider: ^2.1.5
 //hive: ^2.2.3
 
-class Logradouro {
-  final int? id;
-  final String cep;
-  final String logradouro;
-  Logradouro({this.id, required this.cep, required this.logradouro});
-
-  Map<String, dynamic> toMap() {
-    return {'id': id, 'cep': cep, 'logradouro': logradouro};
-  }
-
-  factory logradouro.fromMap(Map<String, dynamic> map) {
-    return Logradouro(
-      id: map['id'],
-      cep: map['cep'],
-      logradouro: map['logradouro'],
-    );
-  }
-}
-// Crie as demais classes
+import 'dart:async';
+//import 'dart:io';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
+//import 'package:path_provider/path_provider.dart';
+import 'package:rent_a_house/pages/model/lograddouro.dart';
 
 class DB {
   DB._();
@@ -166,56 +153,46 @@ class DB {
     });
   }
 
-  //Teste de insert, caso exista, 
+  //Teste de insert, caso exista,
   //sobrescreverá o registro(não testado ainda)
   Future<void> insertTask(Logradouro logradouro) async {
-  final Database db = await database;
+    final Database db = await database;
 
-  await db.insert(
-    'logradouro',
-    logradouro.toMap(),
-    conflictAlgorithm: ConflictAlgorithm.replace,
-  );
+    await db.insert(
+      'logradouro',
+      logradouro.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
-//Querying Data
-Future<List<Task>> getLogradouros() async {
-  final Database db = await database;
+  //Querying Data
+  Future<List<Map<String, dynamic>>> getLogradouros() async {
+    final Database db = await database;
 
-  final List<Map<String, dynamic>> maps = await db.query('logradouro');
+    final List<Map<String, dynamic>> maps = await db.query('logradouro');
 
-  return List.generate(maps.length, (i) {
-    return Task(
-      id: map['id'],
-      cep: map['cep'],
-      logradouro: map['logradouro'],
+    return maps;
+  }
+
+  //Updating Data
+  Future<void> updateLogradouro(Logradouro logradouro) async {
+    final Database db = await database;
+
+    await db.update(
+      'logradouro',
+      logradouro.toMap(),
+      where: 'id = ?',
+      whereArgs: [logradouro.id],
     );
-  });
-}
-//Updating Data
-Future<void> updateLogradouro(Logradouro logradouro) async {
-  final Database db = await database;
+  }
 
-  await db.update(
-    'logradouro',
-    logradouro.toMap(),
-    where: 'id = ?',
-    whereArgs: [logradouro.id],
-  );
-}
-//Deleting Data
-Future<void> deleteLogradouro(int id) async {
-  final Database db = await database;
+  //Deleting Data
+  Future<void> deleteLogradouro(int id) async {
+    final Database db = await database;
 
-  await db.delete(
-    'logradouro',
-    where: 'id = ?',
-    whereArgs: [id],
-  );
-}
+    await db.delete('logradouro', where: 'id = ?', whereArgs: [id]);
+  }
 
-
-  
   //Verificar existencia do banco
   Future<bool> databaseExists(String path) =>
       databaseFactory.databaseExists(path);
