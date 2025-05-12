@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 //import 'utility.dart';
-import '../dbdao/dbhelper.dart';
+import 'dbdao/dbhelper.dart';
 import 'dart:async';
 
 void main() {
@@ -20,24 +20,24 @@ class MyNotesApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter SQLite CRUD',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: SaveImageDemoSQLite(),
+      home: RegisterHousePage(),
     );
   }
 }
 
-class SaveImageDemoSQLite extends StatefulWidget {
+class RegisterHousePage extends StatefulWidget {
   //
-  const SaveImageDemoSQLite({super.key});
+  const RegisterHousePage({super.key});
 
   final String title = "Registro de Imóveis";
   @override
-  State<SaveImageDemoSQLite> createState() => _SaveImageDemoSQLiteState();
+  State<RegisterHousePage> createState() => _RegisterHousePageState();
 }
 
-class _SaveImageDemoSQLiteState extends State<SaveImageDemoSQLite> {
+class _RegisterHousePageState extends State<RegisterHousePage> {
   //
   final ImagePicker _picker = ImagePicker();
-
+  late int idHouse;
   late Future<File> imageFile;
   late Image image;
   late DBHelper dbHelper;
@@ -66,7 +66,7 @@ class _SaveImageDemoSQLiteState extends State<SaveImageDemoSQLite> {
         String imgString = Utility.base64String(
           imgFile?.readAsBytes() as Uint8List,
         );
-        Photo photo = Photo(id: 0, photoName: imgString);
+        Photo photo = Photo(id: 1, photoName: imgString, idHouse: 1);
         dbHelper.insertPhoto(photo);
         refreshImages();
       });
@@ -96,8 +96,17 @@ class _SaveImageDemoSQLiteState extends State<SaveImageDemoSQLite> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title), actions: <Widget>[
-          
+      appBar: AppBar(
+        title: Text(widget.title),
+        actions: <Widget>[
+          TextButton.icon(
+            label: Text("Menu", style: TextStyle(fontSize: 20)),
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, '/auth');
+              Navigator.popAndPushNamed(context, '/auth');
+            },
+            icon: Icon(Icons.arrow_back),
+          ),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
@@ -165,7 +174,7 @@ class _SaveImageDemoSQLiteState extends State<SaveImageDemoSQLite> {
                         ),
                         suffixIcon: Icon(Icons.location_city),
                       ),
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.number,
                     ), //TextFormField CEP
                     TextFormField(
                       textAlign: TextAlign.center,

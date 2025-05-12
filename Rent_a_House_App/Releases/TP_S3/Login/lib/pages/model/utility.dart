@@ -22,19 +22,19 @@ class Utility {
 class Photo {
   final int id;
   final String photoName;
-
-  Photo({required this.id, required this.photoName});
+  final int idHouse;
+  Photo({required this.id, required this.photoName, required this.idHouse});
 
   // Convert a Photo into a Map. The keys must correspond to the names of the
   // columns in the database.
   Map<String, Object?> fromMap() {
-    return {'id': id, 'photo_name': photoName};
+    return {'id': id, 'photoName': photoName, 'idHouse': idHouse};
   }
 
   // Implement toString to make it easier to see information about
   // each photo when using the print statement.
   @override
   String toString() {
-    return 'Image{id: $id, name: $photoName}';
+    return 'Image{id: $id, name: $photoName, idHouse: $idHouse}';
   }
 }

@@ -3,6 +3,8 @@ import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 
 //Classes
+import 'package:rent_a_house/pages/servicespages/settings.dart';
+import 'package:rent_a_house/pages/servicespages/profile.dart';
 import 'package:rent_a_house/pages/servicespages.dart';
 
 class MyLoggedPage extends StatefulWidget {
@@ -19,9 +21,9 @@ class _MyLoggedPageState extends State<MyLoggedPage> {
 
   final List<Widget> widgetOptions = [
     HomeScreen(),
+    RentaHouseScreen(),
     ProfileScreen(),
     SettingsScreen(),
-    RentaHouseScreen(),
   ];
 
   @override
@@ -52,16 +54,17 @@ class _MyLoggedPageState extends State<MyLoggedPage> {
             label: 'Home',
           ),
           CurvedNavigationBarItem(
+            child: Icon(Icons.house_outlined),
+            label: 'Alugar',
+          ),
+          CurvedNavigationBarItem(
             child: Icon(Icons.person_outlined),
-            label: 'Profile',
+            label: 'Perfil',
           ),
           CurvedNavigationBarItem(
             child: Icon(Icons.settings_applications_sharp),
-            label: 'Settings',
-          ),
-          CurvedNavigationBarItem(
-            child: Icon(Icons.house_outlined),
-            label: 'Rent',
+            label: 'Ajustes',
+            labelStyle: TextStyle(),
           ),
         ],
 
@@ -74,7 +77,10 @@ class _MyLoggedPageState extends State<MyLoggedPage> {
         letIndexChange: (index) => true,
       ),
 
-      body: widgetOptions.elementAt(_page),
+      body: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: widgetOptions.elementAt(_page),
+      ),
     );
   }
 }

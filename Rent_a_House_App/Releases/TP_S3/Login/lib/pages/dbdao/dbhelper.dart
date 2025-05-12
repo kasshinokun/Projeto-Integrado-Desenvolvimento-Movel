@@ -10,6 +10,7 @@ import 'package:rent_a_house/pages/model/utility.dart';
 class DBHelper {
   String idPhoto = 'id';
   String photoName = 'photoName';
+  String idHouse = 'idHouse';
   String tableName = 'HousePhotosTable';
   String dbNAME = 'rentahouse.db';
 
@@ -36,7 +37,7 @@ class DBHelper {
 
   _onCreate(Database db, int version) async {
     await db.execute(
-      "CREATE TABLE $tableName ($idPhoto INTEGER, $photoName TEXT)",
+      "CREATE TABLE $tableName ($idPhoto INTEGER NOT NULL, $photoName TEXT NOT NULL, $idHouse INTEGER NOT NULL)",
     );
   }
 
@@ -67,8 +68,13 @@ class DBHelper {
 
     // Convert the list of each Photo's fields into a list of `Photo` objects.
     return [
-      for (final {'id': id as int, 'photoName': name as String} in photoMaps)
-        Photo(id: id, photoName: name),
+      for (final {
+            'id': id as int,
+            'photoName': photoName as String,
+            'idHouse': idHouse as int,
+          }
+          in photoMaps)
+        Photo(id: id, photoName: photoName, idHouse: idHouse),
     ];
   }
 
