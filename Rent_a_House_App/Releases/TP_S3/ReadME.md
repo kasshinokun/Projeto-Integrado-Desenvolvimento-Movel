@@ -21,13 +21,20 @@
   <br>focado em processos a serem implantados como o chat
 - 10-05-2025: Preparação de classes para receber <br>request de idToken do Firebase e preparação do banco de dados
  local<br>para receber valores e armazenar
+- 11-05-2025: Descrição
+  - Criação das Classes Model e Classes DAO para gerir o SQLite
+  - Reformulação da página de registro de imovel com ImagePicker e vinculo com SQLite em teste
+  - Preparação da tela Inicial com SQLite - início (não está disponível, mas Gabriel Cassino já iniciou)
 ##### Preparação 
 [Conexão com Firebase e dicas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Firebase_Conexao/README.md)
 
 [Conexão com SQFLite e dicas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/tree/main/SQFLite_Conexao)
 
 #### Preview - Etapas
+Tela Login/ Registro<br>
 ![loginv1](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S3/paginaslogin.jpg)
+<br>Tela Registro de Imóveis<br>
+![imovel_reg](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S3/registro_imovel_images.jpg)
 
 ##### Vídeos
 [Vídeo de execução em dispositivo Update 2.1-05-05-2025](https://youtube.com/shorts/m4vbd-UxF-Q?si=mVjFNLSvkFdNYx9k)
