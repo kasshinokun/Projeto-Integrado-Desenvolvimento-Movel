@@ -1,5 +1,5 @@
 # Guia de instrução básica SQFLite 
-Revisão 1-05-05-2025
+Revisão 1-12-05-2025
 <br>Atualizações serão feitas no decorrer dos próximos dias 
 <br>Por hora está em desenvolvimento 
 #### Objetivo:
