@@ -16,11 +16,11 @@ class MessageDBHelper {
 
   static const tableName = 'messagesUsers';
 
-  static const columnId: 'id';
-  static const columnSenderMessage: 'senderMessage';
-  static const columnReceiverMessage: 'receiverMessage';
-  static const columnBodyMessage: 'bodyMessage';
-  static const columnDateMessage: 'dateMessage';
+  static const columnId = 'id';
+  static const columnSenderMessage = 'senderMessage';
+  static const columnReceiverMessage = 'receiverMessage';
+  static const columnBodyMessage = 'bodyMessage';
+  static const columnDateMessage = 'dateMessage';
             
   static final MessageDBHelper instance = MessageDBHelper._();
 
@@ -134,7 +134,7 @@ class MessageHelper {
   }
 
   Message fromMap(Map<String, dynamic> map) {
-    return Report()
+    return Message()
       ..id = map[MessageDBHelper.columnId] as int
       ..senderMessage = map[MessageDBHelper.columnSenderMessage] as String
       ..receiverMessage = map[MessageDBHelper.columnReceiverMessage] as String
