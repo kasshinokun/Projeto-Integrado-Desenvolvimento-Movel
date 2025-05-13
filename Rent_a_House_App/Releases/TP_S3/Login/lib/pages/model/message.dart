@@ -142,3 +142,4 @@ class MessageHelper {
       ..dateMessage = DateTime.fromMillisecondsSinceEpoch(
           map[MessageDBHelper.columnDateMessage] as int);
   }
+}
