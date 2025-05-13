@@ -17,7 +17,6 @@ class _MyAppState extends State<MyApp> {
   Future<void> _checkPermission() async {
     _cameraPermission = await Permission.camera.status;
     if (_cameraPermission != PermissionStatus.granted) {
-      // 許可がされていない場合
       var status = await Permission.camera.request();
       setState(() {
         _cameraPermission = status;
@@ -73,3 +72,48 @@ Future<void> _checkPermissionBluetooth() async {
       }
     }
   }
+
+//Maiores detalhes do código abaixo em:
+//https://stackoverflow.com/questions/68711126/handling-permission-group-multiple-permissions-at-app-runtime-flutter
+//Em etapas(Use no processo que precisar)
+void checkAllPermissions() async {
+  var status = await Permission.location.status;
+    if(!status.isGranted){
+      var status = Permission.location.request();
+     }if(status.isGranted){
+          var status = await Permission.bluetoothScan.status;
+          if(!status.isGranted){
+            var status = await Permission.bluetoothScan.request();
+           }if(status.isGranted){
+              var status = await Permission.bluetoothAdvertise.status;
+              if(!status.isGranted){
+                var status = await Permission.bluetoothAdvertise.request();
+               }if(status.isGranted){
+                  var status = await Permission.bluetoothConnect.status;
+                  if(!status.isGranted){
+                    var status = await Permission.bluetoothConnect.request();
+                   }if(status.isGranted){
+                      var status = await Permission.ignoreBatteryOptimizations.status;
+                      if(!status.isGranted){
+                        var status = await Permission.ignoreBatteryOptimizations.request();
+                       }if(status.isGranted){
+                          var status = await Permission.camera.status;
+                          if(!status.isGranted){
+                            var status = await Permission.camera.request();
+                            }if(status.isGranted){
+                              /* Estrutura Padrão 
+                              var status = await Permission.<>.status;
+                              if(!status.isGranted){
+                                var status = await Permission.<>.request();
+                                }if(status.isGranted){}
+                              }else{}<> Negada
+                              */
+                            }else{}//Câmera negada
+                        }else{}//Ignore Battery Optmizations  negada
+                      }else{}//Bluetooth Connect negada
+                    }else{}//Bluetooth Advertise negada
+                 }else{}//Bluetooth Scan negada
+              }else{}//Localização negada
+                        
+}
+      
