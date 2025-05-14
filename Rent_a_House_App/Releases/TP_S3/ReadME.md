@@ -28,6 +28,14 @@
   - Preparação da tela Inicial com SQLite - início (não está disponível, mas Gabriel Cassino já iniciou)
   - Criação de classe para gerir permissões em tempo de execução - teste inicial(não está completa,<br>carece análise de viabilidade)
 - Update 1-14_05_2025: Código exemplo de Página de Páginas com SQLite
+  - Estabilização da Página Inicial com SQLite
+  - Disponibilização do exemplo funcional para integrantes do grupo por Gabriel Cassino
+    <br>nos caminhos:
+    <br>Para Igor Avelar em: ```Rent_a_House_App/Releases/TP_S3/Teste_Igor/teste_para_igor.dart```
+    <br>
+    <br>Para Gabriel Batista em: ```Rent_a_House_App/Releases/TP_S3/Gabriel_Batista_Teste/teste_gabriel_batista.dart```
+  - Migração para TP_S4
+  - Preparação para código ESP32
 ##### Preparação 
 [Conexão com Firebase e dicas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Firebase_Conexao/README.md)
 
@@ -39,5 +47,15 @@ Tela Login/ Registro<br>
 <br>Tela Registro de Imóveis<br>
 ![imovel_reg](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S3/registro_imovel_images.jpg)
 
+<br>Transição entre Categorias - Página Inicial com SQLite
+![etapa1](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S4/Home_Slider.jpg)
+<br>
+![etapa2](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S4/Home_Slider.jpg)
+<br>
+<br>Bug no Android Studio e VS Code(Use o celualr para rodar)
+<br>![erro_vs_android_studio](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S3/erro_android_studio_sqlite_vs_code.jpg)
+
 ##### Vídeos
 [Vídeo de execução em dispositivo Update 2.1-05-05-2025](https://youtube.com/shorts/m4vbd-UxF-Q?si=mVjFNLSvkFdNYx9k)
+<br>
+Vídeo de Execução do Update 3-14-05-2025 em processamento
