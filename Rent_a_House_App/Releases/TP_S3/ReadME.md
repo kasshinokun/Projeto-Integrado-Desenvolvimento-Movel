@@ -27,6 +27,7 @@
   - Ajuste da tela de perfil para receber a chamada da página de registro de imóveis 
   - Preparação da tela Inicial com SQLite - início (não está disponível, mas Gabriel Cassino já iniciou)
   - Criação de classe para gerir permissões em tempo de execução - teste inicial(não está completa,<br>carece análise de viabilidade)
+- Update 1-14_05_2025: Código exemplo de Página de Páginas com SQLite
 ##### Preparação 
 [Conexão com Firebase e dicas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Firebase_Conexao/README.md)
 
