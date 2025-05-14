@@ -2,7 +2,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 //Model
-class Message{
+class Message {
   int? id;
   String? senderMessage;
   String? receiverMessage;
@@ -21,7 +21,7 @@ class MessageDBHelper {
   static const columnReceiverMessage = 'receiverMessage';
   static const columnBodyMessage = 'bodyMessage';
   static const columnDateMessage = 'dateMessage';
-            
+
   static final MessageDBHelper instance = MessageDBHelper._();
 
   static const _dbName = 'rentahouse.db';
@@ -75,8 +75,11 @@ class MessageDBHelper {
 
   Future<Map<String, dynamic>> queryById(int id) async {
     Database db = await instance.database;
-    List<Map<String, dynamic>> results =
-        await db.query(tableName, where: '$columnId = ?', whereArgs: [id]);
+    List<Map<String, dynamic>> results = await db.query(
+      tableName,
+      where: '$columnId = ?',
+      whereArgs: [id],
+    );
 
     return results.single;
   }
@@ -119,7 +122,7 @@ class MessageHelper {
   }
 
   Future<int> update(Message message) async {
-    return _dbHelper.update(toMap(Message));
+    return _dbHelper.update(toMap(message));
   }
 
   Map<String, dynamic> toMap(Message message) {
@@ -140,6 +143,7 @@ class MessageHelper {
       ..receiverMessage = map[MessageDBHelper.columnReceiverMessage] as String
       ..bodyMessage = map[MessageDBHelper.columnBodyMessage] as String
       ..dateMessage = DateTime.fromMillisecondsSinceEpoch(
-          map[MessageDBHelper.columnDateMessage] as int);
+        map[MessageDBHelper.columnDateMessage] as int,
+      );
   }
 }

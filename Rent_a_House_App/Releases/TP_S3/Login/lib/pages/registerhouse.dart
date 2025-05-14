@@ -4,23 +4,37 @@ import 'dart:typed_data';
 import 'package:rent_a_house/pages/model/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:rent_a_house/services/authservices.dart';
 import 'dart:io';
 //import 'utility.dart';
 import 'dbdao/dbhelper.dart';
 import 'dart:async';
 
 void main() {
-  runApp(MyNotesApp());
+  runApp(RegisterHouseApp());
 }
 
-class MyNotesApp extends StatelessWidget {
-  const MyNotesApp({super.key});
+class RegisterHouseApp extends StatelessWidget {
+  const RegisterHouseApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter SQLite CRUD',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: RegisterHousePage(),
+      //Em caso de erro, comente no trecho 1 ou 2 e descomente o trecho anterior
+      initialRoute: '/auth', //Trecho 1 - teste
+      //trecho 2 -teste
+      //initialRoute: auth.currentUser == null ? '/login' : '/logged',
+      //Fim dos trechos de teste
+      routes: {
+        '/auth': (context) => AuthCheck(), //Checagem de estado do login
+        /*
+            (context) => ConnectivityListener(
+              child: AuthCheck(), //Checagem de estado do login
+            ), //Checagem de estado da conexão
+            */
+        '/registerhouse': (context) => RegisterHousePage(), //Registro de Casa
+      },
     );
   }
 }

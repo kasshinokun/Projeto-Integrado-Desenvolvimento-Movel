@@ -6,6 +6,8 @@ import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:rent_a_house/pages/servicespages/settings.dart';
 import 'package:rent_a_house/pages/servicespages/profile.dart';
 import 'package:rent_a_house/pages/servicespages.dart';
+//import 'package:rent_a_house/pages/test/category/callercategory.dart';
+import 'package:rent_a_house/pages/test/categorydb/callercategoryapp.dart';
 
 class MyLoggedPage extends StatefulWidget {
   //final bool isLogged;
@@ -20,6 +22,7 @@ class _MyLoggedPageState extends State<MyLoggedPage> {
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
   final List<Widget> widgetOptions = [
+    CallerCategoryDB(),
     HomeScreen(),
     RentaHouseScreen(),
     ProfileScreen(),
@@ -49,6 +52,11 @@ class _MyLoggedPageState extends State<MyLoggedPage> {
         backgroundColor: Colors.white,
         animationCurve: Curves.easeInOut,
         items: [
+          CurvedNavigationBarItem(
+            child: Icon(Icons.shopify),
+            label: 'Home',
+            labelStyle: TextStyle(),
+          ),
           CurvedNavigationBarItem(
             child: Icon(Icons.home_outlined),
             label: 'Home',
