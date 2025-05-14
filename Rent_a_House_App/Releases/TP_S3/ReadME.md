@@ -50,12 +50,14 @@ Tela Login/ Registro<br>
 <br>Transição entre Categorias - Página Inicial com SQLite<br>
 <img src="https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S4/Home_Slider.jpg" alt="etapa1" width="200"/>
 
-<img src="https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S4/Home_Slider2.jpg" alt="etapa1" width="200"/>
+<img src="https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S4/Home_Slider2.jpg" alt="etapa2" width="200"/>
 <br>
 
-<br>
+
 <br>Bug no Android Studio e VS Code(Use o celualr para rodar)
-<br>![erro_vs_android_studio](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S3/erro_android_studio_sqlite_vs_code.gif)
+<br>
+
+<img src="https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Imagens_S3/erro_android_studio_sqlite_vs_code.gif" alt="etapa3" />
 
 ##### Vídeos
 [Vídeo de execução em dispositivo Update 2.1-05-05-2025](https://youtube.com/shorts/m4vbd-UxF-Q?si=mVjFNLSvkFdNYx9k)
