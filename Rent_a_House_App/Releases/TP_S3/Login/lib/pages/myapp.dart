@@ -6,6 +6,8 @@ import 'package:rent_a_house/pages/login.dart';
 import 'package:rent_a_house/pages/logged.dart';
 import 'package:rent_a_house/pages/registerhouse.dart';
 import 'package:rent_a_house/pages/servicespages/profile.dart';
+import 'package:rent_a_house/pages/test/firebasesqflite/dao/helper.dart';
+//import 'package:rent_a_house/pages/test/firebasesqflite/storeuser.dart';
 import 'package:rent_a_house/services/authservices.dart';
 //import 'package:rent_a_house/services/connectionservices.dart';
 import 'package:rent_a_house/pages/nointernet.dart';
@@ -44,6 +46,7 @@ class MyApp extends StatelessWidget {
         '/nointernet': (context) => NoInternet(), //HomePage sem Internet
         '/registerhouse': (context) => RegisterHousePage(), //Registro de Casa
         '/profile': (context) => ProfileScreen(),
+        '/wrapper': (context) => AuthenticationWrapper(),
       },
     );
   }

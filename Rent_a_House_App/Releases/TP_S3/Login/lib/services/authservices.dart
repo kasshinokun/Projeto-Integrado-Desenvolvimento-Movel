@@ -11,10 +11,7 @@ import 'package:rent_a_house/pages/login.dart';
 import 'package:rent_a_house/pages/logged.dart';
 
 //Isolar depois---------------------------------------------------------------------------------------------------------------
-class AuthException implements Exception {
-  String message;
-  AuthException(this.message);
-}
+import 'package:rent_a_house/services/authexception.dart';
 
 //Isolar depois---------------------------------------------------------------------------------------------------------------
 class AuthService extends ChangeNotifier {
@@ -122,9 +119,12 @@ class _AuthCheckState extends State<AuthCheck> {
     if (auth.isLoading) {
       return loading();
     } else if (auth.usuario == null) {
+      //Carrega LocalAuthCheck
+
+      //Se não usuario local
       return MyLoginPage();
     } else {
-      return MyLoggedPage(/*AuthService().isLogged*/);
+      return MyLoggedPage();
     }
   }
 }
