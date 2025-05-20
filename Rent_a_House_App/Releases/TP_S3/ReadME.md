@@ -37,6 +37,7 @@
   - Migração para TP_S4
   - Preparação para código ESP32
 - 17-05-2025: Update para análise feito por Igor Leão  
+- 19-05-2025: Teste de Firebase e SQLite em processo de feedback antes do upload(apenas vídeo disponível abaixo)
 ##### Preparação 
 [Conexão com Firebase e dicas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Firebase_Conexao/README.md)
 
@@ -63,4 +64,5 @@ Tela Login/ Registro<br>
 ##### Vídeos
 [Vídeo de execução em dispositivo Update 2.1-05-05-2025](https://youtube.com/shorts/m4vbd-UxF-Q?si=mVjFNLSvkFdNYx9k)
 <br>
-Vídeo de Execução do Update 3-14-05-2025 em processamento
+[Vídeo de Execução do Update 3-14-05-2025](https://youtu.be/44vCFUcQ23Q?si=FvgQR0V_4eoXEt3R)
+<br>[Prévia Teste 1-19-05-2025 SQLite e Firebase](https://youtube.com/shorts/I83i9OQeXbE?si=3WUE7ed4KtduvM7T)
