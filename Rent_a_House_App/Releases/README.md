@@ -1,6 +1,6 @@
 # Rent a House 
 
-Revisão 1-24-03-2025
+Revisão 1-20-05-2025
 
 ### Desenvolvido por:
 
@@ -20,6 +20,8 @@ Revisão 1-24-03-2025
 
 [Desenvolvimento para Sprint 3](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S3/)
 
+[Desenvolvimento para Sprint 4](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S4/)
+
 
 #### README Descritivo da Etapa (Vídeos e Imagens)
 
@@ -30,6 +32,8 @@ Descrição do que foi feito por etapa de desenvolvimento ao longo do semestre (
 [TP_S2 - Sobre a Sprint 2](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S2/README.md)
 
 [TP_S3 - Sobre a Sprint 3](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S3/ReadME.md)
+
+[TP_S4 - Sobre a Sprint 4](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/Releases/TP_S4/ReadME.md)
 
 ### Objetivo do app:
  O aplicativo Rent a House tem como objetivo facilitar o
