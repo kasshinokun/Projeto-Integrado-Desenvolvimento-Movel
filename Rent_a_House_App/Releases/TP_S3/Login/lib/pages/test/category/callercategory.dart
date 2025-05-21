@@ -26,6 +26,23 @@ class CallerCategory extends StatelessWidget {
           ),
           iconTheme: IconThemeData(color: Colors.white),
         ),
+        //----------------------------------------------------
+        //Compatibilidade com Flutter SDK 3.3.2
+        tabBarTheme: TabBarThemeData(
+          //Teste TabBarThemeData
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.deepOrange[100],
+          indicatorSize: TabBarIndicatorSize.tab,
+          indicator: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+            ),
+            color: Colors.deepOrange[700],
+          ),
+        ),
+        //-----------------------------------------------------
+        /*Código original antes do flutter 3.3.2        
         tabBarTheme: TabBarTheme(
           labelColor: Colors.white, // Selected tab text color
           unselectedLabelColor: Colors.teal[100], // Unselected tab text color
@@ -39,6 +56,20 @@ class CallerCategory extends StatelessWidget {
             color: Colors.teal[700], // Darker shade for indicator
           ),
         ),
+        */
+        //----------------------------------------------------
+        //Compatibilidade com Flutter SDK 3.3.2
+        //Testar
+        cardTheme: CardThemeData(
+          // Changed CardTheme to CardThemeData
+          elevation: 2.0,
+          margin: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+        ),
+        //-----------------------------------------------------
+        /*Código original antes do flutter 3.3.2   
         cardTheme: CardTheme(
           elevation: 2.0,
           margin: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
@@ -47,6 +78,7 @@ class CallerCategory extends StatelessWidget {
           ),
         ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),*/
       ),
       home: const CategoriesWithPagesTabView(),
       debugShowCheckedModeBanner: false,

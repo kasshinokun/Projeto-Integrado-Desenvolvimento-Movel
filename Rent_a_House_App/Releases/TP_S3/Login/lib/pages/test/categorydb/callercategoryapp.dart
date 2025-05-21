@@ -64,7 +64,8 @@ class CallerCategoryDB extends StatelessWidget {
         */
         //----------------------------------------------------
         //Compatibilidade com Flutter SDK 3.3.2
-        tabBarTheme: TabBarThemeData( //Teste TabBarThemeData
+        tabBarTheme: TabBarThemeData(
+          //Teste TabBarThemeData
           labelColor: Colors.white,
           unselectedLabelColor: Colors.deepOrange[100],
           indicatorSize: TabBarIndicatorSize.tab,
@@ -91,7 +92,8 @@ class CallerCategoryDB extends StatelessWidget {
         //----------------------------------------------------
         //Compatibilidade com Flutter SDK 3.3.2
         //Testar
-        cardTheme: CardThemeData( // Changed CardTheme to CardThemeData
+        cardTheme: CardThemeData(
+          // Changed CardTheme to CardThemeData
           elevation: 2.0,
           margin: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
           shape: RoundedRectangleBorder(
@@ -99,6 +101,7 @@ class CallerCategoryDB extends StatelessWidget {
           ),
         ),
         //-----------------------------------------------------
+      ),
       home: CategoriesWithPagesTabView(),
       debugShowCheckedModeBanner: false,
     );

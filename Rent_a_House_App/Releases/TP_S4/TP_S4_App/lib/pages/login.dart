@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 //Classes
 import 'package:rent_a_house/services/authservices.dart';
+import 'package:rent_a_house/services/authexception.dart.';
 
 //Isolar depois---------------------------------------------------------------------------------------------------------------
 class MyLoginPage extends StatefulWidget {
