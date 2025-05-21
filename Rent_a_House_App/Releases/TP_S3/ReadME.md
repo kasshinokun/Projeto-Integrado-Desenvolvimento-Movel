@@ -38,6 +38,14 @@
   - Preparação para código ESP32
 - 17-05-2025: Update para análise feito por Igor Leão  
 - 19-05-2025: Teste de Firebase e SQLite em processo de feedback antes do upload(apenas vídeo disponível abaixo)
+##### Bugs e erros
+- em 20-05-2025, houve mudança em:
+  <br>Flutter SDK para 3.3.2 e o Dart SDK para 3.8.0
+  <br>Tal mudança, quebrou o código a princípio em partes que usem CardTheme e TabBarTheme,
+  <br>pois agora se deve usar CardThemeData e TabBarThemeData conforme pesquisa inicial,
+  <br>por está razão foi carregado o update de teste, possivelmente espera-se que
+  <br>o update 1-21-05-2025 estabilize, mas pode haver mais erros devido a mudança de SDK's.
+
 ##### Preparação 
 [Conexão com Firebase e dicas](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Firebase_Conexao/README.md)
 
