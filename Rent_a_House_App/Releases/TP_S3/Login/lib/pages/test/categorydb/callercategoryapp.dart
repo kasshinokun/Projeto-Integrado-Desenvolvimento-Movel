@@ -48,6 +48,7 @@ class CallerCategoryDB extends StatelessWidget {
           ),
           iconTheme: IconThemeData(color: Colors.white),
         ),
+        /*Código original antes do flutter 3.3.2
         tabBarTheme: TabBarTheme(
           labelColor: Colors.white,
           unselectedLabelColor: Colors.deepOrange[100],
@@ -60,6 +61,23 @@ class CallerCategoryDB extends StatelessWidget {
             color: Colors.deepOrange[700],
           ),
         ),
+        */
+        //----------------------------------------------------
+        //Compatibilidade com Flutter SDK 3.3.2
+        tabBarTheme: TabBarThemeData( //Teste TabBarThemeData
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.deepOrange[100],
+          indicatorSize: TabBarIndicatorSize.tab,
+          indicator: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+            ),
+            color: Colors.deepOrange[700],
+          ),
+        ),
+        //-----------------------------------------------------
+        /*Código original antes do flutter 3.3.2
         cardTheme: CardTheme(
           elevation: 2.0,
           margin: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
@@ -69,6 +87,18 @@ class CallerCategoryDB extends StatelessWidget {
         ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+       */
+        //----------------------------------------------------
+        //Compatibilidade com Flutter SDK 3.3.2
+        //Testar
+        cardTheme: CardThemeData( // Changed CardTheme to CardThemeData
+          elevation: 2.0,
+          margin: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+        ),
+        //-----------------------------------------------------
       home: CategoriesWithPagesTabView(),
       debugShowCheckedModeBanner: false,
     );
