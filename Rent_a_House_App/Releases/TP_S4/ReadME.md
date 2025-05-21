@@ -9,7 +9,10 @@ Por enquanto todos updates principais para estabilizar o aplicativo estão em [T
 <br>Update 3-14-05-2025: Versão de Login com Páginal inicial em teste(Pasta: /TP_S4_App)
 <br>15-05-2025: Template para ESP32 e Flutter com ESP32(Análise de código)
 <br>Update 1-19-05-2025: Versão Prévia de Login SQLite com FireBase(apenas para análise de funcionalidade)
-
+- 21-05-2025: Correção do erro provindo de metódos se tornarem obsoletos na mudança para Flutter SDK 3.3.2
+  - Atualização de manutenção em:
+  <br>```Rent_a_House_App/Releases/TP_S4/update 19-05-2025 1```
+  - ```Rent_a_House_App/Releases/TP_S4/TP_S4_App``` continuará por hora com o código anterior(backup).
 ##### Vídeos
 
 <br>[Vídeo de Execução do Update 3-14-05-2025](https://youtu.be/44vCFUcQ23Q?si=FvgQR0V_4eoXEt3R)
