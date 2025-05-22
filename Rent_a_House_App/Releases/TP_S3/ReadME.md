@@ -44,7 +44,9 @@
   <br>```Rent_a_House_App/Releases/TP_S3/Gabriel_Batista_Teste/``` 
   <br>```Rent_a_House_App/Releases/TP_S3/Login(Gabriel Cassino)```
   <br>```Rent_a_House_App/Releases/TP_S4/update 19-05-2025 1```
-
+- 22-05-2025:
+  - Adição de código de checagem de internet apresenta instabilidades, é apenas um teste de funcionalidade por hora
+<br>está no caminho: ```Rent_a_House_App/Releases/TP_S4/teste conexao```
 ##### Bugs e erros
 - em 20-05-2025, houve mudança em:
   <br>Flutter SDK para 3.3.2 e o Dart SDK para 3.8.0
