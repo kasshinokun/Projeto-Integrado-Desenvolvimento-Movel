@@ -15,6 +15,7 @@ Por enquanto todos updates principais para estabilizar o aplicativo estão em [T
   - ```Rent_a_House_App/Releases/TP_S4/TP_S4_App``` continuará por hora com o código anterior(backup).
 <br>Adição de código de checagem de internet apresenta instabilidades, é apenas um teste de funcionalidade por hora
 <br>está no caminho: ```Rent_a_House_App/Releases/TP_S4/teste conexao```
+- 24-05-2025: Adição de código de checagem de internet apresenta instabilidades, é <br>apenas um teste de funcionalidade por hora - teste de permissões(AndroidManifest refeito do zero).
 ##### Vídeos
 
 <br>[Vídeo de Execução do Update 3-14-05-2025](https://youtu.be/44vCFUcQ23Q?si=FvgQR0V_4eoXEt3R)
