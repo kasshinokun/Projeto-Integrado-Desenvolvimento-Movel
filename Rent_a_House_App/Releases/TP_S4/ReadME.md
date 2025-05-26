@@ -15,9 +15,23 @@ Por enquanto todos updates principais para estabilizar o aplicativo estão em [T
   - ```Rent_a_House_App/Releases/TP_S4/TP_S4_App``` continuará por hora com o código anterior(backup).
 <br>Adição de código de checagem de internet apresenta instabilidades, é apenas um teste de funcionalidade por hora
 <br>está no caminho: ```Rent_a_House_App/Releases/TP_S4/teste conexao```
-- 24-05-2025: Adição de código de checagem de internet apresenta instabilidades, é <br>apenas um teste de funcionalidade por hora - teste de permissões(AndroidManifest refeito do zero).
+- 24-05-2025: Adição de código de checagem de internet apresenta instabilidades, é apenas um teste de funcionalidade
+<br>por hora - teste de permissões(AndroidManifest refeito do zero).
+- 26-05-2025: Permissões Ativas:
+  - Acesso ao Bluettoth
+  - Acesso a Memoria
+  - Acesso a Camera
+  - Acesso a Galeria
+  - Acesso a Localização
+  - Acesso a Biometria (Protótipo por enquanto)
+  - Acesso a Status da Internet do dispositivo
+  - Acesso a Status do Wifi do dispositivo
+  - Ao longo do dia, será divulgado o vídeo-prévia para análise dos integrantes
+
 ##### Vídeos
 
 <br>[Vídeo de Execução do Update 3-14-05-2025](https://youtu.be/44vCFUcQ23Q?si=FvgQR0V_4eoXEt3R)
 <br>
 <br>[Prévia Teste 1-19-05-2025 SQLite e Firebase](https://youtube.com/shorts/I83i9OQeXbE?si=3WUE7ed4KtduvM7T)
+<br>
+<br>Prévia do Update 1-26-05-2025 em processamento
