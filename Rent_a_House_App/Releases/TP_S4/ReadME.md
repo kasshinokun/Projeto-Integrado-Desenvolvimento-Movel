@@ -35,4 +35,4 @@ Por enquanto todos updates principais para estabilizar o aplicativo estão em [T
 <br>
 <br>[Prévia Teste 1-19-05-2025 SQLite e Firebase](https://youtube.com/shorts/I83i9OQeXbE?si=3WUE7ed4KtduvM7T)
 <br>
-<br>Prévia do Update 1.1-26-05-2025 em processamento
+<br>[Prévia do Update 1.1-26-05-2025](https://youtube.com/shorts/uixEUY6NESA?si=AtZYFfWHYFflWtW9)
