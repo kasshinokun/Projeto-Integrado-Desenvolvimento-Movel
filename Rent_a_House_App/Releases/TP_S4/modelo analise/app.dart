@@ -1,4 +1,12 @@
 // main.dart
+// This file contains a consolidated version of the Real Estate App,
+// combining all screens, models, and services into a single Dart file
+// for simplicity and easy sharing.
+//
+// Note: In a real-world Flutter application, it's highly recommended
+// to organize code into multiple files and directories for better
+// maintainability, readability, and scalability.
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,72 +17,19 @@ import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:crypto/crypto.dart'; // For simple hashing demonstration (NOT for passwords!)
 import 'dart:convert'; // For utf8.encode
-
-import 'screens/auth/auth_screen.dart';
-import 'screens/home/home_screen.dart';
-import 'screens/chat/chat_screen.dart';
-import 'screens/bluetooth/bluetooth_control_screen.dart';
-import 'screens/property/property_detail_screen.dart';
-import 'screens/property/add_property_screen.dart';
-import 'screens/history/rental_history_screen.dart';
-import 'screens/profile/profile_screen.dart';
-import 'screens/about/about_app_screen.dart';
-import 'services/local_auth_service.dart';
-// import 'firebase_options.dart'; // Uncomment and set your actual Firebase options
-import 'package:sqflite/sqflite.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:crypto/crypto.dart';
-import 'dart:convert';
-import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:provider/provider.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-
-import 'package:real_estate_app/services/local_auth_service.dart';
-import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:provider/provider.dart';
-import 'package:sqflite/sqflite.dart';
-
-import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-
-import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:provider/provider.dart';
-
-// import 'package:flutter_blue_plus/flutter_blue_plus.dart';
-import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
-import 'dart:convert';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:provider/provider.dart';
-
-import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:provider/provider.dart';
-
-import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
+import 'package:local_auth/local_auth.dart'; // Import local_auth for biometric authentication
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    // options: DefaultFirebaseOptions.currentPlatform,
+    // options: DefaultFirebaseOptions.currentPlatform, // Uncomment and set your actual Firebase options
   );
 
   final database = openDatabase(
@@ -202,11 +157,14 @@ class MyApp extends StatelessWidget {
           '/home': (context) => const HomeScreen(),
           '/chat': (context) => const ChatScreen(),
           '/bluetooth_control': (context) => const BluetoothControlScreen(),
-          '/property_detail': (context) => const PropertyDetailScreen(),
+          // property_detail and add_property use arguments, so routes need to be adapted
+          // '/property_detail': (context) => const PropertyDetailScreen(), // Handled by direct navigation
           '/add_property': (context) => const AddPropertyScreen(),
           '/rental_history': (context) => const RentalHistoryScreen(),
           '/profile': (context) => const ProfileScreen(),
           '/about_app': (context) => const AboutAppScreen(),
+          '/pix_payment': (context) => const PagamentoPixPage(),
+          '/settings': (context) => const SettingsScreen(),
         },
       ),
     );
@@ -214,7 +172,6 @@ class MyApp extends StatelessWidget {
 }
 
 // services/local_auth_service.dart
-
 class LocalUser {
   final String uid;
   final String email;
@@ -367,7 +324,6 @@ class LocalAuthService {
 }
 
 // screens/auth/auth_screen.dart
-
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
 
@@ -567,8 +523,6 @@ class _AuthScreenState extends State<AuthScreen> {
 }
 
 // screens/home/home_screen.dart
-
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -747,6 +701,28 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Real Estate Listings'),
         actions: [
+          // Search button
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () async {
+              // Fetch all properties to pass to the search delegate
+              // In a real app, you might only pass a subset or implement server-side search
+              final allProperties = await _fetchProperties();
+              final result = await showSearch<House?>(
+                context: context,
+                delegate: CustomSearchDelegate(allProperties: allProperties),
+              );
+              if (result != null) {
+                // Navigate to property detail screen if a property is selected
+                if (!mounted) return;
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => PropertyDetailScreen(property: result),
+                  ),
+                );
+              }
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.bluetooth),
             onPressed: () {
@@ -875,6 +851,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.of(context).pushNamed('/bluetooth_control');
                     },
                   ),
+                   ListTile(
+                    leading: const Icon(Icons.settings),
+                    title: const Text('Settings'),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.of(context).pushNamed('/settings');
+                    },
+                  ),
                   ListTile(
                     leading: const Icon(Icons.info),
                     title: const Text('About App'),
@@ -992,38 +976,37 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 // screens/chat/chat_screen.dart
-
-
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
 
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  State<ChatScreen> createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  final TextEditingController _messageController = TextEditingController();
-  final String _currentUserId = FirebaseAuth.instance.currentUser?.uid ?? 'unknown';
-  final String _chatId = 'example_chat_id';
+  final TextEditingController _controller = TextEditingController();
+  final CollectionReference _chatCollection =
+  FirebaseFirestore.instance.collection('chat_messages');
+  final user = FirebaseAuth.instance.currentUser;
 
-  void _sendMessage() async {
-    if (_messageController.text.trim().isEmpty) return;
+  void _addMessage(String text) {
+    if (text.trim().isEmpty || user == null) return;
 
-    final database = Provider.of<FirebaseDatabase>(context, listen: false);
-    final messageText = _messageController.text;
-    _messageController.clear();
-
-    final newMessageRef = database.ref('chats/$_chatId/messages').push();
-    await newMessageRef.set({
-      'senderId': _currentUserId,
-      'text': messageText,
-      'timestamp': ServerValue.timestamp,
+    _chatCollection.add({
+      'text': text.trim(),
+      'timestamp': Timestamp.now(),
+      'author': user!.email ?? user!.uid, // usa e-mail ou UID
     });
 
-    await database.ref('chats/$_chatId').update({
-      'lastMessage': messageText,
-      'lastMessageTimestamp': ServerValue.timestamp,
-    });
+    _controller.clear();
+  }
+
+  String _formatTimestamp(Timestamp ts) {
+    final dt = ts.toDate();
+    return '${dt.day.toString().padLeft(2, '0')}/'
+        '${dt.month.toString().padLeft(2, '0')} '
+        '${dt.hour.toString().padLeft(2, '0')}:'
+        '${dt.minute.toString().padLeft(2, '0')}';
   }
 
   @override
@@ -1031,118 +1014,98 @@ class _ChatScreenState extends State<ChatScreen> {
     final database = Provider.of<FirebaseDatabase>(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Chat'),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: StreamBuilder<DatabaseEvent>(
-              stream: database.ref('chats/$_chatId/messages').onValue,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-                if (snapshot.hasError) {
-                  return Center(child: Text('Error: ${snapshot.error}'));
-                }
-                if (!snapshot.hasData || snapshot.data!.snapshot.value == null) {
-                  return const Center(child: Text('No messages yet.'));
-                }
-
-                final messagesData = snapshot.data!.snapshot.value as Map<dynamic, dynamic>;
-                final messages = messagesData.entries.map((e) {
-                  return {
-                    'id': e.key,
-                    ...(e.value as Map<dynamic, dynamic>),
-                  };
-                }).toList()
-                  ..sort((a, b) => (a['timestamp'] as num).compareTo(b['timestamp'] as num));
-
-                return ListView.builder(
-                  padding: const EdgeInsets.all(8.0),
-                  reverse: false,
-                  itemCount: messages.length,
-                  itemBuilder: (context, index) {
-                    final message = messages[index];
-                    final isMe = message['senderId'] == _currentUserId;
-                    return Align(
-                      alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
-                      child: Card(
-                        color: isMe ? Colors.blue[100] : Colors.grey[200],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                message['text'],
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                _formatTimestamp(message['timestamp']),
-                                style: const TextStyle(fontSize: 10, color: Colors.black54),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
+      appBar: AppBar(title: const Text('Chat')),
+      body: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          children: [
+            Row(
               children: [
                 Expanded(
                   child: TextField(
-                    controller: _messageController,
-                    decoration: InputDecoration(
-                      hintText: 'Enter your message...',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                        borderSide: BorderSide.none,
-                      ),
-                      filled: true,
-                      fillColor: Colors.grey[100],
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    controller: _controller,
+                    decoration: const InputDecoration(
+                      labelText: 'Digite sua mensagem',
+                      border: OutlineInputBorder(),
                     ),
-                    keyboardType: TextInputType.text,
-                    textCapitalization: TextCapitalization.sentences,
+                    onSubmitted: _addMessage,
                   ),
                 ),
                 const SizedBox(width: 8),
-                FloatingActionButton(
-                  onPressed: _sendMessage,
-                  mini: true,
-                  child: const Icon(Icons.send),
+                IconButton(
+                  icon: const Icon(Icons.send),
+                  onPressed: () => _addMessage(_controller.text),
                 ),
               ],
             ),
-          ),
-        ],
+            const SizedBox(height: 16),
+            Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                stream: _chatCollection
+                    .orderBy('timestamp', descending: true)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return const Center(child: Text('Erro ao carregar mensagens'));
+                  }
+                  if (!snapshot.hasData) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  final docs = snapshot.data!.docs;
+
+                  if (docs.isEmpty) {
+                    return const Center(child: Text('Nenhuma mensagem ainda'));
+                  }
+
+                  return ListView.builder(
+                    reverse: true,
+                    itemCount: docs.length,
+                    itemBuilder: (context, index) {
+                      final data = docs[index];
+                      return ChatMessageTile(
+                        text: data['text'],
+                        timestamp: _formatTimestamp(data['timestamp']),
+                        author: data['author'] ?? 'Desconhecido',
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
+}
 
-  String _formatTimestamp(dynamic timestamp) {
-    if (timestamp == null) return '';
-    final dateTime = DateTime.fromMillisecondsSinceEpoch(timestamp.toInt());
-    return '${dateTime.hour}:${dateTime.minute.toString().padLeft(2, '0')}';
+class ChatMessageTile extends StatelessWidget {
+  final String text;
+  final String timestamp;
+  final String author;
+
+  const ChatMessageTile({
+    required this.text,
+    required this.timestamp,
+    required this.author,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Text(
+        timestamp,
+        style: const TextStyle(color: Colors.grey),
+      ),
+      title: Text(text),
+      subtitle: Text('Enviado por: $author'),
+    );
   }
 }
 
 // screens/bluetooth/bluetooth_control_screen.dart
-
-
 class BluetoothControlScreen extends StatefulWidget {
   const BluetoothControlScreen({Key? key}) : super(key: key);
 
@@ -1154,6 +1117,7 @@ class _BluetoothControlScreenState extends State<BluetoothControlScreen> {
   String _bluetoothStatus = 'Not Connected';
   String _lastCommandStatus = '';
   LocalUser? _localUser;
+  final LocalAuthentication _localAuth = LocalAuthentication(); // Initialize LocalAuthentication
 
   @override
   void initState() {
@@ -1185,6 +1149,46 @@ class _BluetoothControlScreenState extends State<BluetoothControlScreen> {
     } catch (e) {
       setState(() => _lastCommandStatus = 'Failed to send command: $e');
       print('Simulating command "$command" failed: $e');
+    }
+  }
+
+  Future<void> _authenticateBiometrics() async {
+    bool canCheckBiometrics = await _localAuth.canCheckBiometrics;
+    if (canCheckBiometrics) {
+      List<BiometricType> availableBiometrics = await _localAuth.getAvailableBiometrics();
+      if (availableBiometrics.isNotEmpty) {
+        try {
+          bool authenticated = await _localAuth.authenticate(
+            localizedReason: 'Please authenticate to proceed with this action.',
+            options: const AuthenticationOptions(
+              stickyAuth: true,
+              biometricOnly: true,
+            ),
+          );
+          if (authenticated) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Biometric authentication successful!')),
+            );
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Biometric authentication failed or canceled.')),
+            );
+          }
+        } catch (e) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Error during biometric authentication: $e')),
+          );
+          print('Error during biometric authentication: $e');
+        }
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('No biometrics enrolled on this device.')),
+        );
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Biometric authentication not available on this device.')),
+      );
     }
   }
 
@@ -1276,6 +1280,18 @@ class _BluetoothControlScreenState extends State<BluetoothControlScreen> {
               ),
             ),
             const SizedBox(height: 20),
+            ElevatedButton.icon(
+              onPressed: _authenticateBiometrics,
+              icon: const Icon(Icons.fingerprint),
+              label: const Text('Authenticate with Biometrics'),
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+                backgroundColor: Colors.purple,
+                foregroundColor: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 20),
             const Text(
               'Note: Bluetooth functionality is conceptual. Requires `flutter_blue_plus` and ESP32 firmware.',
               textAlign: TextAlign.center,
@@ -1289,12 +1305,26 @@ class _BluetoothControlScreenState extends State<BluetoothControlScreen> {
 }
 
 // screens/property/property_detail_screen.dart
-
-
-class PropertyDetailScreen extends StatelessWidget {
+class PropertyDetailScreen extends StatefulWidget {
   final House property;
 
   const PropertyDetailScreen({Key? key, required this.property}) : super(key: key);
+
+  @override
+  State<PropertyDetailScreen> createState() => _PropertyDetailScreenState();
+}
+
+class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
+  DateTime? _startDate;
+  DateTime? _endDate;
+  double _calculatedPrice = 0.0;
+  final ScrollController _imageCarouselController = ScrollController(); // For image carousel
+
+  @override
+  void dispose() {
+    _imageCarouselController.dispose();
+    super.dispose();
+  }
 
   void _showLoginRequiredSnackBar(BuildContext context, String action) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -1310,58 +1340,140 @@ class PropertyDetailScreen extends StatelessWidget {
     );
   }
 
+  Future<void> _selectDate(BuildContext context, bool isStartDate) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null) {
+      setState(() {
+        if (isStartDate) {
+          _startDate = picked;
+          // If start date is after end date, reset end date
+          if (_endDate != null && _startDate!.isAfter(_endDate!)) {
+            _endDate = null;
+          }
+        } else {
+          // Ensure end date is not before start date
+          if (_startDate != null && picked.isBefore(_startDate!)) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('End date cannot be before start date.')),
+            );
+            return;
+          }
+          _endDate = picked;
+        }
+        _calculatePrice();
+      });
+    }
+  }
+
+  void _calculatePrice() {
+    if (_startDate != null && _endDate != null) {
+      final Duration duration = _endDate!.difference(_startDate!);
+      // Assuming a daily price, adjust as needed
+      setState(() {
+        _calculatedPrice = widget.property.price * duration.inDays;
+      });
+    } else {
+      setState(() {
+        _calculatedPrice = 0.0;
+      });
+    }
+  }
+
+  Future<void> _rentHouse() async {
+    final firestore = Provider.of<FirebaseFirestore>(context, listen: false);
+    final firebaseAuth = Provider.of<FirebaseAuth>(context, listen: false);
+    final currentUser = firebaseAuth.currentUser;
+
+    if (currentUser == null) {
+      _showLoginRequiredSnackBar(context, 'rent');
+      return;
+    }
+
+    if (_startDate == null || _endDate == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please select both start and end dates.')),
+      );
+      return;
+    }
+
+    if (currentUser.uid == widget.property.ownerId) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('You cannot rent your own property.')),
+      );
+      return;
+    }
+
+    try {
+      final newRent = Rent(
+        id: '', // Firestore will generate this
+        houseId: widget.property.id,
+        clientId: currentUser.uid,
+        startDate: _startDate!,
+        endDate: _endDate!,
+        calculatedPrice: _calculatedPrice,
+      );
+
+      await firestore.collection('rents').add(newRent.toMap());
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Successfully rented ${widget.property.title} for \$${_calculatedPrice.toStringAsFixed(2)}!')),
+      );
+      // Optionally navigate to pix payment
+      Navigator.of(context).pushNamed('/pix_payment');
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error renting property: $e')),
+      );
+      print('Rent property error: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final bool isLoggedIn = FirebaseAuth.instance.currentUser != null;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(property.title),
+        title: Text(widget.property.title),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (property.imageUrls.isNotEmpty)
-              property.imageUrls.length > 1
-                  ? SizedBox(
-                      height: 250,
-                      child: PageView.builder(
-                        itemCount: property.imageUrls.length,
-                        itemBuilder: (context, index) {
-                          return ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.network(
-                              property.imageUrls[index],
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                              errorBuilder: (context, error, stackTrace) => Container(
-                                height: 250,
-                                width: double.infinity,
-                                color: Colors.grey[200],
-                                child: const Center(child: Icon(Icons.broken_image, size: 50)),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    )
-                  : ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Image.network(
-                        property.imageUrls[0],
-                        fit: BoxFit.cover,
-                        height: 250,
-                        width: double.infinity,
-                        errorBuilder: (context, error, stackTrace) => Container(
-                          height: 250,
+            if (widget.property.imageUrls.isNotEmpty)
+              SizedBox(
+                height: 250,
+                child: PageView.builder(
+                  scrollDirection: Axis.horizontal, // Ensure horizontal scrolling
+                  controller: _imageCarouselController,
+                  itemCount: widget.property.imageUrls.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.network(
+                          widget.property.imageUrls[index],
+                          fit: BoxFit.cover,
                           width: double.infinity,
-                          color: Colors.grey[200],
-                          child: const Center(child: Icon(Icons.broken_image, size: 50)),
+                          errorBuilder: (context, error, stackTrace) => Container(
+                            height: 250,
+                            width: double.infinity,
+                            color: Colors.grey[200],
+                            child: const Center(child: Icon(Icons.broken_image, size: 50)),
+                          ),
                         ),
                       ),
-                    )
+                    );
+                  },
+                ),
+              )
             else
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
@@ -1380,12 +1492,12 @@ class PropertyDetailScreen extends StatelessWidget {
               ),
             const SizedBox(height: 16),
             Text(
-              property.title,
+              widget.property.title,
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Text(
-              '\$${property.price.toStringAsFixed(2)}',
+              '\$${widget.property.price.toStringAsFixed(2)} / night', // Clarify price is per night
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.green[700]),
             ),
             const SizedBox(height: 16),
@@ -1395,37 +1507,63 @@ class PropertyDetailScreen extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              property.description,
+              widget.property.description,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             const SizedBox(height: 16),
             Text(
-              'Category: ${property.category}',
+              'Category: ${widget.property.category}',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
-              'Rooms: ${property.numberOfRooms}',
+              'Rooms: ${widget.property.numberOfRooms}',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
-              'Address: ${property.street}, ${property.houseNumber} ${property.complement.isNotEmpty ? ' - ${property.complement}' : ''}, ${property.neighborhood}, ${property.city} - ${property.state}',
+              'Address: ${widget.property.street}, ${widget.property.houseNumber} ${widget.property.complement.isNotEmpty ? ' - ${widget.property.complement}' : ''}, ${widget.property.neighborhood}, ${widget.property.city} - ${widget.property.state}',
               style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            const SizedBox(height: 24),
+            // Date pickers for rental
+            Text(
+              'Select Rental Dates:',
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: OutlinedButton.icon(
+                    onPressed: () => _selectDate(context, true),
+                    icon: const Icon(Icons.calendar_today),
+                    label: Text(_startDate == null
+                        ? 'Start Date'
+                        : 'Start: ${(_startDate!).toLocal().toString().split(' ')[0]}'),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: OutlinedButton.icon(
+                    onPressed: () => _selectDate(context, false),
+                    icon: const Icon(Icons.calendar_today),
+                    label: Text(_endDate == null
+                        ? 'End Date'
+                        : 'End: ${(_endDate!).toLocal().toString().split(' ')[0]}'),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Total Rental Price: \$${_calculatedPrice.toStringAsFixed(2)}',
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.deepOrange),
             ),
             const SizedBox(height: 24),
             Row(
               children: [
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed: () {
-                      if (!isLoggedIn) {
-                        _showLoginRequiredSnackBar(context, 'rent');
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Attempting to rent ${property.title} (Not implemented)')),
-                        );
-                        print('Rent property: ${property.title}');
-                      }
-                    },
+                    onPressed: _rentHouse,
                     icon: const Icon(Icons.receipt_long),
                     label: const Text('Rent This House'),
                     style: ElevatedButton.styleFrom(
@@ -1442,9 +1580,9 @@ class PropertyDetailScreen extends StatelessWidget {
                         _showLoginRequiredSnackBar(context, 'message the owner/agent about');
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Opening chat for ${property.title} (Not implemented)')),
+                          SnackBar(content: Text('Opening chat for ${widget.property.title} (Not implemented)')),
                         );
-                        print('Message owner for property: ${property.title}');
+                        print('Message owner for property: ${widget.property.title}');
                       }
                     },
                     icon: const Icon(Icons.message),
@@ -1465,8 +1603,6 @@ class PropertyDetailScreen extends StatelessWidget {
 }
 
 // screens/property/add_property_screen.dart
-
-
 class AddPropertyScreen extends StatefulWidget {
   const AddPropertyScreen({Key? key}) : super(key: key);
 
@@ -1892,14 +2028,6 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
                               ),
                               child: Stack(
                                 children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.file(
-                                      imageFile,
-                                      fit: BoxFit.cover,
-                                      width: 1000.0,
-                                    ),
-                                  ),
                                   Positioned(
                                     top: 5,
                                     right: 5,
@@ -1910,6 +2038,14 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
                                         backgroundColor: Colors.red.withOpacity(0.7),
                                         child: const Icon(Icons.close, color: Colors.white, size: 18),
                                       ),
+                                    ),
+                                  ),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.file(
+                                      imageFile,
+                                      fit: BoxFit.cover,
+                                      width: 1000.0,
                                     ),
                                   ),
                                 ],
@@ -1942,47 +2078,213 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
   }
 }
 
-// screens/history/rental_history_screen.dart (Placeholder)
-
-
-class RentalHistoryScreen extends StatelessWidget {
+// screens/history/rental_history_screen.dart
+class RentalHistoryScreen extends StatefulWidget {
   const RentalHistoryScreen({Key? key}) : super(key: key);
 
   @override
+  State<RentalHistoryScreen> createState() => _RentalHistoryScreenState();
+}
+
+class _RentalHistoryScreenState extends State<RentalHistoryScreen> {
+  User? _currentUser;
+  List<Rent> _rentalHistory = [];
+  bool _isLoading = true;
+  String? _errorMessage;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentUser = FirebaseAuth.instance.currentUser;
+    _fetchRentalHistory();
+  }
+
+  Future<void> _fetchRentalHistory() async {
+    if (_currentUser == null) {
+      setState(() {
+        _errorMessage = 'Please log in to view your rental history.';
+        _isLoading = false;
+      });
+      return;
+    }
+
+    setState(() {
+      _isLoading = true;
+      _errorMessage = null;
+    });
+
+    try {
+      final firestore = Provider.of<FirebaseFirestore>(context, listen: false);
+      final querySnapshot = await firestore
+          .collection('rents')
+          .where('clientId', isEqualTo: _currentUser!.uid)
+          .orderBy('startDate', descending: true)
+          .get();
+
+      final List<Rent> fetchedRents = [];
+      for (var doc in querySnapshot.docs) {
+        fetchedRents.add(Rent.fromMap(doc.data(), doc.id));
+      }
+
+      setState(() {
+        _rentalHistory = fetchedRents;
+        _isLoading = false;
+      });
+    } catch (e) {
+      setState(() {
+        _errorMessage = 'Failed to load rental history: $e';
+        _isLoading = false;
+      });
+      print('Error fetching rental history: $e');
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return Scaffold(
+        appBar: AppBar(title: const Text('Rental History')),
+        body: const Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    if (_errorMessage != null) {
+      return Scaffold(
+        appBar: AppBar(title: const Text('Rental History')),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              _errorMessage!,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 18, color: Colors.red),
+            ),
+          ),
+        ),
+      );
+    }
+
+    if (_rentalHistory.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(title: const Text('Rental History')),
+        body: const Center(
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.history, size: 80, color: Colors.grey),
+                SizedBox(height: 20),
+                Text(
+                  'You have no rental history yet.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18, color: Colors.grey),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Rent a house to see it appear here!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Rental History'),
       ),
-      body: const Center(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.history, size: 80, color: Colors.grey),
-              SizedBox(height: 20),
-              Text(
-                'Your rental history will appear here.',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, color: Colors.grey),
+      body: ListView.builder(
+        padding: const EdgeInsets.all(8.0),
+        itemCount: _rentalHistory.length,
+        itemBuilder: (context, index) {
+          final rent = _rentalHistory[index];
+          return Card(
+            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+            elevation: 4,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Rental ID: ${rent.id}',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey),
+                  ),
+                  const SizedBox(height: 8),
+                  FutureBuilder<House?>(
+                    future: _fetchHouseDetails(rent.houseId),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const LinearProgressIndicator();
+                      }
+                      if (snapshot.hasError) {
+                        return Text('Error loading house details: ${snapshot.error}', style: const TextStyle(color: Colors.red));
+                      }
+                      final house = snapshot.data;
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            house?.title ?? 'House (Deleted or N/A)',
+                            style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            'Category: ${house?.category ?? 'N/A'}',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                          Text(
+                            'Address: ${house?.street ?? 'N/A'}, ${house?.city ?? 'N/A'}',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    'Start Date: ${DateFormat('dd MMM yyyy').format(rent.startDate)}',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  Text(
+                    'End Date: ${DateFormat('dd MMM yyyy').format(rent.endDate)}',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    'Total Price: \$${rent.calculatedPrice.toStringAsFixed(2)}',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.green[700], fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
-              SizedBox(height: 10),
-              Text(
-                'This screen is a placeholder. Future development will include fetching and displaying past rentals.',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 14, color: Colors.grey),
-              ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }
+
+  Future<House?> _fetchHouseDetails(String houseId) async {
+    try {
+      final firestore = Provider.of<FirebaseFirestore>(context, listen: false);
+      final docSnapshot = await firestore.collection('properties').doc(houseId).get();
+      if (docSnapshot.exists) {
+        return House.fromMap(docSnapshot.data()!, docSnapshot.id);
+      }
+      return null;
+    } catch (e) {
+      print('Error fetching house details for $houseId: $e');
+      return null;
+    }
+  }
 }
 
-// screens/profile/profile_screen.dart (Placeholder)
-
+// screens/profile/profile_screen.dart
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -2106,8 +2408,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 }
 
-// screens/about/about_app_screen.dart (Placeholder)
-
+// screens/about/about_app_screen.dart
 class AboutAppScreen extends StatelessWidget {
   const AboutAppScreen({Key? key}) : super(key: key);
 
@@ -2201,9 +2502,78 @@ class AboutAppScreen extends StatelessWidget {
   }
 }
 
+// screens/payment/pix_payment_screen.dart
+class PagamentoPixPage extends StatefulWidget {
+  const PagamentoPixPage({Key? key}) : super(key: key);
+
+  @override
+  State<PagamentoPixPage> createState() => _PagamentoPixPageState();
+}
+
+class _PagamentoPixPageState extends State<PagamentoPixPage> {
+  bool pagamentoConfirmado = false;
+  String? codigoPix;
+
+  void gerarCodigoPix() {
+    setState(() {
+      // Simula um código Pix gerado
+      codigoPix = '00020126330014BR.GOV.BCB.PIX0114+558199999999520400005303986540510.005802BR5925Fulano ou Ciclano de tal Pix6009Sao Paulo62070503***6304ABCD';
+      pagamentoConfirmado = false;
+    });
+  }
+
+  void confirmarPagamento() {
+    setState(() {
+      pagamentoConfirmado = true; // simula confirmação
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Pagamento via Pix (Simulado)')),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ElevatedButton.icon(
+              icon: const Icon(Icons.qr_code),
+              label: const Text('Gerar código Pix'),
+              onPressed: gerarCodigoPix,
+            ),
+            const SizedBox(height: 16),
+            if (codigoPix != null)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Código Pix gerado:',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  SelectableText(codigoPix!),
+                  const SizedBox(height: 24),
+                  ElevatedButton.icon(
+                    icon: const Icon(Icons.check_circle),
+                    label: Text(pagamentoConfirmado
+                        ? 'Pagamento confirmado!'
+                        : 'Confirmar pagamento'),
+                    onPressed: pagamentoConfirmado ? null : confirmarPagamento,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: pagamentoConfirmado ? Colors.green : null,
+                    ),
+                  ),
+                ],
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 // models/property_models.dart
-
-
 /// Represents a single real estate property listing.
 class House {
   final String id; // Document ID from Firestore
@@ -2251,9 +2621,9 @@ class House {
       price: (data['price'] as num?)?.toDouble() ?? 0.0,
       cep: data['cep'] as String? ?? '',
       street: data['street'] as String? ?? '',
-      neighborhood: data['bairro'] as String? ?? '', // Corrected key for neighborhood
-      city: data['cidade'] as String? ?? '', // Assuming 'cidade' might be used from Viacep too
-      state: data['uf'] as String? ?? '',     // Corrected key for state
+      neighborhood: data['neighborhood'] as String? ?? '',
+      city: data['city'] as String? ?? '',
+      state: data['state'] as String? ?? '',
       houseNumber: (data['houseNumber'] as num?)?.toInt() ?? 0,
       complement: data['complement'] as String? ?? '',
       category: data['category'] as String? ?? 'Other',
@@ -2327,3 +2697,816 @@ class Rent {
     };
   }
 }
+
+// screens/property/custom_search_delegate.dart
+class CustomSearchDelegate extends SearchDelegate<House?> {
+  final List<House> allProperties;
+
+  CustomSearchDelegate({required this.allProperties})
+      : super(
+          searchFieldLabel: 'Search by address or title...',
+          keyboardType: TextInputType.text,
+          textInputAction: TextInputAction.search,
+          searchFieldStyle: const TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        );
+
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: const Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, null); // Return null when closing without selecting
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    final List<House> matchQuery = allProperties.where((property) {
+      final propertyAddress =
+          '${property.street}, ${property.neighborhood}, ${property.city} - ${property.state}'
+              .toLowerCase();
+      final propertyTitle = property.title.toLowerCase();
+      final lowerCaseQuery = query.toLowerCase();
+
+      return propertyAddress.contains(lowerCaseQuery) ||
+          propertyTitle.contains(lowerCaseQuery);
+    }).toList();
+
+    return ListView.builder(
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) {
+        final property = matchQuery[index];
+        return ListTile(
+          title: Text(property.title),
+          subtitle: Text(
+              '${property.street}, ${property.city}, ${property.state}'),
+          onTap: () {
+            close(context, property); // Return the selected House object
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    final List<House> suggestionList = allProperties.where((property) {
+      final propertyAddress =
+          '${property.street}, ${property.neighborhood}, ${property.city} - ${property.state}'
+              .toLowerCase();
+      final propertyTitle = property.title.toLowerCase();
+      final lowerCaseQuery = query.toLowerCase();
+
+      return propertyAddress.contains(lowerCaseQuery) ||
+          propertyTitle.contains(lowerCaseQuery);
+    }).toList();
+
+    return ListView.builder(
+      itemCount: suggestionList.length,
+      itemBuilder: (context, index) {
+        final property = suggestionList[index];
+        return ListTile(
+          title: Text(property.title),
+          subtitle: Text(
+              '${property.street}, ${property.city}, ${property.state}'),
+          onTap: () {
+            // When a suggestion is tapped, update the query and show results
+            query = property.title; // Or property.street, etc.
+            showResults(context);
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    return Theme.of(context).copyWith(
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.blueAccent, // Consistent app bar color
+        foregroundColor: Colors.white,
+        elevation: 0,
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+        border: InputBorder.none,
+        hintStyle: TextStyle(fontSize: 20.0, color: Colors.white70),
+      ),
+      textTheme: const TextTheme(
+        headlineMedium: TextStyle(fontSize: 20.0, color: Colors.white), // Style for the query text
+      ),
+    );
+  }
+}
+
+// screens/settings/settings_screen.dart
+class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  final LocalAuthentication _localAuth = LocalAuthentication();
+  LocalUser? _localUser;
+  bool _isLoggedIn = false; // Track login state
+
+  @override
+  void initState() {
+    super.initState();
+    _checkLoginStatus();
+  }
+
+  Future<void> _checkLoginStatus() async {
+    final auth = Provider.of<FirebaseAuth>(context, listen: false);
+    auth.authStateChanges().listen((User? user) async {
+      setState(() {
+        _isLoggedIn = user != null;
+      });
+      if (user != null) {
+        final localAuthService = Provider.of<LocalAuthService>(context, listen: false);
+        _localUser = await localAuthService.getUserDataLocally(user.uid);
+        setState(() {}); // Update UI after fetching local user
+      } else {
+        _localUser = null;
+      }
+    });
+  }
+
+  Future<void> _authenticateBiometrics() async {
+    bool canCheckBiometrics = await _localAuth.canCheckBiometrics;
+    if (canCheckBiometrics) {
+      List<BiometricType> availableBiometrics = await _localAuth.getAvailableBiometrics();
+      if (availableBiometrics.isNotEmpty) {
+        try {
+          bool authenticated = await _localAuth.authenticate(
+            localizedReason: 'Please authenticate to enable smart lock functions.',
+            options: const AuthenticationOptions(
+              stickyAuth: true,
+              biometricOnly: true,
+            ),
+          );
+          if (authenticated) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Biometric authentication enabled for smart lock.')),
+            );
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Biometric authentication failed or canceled.')),
+            );
+          }
+        } catch (e) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Error during biometric authentication: $e')),
+          );
+          print('Error during biometric authentication: $e');
+        }
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('No biometrics enrolled on this device.')),
+        );
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Biometric authentication not available on this device.')),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    bool isOwner = _localUser?.role == 'owner';
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Settings'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ExpansionTile(
+              title: Text(
+                "General",
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              leading: const Icon(Icons.settings),
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    'Functions - Description:',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.check),
+                  title: Text(
+                    "Configure application language (Not implemented)",
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.check),
+                  title: Text(
+                    "Organize security (Smart Lock Control)",
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.check),
+                  title: Text(
+                    "Search for your Active MyHouse (Not implemented)",
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ),
+              ],
+            ),
+            const Divider(),
+            ExpansionTile(
+              title: Text(
+                "Language",
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              leading: const Icon(Icons.language_rounded),
+              children: <Widget>[
+                ListTile(
+                  title: const Text('English (Not implemented)'),
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Language change not implemented.')),
+                    );
+                  },
+                ),
+                ListTile(
+                  title: const Text('Portuguese (Not implemented)'),
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Language change not implemented.')),
+                    );
+                  },
+                ),
+              ],
+            ),
+            const Divider(),
+            ExpansionTile(
+              title: Text(
+                "Security",
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              leading: const Icon(Icons.security),
+              children: <Widget>[
+                if (!_isLoggedIn)
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      "Please log in to enable security services.",
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.grey),
+                    ),
+                  )
+                else
+                  Column(
+                    children: [
+                      ListTile(
+                        title: const Text("Enable Biometric Authentication"),
+                        leading: const Icon(Icons.fingerprint),
+                        onTap: _authenticateBiometrics,
+                      ),
+                      ListTile(
+                        title: const Text("Access Smart Lock Control"),
+                        leading: const Icon(Icons.bluetooth_outlined),
+                        onTap: () {
+                          Navigator.of(context).pushNamed('/bluetooth_control');
+                        },
+                      ),
+                      if (isOwner)
+                        Column(
+                          children: [
+                            ListTile(
+                              title: const Text("Manager - Activate MyHouse (Conceptual)"),
+                              leading: const Icon(Icons.admin_panel_settings),
+                              onTap: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('Manager Activate MyHouse (Conceptual)')),
+                                );
+                              },
+                            ),
+                            ListTile(
+                              title: const Text("Manager - Open MyHouse (Conceptual)"),
+                              leading: const Icon(Icons.lock_open_rounded),
+                              onTap: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('Manager Open MyHouse (Conceptual)')),
+                                );
+                              },
+                            ),
+                          ],
+                        )
+                      else
+                        ListTile(
+                          title: const Text("Client Access"),
+                          leading: const Icon(Icons.person),
+                          onTap: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Client access features (Conceptual)')),
+                            );
+                          },
+                        ),
+                    ],
+                  ),
+              ],
+            ),
+            const Divider(),
+            ExpansionTile(
+              title: Text(
+                "Help & Support",
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              leading: const Icon(Icons.help_outline),
+              children: <Widget>[
+                ListTile(
+                  title: const Text('Contact Support (Not implemented)'),
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Contact support functionality not implemented.')),
+                    );
+                  },
+                ),
+                ListTile(
+                  title: const Text('FAQ (Not implemented)'),
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('FAQ functionality not implemented.')),
+                    );
+                  },
+                ),
+              ],
+            ),
+            const Divider(),
+            ExpansionTile(
+              title: Text(
+                "About",
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              leading: const Icon(Icons.info_outline_rounded),
+              children: <Widget>[
+                ListTile(
+                  title: const Text('About This App'),
+                  onTap: () {
+                    Navigator.of(context).pushNamed('/about_app');
+                  },
+                ),
+                ListTile(
+                  title: const Text('Terms of Service'),
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Terms of Service (Not implemented)')),
+                    );
+                  },
+                ),
+                ListTile(
+                  title: const Text('Privacy Policy'),
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Privacy Policy (Not implemented)')),
+                    );
+                  },
+                ),
+                ListTile(
+                  title: const Text('Security Policies'),
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Security Policies (Not implemented)')),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// screens/about/about_app_screen.dart
+class AboutAppScreen extends StatelessWidget {
+  const AboutAppScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('About Real Estate App'),
+      ),
+      body: const SingleChildScrollView(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Icon(Icons.real_estate_agent, size: 100, color: Colors.blueAccent),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Real Estate App',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.blueAccent,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Version: 1.0.0',
+              style: TextStyle(fontSize: 16, color: Colors.grey),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Welcome to the Real Estate App, your ultimate companion for finding, listing, and managing properties with ease. Our application seamlessly integrates property browsing with advanced features like in-app chat and smart lock control for a modern real estate experience.',
+              style: TextStyle(fontSize: 16),
+              textAlign: TextAlign.justify,
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Key Features:',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10),
+            _buildFeaturePoint('Browse a wide range of property listings.'),
+            _buildFeaturePoint('Advanced search and filtering options.'),
+            _buildFeaturePoint('Direct in-app messaging with property owners/agents.'),
+            _buildFeaturePoint('Secure smart lock control via ESP32 Bluetooth integration (for authorized users).'),
+            _buildFeaturePoint('Offline login and data caching for seamless experience.'),
+            _buildFeaturePoint('Responsive UI adapting to device obfuscate.'),
+            SizedBox(height: 20),
+            Text(
+              'Developed by: Gemini AI',
+              style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+            ),
+            Text(
+              'Contact: support@realestateapp.com',
+              style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+            ),
+            SizedBox(height: 40),
+            Center(
+              child: Text(
+                '© 2024 Real Estate App. All rights reserved.',
+                style: TextStyle(fontSize: 12, color: Colors.grey),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  static Widget _buildFeaturePoint(String text) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Icon(Icons.check_circle_outline, size: 20, color: Colors.green),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(text, style: const TextStyle(fontSize: 16)),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// screens/payment/pix_payment_screen.dart
+class PagamentoPixPage extends StatefulWidget {
+  const PagamentoPixPage({Key? key}) : super(key: key);
+
+  @override
+  State<PagamentoPixPage> createState() => _PagamentoPixPageState();
+}
+
+class _PagamentoPixPageState extends State<PagamentoPixPage> {
+  bool pagamentoConfirmado = false;
+  String? codigoPix;
+
+  void gerarCodigoPix() {
+    setState(() {
+      // Simula um código Pix gerado
+      codigoPix = '00020126330014BR.GOV.BCB.PIX0114+558199999999520400005303986540510.005802BR5925Fulano ou Ciclano de tal Pix6009Sao Paulo62070503***6304ABCD';
+      pagamentoConfirmado = false;
+    });
+  }
+
+  void confirmarPagamento() {
+    setState(() {
+      pagamentoConfirmado = true; // simula confirmação
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Pagamento via Pix (Simulado)')),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ElevatedButton.icon(
+              icon: const Icon(Icons.qr_code),
+              label: const Text('Gerar código Pix'),
+              onPressed: gerarCodigoPix,
+            ),
+            const SizedBox(height: 16),
+            if (codigoPix != null)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Código Pix gerado:',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  SelectableText(codigoPix!),
+                  const SizedBox(height: 24),
+                  ElevatedButton.icon(
+                    icon: const Icon(Icons.check_circle),
+                    label: Text(pagamentoConfirmado
+                        ? 'Pagamento confirmado!'
+                        : 'Confirmar pagamento'),
+                    onPressed: pagamentoConfirmado ? null : confirmarPagamento,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: pagamentoConfirmado ? Colors.green : null,
+                    ),
+                  ),
+                ],
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// models/property_models.dart
+/// Represents a single real estate property listing.
+class House {
+  final String id; // Document ID from Firestore
+  final String ownerId;
+  final String title;
+  final double price;
+  final String cep;
+  final String street;
+  final String neighborhood;
+  final String city;
+  final String state;
+  final int houseNumber;
+  final String complement; // Empty string if no complement
+  final String category;
+  final int numberOfRooms;
+  final String description;
+  final List<String> imageUrls; // List of image URLs
+  final DateTime createdAt;
+
+  House({
+    required this.id,
+    required this.ownerId,
+    required this.title,
+    required this.price,
+    required this.cep,
+    required this.street,
+    required this.neighborhood,
+    required this.city,
+    required this.state,
+    required this.houseNumber,
+    this.complement = '', // Default to empty string
+    required this.category,
+    required this.numberOfRooms,
+    required this.description,
+    required this.imageUrls,
+    required this.createdAt,
+  });
+
+  /// Factory constructor to create a House object from a Firestore document snapshot.
+  factory House.fromMap(Map<String, dynamic> data, String documentId) {
+    return House(
+      id: documentId,
+      ownerId: data['ownerId'] as String? ?? '',
+      title: data['title'] as String? ?? 'N/A Title',
+      price: (data['price'] as num?)?.toDouble() ?? 0.0,
+      cep: data['cep'] as String? ?? '',
+      street: data['street'] as String? ?? '',
+      neighborhood: data['neighborhood'] as String? ?? '',
+      city: data['city'] as String? ?? '',
+      state: data['state'] as String? ?? '',
+      houseNumber: (data['houseNumber'] as num?)?.toInt() ?? 0,
+      complement: data['complement'] as String? ?? '',
+      category: data['category'] as String? ?? 'Other',
+      numberOfRooms: (data['numberOfRooms'] as num?)?.toInt() ?? 0,
+      description: data['description'] as String? ?? 'No description available.',
+      imageUrls: List<String>.from(data['imageUrls'] as List<dynamic>? ?? []),
+      createdAt: (data['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
+    );
+  }
+
+  /// Converts a House object to a Map for Firestore storage.
+  Map<String, dynamic> toMap() {
+    return {
+      'ownerId': ownerId,
+      'title': title,
+      'price': price,
+      'cep': cep,
+      'street': street,
+      'neighborhood': neighborhood,
+      'city': city,
+      'state': state,
+      'houseNumber': houseNumber,
+      'complement': complement,
+      'category': category,
+      'numberOfRooms': numberOfRooms,
+      'description': description,
+      'imageUrls': imageUrls,
+      'createdAt': FieldValue.serverTimestamp(),
+    };
+  }
+}
+
+/// Represents a rental transaction for a house.
+class Rent {
+  final String id; // Document ID from Firestore
+  final String houseId;
+  final String clientId;
+  final DateTime startDate;
+  final DateTime endDate;
+  final double calculatedPrice; // Price based on duration
+
+  Rent({
+    required this.id,
+    required this.houseId,
+    required this.clientId,
+    required this.startDate,
+    required this.endDate,
+    required this.calculatedPrice,
+  });
+
+  /// Factory constructor to create a Rent object from a Firestore document snapshot.
+  factory Rent.fromMap(Map<String, dynamic> data, String documentId) {
+    return Rent(
+      id: documentId,
+      houseId: data['houseId'] as String? ?? '',
+      clientId: data['clientId'] as String? ?? '',
+      startDate: (data['startDate'] as Timestamp?)?.toDate() ?? DateTime.now(),
+      endDate: (data['endDate'] as Timestamp?)?.toDate() ?? DateTime.now(),
+      calculatedPrice: (data['calculatedPrice'] as num?)?.toDouble() ?? 0.0,
+    );
+  }
+
+  /// Converts a Rent object to a Map for Firestore storage.
+  Map<String, dynamic> toMap() {
+    return {
+      'houseId': houseId,
+      'clientId': clientId,
+      'startDate': Timestamp.fromDate(startDate),
+      'endDate': Timestamp.fromDate(endDate),
+      'calculatedPrice': calculatedPrice,
+    };
+  }
+}
+
+// screens/property/custom_search_delegate.dart
+class CustomSearchDelegate extends SearchDelegate<House?> {
+  final List<House> allProperties;
+
+  CustomSearchDelegate({required this.allProperties})
+      : super(
+          searchFieldLabel: 'Search by address or title...',
+          keyboardType: TextInputType.text,
+          textInputAction: TextInputAction.search,
+          searchFieldStyle: const TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        );
+
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: const Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, null); // Return null when closing without selecting
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    final List<House> matchQuery = allProperties.where((property) {
+      final propertyAddress =
+          '${property.street}, ${property.neighborhood}, ${property.city} - ${property.state}'
+              .toLowerCase();
+      final propertyTitle = property.title.toLowerCase();
+      final lowerCaseQuery = query.toLowerCase();
+
+      return propertyAddress.contains(lowerCaseQuery) ||
+          propertyTitle.contains(lowerCaseQuery);
+    }).toList();
+
+    return ListView.builder(
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) {
+        final property = matchQuery[index];
+        return ListTile(
+          title: Text(property.title),
+          subtitle: Text(
+              '${property.street}, ${property.city}, ${property.state}'),
+          onTap: () {
+            close(context, property); // Return the selected House object
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    final List<House> suggestionList = allProperties.where((property) {
+      final propertyAddress =
+          '${property.street}, ${property.neighborhood}, ${property.city} - ${property.state}'
+              .toLowerCase();
+      final propertyTitle = property.title.toLowerCase();
+      final lowerCaseQuery = query.toLowerCase();
+
+      return propertyAddress.contains(lowerCaseQuery) ||
+          propertyTitle.contains(lowerCaseQuery);
+    }).toList();
+
+    return ListView.builder(
+      itemCount: suggestionList.length,
+      itemBuilder: (context, index) {
+        final property = suggestionList[index];
+        return ListTile(
+          title: Text(property.title),
+          subtitle: Text(
+              '${property.street}, ${property.city}, ${property.state}'),
+          onTap: () {
+            // When a suggestion is tapped, update the query and show results
+            query = property.title; // Or property.street, etc.
+            showResults(context);
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    return Theme.of(context).copyWith(
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.blueAccent, // Consistent app bar color
+        foregroundColor: Colors.white,
+        elevation: 0,
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+        border: InputBorder.none,
+        hintStyle: TextStyle(fontSize: 20.0, color: Colors.white70),
+      ),
+      textTheme: const TextTheme(
+        headlineMedium: TextStyle(fontSize: 20.0, color: Colors.white), // Style for the query text
+      ),
+    );
+  }
+}
+
