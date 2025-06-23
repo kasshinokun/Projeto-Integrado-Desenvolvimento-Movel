@@ -1,0 +1,37 @@
+{
+  "project_info": {
+    "dados cedidos pelo flutterfire"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:864174472705:android:0be11cf0b89f985a21ca00",
+        "android_client_info": {
+          "package_name": "com.grupo.rentahouse.rent_a_house"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "dados cedidos pelo flutterfire",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "dados cedidos pelo flutterfire"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "dados cedidos pelo flutterfire",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
