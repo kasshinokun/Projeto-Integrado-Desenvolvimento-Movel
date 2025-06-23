@@ -31,6 +31,7 @@ Por enquanto todos updates principais para estabilizar o aplicativo estão em [T
 - Amostra de código 1-02-06-2025: 2 providers para analisar a conexão, 1 listener e a aplicação como consumer
    - objetivo: se houver internet em algum modo de conexão o SQLite recebe o snapshot do Firebase Realtime Database, se estiver completamente offline realizará o login pelo SQLite e permitirá o acesso a casa tanto pelo proprietário quanto pelo inquilino.
    - os dados usados nesta amostra são genéricos não representando os originais.
+- Upload de moldes  de chat por Gabriel Batista em 09-06-2025
 ##### Vídeos
 
 <br>[Vídeo de Execução do Update 3-14-05-2025](https://youtu.be/44vCFUcQ23Q?si=FvgQR0V_4eoXEt3R)
