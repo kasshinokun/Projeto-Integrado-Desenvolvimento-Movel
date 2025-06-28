@@ -35,8 +35,8 @@ Por enquanto todos updates principais para estabilizar o aplicativo estão em [T
 - Upload de moldes gerais por Igor Leao em 17-06-2025
 - Refatoração por erro de servidor de 20-06-2025 a 23-06-2025
 - Proposição de modelo para trabalhar com Firebase Auth e Firestore por Gabriel Batista e Igor Avelar em 23-06-2025<br>(não está presente, porem parte está na base de código adaptada por Gabriel Cassino em 27-06-2025)
-- Previa 1 de remodelagem para trabalhar com Firebase Auth e Firestore em 27-06-2025(```Rent_a_House_App/Releases/TP_S4/revisao_app_27_06_2025```)
-- Previa 2 de remodelagem para trabalhar com Firebase Auth e Firestore em 28-06-2025(```Rent_a_House_App/Releases/TP_S4/revisao_app_28_06_2025```)
+- Previa 1 de remodelagem para trabalhar com Firebase Auth e Firestore em 27-06-2025 (```Rent_a_House_App/Releases/TP_S4/revisao_app_27_06_2025```)
+- Previa 2 de remodelagem para trabalhar com Firebase Auth e Firestore em 28-06-2025 (```Rent_a_House_App/Releases/TP_S4/revisao_app_28_06_2025```)
 
 ##### Vídeos
 
