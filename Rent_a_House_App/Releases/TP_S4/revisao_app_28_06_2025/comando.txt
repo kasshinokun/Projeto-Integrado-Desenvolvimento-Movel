@@ -1,0 +1,6 @@
+flutter clean
+
+flutter pub get
+
+flutter create --org com.grupo.rentahouse --platform android,web,windows --project-name rent_a_house
+
