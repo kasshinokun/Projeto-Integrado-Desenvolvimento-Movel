@@ -32,6 +32,12 @@ Por enquanto todos updates principais para estabilizar o aplicativo estão em [T
    - objetivo: se houver internet em algum modo de conexão o SQLite recebe o snapshot do Firebase Realtime Database, se estiver completamente offline realizará o login pelo SQLite e permitirá o acesso a casa tanto pelo proprietário quanto pelo inquilino.
    - os dados usados nesta amostra são genéricos não representando os originais.
 - Upload de moldes  de chat por Gabriel Batista em 09-06-2025
+- Upload de moldes gerais por Igor Leao em 17-06-2025
+- Refatoração por erro de servidor de 20-06-2025 a 23-06-2025
+- Proposição de modelo para trabalhar com Firebase Auth e Firestore por Gabriel Batista e Igor Avelar em 23-06-2025<br>(não está presente, porem parte está na base de código adaptada por Gabriel Cassino em 27-06-2025)
+- Previa 1 de remodelagem para trabalhar com Firebase Auth e Firestore em 27-06-2025 (```Rent_a_House_App/Releases/TP_S4/revisao_app_27_06_2025```)
+- Previa 2 de remodelagem para trabalhar com Firebase Auth e Firestore em 28-06-2025 (```Rent_a_House_App/Releases/TP_S4/revisao_app_28_06_2025```)
+
 ##### Vídeos
 
 <br>[Vídeo de Execução do Update 3-14-05-2025](https://youtu.be/44vCFUcQ23Q?si=FvgQR0V_4eoXEt3R)
