@@ -1,6 +1,6 @@
 // lib/screens/profile_screen.dart
 import 'package:flutter/material.dart';
-import 'package:provider/provider';
+import 'package:provider/provider.dart';
 import 'package:rent_a_house/services/authservices.dart';
 import 'dart:io'; // Para usar Image.file
 import 'package:rent_a_house/screens/my_houses_screen.dart'; // Import MyHousesScreen

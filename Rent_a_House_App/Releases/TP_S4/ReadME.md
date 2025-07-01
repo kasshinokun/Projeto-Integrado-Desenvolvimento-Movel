@@ -44,7 +44,11 @@ Por enquanto todos updates principais para estabilizar o aplicativo estão em [T
   - Aprimoramento do código de Gabriel Batista por Gabriel Cassino:
     - mensagens entre vendedor e cliente no Realtime Database
     - checkout de pagamento
-    
+- Atuialização 01-07-2025:
+  - Código Final em ```Rent_a_House_App\Releases\TP_S4\entrega\```
+  - Código desenvolvido por Gabriel Batista em ```Rent_a_House_App\Releases\TP_S4\Codigo_Gabriel_B\codigos para o git.zip```
+  - Postagem da documentação entregue em ```Rent_a_House_App\Documentação```   
+  
 ##### Vídeos
 
 <br>[Vídeo de Execução do Update 3-14-05-2025](https://youtu.be/44vCFUcQ23Q?si=FvgQR0V_4eoXEt3R)

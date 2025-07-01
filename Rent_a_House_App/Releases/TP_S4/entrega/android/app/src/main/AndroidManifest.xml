@@ -1,0 +1,85 @@
+<!-- android/app/src/main/AndroidManifest.xml -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Permissões de Internet (essenciais para Firebase e conectividade) -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <!-- Permissões de Armazenamento -->
+    <!-- Para Android 10 (API 29) e abaixo -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- Para Android 13 (API 33) e acima, para acesso a mídias específicas.
+         Note que para acesso geral a arquivos em Android 11+ você pode precisar de
+         <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+         e solicitar isso em tempo de execução com intent, mas geralmente scoped storage é o ideal.
+         Para imagens/vídeos/áudio específicos: -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"/>
+    <!-- Permissão para gerenciar armazenamento externo (CUIDADO: requer revisão no Google Play) -->
+    <!-- <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage"/> -->
+
+    <!-- Permissões de Localização -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- Se precisar de localização em segundo plano (requer acesso a localização fina ou grossa também) -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+
+    <!-- Permissões de Bluetooth -->
+    <!-- Para Android 11 (API 30) e abaixo -->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <!-- Para Android 12 (API 31) e acima: Novos conjuntos de permissões para Bluetooth -->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" android:usesPermissionFlags="neverForLocation" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+
+    <!-- Permissões para Notificações Push (Android 13 / API 33+) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
+    <application
+        android:label="rent_a_house"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher"
+        android:requestLegacyExternalStorage="true" 
+        android:usesCleartextTraffic="true" > 
+        
+        <!-- android:requestLegacyExternalStorage="true": Habilita o modo legado para armazenamento 
+        para Android 10+ se necessário -->
+        <!-- android:usesCleartextTraffic="true": Permite tráfego HTTP sem criptografia, 
+        útil para alguns testes/APIs legadas. Remova em produção se não for estritamente necessário. -->
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            <!-- Especifica que seu aplicativo pode ser lançado por um Intent com a categoria "android.intent.category.LAUNCHER" -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <!-- Fornece o plugin de integração do Flutter com o Android. -->
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+
+        <!-- Configuração para o Firebase Cloud Messaging (se estiver usando) -->
+        <!-- O Firebase SDK adiciona a maioria das configurações automaticamente.
+             No entanto, se você precisar de um serviço de recebimento de mensagens customizado:
+        <service
+            android:name=".YourFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        -->
+    </application>
+</manifest>
