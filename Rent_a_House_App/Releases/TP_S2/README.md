@@ -1,4 +1,4 @@
-# Rent a House
+# Rent a House - Sprint 2
 
 ### Desenvolvido por:
 
