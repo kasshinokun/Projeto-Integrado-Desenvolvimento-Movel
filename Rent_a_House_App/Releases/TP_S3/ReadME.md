@@ -1,4 +1,16 @@
 # Sprint 3 
+### Desenvolvido por:
+
+[Diego Vitor Pinto Mariano Portella](https://github.com/diegovitorportella)
+
+[Gabriel Batista de Almeida](https://github.com/GabrielBatistadeAlmeida)
+
+[Gabriel da Silva Cassino](https://github.com/kasshinokun)
+
+[Igor Cesar Avelar Leao](https://github.com/Igor-leao)
+
+[Sobre o Projeto - Página Inicial](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/)
+
 #### Etapas
 - 02-05-2025: Template Login Firebase estagio inicial
 - 02-05-2025: Tela de Login com Firebase - Inicio
