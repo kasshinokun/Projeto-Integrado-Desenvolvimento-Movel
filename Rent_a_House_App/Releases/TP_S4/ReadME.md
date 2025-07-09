@@ -1,4 +1,15 @@
 #### Sprint 4
+
+### Desenvolvido por:
+
+[Gabriel Batista de Almeida](https://github.com/GabrielBatistadeAlmeida)
+
+[Gabriel da Silva Cassino](https://github.com/kasshinokun)
+
+[Igor Cesar Avelar Leao](https://github.com/Igor-leao)
+
+[Sobre o Projeto - Página Inicial](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/blob/main/Rent_a_House_App/)
+
 ```Revisão 2-09-07-2025```<br>
 - Observações sobre a estrutura de pastas na Sprint 4(/TP_S4)
   - ```Até o final de Junho de 2025:```<br>Todos updates iniciais para estabilizar o aplicativo estão em [TP_S3](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/tree/main/Rent_a_House_App/Releases/TP_S3)<br>As prévias estáveis serão disponilizadas aqui, com a devida descrição.
