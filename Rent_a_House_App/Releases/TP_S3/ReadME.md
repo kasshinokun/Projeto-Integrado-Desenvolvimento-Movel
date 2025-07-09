@@ -1,4 +1,5 @@
-# Sprint 3 
+# Rent a House - Sprint 3
+
 ### Desenvolvido por:
 
 [Diego Vitor Pinto Mariano Portella](https://github.com/diegovitorportella)
