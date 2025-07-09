@@ -44,11 +44,11 @@
     - mensagens entre vendedor e cliente no Realtime Database
     - checkout de pagamento
 - Atualização 01-07-2025:
-  - Login e registro estável
-  - Cadastro de Imóvel estável
-  - Melhorias no perfil de usuário
-  - Melhorias no chat
-  - Adição e otimização do Ceheck-Out
+  - Login e registro estáveis
+  - Cadastro e Exibição de Imóvel estáveis
+  - Melhorias no Perfil de usuário
+  - Melhorias no Chat
+  - Adição e otimização do Check-Out
   - Código Final em ```Rent_a_House_App\Releases\TP_S4\entrega\```
   - Código desenvolvido por Gabriel Batista em ```Rent_a_House_App\Releases\TP_S4\Codigo_Gabriel_B\Review Sprint 4\```
   - Postagem da documentação entregue em ```Rent_a_House_App\Documentação```   
