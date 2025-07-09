@@ -44,11 +44,17 @@ Por enquanto todos updates principais para estabilizar o aplicativo estão em [T
   - Aprimoramento do código de Gabriel Batista por Gabriel Cassino:
     - mensagens entre vendedor e cliente no Realtime Database
     - checkout de pagamento
-- Atuialização 01-07-2025:
+- Atualização 01-07-2025:
+  - Login e registro estável
+  - Cadastro de Imóvel estável
+  - Melhorias no perfil de usuário
+  - Melhorias no chat
+  - Adição e otimização do Ceheck-Out
   - Código Final em ```Rent_a_House_App\Releases\TP_S4\entrega\```
-  - Código desenvolvido por Gabriel Batista em ```Rent_a_House_App\Releases\TP_S4\Codigo_Gabriel_B\codigos para o git.zip```
+  - Código desenvolvido por Gabriel Batista em ```Rent_a_House_App\Releases\TP_S4\Codigo_Gabriel_B\Review Sprint 4\```
   - Postagem da documentação entregue em ```Rent_a_House_App\Documentação```   
-  
+  - Há alguns bugs ver seção abaixo.
+
 ##### Vídeos
 
 <br>[Vídeo de Execução do Update 3-14-05-2025](https://youtu.be/44vCFUcQ23Q?si=FvgQR0V_4eoXEt3R)
@@ -56,3 +62,21 @@ Por enquanto todos updates principais para estabilizar o aplicativo estão em [T
 <br>[Prévia Teste 1-19-05-2025 SQLite e Firebase](https://youtube.com/shorts/I83i9OQeXbE?si=3WUE7ed4KtduvM7T)
 <br>
 <br>[Prévia do Update 1.1-26-05-2025](https://youtube.com/shorts/uixEUY6NESA?si=AtZYFfWHYFflWtW9)
+<br>
+<br>```Vídeos da entrega da Sprint 4 - Início de Julho de 2025```
+<br>[Apresentação ao Professor Sprint 4 A - Aplicação Geral](https://www.youtube.com/watch?v=6UIz8lo0ejQ)
+<br>
+<br>[Apresentação ao Professor Sprint 4 B - Check-Out](https://www.youtube.com/shorts/XoF1uw6EW_c)
+
+##### Bugs
+<br>````Sprint 4 - Entrega:```
+- Salva a imagem do usuário no Firestore e no SQLite, porém não carrega no perfil
+- Ao terminar de registrar um imóvel, dá tela vermelha, pois não há um hot reload para atualizar o estado da tela principal
+
+##### Planos Futuros(Caso o projeto continue)
+<br>Melhorias de Interface
+<br>Salvamento do objeto Aluguel no Firestore
+<br>Adição e Otimização de processos não implementados
+<br>Possibilidade de uso offline, caso haja usuário logado(usando SQLite)
+<br>Uso do Bluetooth para comunicação com dispositivos IoT
+<br>Integração de chave SHA para comunicação com ESP32
