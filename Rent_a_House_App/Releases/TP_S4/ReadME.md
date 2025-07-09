@@ -1,9 +1,8 @@
 #### Sprint 4
-
-Por enquanto todos updates principais para estabilizar o aplicativo estão em [TP_S3](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/tree/main/Rent_a_House_App/Releases/TP_S3)
-<br>
-<br>As prévias estáveis serão disponilizadas aqui, com a devida descrição.
-
+```Revisão 2-09-07-2025```<br>
+- Observações sobre a estrutura de pastas na Sprint 4(/TP_S4)
+  - ```Até o final de Junho de 2025:```<br>Todos updates iniciais para estabilizar o aplicativo estão em [TP_S3](https://github.com/kasshinokun/Projeto-Integrado-Desenvolvimento-Movel/tree/main/Rent_a_House_App/Releases/TP_S3)<br>As prévias estáveis serão disponilizadas aqui, com a devida descrição.
+  - ```Após o final de Junho de 2025:```<br>As prévias estáveis estão disponíveis conforme descrição de caminho da referida pasta.
 ##### Prévias
 -  Update 3-14-05-2025: Versão de Login com Páginal inicial em teste(Pasta: /TP_S4_App)
 - 15-05-2025: Template para ESP32 e Flutter com ESP32(Análise de código)
@@ -64,19 +63,20 @@ Por enquanto todos updates principais para estabilizar o aplicativo estão em [T
 <br>[Prévia do Update 1.1-26-05-2025](https://youtube.com/shorts/uixEUY6NESA?si=AtZYFfWHYFflWtW9)
 <br>
 <br>```Vídeos da entrega da Sprint 4 - Início de Julho de 2025```
+<br>
 <br>[Apresentação ao Professor Sprint 4 A - Aplicação Geral](https://www.youtube.com/watch?v=6UIz8lo0ejQ)
 <br>
 <br>[Apresentação ao Professor Sprint 4 B - Check-Out](https://www.youtube.com/shorts/XoF1uw6EW_c)
 
 ##### Bugs
-<br>````Sprint 4 - Entrega:```
+<br>```Sprint 4 - Entrega:```
 - Salva a imagem do usuário no Firestore e no SQLite, porém não carrega no perfil
-- Ao terminar de registrar um imóvel, dá tela vermelha, pois não há um hot reload para atualizar o estado da tela principal
+- Ao terminar de registrar um imóvel, pode haver tela vermelha, pois não há um hot reload para atualizar o estado da tela principal
 
 ##### Planos Futuros(Caso o projeto continue)
-<br>Melhorias de Interface
-<br>Salvamento do objeto Aluguel no Firestore
-<br>Adição e Otimização de processos não implementados
-<br>Possibilidade de uso offline, caso haja usuário logado(usando SQLite)
-<br>Uso do Bluetooth para comunicação com dispositivos IoT
-<br>Integração de chave SHA para comunicação com ESP32
+- Melhorias de Interface
+- Salvamento do objeto Aluguel no Firestore
+- Adição e Otimização de processos não implementados
+- Possibilidade de uso offline, caso haja usuário logado(usando SQLite)
+- Uso do Bluetooth para comunicação com dispositivos IoT
+- Integração de chave SHA para comunicação com ESP32
